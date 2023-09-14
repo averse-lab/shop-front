@@ -5,6 +5,6 @@ const imageFragment = `
     width
     height
   }
-`
+`;
 
-export default imageFragment
+export default imageFragment;

@@ -1,5 +1,5 @@
-import imageFragment from './image'
-import seoFragment from './seo'
+import imageFragment from "./image";
+import seoFragment from "./seo";
 
 const productFragment = `
   fragment product on Product {
@@ -71,6 +71,6 @@ const productFragment = `
   }
   ${imageFragment}
   ${seoFragment}
-`
+`;
 
-export default productFragment
+export default productFragment;

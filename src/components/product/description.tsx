@@ -1,5 +1,5 @@
 interface IProps {}
 
 const Description = () => {
-  return <div></div>
-}
+  return <div></div>;
+};

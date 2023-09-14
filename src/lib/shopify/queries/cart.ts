@@ -1,4 +1,4 @@
-import cartFragment from '../fragments/cart'
+import cartFragment from "../fragments/cart";
 
 export const getCartQuery = `
   query getCart($cartId: ID!) {
@@ -7,4 +7,4 @@ export const getCartQuery = `
     }
   }
   ${cartFragment}
-`
+`;

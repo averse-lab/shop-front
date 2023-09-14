@@ -1,4 +1,4 @@
-import productFragment from './product'
+import productFragment from "./product";
 
 const cartFragment = `
   fragment cart on Cart {
@@ -48,6 +48,6 @@ const cartFragment = `
     totalQuantity
   }
   ${productFragment}
-`
+`;
 
-export default cartFragment
+export default cartFragment;

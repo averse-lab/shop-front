@@ -19,9 +19,9 @@ export const Animation: FC<IProps> = ({ animation }) => {
 
   if (!isMobile) {
     return (
-      <div className="relative border border-black overflow-hidden">
+      <div className='relative border border-black overflow-hidden'>
         <VideoPlayer
-          className="w-full h-full scale-105"
+          className='w-full h-full scale-105'
           playbackId={animation.playbackId}
         />
         {/*<h1>{animation.name}</h1>*/}

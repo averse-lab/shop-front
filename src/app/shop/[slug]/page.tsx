@@ -1,23 +1,23 @@
-import React from 'react'
-import { getProduct } from '@averse/lib/shopify'
-import { ProductDescription } from '@averse/components/product/product-selector'
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { HIDDEN_PRODUCT_TAG } from '@averse/lib/constants'
-import Image from 'next/image'
-import Prose from '@averse/components/prose'
+import React from "react";
+import { getProduct } from "@averse/lib/shopify";
+import { ProductDescription } from "@averse/components/product/product-selector";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { HIDDEN_PRODUCT_TAG } from "@averse/lib/constants";
+import Image from "next/image";
+import Prose from "@averse/components/prose";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: { slug: string };
 }): Promise<Metadata> {
-  const product = await getProduct(params.slug)
+  const product = await getProduct(params.slug);
 
-  if (!product) return notFound()
+  if (!product) return notFound();
 
-  const { url, width, height, altText: alt } = product.featuredImage || {}
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG)
+  const { url, width, height, altText: alt } = product.featuredImage || {};
+  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
 
   return {
     title: product.seo.title || product.title,
@@ -42,17 +42,17 @@ export async function generateMetadata({
           ],
         }
       : null,
-  }
+  };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const product = await getProduct(params.slug)
+  const product = await getProduct(params.slug);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen">
+    <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
       {product && (
         <>
-          <div className="overflow-auto md:h-screen">
+          <div className='overflow-auto md:h-screen'>
             {product?.images.map((image, index) => (
               <Image
                 key={index}
@@ -60,21 +60,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 width={image.width}
                 height={image.height}
                 alt={`Product Image ${index + 1}`}
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             ))}
           </div>
-          <div className="overflow-auto bg-white flex flex-col items-center justify-center text-black md:h-screen overflow-x-hidden overflow-y-hidden">
+          <div className='overflow-auto bg-white flex flex-col items-center justify-center text-black md:h-screen overflow-x-hidden overflow-y-hidden'>
             <ProductDescription product={product} />
-            <div className="mx-5">
-              <p className={'font-bold text-xs'}>
+            <div className='mx-5'>
+              <p className={"font-bold text-xs"}>
                 Design in France, made in France
               </p>
-              <div className={'border-t-2 border-black mt-3'}>
-                <div className={'flex mt-3'}>
+              <div className={"border-t-2 border-black mt-3"}>
+                <div className={"flex mt-3"}>
                   <h2
                     className={
-                      'font-bold text-xl text-center text-black mt-4 mb-4'
+                      "font-bold text-xl text-center text-black mt-4 mb-4"
                     }
                   >
                     Materials
@@ -82,11 +82,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   <p>{product.material?.value}</p>
                 </div>
               </div>
-              <div className={'border-t- border-black mt-3'}>
-                <div className={'flex mt-3'}>
+              <div className={"border-t- border-black mt-3"}>
+                <div className={"flex mt-3"}>
                   <h2
                     className={
-                      'font-bold text-xl text-center text-black mt-4 mb-4'
+                      "font-bold text-xl text-center text-black mt-4 mb-4"
                     }
                   >
                     Concept
@@ -94,11 +94,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   <p>{product.material?.value}</p>
                 </div>
               </div>
-              <div className={'border-t-2 border-black mt-3'}>
-                <div className={'flex mt-3'}>
+              <div className={"border-t-2 border-black mt-3"}>
+                <div className={"flex mt-3"}>
                   <h2
                     className={
-                      'font-bold text-xl text-center text-black mt-4 mb-4'
+                      "font-bold text-xl text-center text-black mt-4 mb-4"
                     }
                   >
                     Materials
@@ -111,5 +111,5 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </>
       )}
     </div>
-  )
+  );
 }

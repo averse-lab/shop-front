@@ -3,6 +3,6 @@ const seoFragment = `
     description
     title
   }
-`
+`;
 
-export default seoFragment
+export default seoFragment;

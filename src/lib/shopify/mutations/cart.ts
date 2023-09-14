@@ -1,4 +1,4 @@
-import cartFragment from '../fragments/cart'
+import cartFragment from "../fragments/cart";
 
 export const addToCartMutation = `
   mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
@@ -9,7 +9,7 @@ export const addToCartMutation = `
     }
   }
   ${cartFragment}
-`
+`;
 
 export const createCartMutation = `
   mutation createCart($lineItems: [CartLineInput!]) {
@@ -20,7 +20,7 @@ export const createCartMutation = `
     }
   }
   ${cartFragment}
-`
+`;
 
 export const editCartItemsMutation = `
   mutation editCartItems($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
@@ -31,7 +31,7 @@ export const editCartItemsMutation = `
     }
   }
   ${cartFragment}
-`
+`;
 
 export const removeFromCartMutation = `
   mutation removeFromCart($cartId: ID!, $lineIds: [ID!]!) {
@@ -42,4 +42,4 @@ export const removeFromCartMutation = `
     }
   }
   ${cartFragment}
-`
+`;

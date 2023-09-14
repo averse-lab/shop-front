@@ -1,4 +1,4 @@
-import seoFragment from '../fragments/seo'
+import seoFragment from "../fragments/seo";
 
 const pageFragment = `
   fragment page on Page {
@@ -16,7 +16,7 @@ const pageFragment = `
     }
   }
   ${seoFragment}
-`
+`;
 
 export const getPageQuery = `
   query getPage($handle: String!) {
@@ -25,7 +25,7 @@ export const getPageQuery = `
     }
   }
   ${pageFragment}
-`
+`;
 
 export const getPagesQuery = `
   query getPages {
@@ -38,4 +38,4 @@ export const getPagesQuery = `
     }
   }
   ${pageFragment}
-`
+`;

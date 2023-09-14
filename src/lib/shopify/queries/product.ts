@@ -1,4 +1,4 @@
-import productFragment from '../fragments/product'
+import productFragment from "../fragments/product";
 
 export const getProductQuery = `
   query getProduct($handle: String!) {
@@ -7,7 +7,7 @@ export const getProductQuery = `
     }
   }
   ${productFragment}
-`
+`;
 
 export const getProductsQuery = `
   query getProducts(
@@ -24,7 +24,7 @@ export const getProductsQuery = `
     }
   }
   ${productFragment}
-`
+`;
 
 export const getProductRecommendationsQuery = `
   query getProductRecommendations($productId: ID!) {
@@ -33,4 +33,4 @@ export const getProductRecommendationsQuery = `
     }
   }
   ${productFragment}
-`
+`;

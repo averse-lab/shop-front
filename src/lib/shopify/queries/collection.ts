@@ -1,5 +1,5 @@
-import productFragment from '../fragments/product'
-import seoFragment from '../fragments/seo'
+import productFragment from "../fragments/product";
+import seoFragment from "../fragments/seo";
 
 const collectionFragment = `
   fragment collection on Collection {
@@ -12,7 +12,7 @@ const collectionFragment = `
     updatedAt
   }
   ${seoFragment}
-`
+`;
 
 export const getCollectionQuery = `
   query getCollection($handle: String!) {
@@ -21,7 +21,7 @@ export const getCollectionQuery = `
     }
   }
   ${collectionFragment}
-`
+`;
 
 export const getCollectionsQuery = `
   query getCollections {
@@ -34,7 +34,7 @@ export const getCollectionsQuery = `
     }
   }
   ${collectionFragment}
-`
+`;
 
 export const getCollectionProductsQuery = `
   query getCollectionProducts(
@@ -53,4 +53,4 @@ export const getCollectionProductsQuery = `
     }
   }
   ${productFragment}
-`
+`;
