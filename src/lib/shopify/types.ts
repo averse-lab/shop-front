@@ -1,5 +1,3 @@
-import { Metafield } from "@shopify/hydrogen-react/dist/types/storefront-api-types";
-
 export type Maybe<T> = T | null;
 
 export type Connection<T> = {
