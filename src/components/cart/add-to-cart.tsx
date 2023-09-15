@@ -16,8 +16,6 @@ export function AddToCart({
   variants: ProductVariant[];
   availableForSale: boolean;
 }) {
-  console.log(variants);
-
   const [selectedVariantId, setSelectedVariantId] = useState(variants[0]?.id);
   const router = useRouter();
   const searchParams = useSearchParams();

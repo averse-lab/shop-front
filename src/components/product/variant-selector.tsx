@@ -81,8 +81,6 @@ export function VariantSelector({
     router.replace(selectedVariantUrl);
   }
 
-  console.log(options);
-
   return options.map((option) => (
     <div className='mb-8' key={option.id}>
       <Listbox value='Select size'>

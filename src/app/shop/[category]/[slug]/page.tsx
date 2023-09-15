@@ -5,7 +5,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HIDDEN_PRODUCT_TAG } from "@averse/lib/constants";
 import Image from "next/image";
-import Prose from "@averse/components/prose";
 
 export async function generateMetadata({
   params,

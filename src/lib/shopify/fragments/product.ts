@@ -6,6 +6,7 @@ const productFragment = `
     id
     handle
     availableForSale
+    productType
     title
     description
     descriptionHtml

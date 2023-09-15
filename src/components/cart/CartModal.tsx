@@ -19,7 +19,6 @@ const CartModal = ({ cart }: { cart: Cart | undefined }) => {
   const closeCart = () => setIsOpen(false);
 
   useEffect(() => {
-    console.log("cart", cart);
     if (cart?.totalQuantity !== quantityRef.current) {
       if (!isOpen) {
         setIsOpen(true);

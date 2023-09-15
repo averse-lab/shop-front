@@ -1,18 +1,5 @@
+import collectionFragment from "../fragments/collection";
 import productFragment from "../fragments/product";
-import seoFragment from "../fragments/seo";
-
-const collectionFragment = `
-  fragment collection on Collection {
-    handle
-    title
-    description
-    seo {
-      ...seo
-    }
-    updatedAt
-  }
-  ${seoFragment}
-`;
 
 export const getCollectionQuery = `
   query getCollection($handle: String!) {
