@@ -1,77 +1,78 @@
 import imageFragment from "./image";
 import seoFragment from "./seo";
+import gql from "graphql-tag";
 
-const productFragment = `
-  fragment product on Product {
-    id
-    handle
-    availableForSale
-    productType
-    title
-    description
-    descriptionHtml
-    dimensions: metafield(namespace: "properties", key: "dimensions") {
-      value
-    }
-    material: metafield(namespace: "properties", key: "material") {
-      value
-    }
-    concept: metafield(namespace: "properties", key: "concept") {
-      value
-    }
-    delay: metafield(namespace: "delivery", key: "delay") {
-      value
-    }
-    options {
-      id
-      name
-      values
-    }
-    priceRange {
-      maxVariantPrice {
-        amount
-        currencyCode
-      }
-      minVariantPrice {
-        amount
-        currencyCode
-      }
-    }
-    variants(first: 250) {
-      edges {
-        node {
-          id
-          title
-          availableForSale
-          selectedOptions {
-            name
+const productFragment = gql`
+    fragment product on Product {
+        id
+        handle
+        availableForSale
+        productType
+        title
+        description
+        descriptionHtml
+        dimensions: metafield(namespace: "properties", key: "dimensions") {
             value
-          }
-          price {
-            amount
-            currencyCode
-          }
         }
-      }
-    }
-    featuredImage {
-      ...image
-    }
-    images(first: 20) {
-      edges {
-        node {
-          ...image
+        material: metafield(namespace: "properties", key: "material") {
+            value
         }
-      }
+        concept: metafield(namespace: "properties", key: "concept") {
+            value
+        }
+        delay: metafield(namespace: "delivery", key: "delay") {
+            value
+        }
+        options {
+            id
+            name
+            values
+        }
+        priceRange {
+            maxVariantPrice {
+                amount
+                currencyCode
+            }
+            minVariantPrice {
+                amount
+                currencyCode
+            }
+        }
+        variants(first: 250) {
+            edges {
+                node {
+                    id
+                    title
+                    availableForSale
+                    selectedOptions {
+                        name
+                        value
+                    }
+                    price {
+                        amount
+                        currencyCode
+                    }
+                }
+            }
+        }
+        featuredImage {
+            ...image
+        }
+        images(first: 20) {
+            edges {
+                node {
+                    ...image
+                }
+            }
+        }
+        seo {
+            ...seo
+        }
+        tags
+        updatedAt
     }
-    seo {
-      ...seo
-    }
-    tags
-    updatedAt
-  }
-  ${imageFragment}
-  ${seoFragment}
+    ${imageFragment}
+    ${seoFragment}
 `;
 
 export default productFragment;

@@ -1,3 +1,7 @@
+<h1 align="center">
+Averse Shop
+</h1>
+
 ## Node
 
 To avoid incompatibilities between different work environments it's important for everybody to work with the same Node version. You can use [NVM](https://github.com/nvm-sh/nvm) to install different Node versions and set the correct one by running :

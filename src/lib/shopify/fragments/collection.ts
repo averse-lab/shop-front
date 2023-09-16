@@ -1,16 +1,17 @@
 import seoFragment from "./seo";
+import gql from "graphql-tag";
 
-const collectionFragment = `
-  fragment collection on Collection {
-    handle
-    title
-    description
-    seo {
-      ...seo
+const collectionFragment = gql`
+    fragment collection on Collection {
+        handle
+        title
+        description
+        seo {
+            ...seo
+        }
+        updatedAt
     }
-    updatedAt
-  }
-  ${seoFragment}
+    ${seoFragment}
 `;
 
 export default collectionFragment;

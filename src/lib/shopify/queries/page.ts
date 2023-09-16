@@ -1,41 +1,42 @@
 import seoFragment from "../fragments/seo";
+import gql from "graphql-tag";
 
-const pageFragment = `
-  fragment page on Page {
-    ... on Page {
-      id
-      title
-      handle
-      body
-      bodySummary
-      seo {
-        ...seo
-      }
-      createdAt
-      updatedAt
-    }
-  }
-  ${seoFragment}
-`;
-
-export const getPageQuery = `
-  query getPage($handle: String!) {
-    pageByHandle(handle: $handle) {
-      ...page
-    }
-  }
-  ${pageFragment}
-`;
-
-export const getPagesQuery = `
-  query getPages {
-    pages(first: 100) {
-      edges {
-        node {
-          ...page
+const pageFragment = gql`
+    fragment page on Page {
+        ... on Page {
+            id
+            title
+            handle
+            body
+            bodySummary
+            seo {
+                ...seo
+            }
+            createdAt
+            updatedAt
         }
-      }
     }
-  }
-  ${pageFragment}
+    ${seoFragment}
+`;
+
+export const getPageQuery = gql`
+    query getPage($handle: String!) {
+        pageByHandle(handle: $handle) {
+            ...page
+        }
+    }
+    ${pageFragment}
+`;
+
+export const getPagesQuery = gql`
+    query getPages {
+        pages(first: 100) {
+            edges {
+                node {
+                    ...page
+                }
+            }
+        }
+    }
+    ${pageFragment}
 `;
