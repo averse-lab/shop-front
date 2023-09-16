@@ -1,4 +1,4 @@
-import { Filter } from "./components/FilterSelector";
+import { Filter } from "./components/FilterSelector/_internal/types";
 import { CATEGORIES } from "../../_internal/constants";
 
 export const FILTERS: Filter[] = Array.from(CATEGORIES, ([_, value]) => ({

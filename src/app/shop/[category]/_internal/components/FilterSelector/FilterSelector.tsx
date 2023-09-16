@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-
-export interface Filter {
-  display: string;
-  url: string;
-}
+import { Filter } from "./_internal/types";
 
 interface IProps {
   filters: Filter[];
