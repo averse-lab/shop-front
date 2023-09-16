@@ -18,6 +18,7 @@ import {
 } from "./queries/collection";
 import { getMenuQuery } from "./queries/menu";
 import { getPageQuery, getPagesQuery } from "./queries/page";
+import { DocumentNode, print } from "graphql";
 import {
   getProductQuery,
   getProductRecommendationsQuery,
@@ -67,7 +68,7 @@ export async function shopifyFetch<T>({
 }: {
   cache?: RequestCache;
   headers?: HeadersInit;
-  query: string;
+  query: DocumentNode;
   tags?: string[];
   variables?: ExtractVariables<T>;
 }): Promise<{ status: number; body: T } | never> {
@@ -80,7 +81,7 @@ export async function shopifyFetch<T>({
         ...headers,
       },
       body: JSON.stringify({
-        ...(query && { query }),
+        ...(query && { query: print(query) }),
         ...(variables && { variables }),
       }),
       cache,
@@ -386,7 +387,10 @@ export async function getPages(): Promise<Page[]> {
   return removeEdgesAndNodes(res.body.data.pages);
 }
 
-export async function getProduct(handle: string): Promise<Product | undefined> {
+export async function getProduct(
+  handle: string,
+  lang: "en" | "fr",
+): Promise<Product | undefined> {
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],
