@@ -9,7 +9,7 @@ import Image from "next/image";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; lang: "en" | "fr" };
 }): Promise<Metadata> {
   const product = await getProduct(params.slug);
 
@@ -44,7 +44,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug: string; lang: "en" | "fr" };
+}) {
   const product = await getProduct(params.slug);
 
   return (
