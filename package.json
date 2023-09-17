@@ -36,6 +36,7 @@
     "eslint-config-prettier": "^9.0.0",
     "graphql-tag": "^2.12.6",
     "prettier": "^3.0.3",
-    "sass": "^1.66.1"
+    "sass": "^1.66.1",
+    "typescript-plugin-css-modules": "^5.0.1"
   }
 }
