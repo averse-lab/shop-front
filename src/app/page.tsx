@@ -2,6 +2,7 @@ import muxBlurHash from "@mux/blurhash";
 import React from "react";
 import VideoPlayer from "@averse/components/VideoPlayer";
 import Link from "next/link";
+import { Header } from "@averse/components";
 
 async function getData() {
   const { sourceWidth, sourceHeight, blurHashBase64 } = await muxBlurHash(
@@ -19,8 +20,11 @@ async function getData() {
 
 export default async function Home() {
   return (
-    <main className='relative w-full h-screen overflow-hidden'>
-      <VideoPlayer
+    <>
+      <Header />
+      <main>
+        <div className='h-screen w-full bg-red-500'></div>
+        {/* <VideoPlayer
         className='h-full'
         playbackId={"9NAAiw4fOQs02P00n7nSKuP1GEQfwrRipeVG2pgllB01WI"}
       />
@@ -33,7 +37,8 @@ export default async function Home() {
             Go to shop
           </button>
         </Link>
-      </div>
-    </main>
+      </div> */}
+      </main>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { getProduct } from "@averse/lib/shopify";
 import { ProductDescription } from "@averse/components/product/product-selector";
 import { Metadata } from "next";
@@ -44,12 +44,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({
-  params,
-}: {
-  params: { slug: string; lang: "en" | "fr" };
-}) {
-  const product = await getProduct(params.slug);
+interface IProps {
+  params: { slug: string };
+}
+
+const Page: FC<IProps> = async (props) => {
+  const { slug } = props.params;
+
+  const product = await getProduct(slug);
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
@@ -115,4 +117,6 @@ export default async function Page({
       )}
     </div>
   );
-}
+};
+
+export default Page;

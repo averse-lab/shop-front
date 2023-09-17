@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { ReactNode } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 import Header from "@averse/components/global/Header";
 import { LateralMenu } from "@averse/components/global/LateralMenu";
 import { MenuContextProvider } from "@averse/context/MenuContext";
@@ -18,17 +18,17 @@ export const metadata: Metadata = {
   description: "Averse is a jewelery brand.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout: FC<PropsWithChildren> = (props) => {
+  const { children } = props;
+
   return (
     <html lang='en'>
       <body className={`${hanken_grotesk.variable} font-sans`}>
-        <MenuContextProvider>
-          <LateralMenu />
-          <Header />
-          {children}
-        </MenuContextProvider>
+        {children}
         <Footer />
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

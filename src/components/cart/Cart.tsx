@@ -2,13 +2,16 @@ import { getCart } from "@averse/lib/shopify";
 import { cookies } from "next/headers";
 import CartModal from "@averse/components/cart/CartModal";
 
-export default async function Cart() {
-  const cartId = cookies().get("cartId")?.value;
-  let cart;
+export const Cart = async () => {
+  const cartIdCookie = cookies().get("cartId");
 
-  if (cartId) {
-    cart = await getCart(cartId);
+  if (cartIdCookie === undefined) {
+    return;
   }
 
+  const cartId = cartIdCookie.value;
+
+  const cart = await getCart(cartId);
+
   return <CartModal cart={cart} />;
-}
+};
