@@ -1,4 +1,4 @@
-import { CategoryValue, CategoriesKey } from "./types";
+import { CategoriesKey, CategoryValue } from "./types";
 
 export const CATEGORIES: Map<CategoriesKey, CategoryValue> = new Map([
   [

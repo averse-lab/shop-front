@@ -1,11 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { FC, PropsWithChildren, ReactNode } from "react";
-import Header from "@averse/components/global/Header";
-import { LateralMenu } from "@averse/components/global/LateralMenu";
-import { MenuContextProvider } from "@averse/context/MenuContext";
+import { FC, PropsWithChildren } from "react";
 import Footer from "@averse/components/global/Footer";
 import { Hanken_Grotesk } from "next/font/google";
+import { i18n } from "@averse/app/[lang]/i18n-config";
 
 const hanken_grotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -18,11 +16,17 @@ export const metadata: Metadata = {
   description: "Averse is a jewelery brand.",
 };
 
-const RootLayout: FC<PropsWithChildren> = (props) => {
-  const { children } = props;
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
+type IProps = {
+  params: { lang: string };
+} & PropsWithChildren;
+
+const RootLayout: FC<IProps> = ({ children, params }) => {
   return (
-    <html lang='en'>
+    <html lang={params.lang}>
       <body className={`${hanken_grotesk.variable} font-sans`}>
         {children}
         <Footer />

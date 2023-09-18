@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "about": "À propos"
+  },
+  "sections": {
+    "rings": "Bagues",
+    "necklaces": "Colliers",
+    "allProducts": "Tous les produits"
+  },
+  "home": {
+    "description": "Ceci est une description de la page d'accueil.",
+    "goToShop": "Aller à la boutique"
+  },
+  "products": {
+    "addToBag": "Ajouter au panier",
+    "shippingCondition": "Calculé à la caisse",
+    "card": "Panier d'achat",
+    "proceedToCheckout": "Passer à la caisse"
+  }
+}

@@ -12,6 +12,16 @@ import Link from "next/link";
 type MerchandiseSearchParams = {
   [key: string]: string;
 };
+
+interface IProps {
+  dictionary: {
+    addToBag: string;
+    shippingConditions: string;
+    card: string;
+    proceedToCheckout: string;
+  };
+}
+
 const CartModal = ({ cart }: { cart: Cart | undefined }) => {
   const [isOpen, setIsOpen] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);

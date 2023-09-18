@@ -4,7 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { FC } from "react";
 import { CATEGORIES } from "./_internal/constants";
 import { CategoriesKey } from "./_internal/types";
-import { SECTIONS } from "../_internal/constants";
+import { SECTIONS } from "@averse/app/_internal/constants";
 
 const ShopPage: FC = () => {
   const allProductsCategory = CATEGORIES.get(CategoriesKey.ALL_PRODUCTS);

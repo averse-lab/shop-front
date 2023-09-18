@@ -1,6 +1,5 @@
 "use client";
 
-import { SECTIONS } from "@averse/app/_internal/constants";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FC, useState } from "react";
 import { MAIN_NAV } from "./_internal/BurgerMenu.constants";

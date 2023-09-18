@@ -78,6 +78,7 @@ export async function shopifyFetch<T>({
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Storefront-Access-Token": key,
+        // "Accept-Language": "fr",
         ...headers,
       },
       body: JSON.stringify({
@@ -328,7 +329,7 @@ export async function getCollections(): Promise<Collection[]> {
     tags: [TAGS.collections],
   });
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
-  const collections = [
+  return [
     {
       handle: "",
       title: "All",
@@ -346,8 +347,6 @@ export async function getCollections(): Promise<Collection[]> {
       (collection) => !collection.handle.startsWith("hidden"),
     ),
   ];
-
-  return collections;
 }
 
 export async function getMenu(handle: string): Promise<Menu[]> {

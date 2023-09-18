@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import Link from "next/link";
-import Cart from "@averse/components/cart/Cart";
 import OpenCart from "@averse/components/cart/open-cart";
 import { Logo } from "@averse/components/global/Logo";
 import { MenuButton } from "@averse/components/global/MenuButton";
+import { Cart } from "@averse/components/cart/Cart";
 
 const Header = () => {
   return (

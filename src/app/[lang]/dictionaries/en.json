@@ -1,0 +1,22 @@
+{
+  "menu": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About"
+  },
+  "sections": {
+    "rings": "Rings",
+    "necklaces": "Necklaces",
+    "allProducts": "All Products"
+  },
+  "home": {
+    "description": "This is a description of the home page.",
+    "goToShop": "Go to Shop"
+  },
+  "products": {
+    "addToBag": "Add to bag",
+    "shippingCondition": "Calculated at checkout",
+    "card": "Shopping card",
+    "proceedToCheckout": "Proceed to checkout"
+  }
+}

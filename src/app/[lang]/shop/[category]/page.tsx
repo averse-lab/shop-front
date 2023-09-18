@@ -1,15 +1,10 @@
 import Image from "next/image";
-import {
-  getCollection,
-  getCollectionProducts,
-  getCollections,
-  getProducts,
-} from "@averse/lib/shopify";
+import { getProducts } from "@averse/lib/shopify";
 import Link from "next/link";
 import { Animation } from "@averse/components/product/animation";
 import { Metadata } from "next";
 import { FC } from "react";
-import { CategoriesKey, CategoryValue } from "../_internal/types";
+import { CategoriesKey } from "../_internal/types";
 import { CATEGORIES } from "../_internal/constants";
 import { FilterSelector } from "./_internal/components";
 import { ANIMATIONS, FILTERS } from "./_internal/constants";
