@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@averse/app/globals.css";
 import type { Metadata } from "next";
 import { FC, PropsWithChildren } from "react";
 import Footer from "@averse/components/global/Footer";
