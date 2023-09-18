@@ -1,15 +1,13 @@
 import muxBlurHash from "@mux/blurhash";
-import React from "react";
-import VideoPlayer from "@averse/components/VideoPlayer";
-import Link from "next/link";
+import React, { FC } from "react";
 import { Header } from "@averse/components";
+import { getDictionary } from "@averse/lib/i18n/utils";
+import { Locale } from "@averse/lib/i18n/types";
 
 async function getData() {
   const { sourceWidth, sourceHeight, blurHashBase64 } = await muxBlurHash(
     "xj75R68qvoJq7hJtEkQDTifVY6PZMYzWuzXxuhAwDtw",
   );
-
-  const x = "a";
 
   return {
     sourceWidth,
@@ -18,10 +16,19 @@ async function getData() {
   };
 }
 
-export default async function Home() {
+type IProps = {
+  params: { lang: Locale };
+};
+
+const HomePage: FC<IProps> = async (props) => {
+  const { params } = props;
+  const { lang } = params;
+
+  const dictionnary = await getDictionary(lang);
+
   return (
     <>
-      <Header />
+      <Header dictionnary={dictionnary} />
       <main>
         <div className='h-screen w-full bg-red-500'></div>
         {/* <VideoPlayer
@@ -41,4 +48,6 @@ export default async function Home() {
       </main>
     </>
   );
-}
+};
+
+export default HomePage;

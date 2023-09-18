@@ -4,15 +4,26 @@ import Link from "next/link";
 import { Logo } from "@averse/components/icons";
 import { Cart } from "../cart/Cart";
 import OpenCart from "../cart/open-cart";
+import { NavItem } from "./_internal/components/BurgerMenu";
+import { SECTIONS } from "@averse/app/_internal/constants";
+import { Dictionnary } from "@averse/lib/i18n/types";
 
 interface IProps {
   transparent?: boolean;
+  dictionnary: Dictionnary;
 }
 
-export const Header: FC<IProps> = () => {
+export const Header: FC<IProps> = (props) => {
+  const { dictionnary } = props;
+
+  const nav: NavItem[] = Array.from(SECTIONS, ([_, { url, i18nKey }]) => ({
+    url,
+    display: dictionnary.menu[i18nKey],
+  }));
+
   return (
     <header className='grid grid-cols-3 items-center px-6 py-4'>
-      <BurgerMenu />
+      <BurgerMenu nav={nav} />
       <Link className='justify-self-center' href='/'>
         <Logo className='h-10 w-10 md:w-16 md:h-16' />
       </Link>

@@ -1,7 +1,7 @@
 import { SectionsKey, SectionValue } from "./types";
 
 export const SECTIONS: Map<SectionsKey, SectionValue> = new Map([
-  [SectionsKey.HOME, { display: "Home", url: "" }],
-  [SectionsKey.SHOP, { display: "Shop", url: "shop" }],
-  [SectionsKey.ABOUT, { display: "About", url: "about" }],
+  [SectionsKey.HOME, { i18nKey: SectionsKey.HOME, url: "" }],
+  [SectionsKey.SHOP, { i18nKey: SectionsKey.SHOP, url: "shop" }],
+  [SectionsKey.ABOUT, { i18nKey: SectionsKey.ABOUT, url: "about" }],
 ]);

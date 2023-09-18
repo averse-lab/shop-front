@@ -5,8 +5,16 @@ import { FC } from "react";
 import { CATEGORIES } from "./_internal/constants";
 import { CategoriesKey } from "./_internal/types";
 import { SECTIONS } from "@averse/app/_internal/constants";
+import { Locale } from "@averse/lib/i18n/types";
 
-const ShopPage: FC = () => {
+type IProps = {
+  params: { lang: Locale };
+};
+
+const ShopPage: FC<IProps> = (props) => {
+  const { params } = props;
+  const { lang } = params;
+
   const allProductsCategory = CATEGORIES.get(CategoriesKey.ALL_PRODUCTS);
   const shopSection = SECTIONS.get(SectionsKey.SHOP);
 
@@ -15,7 +23,7 @@ const ShopPage: FC = () => {
   }
 
   redirect(
-    `/${shopSection.url}/${allProductsCategory.url}`,
+    `/${lang}/${shopSection.url}/${allProductsCategory.url}`,
     RedirectType.replace,
   );
 };

@@ -2,11 +2,19 @@
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FC, useState } from "react";
-import { MAIN_NAV } from "./_internal/BurgerMenu.constants";
 import Link from "next/link";
 import s from "./_internal/BurgerMenu.module.scss";
+import { NavItem } from "./_internal/BurgerMenu.types";
 
-export const BurgerMenu: FC = () => {
+type IProps = {
+  nav: NavItem[];
+};
+
+export type { NavItem } from "./_internal/BurgerMenu.types";
+
+export const BurgerMenu: FC<IProps> = (props) => {
+  const { nav } = props;
+
   const [open, setOpen] = useState(false);
 
   const handleBurgerClick = () => {
@@ -32,7 +40,7 @@ export const BurgerMenu: FC = () => {
           onClick={handleCloseClick}
           className={`${s["burger-menu__close"]} absolute w-6 h-6 cursor-pointer text-white top-6 md:top-4 right-6 md:right-4`}
         />
-        {MAIN_NAV.map((navItem) => (
+        {nav.map((navItem) => (
           <Link
             className={`${s["burger-menu__link"]} text-xl md:text-base text-white relative`}
             key={navItem.display}

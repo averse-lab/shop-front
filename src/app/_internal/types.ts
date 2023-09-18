@@ -5,6 +5,6 @@ export enum SectionsKey {
 }
 
 export interface SectionValue {
-  display: string;
+  i18nKey: SectionsKey.HOME | SectionsKey.SHOP | SectionsKey.ABOUT;
   url: string;
 }
