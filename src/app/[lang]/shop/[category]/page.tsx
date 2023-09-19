@@ -95,13 +95,13 @@ const CategoryPage: FC<IProps> = async (props) => {
                 </div>
               </Link>
             </div>
-            {ANIMATIONS.map(({ playbackId, apsectRatio, index }) => {
-              if (index === index + 1) {
+            {ANIMATIONS.map((animation) => {
+              if (animation.index === index + 1) {
                 return (
                   <Animation
-                    playbackId={playbackId}
-                    aspectRatio={apsectRatio}
-                    key={`${index}-${playbackId}`}
+                    playbackId={animation.playbackId}
+                    aspectRatio={animation.apsectRatio}
+                    key={`${index}-${animation.playbackId}`}
                   />
                 );
               }
