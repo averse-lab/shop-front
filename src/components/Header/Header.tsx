@@ -11,10 +11,11 @@ import { Dictionnary } from "@averse/lib/i18n/types";
 interface IProps {
   transparent?: boolean;
   dictionnary: Dictionnary;
+  lang: string;
 }
 
 export const Header: FC<IProps> = (props) => {
-  const { dictionnary } = props;
+  const { dictionnary, lang } = props;
 
   const nav: NavItem[] = Array.from(SECTIONS, ([_, { url, i18nKey }]) => ({
     url,
@@ -23,7 +24,7 @@ export const Header: FC<IProps> = (props) => {
 
   return (
     <header className='grid grid-cols-3 items-center px-6 py-4'>
-      <BurgerMenu nav={nav} />
+      <BurgerMenu nav={nav} lang={lang} />
       <Link className='justify-self-center' href='/'>
         <Logo className='h-10 w-10 md:w-16 md:h-16' />
       </Link>

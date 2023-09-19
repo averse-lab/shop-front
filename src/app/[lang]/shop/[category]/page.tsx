@@ -4,13 +4,14 @@ import Link from "next/link";
 import { Animation } from "@averse/components/product/animation";
 import { Metadata } from "next";
 import { FC } from "react";
-import { CategoriesKey } from "../_internal/types";
+import { CategoriesUrlSegment } from "../_internal/types";
 import { CATEGORIES } from "../_internal/constants";
 import { FilterSelector } from "./_internal/components";
 import { ANIMATIONS, FILTERS } from "./_internal/constants";
 import { notFound } from "next/navigation";
 import { SECTIONS } from "@averse/app/_internal/constants";
 import { SectionsKey } from "@averse/app/_internal/types";
+import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/helpers";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",
@@ -18,24 +19,30 @@ export const metadata: Metadata = {
 };
 
 type IProps = {
-  params: { category: CategoriesKey };
+  params: { category: string; lang: string };
 };
 
 const CategoryPage: FC<IProps> = async (props) => {
   const { category: categoryUrlSegment } = props.params;
 
-  const category = CATEGORIES.get(categoryUrlSegment);
+  const categoryKey = mapCategoryUrlSegmentToCategoryKey(categoryUrlSegment);
+
+  if (categoryKey === undefined) {
+    notFound();
+  }
+
+  const category = CATEGORIES.get(categoryKey);
   const shopSection = SECTIONS.get(SectionsKey.SHOP);
 
   if (category === undefined || shopSection === undefined) {
-    return notFound();
+    notFound();
   }
 
   const products = await getProducts({
     query:
-      categoryUrlSegment === "all_products"
-        ? ""
-        : `product_type:${category.url}`,
+      categoryUrlSegment === CategoriesUrlSegment.ALL_PRODUCTS
+        ? category.shopifyId
+        : `product_type:${category.shopifyId}`,
   });
 
   const selectedFilterIndex = FILTERS.reduce((acc, curr, idx) => {

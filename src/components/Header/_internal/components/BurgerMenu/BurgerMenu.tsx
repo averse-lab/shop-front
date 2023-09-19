@@ -8,12 +8,13 @@ import { NavItem } from "./_internal/BurgerMenu.types";
 
 type IProps = {
   nav: NavItem[];
+  lang: string;
 };
 
 export type { NavItem } from "./_internal/BurgerMenu.types";
 
 export const BurgerMenu: FC<IProps> = (props) => {
-  const { nav } = props;
+  const { nav, lang } = props;
 
   const [open, setOpen] = useState(false);
 
@@ -44,7 +45,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           <Link
             className={`${s["burger-menu__link"]} text-xl md:text-base text-white relative`}
             key={navItem.display}
-            href={`/${navItem.url}`}
+            href={`/${lang}/${navItem.url}`}
           >
             {navItem.display}
           </Link>
@@ -53,6 +54,3 @@ export const BurgerMenu: FC<IProps> = (props) => {
     </>
   );
 };
-
-// t : 36
-// l : 24

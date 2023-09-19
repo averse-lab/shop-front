@@ -1,3 +1,5 @@
+import { Dictionnary } from "@averse/lib/i18n/types";
+
 export enum SectionsKey {
   HOME = "home",
   SHOP = "shop",
@@ -5,6 +7,6 @@ export enum SectionsKey {
 }
 
 export interface SectionValue {
-  i18nKey: SectionsKey.HOME | SectionsKey.SHOP | SectionsKey.ABOUT;
+  i18nKey: keyof Dictionnary["menu"];
   url: string;
 }

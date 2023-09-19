@@ -28,7 +28,7 @@ const HomePage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <Header dictionnary={dictionnary} />
+      <Header dictionnary={dictionnary} lang={lang} />
       <main>
         <div className='h-screen w-full bg-red-500'></div>
         {/* <VideoPlayer
