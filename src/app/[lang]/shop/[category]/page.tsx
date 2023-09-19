@@ -23,7 +23,7 @@ type IProps = {
 };
 
 const CategoryPage: FC<IProps> = async (props) => {
-  const { category: categoryUrlSegment } = props.params;
+  const { category: categoryUrlSegment, lang } = props.params;
 
   const categoryKey = mapCategoryUrlSegmentToCategoryKey(categoryUrlSegment);
 
@@ -49,6 +49,8 @@ const CategoryPage: FC<IProps> = async (props) => {
     return curr.url === categoryUrlSegment ? idx : acc;
   }, 0);
 
+  console.log(products);
+
   return (
     <>
       <FilterSelector
@@ -63,7 +65,9 @@ const CategoryPage: FC<IProps> = async (props) => {
               className='relative border-t border-l border-black overflow-hidden'
               style={{ outline: "1px solid black", outlineOffset: "-1px" }}
             >
-              <Link href={`/${shopSection.url}/${category.url}/${item.handle}`}>
+              <Link
+                href={`/${lang}/${shopSection.url}/${item.productType}/${item.handle}`}
+              >
                 {item.images[0] && (
                   <Image
                     src={item.images[0]?.url}

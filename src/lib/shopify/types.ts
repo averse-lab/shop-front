@@ -112,6 +112,7 @@ export type ShopifyProduct = {
   id: string;
   handle: string;
   availableForSale: boolean;
+  productType: string;
   title: string;
   description: string;
   descriptionHtml: string;
