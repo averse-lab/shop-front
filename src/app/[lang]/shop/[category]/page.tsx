@@ -15,6 +15,7 @@ import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/helpers";
 import { Filter } from "./_internal/components/FilterSelector/_internal/types";
 import { getDictionary } from "@averse/lib/i18n/utils";
 import { Locale } from "@averse/lib/i18n/types";
+import { Header } from "@averse/components";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",
@@ -60,6 +61,7 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
+      <Header dictionary={dictionary} lang={lang} />
       <FilterSelector
         filters={filters}
         selectedFilterIndex={selectedFilterIndex}
@@ -93,12 +95,13 @@ const CategoryPage: FC<IProps> = async (props) => {
                 </div>
               </Link>
             </div>
-            {ANIMATIONS.map((animation) => {
-              if (animation.index === index + 1) {
+            {ANIMATIONS.map(({ playbackId, apsectRatio, index }) => {
+              if (index === index + 1) {
                 return (
                   <Animation
-                    animation={animation}
-                    key={`${animation.index}-${animation.playbackId}`}
+                    playbackId={playbackId}
+                    aspectRatio={apsectRatio}
+                    key={`${index}-${playbackId}`}
                   />
                 );
               }

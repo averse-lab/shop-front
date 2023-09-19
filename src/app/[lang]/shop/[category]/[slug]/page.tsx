@@ -5,11 +5,14 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HIDDEN_PRODUCT_TAG } from "@averse/lib/constants";
 import Image from "next/image";
+import { Locale } from "@averse/lib/i18n/types";
+import { getDictionary } from "@averse/lib/i18n/utils";
+import { Header } from "@averse/components";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string; lang: "en" | "fr" };
+  params: { slug: string; lang: Locale };
 }): Promise<Metadata> {
   const product = await getProduct(params.slug);
 
@@ -45,77 +48,82 @@ export async function generateMetadata({
 }
 
 interface IProps {
-  params: { slug: string };
+  params: { slug: string; lang: Locale };
 }
 
 const Page: FC<IProps> = async (props) => {
-  const { slug } = props.params;
+  const { slug, lang } = props.params;
 
   const product = await getProduct(slug);
 
+  const dictionary = await getDictionary(lang);
+
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
-      {product && (
-        <>
-          <div className='overflow-auto md:h-screen'>
-            {product?.images.map((image, index) => (
-              <Image
-                key={index}
-                src={image.url}
-                width={image.width}
-                height={image.height}
-                alt={`Product Image ${index + 1}`}
-                style={{ objectFit: "cover" }}
-              />
-            ))}
-          </div>
-          <div className='overflow-auto bg-white flex flex-col items-center justify-center text-black md:h-screen overflow-x-hidden overflow-y-hidden'>
-            <ProductDescription product={product} />
-            <div className='mx-5'>
-              <p className={"font-bold text-xs"}>
-                Design in France, made in France
-              </p>
-              <div className={"border-t-2 border-black mt-3"}>
-                <div className={"flex mt-3"}>
-                  <h2
-                    className={
-                      "font-bold text-xl text-center text-black mt-4 mb-4"
-                    }
-                  >
-                    Materials
-                  </h2>
-                  <p>{product.material?.value}</p>
+    <>
+      <Header dictionary={dictionary} lang={lang} />
+      <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
+        {product && (
+          <>
+            <div className='overflow-auto md:h-screen'>
+              {product?.images.map((image, index) => (
+                <Image
+                  key={index}
+                  src={image.url}
+                  width={image.width}
+                  height={image.height}
+                  alt={`Product Image ${index + 1}`}
+                  style={{ objectFit: "cover" }}
+                />
+              ))}
+            </div>
+            <div className='overflow-auto bg-white flex flex-col items-center justify-center text-black md:h-screen overflow-x-hidden overflow-y-hidden'>
+              <ProductDescription product={product} />
+              <div className='mx-5'>
+                <p className={"font-bold text-xs"}>
+                  Design in France, made in France
+                </p>
+                <div className={"border-t-2 border-black mt-3"}>
+                  <div className={"flex mt-3"}>
+                    <h2
+                      className={
+                        "font-bold text-xl text-center text-black mt-4 mb-4"
+                      }
+                    >
+                      Materials
+                    </h2>
+                    <p>{product.material?.value}</p>
+                  </div>
                 </div>
-              </div>
-              <div className={"border-t- border-black mt-3"}>
-                <div className={"flex mt-3"}>
-                  <h2
-                    className={
-                      "font-bold text-xl text-center text-black mt-4 mb-4"
-                    }
-                  >
-                    Concept
-                  </h2>
-                  <p>{product.material?.value}</p>
+                <div className={"border-t- border-black mt-3"}>
+                  <div className={"flex mt-3"}>
+                    <h2
+                      className={
+                        "font-bold text-xl text-center text-black mt-4 mb-4"
+                      }
+                    >
+                      Concept
+                    </h2>
+                    <p>{product.material?.value}</p>
+                  </div>
                 </div>
-              </div>
-              <div className={"border-t-2 border-black mt-3"}>
-                <div className={"flex mt-3"}>
-                  <h2
-                    className={
-                      "font-bold text-xl text-center text-black mt-4 mb-4"
-                    }
-                  >
-                    Materials
-                  </h2>
-                  <p>{product.material?.value}</p>
+                <div className={"border-t-2 border-black mt-3"}>
+                  <div className={"flex mt-3"}>
+                    <h2
+                      className={
+                        "font-bold text-xl text-center text-black mt-4 mb-4"
+                      }
+                    >
+                      Materials
+                    </h2>
+                    <p>{product.material?.value}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

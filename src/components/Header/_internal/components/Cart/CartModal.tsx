@@ -39,7 +39,7 @@ const CartModal = ({ cart }: { cart: Cart }) => {
   }, [isOpen, cart.totalQuantity, quantityRef, cart]);
 
   return (
-    <div>
+    <div className='justify-self-end'>
       <CartHint quantity={cart.totalQuantity} onClick={openCart} />
       {cart && (
         <Transition show={isOpen}>

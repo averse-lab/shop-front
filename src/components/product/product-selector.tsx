@@ -1,9 +1,10 @@
 import { VariantSelector } from "./variant-selector";
 import React from "react";
-import { AddToCart } from "@averse/components/cart/add-to-cart";
+
 import Prose from "@averse/components/prose";
 import Price from "@averse/components/price";
 import { Product } from "@averse/lib/shopify/types";
+import { AddToCart } from "../Header/_internal/components/Cart/add-to-cart";
 
 export function ProductDescription({ product }: { product: Product }) {
   return (
