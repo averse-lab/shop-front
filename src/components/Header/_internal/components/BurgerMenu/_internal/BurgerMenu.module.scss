@@ -3,12 +3,10 @@
     0.2s transform ease-out,
     0.2s opacity ease-out;
   transform: translate(-100%);
-  opacity: 0;
 }
 
 .burger-menu__menu--open {
   transform: translate(0);
-  opacity: 1;
 }
 
 @media (min-width: 768px) {
@@ -26,7 +24,6 @@
     &:hover {
       & + .burger-menu__menu {
         transform: translate(-100%);
-        opacity: 1;
       }
 
       & + .burger-menu__menu--open {
