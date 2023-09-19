@@ -4,7 +4,7 @@
     "shop": "Boutique",
     "about": "À propos"
   },
-  "sections": {
+  "categories": {
     "rings": "Bagues",
     "necklaces": "Colliers",
     "allProducts": "Tous les produits"

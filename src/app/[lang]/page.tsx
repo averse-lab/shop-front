@@ -17,11 +17,11 @@ const HomePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const dictionnary = await getDictionary(lang);
+  const dictionary = await getDictionary(lang);
 
   return (
     <>
-      <Header dictionnary={dictionnary} lang={lang} />
+      <Header dictionary={dictionary} lang={lang} />
       <main>
         <div className='h-screen w-full bg-red-500'></div>
         {/* <VideoPlayer

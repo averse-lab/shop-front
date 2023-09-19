@@ -1,11 +1,4 @@
 import { Filter } from "./components/FilterSelector/_internal/types";
-import { CATEGORIES } from "../../_internal/constants";
-
-export const FILTERS: Filter[] = Array.from(CATEGORIES, ([_, value]) => ({
-  display: value.display,
-  url: value.url,
-}));
-
 export const ANIMATIONS = [
   {
     name: "Bounce",

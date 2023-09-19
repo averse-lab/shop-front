@@ -1,3 +1,5 @@
+import { Dictionnary } from "@averse/lib/i18n/types";
+
 export enum CategoriesKey {
   ALL_PRODUCTS = "all_products",
   RINGS = "rings",
@@ -11,7 +13,7 @@ export enum CategoriesUrlSegment {
 }
 
 export interface CategoryValue {
-  display: string;
+  i18nKey: keyof Dictionnary["categories"];
   shopifyId: string;
   url: string;
 }

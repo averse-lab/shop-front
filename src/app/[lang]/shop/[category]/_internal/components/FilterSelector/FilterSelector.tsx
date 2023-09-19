@@ -14,7 +14,9 @@ export const FilterSelector: FC<IProps> = (props) => {
     <div className={`p-4 flex  items-center justify-center gap-x-3`}>
       {filters.map(({ display, url }, idx) => (
         <Link
-          className={`${idx === selectedFilterIndex ? "font-bold" : ""}`}
+          className={`transition-all duration-200 hover:font-semibold ${
+            idx === selectedFilterIndex ? "font-semibold" : ""
+          }`}
           key={url}
           href={url}
         >

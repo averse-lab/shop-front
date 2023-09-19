@@ -7,11 +7,14 @@ import { FC } from "react";
 import { CategoriesUrlSegment } from "../_internal/types";
 import { CATEGORIES } from "../_internal/constants";
 import { FilterSelector } from "./_internal/components";
-import { ANIMATIONS, FILTERS } from "./_internal/constants";
+import { ANIMATIONS } from "./_internal/constants";
 import { notFound } from "next/navigation";
 import { SECTIONS } from "@averse/app/_internal/constants";
 import { SectionsKey } from "@averse/app/_internal/types";
 import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/helpers";
+import { Filter } from "./_internal/components/FilterSelector/_internal/types";
+import { getDictionary } from "@averse/lib/i18n/utils";
+import { Locale } from "@averse/lib/i18n/types";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",
@@ -19,12 +22,13 @@ export const metadata: Metadata = {
 };
 
 type IProps = {
-  params: { category: string; lang: string };
+  params: { category: string; lang: Locale };
 };
 
 const CategoryPage: FC<IProps> = async (props) => {
   const { category: categoryUrlSegment, lang } = props.params;
 
+  const dictionary = await getDictionary(lang);
   const categoryKey = mapCategoryUrlSegmentToCategoryKey(categoryUrlSegment);
 
   if (categoryKey === undefined) {
@@ -45,16 +49,19 @@ const CategoryPage: FC<IProps> = async (props) => {
         : `product_type:${category.shopifyId}`,
   });
 
-  const selectedFilterIndex = FILTERS.reduce((acc, curr, idx) => {
+  const filters: Filter[] = Array.from(CATEGORIES, ([_, { url, i18nKey }]) => ({
+    url,
+    display: dictionary.categories[i18nKey],
+  }));
+
+  const selectedFilterIndex = filters.reduce((acc, curr, idx) => {
     return curr.url === categoryUrlSegment ? idx : acc;
   }, 0);
-
-  console.log(products);
 
   return (
     <>
       <FilterSelector
-        filters={FILTERS}
+        filters={filters}
         selectedFilterIndex={selectedFilterIndex}
       />
       <div className='grid grid-cols-2 md:grid-cols-4'>

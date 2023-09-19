@@ -10,16 +10,16 @@ import { Dictionnary } from "@averse/lib/i18n/types";
 
 interface IProps {
   transparent?: boolean;
-  dictionnary: Dictionnary;
+  dictionary: Dictionnary;
   lang: string;
 }
 
 export const Header: FC<IProps> = (props) => {
-  const { dictionnary, lang } = props;
+  const { dictionary, lang } = props;
 
   const nav: NavItem[] = Array.from(SECTIONS, ([_, { url, i18nKey }]) => ({
     url,
-    display: dictionnary.menu[i18nKey],
+    display: dictionary.menu[i18nKey],
   }));
 
   return (
