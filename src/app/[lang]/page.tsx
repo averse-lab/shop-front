@@ -3,17 +3,10 @@ import React, { FC } from "react";
 import { Header } from "@averse/components";
 import { getDictionary } from "@averse/lib/i18n/utils";
 import { Locale } from "@averse/lib/i18n/types";
+import { I18N_CONFIG } from "@averse/lib/i18n/config";
 
-async function getData() {
-  const { sourceWidth, sourceHeight, blurHashBase64 } = await muxBlurHash(
-    "xj75R68qvoJq7hJtEkQDTifVY6PZMYzWuzXxuhAwDtw",
-  );
-
-  return {
-    sourceWidth,
-    sourceHeight,
-    blurHashBase64,
-  };
+export async function generateStaticParams() {
+  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
 }
 
 type IProps = {

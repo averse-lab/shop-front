@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { FC, PropsWithChildren } from "react";
 import Footer from "@averse/components/global/Footer";
 import { Hanken_Grotesk } from "next/font/google";
-import { I18N_CONFIG } from "@averse/lib/i18n/config";
 
 const hanken_grotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -15,10 +14,6 @@ export const metadata: Metadata = {
   title: "Averse",
   description: "Averse is a jewelery brand.",
 };
-
-export async function generateStaticParams() {
-  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
-}
 
 type IProps = {
   params: { lang: string };
