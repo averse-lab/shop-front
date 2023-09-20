@@ -66,7 +66,7 @@ const CategoryPage: FC<IProps> = async (props) => {
         filters={filters}
         selectedFilterIndex={selectedFilterIndex}
       />
-      <div className='grid grid-cols-2 md:grid-cols-4'>
+      <div className='grid grid-cols-2 md:grid-cols-4 grow'>
         {products.map((item, index) => (
           <>
             <div

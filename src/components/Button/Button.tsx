@@ -22,7 +22,7 @@ type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;
 export const Button: FC<IProps> = (props) => {
   const { children, className: propsClassName } = props;
 
-  const className = `bg-black text-white text-lg font-semibold uppercase py-3 px-6 rounded-sm ${
+  const className = `bg-black text-white text-lg font-medium uppercase py-3 px-6 rounded ${
     propsClassName || null
   }`;
 

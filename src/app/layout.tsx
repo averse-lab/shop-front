@@ -22,7 +22,9 @@ type IProps = {
 const RootLayout: FC<IProps> = ({ children, params }) => {
   return (
     <html lang={params.lang}>
-      <body className={`${hanken_grotesk.variable} font-sans`}>
+      <body
+        className={`${hanken_grotesk.variable} font-sans min-h-screen flex flex-col`}
+      >
         {children}
         <Footer />
       </body>
