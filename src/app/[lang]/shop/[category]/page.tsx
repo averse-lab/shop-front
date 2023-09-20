@@ -15,7 +15,8 @@ import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/helpers";
 import { Filter } from "./_internal/components/FilterSelector/_internal/types";
 import { getDictionary } from "@averse/lib/i18n/utils";
 import { Locale } from "@averse/lib/i18n/types";
-import { Header } from "@averse/components";
+import { Header, VideoPlayer } from "@averse/components";
+import { ProductPreview } from "./_internal/components/ProductPreview/ProductPreview";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",
@@ -65,43 +66,27 @@ const CategoryPage: FC<IProps> = async (props) => {
       <FilterSelector
         filters={filters}
         selectedFilterIndex={selectedFilterIndex}
+        className='border-t border-black'
       />
-      <div className='grid grid-cols-2 md:grid-cols-4 grow'>
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] grow border-t border-b border-black'>
         {products.map((item, index) => (
           <>
-            <div
-              key={item.id}
-              className='relative border-t border-l border-black overflow-hidden'
-              style={{ outline: "1px solid black", outlineOffset: "-1px" }}
-            >
-              <Link
-                href={`/${lang}/${shopSection.url}/${item.productType}/${item.handle}`}
-              >
-                {item.images[0] && (
-                  <Image
-                    src={item.images[0]?.url}
-                    alt={item.title}
-                    width={2200}
-                    height={2200}
-                    className='object-cover w-full h-full transition-transform duration-500 ease-in-out transform hover:scale-110 cursor-pointer'
-                  />
-                )}
-                <div className='absolute bottom-0 left-0 p-2 text-black'>
-                  <h2 className={"uppercase font-sans"}>{item.title}</h2>
-                  <p className={"font-sans"}>
-                    {item.priceRange.maxVariantPrice.amount}{" "}
-                    {item.priceRange.maxVariantPrice.currencyCode}
-                  </p>
-                </div>
-              </Link>
-            </div>
+            <ProductPreview
+              className='outline outline-1 outline-black'
+              href={`/${lang}/${shopSection.url}/${item.productType}/${item.handle}`}
+              imageUrl={item.images[0].url}
+              title={item.title}
+              price={item.priceRange.maxVariantPrice.amount}
+              currency={item.priceRange.maxVariantPrice.currencyCode}
+            />
             {ANIMATIONS.map((animation) => {
               if (animation.index === index + 1) {
                 return (
-                  <Animation
+                  <VideoPlayer
+                    className='w-full h-full outline outline-1 outline-black overflow-hidden'
+                    key={animation.playbackId}
                     playbackId={animation.playbackId}
-                    aspectRatio={animation.apsectRatio}
-                    key={`${index}-${animation.playbackId}`}
+                    aspectRatio={animation.aspectRatio}
                   />
                 );
               }
