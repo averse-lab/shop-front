@@ -5,12 +5,21 @@
     "plugin:import/errors",
     "plugin:import/typescript"
   ],
+  "plugins": ["@typescript-eslint"],
   "settings": {
     "import/resolver": {
       "typescript": true
     }
   },
   "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_"
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -28,6 +37,26 @@
             "pattern": "{react,react-dom/**}",
             "group": "external",
             "position": "before"
+          },
+          {
+            "pattern": "@averse/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@components/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@lib/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@styles/**",
+            "group": "external",
+            "position": "after"
           }
         ],
         "distinctGroup": true,
