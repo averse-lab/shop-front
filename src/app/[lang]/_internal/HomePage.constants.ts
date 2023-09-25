@@ -1,4 +1,4 @@
-import { MuxVideoSource } from "@averse/types";
+import { MuxVideoSource } from "@lib/types";
 
 import { SectionsKey, SectionValue } from "./HomePage.types";
 
