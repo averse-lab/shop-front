@@ -1,5 +1,4 @@
 import { Dictionnary } from "@averse/lib/i18n/types";
-import { CSSProperties } from "react";
 
 export enum SectionsKey {
   HOME = "home",
@@ -10,9 +9,4 @@ export enum SectionsKey {
 export interface SectionValue {
   i18nKey: keyof Dictionnary["menu"];
   url: string;
-}
-
-export interface MuxVideoSource {
-  playbackId: string;
-  aspectRatio: CSSProperties["aspectRatio"];
 }

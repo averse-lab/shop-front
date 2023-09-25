@@ -1,26 +1,29 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Cart } from "@averse/lib/shopify/types";
+
 import { Dialog, Transition } from "@headlessui/react";
-import { createUrl } from "@averse/lib/utils";
 import Image from "next/image";
-import Price from "@averse/components/price";
-import EditItemQuantityButton from "./edit-item-quantity-button";
 import Link from "next/link";
+
+import Price from "@averse/components/price";
+import { Cart } from "@averse/lib/shopify/types";
+import { createUrl } from "@averse/lib/utils";
+
 import { CartHint } from "./_internal/components";
+import EditItemQuantityButton from "./edit-item-quantity-button";
 
 type MerchandiseSearchParams = {
   [key: string]: string;
 };
 
-interface IProps {
-  dictionary: {
-    addToBag: string;
-    shippingConditions: string;
-    card: string;
-    proceedToCheckout: string;
-  };
-}
+// interface IProps {
+//   dictionary: {
+//     addToBag: string;
+//     shippingConditions: string;
+//     card: string;
+//     proceedToCheckout: string;
+//   };
+// }
 
 const CartModal = ({ cart }: { cart: Cart }) => {
   const [isOpen, setIsOpen] = useState(false);

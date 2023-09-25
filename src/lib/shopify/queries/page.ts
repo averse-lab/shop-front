@@ -1,42 +1,43 @@
-import seoFragment from "../fragments/seo";
 import gql from "graphql-tag";
 
+import seoFragment from "../fragments/seo";
+
 const pageFragment = gql`
-    fragment page on Page {
-        ... on Page {
-            id
-            title
-            handle
-            body
-            bodySummary
-            seo {
-                ...seo
-            }
-            createdAt
-            updatedAt
-        }
+  fragment page on Page {
+    ... on Page {
+      id
+      title
+      handle
+      body
+      bodySummary
+      seo {
+        ...seo
+      }
+      createdAt
+      updatedAt
     }
-    ${seoFragment}
+  }
+  ${seoFragment}
 `;
 
 export const getPageQuery = gql`
-    query getPage($handle: String!) {
-        pageByHandle(handle: $handle) {
-            ...page
-        }
+  query getPage($handle: String!) {
+    pageByHandle(handle: $handle) {
+      ...page
     }
-    ${pageFragment}
+  }
+  ${pageFragment}
 `;
 
 export const getPagesQuery = gql`
-    query getPages {
-        pages(first: 100) {
-            edges {
-                node {
-                    ...page
-                }
-            }
+  query getPages {
+    pages(first: 100) {
+      edges {
+        node {
+          ...page
         }
+      }
     }
-    ${pageFragment}
+  }
+  ${pageFragment}
 `;

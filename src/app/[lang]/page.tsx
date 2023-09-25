@@ -1,13 +1,17 @@
-import muxBlurHash from "@mux/blurhash";
 import React, { FC } from "react";
-import { Button, Header, VideoPlayer } from "@averse/components";
-import { getDictionary } from "@averse/lib/i18n/utils";
-import { Locale } from "@averse/lib/i18n/types";
+
 import { I18N_CONFIG } from "@averse/lib/i18n/config";
+
+import { Button } from "@components/Button/Button";
+import { Header } from "@components/Header/Header";
+import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+
+import { Locale } from "@lib/i18n/types";
+import { getDictionary } from "@lib/i18n/utils";
+
+import { HOME_VIDEO, SECTIONS } from "./_internal/HomePage.constants";
 import s from "./_internal/HomePage.module.scss";
-import { HOME_VIDEO } from "./_internal/HomePage.constants";
-import { SectionsKey } from "../_internal/types";
-import { SECTIONS } from "../_internal/constants";
+import { SectionsKey } from "./_internal/HomePage.types";
 
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));

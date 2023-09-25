@@ -1,11 +1,15 @@
-import { SectionsKey } from "@averse/app/_internal/types";
+import { FC } from "react";
+
 import { RedirectType } from "next/dist/client/components/redirect";
 import { notFound, redirect } from "next/navigation";
-import { FC } from "react";
-import { CATEGORIES } from "./_internal/constants";
-import { CategoriesKey } from "./_internal/types";
-import { SECTIONS } from "@averse/app/_internal/constants";
-import { Locale } from "@averse/lib/i18n/types";
+
+import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
+import { SectionsKey } from "@averse/app/[lang]/_internal/HomePage.types";
+
+import { Locale } from "@lib/i18n/types";
+
+import { CATEGORIES } from "./_internal/ShopPage.constants";
+import { CategoriesKey } from "./_internal/ShopPage.types";
 
 type IProps = {
   params: { lang: Locale };

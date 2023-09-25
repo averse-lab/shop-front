@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 import {
   addToCart,
   createCart,
@@ -7,7 +9,6 @@ import {
   removeFromCart,
   updateCart,
 } from "@averse/lib/shopify";
-import { cookies } from "next/headers";
 
 export const addItem = async (
   variantId: string | undefined,

@@ -1,8 +1,10 @@
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { NextResponse } from "next/server";
+
 import { I18N_CONFIG } from "@averse/lib/i18n/config";
+
+import type { NextRequest } from "next/server";
 
 const locales = ["en", "fr"];
 

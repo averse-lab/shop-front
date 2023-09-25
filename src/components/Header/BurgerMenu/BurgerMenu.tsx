@@ -1,8 +1,10 @@
 "use client";
 
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FC, useEffect, useState } from "react";
+
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+
 import s from "./_internal/BurgerMenu.module.scss";
 import { NavItem } from "./_internal/BurgerMenu.types";
 

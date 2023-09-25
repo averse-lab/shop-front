@@ -1,12 +1,14 @@
 "use client";
 
-import { ProductOption, ProductVariant } from "@averse/lib/shopify/types";
-import { createUrl } from "@averse/lib/utils";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Fragment } from "react";
+
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { Fragment } from "react";
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+import { ProductOption, ProductVariant } from "@averse/lib/shopify/types";
+import { createUrl } from "@averse/lib/utils";
 
 type ParamsMap = {
   [key: string]: string;

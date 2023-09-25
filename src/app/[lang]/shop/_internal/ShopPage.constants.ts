@@ -1,4 +1,8 @@
-import { CategoriesKey, CategoriesUrlSegment, CategoryValue } from "./types";
+import {
+  CategoriesKey,
+  CategoriesUrlSegment,
+  CategoryValue,
+} from "./ShopPage.types";
 
 export const CATEGORIES: Map<CategoriesKey, CategoryValue> = new Map([
   [

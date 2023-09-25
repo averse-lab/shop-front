@@ -1,6 +1,8 @@
+import { FC } from "react";
+
 import Link from "next/link";
 
-const Footer = () => {
+export const Footer: FC = () => {
   return (
     <footer className={"bg-black text-white pt-10 px-7 pb-10"}>
       {/*   2 colums with 3 rows */}
@@ -33,5 +35,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

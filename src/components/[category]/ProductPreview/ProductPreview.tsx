@@ -1,7 +1,8 @@
-import { Locale } from "@averse/lib/i18n/types";
+import { FC } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+
 import s from "./_internal/ProductPreview.module.scss";
 
 interface IProps {

@@ -1,7 +1,9 @@
-import { getCart } from "@averse/lib/shopify";
 import { cookies } from "next/headers";
-import CartModal from "./CartModal";
+
+import { getCart } from "@averse/lib/shopify";
+
 import { CartHint } from "./_internal/components";
+import CartModal from "./CartModal";
 
 export const Cart = async () => {
   const cartIdCookie = cookies().get("cartId");

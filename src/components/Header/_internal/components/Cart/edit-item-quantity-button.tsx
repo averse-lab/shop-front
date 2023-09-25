@@ -1,10 +1,13 @@
-import { useRouter } from "next/navigation";
 import React, { useTransition } from "react";
-import clsx from "clsx";
-import { CartItem } from "@averse/lib/shopify/types";
+
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { removeItem, updateItemQuantity } from "./actions";
+import clsx from "clsx";
+import { useRouter } from "next/navigation";
+
 import LoadingDots from "@averse/components/loading-dots";
+import { CartItem } from "@averse/lib/shopify/types";
+
+import { removeItem, updateItemQuantity } from "./actions";
 
 export default function EditItemQuantityButton({
   item,

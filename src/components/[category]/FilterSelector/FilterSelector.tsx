@@ -1,6 +1,8 @@
-import Link from "next/link";
 import { FC } from "react";
-import { Filter } from "./_internal/types";
+
+import Link from "next/link";
+
+import { Filter } from "./_internal/FilterSelector.types";
 
 interface IProps {
   filters: Filter[];

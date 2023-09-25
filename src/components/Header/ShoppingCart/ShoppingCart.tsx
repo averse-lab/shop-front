@@ -1,8 +1,11 @@
 import { FC } from "react";
-import { CartWrapper } from "./_internal/components/CartWrapper/CartWrapper";
+
 import { cookies } from "next/headers";
-import { Cart } from "@averse/lib/shopify/types";
-import { getCart } from "@averse/lib/shopify";
+
+import { getCart } from "@lib/shopify";
+import { Cart } from "@lib/shopify/types";
+
+import { CartWrapper } from "./CartWrapper/CartWrapper";
 
 export const ShoppingCart: FC = async () => {
   const cartIdCookie = cookies().get("cartId");
@@ -13,8 +16,6 @@ export const ShoppingCart: FC = async () => {
     const cartId = cartIdCookie.value;
     cart = await getCart(cartId);
   }
-
-  return <></>;
 
   return <CartWrapper cart={cart} />;
 };

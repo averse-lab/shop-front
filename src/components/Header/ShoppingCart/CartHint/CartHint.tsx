@@ -1,5 +1,7 @@
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { FC, MouseEventHandler } from "react";
+
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+
 import s from "./_internal/CartHint.module.scss";
 
 interface IProps {
