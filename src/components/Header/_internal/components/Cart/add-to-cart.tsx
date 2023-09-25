@@ -6,8 +6,9 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import LoadingDots from "@averse/components/loading-dots";
-import { ProductVariant } from "@averse/lib/shopify/types";
+import LoadingDots from "@components/loading-dots";
+
+import { ProductVariant } from "@lib/shopify/types";
 
 import { addItem } from "./actions";
 

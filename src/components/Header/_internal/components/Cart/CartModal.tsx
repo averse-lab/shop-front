@@ -5,9 +5,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Price from "@averse/components/price";
-import { Cart } from "@averse/lib/shopify/types";
-import { createUrl } from "@averse/lib/utils";
+import Price from "@components/price";
+
+import { Cart } from "@lib/shopify/types";
+import { createUrl } from "@lib/utils";
 
 import { CartHint } from "./_internal/components";
 import EditItemQuantityButton from "./edit-item-quantity-button";

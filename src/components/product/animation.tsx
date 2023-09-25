@@ -1,6 +1,6 @@
 import { CSSProperties, FC } from "react";
 
-import { VideoPlayer } from "@averse/components/VideoPlayer/VideoPlayer";
+import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 interface IProps {
   playbackId: string;

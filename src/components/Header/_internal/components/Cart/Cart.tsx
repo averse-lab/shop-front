@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-import { getCart } from "@averse/lib/shopify";
+import { getCart } from "@lib/shopify";
 
 import { CartHint } from "./_internal/components";
 import CartModal from "./CartModal";

@@ -7,8 +7,8 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { ProductOption, ProductVariant } from "@averse/lib/shopify/types";
-import { createUrl } from "@averse/lib/utils";
+import { ProductOption, ProductVariant } from "@lib/shopify/types";
+import { createUrl } from "@lib/utils";
 
 type ParamsMap = {
   [key: string]: string;

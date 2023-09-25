@@ -4,8 +4,9 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 
-import LoadingDots from "@averse/components/loading-dots";
-import { CartItem } from "@averse/lib/shopify/types";
+import LoadingDots from "@components/loading-dots";
+
+import { CartItem } from "@lib/shopify/types";
 
 import { removeItem, updateItemQuantity } from "./actions";
 

@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 
-import { I18N_CONFIG } from "@averse/lib/i18n/config";
-
 import { Button } from "@components/Button/Button";
 import { Header } from "@components/Header/Header";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
+import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 

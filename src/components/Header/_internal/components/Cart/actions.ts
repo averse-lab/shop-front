@@ -8,7 +8,7 @@ import {
   getCart,
   removeFromCart,
   updateCart,
-} from "@averse/lib/shopify";
+} from "@lib/shopify";
 
 export const addItem = async (
   variantId: string | undefined,
