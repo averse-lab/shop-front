@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body.scroll-locked {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  body.scroll-locked {
+    overflow: visible;
+  }
+}
