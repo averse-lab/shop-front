@@ -30,12 +30,6 @@ export const Button: FC<IProps> = (props) => {
     propsClassName || null
   }`;
 
-  const handleLinkClick: MouseEventHandler = (e) => {
-    if (disabled) {
-      e.preventDefault();
-    }
-  };
-
   if (props.element === "button") {
     const { onClick } = props;
 
@@ -48,7 +42,7 @@ export const Button: FC<IProps> = (props) => {
     const { href } = props;
 
     return (
-      <Link className={className} href={href} onClick={handleLinkClick}>
+      <Link className={className} href={href}>
         {children}
       </Link>
     );
