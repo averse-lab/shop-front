@@ -6,7 +6,7 @@ import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
 
 import { Logo } from "@components/icons/Logo/Logo";
 
-import { Dictionnary } from "@lib/i18n/types";
+import { Dictionary } from "@lib/i18n/types";
 
 import { NavItem } from "./BurgerMenu/_internal/BurgerMenu.types";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
@@ -14,7 +14,7 @@ import { ShoppingCart } from "./ShoppingCart/ShoppingCart";
 
 interface IProps {
   transparent?: boolean;
-  dictionary: Dictionnary;
+  dictionary: Dictionary;
   lang: string;
 }
 
