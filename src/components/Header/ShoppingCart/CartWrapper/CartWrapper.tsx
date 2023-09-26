@@ -94,7 +94,12 @@ export const CartWrapper: FC<IProps> = (props) => {
               />
             </div>
           ) : null}
-          <Button className='w-full' element='button' onClick={() => {}}>
+          <Button
+            className='w-full'
+            element='link'
+            href={cart ? cart.checkoutUrl : ""}
+            disabled={cart === undefined}
+          >
             {dictionary.cart.checkout}
           </Button>
         </div>
