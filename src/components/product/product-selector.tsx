@@ -1,9 +1,10 @@
-import { VariantSelector } from "./variant-selector";
 import React from "react";
 
-import Prose from "@averse/components/prose";
-import Price from "@averse/components/price";
-import { Product } from "@averse/lib/shopify/types";
+import Price from "@components/price";
+
+import { Product } from "@lib/shopify/types";
+
+import { VariantSelector } from "./variant-selector";
 import { AddToCart } from "../Header/_internal/components/Cart/add-to-cart";
 
 export function ProductDescription({ product }: { product: Product }) {

@@ -1,16 +1,20 @@
-import { FC, Suspense } from "react";
-import { BurgerMenu } from "./_internal/components";
+import { FC } from "react";
+
 import Link from "next/link";
-import { Logo } from "@averse/components/icons";
-import { Cart } from "./_internal/components";
-import { NavItem } from "./_internal/components/BurgerMenu";
-import { SECTIONS } from "@averse/app/_internal/constants";
-import { Dictionnary } from "@averse/lib/i18n/types";
-import { CartHint } from "./_internal/components/Cart/_internal/components";
+
+import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
+
+import { Logo } from "@components/icons/Logo/Logo";
+
+import { Dictionary } from "@lib/i18n/types";
+
+import { NavItem } from "./BurgerMenu/_internal/BurgerMenu.types";
+import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
+import { ShoppingCart } from "./ShoppingCart/ShoppingCart";
 
 interface IProps {
   transparent?: boolean;
-  dictionary: Dictionnary;
+  dictionary: Dictionary;
   lang: string;
 }
 
@@ -28,10 +32,7 @@ export const Header: FC<IProps> = (props) => {
       <Link className='justify-self-center' href='/'>
         <Logo className='h-10 w-10 md:w-16 md:h-16' />
       </Link>
-      {/* To refacto / improve component structure  */}
-      <Suspense fallback={<CartHint className='justify-self-end' />}>
-        <Cart />
-      </Suspense>
+      <ShoppingCart />
     </header>
   );
 };

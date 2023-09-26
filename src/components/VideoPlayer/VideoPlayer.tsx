@@ -1,7 +1,9 @@
 "use client";
 
-import MuxPlayer from "@mux/mux-player-react";
 import { CSSProperties, FC } from "react";
+
+import MuxPlayer from "@mux/mux-player-react";
+
 import s from "./_internal/VideoPlayer.module.scss";
 
 interface IProps {

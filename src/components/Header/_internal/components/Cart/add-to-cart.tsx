@@ -1,13 +1,16 @@
 "use client";
 
-import clsx from "clsx";
-import { addItem } from "./actions";
-
-import { ProductVariant } from "@averse/lib/shopify/types";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
+
 import { PlusIcon } from "@heroicons/react/24/outline";
-import LoadingDots from "@averse/components/loading-dots";
+import clsx from "clsx";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import LoadingDots from "@components/loading-dots";
+
+import { ProductVariant } from "@lib/shopify/types";
+
+import { addItem } from "./actions";
 
 export function AddToCart({
   variants,

@@ -1,14 +1,13 @@
 import "@averse/app/globals.css";
-import type { Metadata } from "next";
-import { FC, PropsWithChildren } from "react";
-import Footer from "@averse/components/global/Footer";
-import { Hanken_Grotesk } from "next/font/google";
 
-const hanken_grotesk = Hanken_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-hk",
-});
+import { FC, PropsWithChildren } from "react";
+
+import { Footer } from "@components/Footer/Footer";
+
+import { hankenGrotesk } from "@lib/fonts";
+import { Locale } from "@lib/i18n/types";
+
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Averse",
@@ -16,14 +15,14 @@ export const metadata: Metadata = {
 };
 
 type IProps = {
-  params: { lang: string };
+  params: { lang: Locale };
 } & PropsWithChildren;
 
 const RootLayout: FC<IProps> = ({ children, params }) => {
   return (
     <html lang={params.lang}>
       <body
-        className={`${hanken_grotesk.variable} font-sans min-h-screen flex flex-col`}
+        className={`${hankenGrotesk.variable} font-sans min-h-screen flex flex-col`}
       >
         {children}
         <Footer />

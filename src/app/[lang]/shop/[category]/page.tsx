@@ -1,22 +1,25 @@
-import Image from "next/image";
-import { getProducts } from "@averse/lib/shopify";
-import Link from "next/link";
-import { Animation } from "@averse/components/product/animation";
-import { Metadata } from "next";
 import { FC } from "react";
-import { CategoriesUrlSegment } from "../_internal/types";
-import { CATEGORIES } from "../_internal/constants";
-import { FilterSelector } from "./_internal/components";
-import { ANIMATIONS } from "./_internal/constants";
+
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SECTIONS } from "@averse/app/_internal/constants";
-import { SectionsKey } from "@averse/app/_internal/types";
-import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/helpers";
-import { Filter } from "./_internal/components/FilterSelector/_internal/types";
-import { getDictionary } from "@averse/lib/i18n/utils";
-import { Locale } from "@averse/lib/i18n/types";
-import { Header, VideoPlayer } from "@averse/components";
-import { ProductPreview } from "./_internal/components/ProductPreview/ProductPreview";
+
+import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
+import { SectionsKey } from "@averse/app/[lang]/_internal/HomePage.types";
+
+import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
+import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
+import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
+import { Header } from "@components/Header/Header";
+import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+
+import { Locale } from "@lib/i18n/types";
+import { getDictionary } from "@lib/i18n/utils";
+import { getProducts } from "@lib/shopify";
+
+import { ANIMATIONS } from "./_internal/CategoryPage.constants";
+import { CATEGORIES } from "../_internal/ShopPage.constants";
+import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/ShopPage.helpers";
+import { CategoriesUrlSegment } from "../_internal/ShopPage.types";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",

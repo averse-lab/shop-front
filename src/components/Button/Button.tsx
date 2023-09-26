@@ -1,7 +1,8 @@
 "use-client";
 
-import Link from "next/link";
 import { FC, MouseEventHandler, PropsWithChildren } from "react";
+
+import Link from "next/link";
 
 type ICommonProps = {
   className?: string;

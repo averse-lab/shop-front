@@ -1,13 +1,16 @@
 import React, { FC } from "react";
-import { getProduct } from "@averse/lib/shopify";
-import { ProductDescription } from "@averse/components/product/product-selector";
+
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { HIDDEN_PRODUCT_TAG } from "@averse/lib/constants";
 import Image from "next/image";
-import { Locale } from "@averse/lib/i18n/types";
-import { getDictionary } from "@averse/lib/i18n/utils";
-import { Header } from "@averse/components";
+import { notFound } from "next/navigation";
+
+import { Header } from "@components/Header/Header";
+import { ProductDescription } from "@components/product/product-selector";
+
+import { HIDDEN_PRODUCT_TAG } from "@lib/constants";
+import { Locale } from "@lib/i18n/types";
+import { getDictionary } from "@lib/i18n/utils";
+import { getProduct } from "@lib/shopify";
 
 export async function generateMetadata({
   params,

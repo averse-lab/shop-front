@@ -29,6 +29,14 @@ Typescript version. If you're using VSCode make sure
 to [use the workspace version](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-the-workspace-version-of-typescript)
 and not the VSCode built in one.
 
+_(Optional)_
+
+If you want to use the project specific, optimized, editor configuration, duplicate the `.vscode.sample` sample folder into the VSCode workspace configuration folder `.vscode` by running :
+
+```bash
+cp .vscode.sample .vscode
+```
+
 ## Getting Started
 
 Be sure to have covered all the upcoming sections to ensure a flawless development experience. Documentation has been
@@ -36,7 +44,7 @@ redacted to cover all the major steps in chronological order so you better do th
 
 ### Setup environment variables
 
-Create your `.env.local` environment variable file. You can dublicate the `.env.local.example` by running :
+Create your `.env.local` environment variable file. You can dublicate the `.env.local.example` template file into `.env.local` by running :
 
 ```bash
 cp .env.local.sample .env.local
