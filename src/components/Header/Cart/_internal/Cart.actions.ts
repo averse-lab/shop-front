@@ -1,13 +1,16 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 import { getCart } from "@lib/shopify";
+import { Cart } from "@lib/shopify/types";
 
-type getAndSetCartParams = {
-  cartId: string;
-};
+export const getCartAction = async (): Promise<Cart | undefined> => {
+  const cartIdCookie = cookies().get("cartId");
 
-export const getCartAction = async (params: getAndSetCartParams) => {
-  const { cartId } = params;
+  if (cartIdCookie === undefined) {
+    return;
+  }
 
-  return getCart(cartId);
+  return getCart(cartIdCookie.value);
 };

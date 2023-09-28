@@ -20,11 +20,10 @@ import { SummaryItem } from "./SummaryItem/SummaryItem";
 interface IProps {
   dictionary: Dictionary;
   lang: Locale;
-  cartId: string | undefined;
 }
 
 export const Cart: FC<IProps> = (props) => {
-  const { dictionary, lang, cartId } = props;
+  const { dictionary, lang } = props;
 
   const [open, setOpen] = useState(false);
 
@@ -35,15 +34,10 @@ export const Cart: FC<IProps> = (props) => {
       return;
     }
 
-    if (cartId === undefined) {
-      setCart(undefined);
-      return;
-    }
-
     (async () => {
-      setCart(await getCartAction({ cartId }));
+      setCart(await getCartAction());
     })();
-  }, [cartId, setCart]);
+  }, [setCart]);
 
   useLockBodyScroll(open);
 

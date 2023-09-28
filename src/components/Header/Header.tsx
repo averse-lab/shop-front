@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { clsx } from "clsx";
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
@@ -27,8 +26,6 @@ export const Header: FC<IProps> = (props) => {
     display: dictionary.menu[i18nKey],
   }));
 
-  const cartId = cookies().get("cartId")?.value;
-
   return (
     <header
       className={clsx(
@@ -39,7 +36,7 @@ export const Header: FC<IProps> = (props) => {
       <Link className='justify-self-center' href='/'>
         <Logo className='h-10 w-10 md:w-16 md:h-16' />
       </Link>
-      <Cart dictionary={dictionary} lang={lang} cartId={cartId} />
+      <Cart dictionary={dictionary} lang={lang} />
     </header>
   );
 };
