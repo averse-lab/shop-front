@@ -985,6 +985,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.7.3
     autoprefixer: 10.4.16
     clsx: ^2.0.0
+    embla-carousel-react: ^8.0.0-rc14
     eslint: 8.50.0
     eslint-config-next: 13.5.3
     eslint-config-prettier: ^9.0.0
@@ -1513,6 +1514,34 @@ __metadata:
   version: 1.4.523
   resolution: "electron-to-chromium@npm:1.4.523"
   checksum: c090a958afe7849d9d1a0d3ed3a2300ded202374cd68013f9114fac33c506268b3e08a204c3f6e0ad4fe56a3ae75d23a8325cf9474e2954c6d0ddef6a018780c
+  languageName: node
+  linkType: hard
+
+"embla-carousel-react@npm:^8.0.0-rc14":
+  version: 8.0.0-rc14
+  resolution: "embla-carousel-react@npm:8.0.0-rc14"
+  dependencies:
+    embla-carousel: 8.0.0-rc14
+    embla-carousel-reactive-utils: 8.0.0-rc14
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.1 || ^18.0.0
+  checksum: 66f0888fbf0cc1ac036244a607591c6235a3d38b2d00ffb0df1f53fb62db1c9ad4f07abf4b60723e8e35899ac81e280c7eb605878cf871983e15ab0918c98e10
+  languageName: node
+  linkType: hard
+
+"embla-carousel-reactive-utils@npm:8.0.0-rc14":
+  version: 8.0.0-rc14
+  resolution: "embla-carousel-reactive-utils@npm:8.0.0-rc14"
+  peerDependencies:
+    embla-carousel: 8.0.0-rc14
+  checksum: e6febfa8cc92abceb989596270e97a4e1d3a8b11efbd40f2c8efbc41f19b12d37b003ade78373b25cfa2985aedd71d7b74f7da8a88900fdb397395c955dfc0ed
+  languageName: node
+  linkType: hard
+
+"embla-carousel@npm:8.0.0-rc14":
+  version: 8.0.0-rc14
+  resolution: "embla-carousel@npm:8.0.0-rc14"
+  checksum: 48f6b7420fbb5c6800e84fb15f37fbd9b2b951b36a3f30ff66ee6121d7e722bf6bc28bd986a83136651f216940ca8e472d569774e74bf2ed01e4f8e349f74289
   languageName: node
   linkType: hard
 

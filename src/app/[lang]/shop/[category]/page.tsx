@@ -9,7 +9,6 @@ import { SectionsKey } from "@averse/app/[lang]/_internal/HomePage.types";
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
-import { Header } from "@components/Header/Header";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
@@ -65,37 +64,39 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <Header dictionary={dictionary} lang={lang} />
-      <FilterSelector
-        filters={filters}
-        selectedFilterIndex={selectedFilterIndex}
-        className='border-t border-black'
-      />
-      <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] grow border-t border-b border-black'>
-        {products.map((item, index) => (
-          <>
-            <ProductPreview
-              className='outline outline-1 outline-black'
-              href={`/${lang}/${shopSection.url}/${item.productType}/${item.handle}`}
-              imageUrl={item.images[0].url}
-              title={item.title}
-              price={item.priceRange.maxVariantPrice.amount}
-              currency={item.priceRange.maxVariantPrice.currencyCode}
-            />
-            {ANIMATIONS.map((animation) => {
-              if (animation.index === index + 1) {
-                return (
-                  <VideoPlayer
-                    className='w-full h-full outline outline-1 outline-black overflow-hidden'
-                    key={animation.playbackId}
-                    playbackId={animation.playbackId}
-                    aspectRatio={animation.aspectRatio}
-                  />
-                );
-              }
-            })}
-          </>
-        ))}
+      <div className='fixed h-[72px] md:h-[96px] w-full top-0 left-0 bg-white border-b border-neutral-200'></div>
+      <div className='mt-[72px] md:mt-[96px] flex flex-col grow'>
+        <FilterSelector
+          filters={filters}
+          selectedFilterIndex={selectedFilterIndex}
+        />
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] grow border-t border-b border-black'>
+          {products.map((item, idx) => (
+            <>
+              <ProductPreview
+                key={item.id}
+                className='outline outline-1 outline-black'
+                href={`/${lang}/${shopSection.url}/${item.productType}/${item.handle}`}
+                imageUrl={item.images[0].url}
+                title={item.title}
+                price={item.priceRange.maxVariantPrice.amount}
+                currency={item.priceRange.maxVariantPrice.currencyCode}
+              />
+              {ANIMATIONS.map((animation) => {
+                if (animation.index === idx + 1) {
+                  return (
+                    <VideoPlayer
+                      className='w-full h-full outline outline-1 outline-black overflow-hidden'
+                      key={animation.playbackId}
+                      playbackId={animation.playbackId}
+                      aspectRatio={animation.aspectRatio}
+                    />
+                  );
+                }
+              })}
+            </>
+          ))}
+        </div>
       </div>
     </>
   );

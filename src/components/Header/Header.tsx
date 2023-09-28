@@ -17,11 +17,10 @@ import { Cart } from "./Cart/Cart";
 interface IProps {
   dictionary: Dictionary;
   lang: Locale;
-  transparent?: boolean;
 }
 
 export const Header: FC<IProps> = (props) => {
-  const { dictionary, lang, transparent } = props;
+  const { dictionary, lang } = props;
 
   const nav: NavItem[] = Array.from(SECTIONS, ([_, { url, i18nKey }]) => ({
     url,
@@ -33,8 +32,7 @@ export const Header: FC<IProps> = (props) => {
   return (
     <header
       className={clsx(
-        `fixed z-10 w-full grid grid-cols-3 items-center px-6 py-4 bg-transparent border-b border-neutral-200`,
-        transparent === true ? "bg-transparent" : "bg-white",
+        `fixed z-10 w-full grid grid-cols-3 items-center px-6 py-4 bg-transparent`,
       )}
     >
       <BurgerMenu nav={nav} lang={lang} />

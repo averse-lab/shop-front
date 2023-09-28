@@ -34,7 +34,7 @@ _(Optional)_
 If you want to use the project specific, optimized, editor configuration, duplicate the `.vscode.sample` sample folder into the VSCode workspace configuration folder `.vscode` by running :
 
 ```bash
-cp .vscode.sample .vscode
+cp -R .vscode.sample .vscode
 ```
 
 ## Getting Started

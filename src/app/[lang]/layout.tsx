@@ -33,7 +33,7 @@ const LangLayout: FC<IProps> = async (props) => {
       >
         <CartContextProvider>
           <Header dictionary={dictionary} lang={lang} />
-          <main>{children}</main>
+          <main className='flex flex-col grow'>{children}</main>
           <Footer />
         </CartContextProvider>
       </body>
