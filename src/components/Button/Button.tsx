@@ -6,6 +6,7 @@ import Link from "next/link";
 
 type ICommonProps = {
   className?: string;
+  disabled?: boolean;
 };
 
 type IButtonProps = {
@@ -21,9 +22,11 @@ type ILinkProps = {
 type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;
 
 export const Button: FC<IProps> = (props) => {
-  const { children, className: propsClassName } = props;
+  const { children, className: propsClassName, disabled } = props;
 
-  const className = `bg-black text-white text-lg font-medium uppercase py-3 px-6 rounded ${
+  const className = `${
+    disabled ? "bg-neutral-500" : "bg-black"
+  } text-white text-lg font-medium uppercase text-center py-3 px-6 rounded ${
     propsClassName || null
   }`;
 
@@ -31,7 +34,7 @@ export const Button: FC<IProps> = (props) => {
     const { onClick } = props;
 
     return (
-      <button className={className} onClick={onClick}>
+      <button disabled={disabled} className={className} onClick={onClick}>
         {children}
       </button>
     );
@@ -39,7 +42,7 @@ export const Button: FC<IProps> = (props) => {
     const { href } = props;
 
     return (
-      <Link className={className} href={href}>
+      <Link className={className} href={href || "#"}>
         {children}
       </Link>
     );

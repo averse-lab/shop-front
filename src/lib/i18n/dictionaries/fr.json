@@ -18,5 +18,13 @@
     "shippingCondition": "Calculé à la caisse",
     "card": "Panier d'achat",
     "proceedToCheckout": "Passer à la caisse"
+  },
+  "cart": {
+    "taxes": "Taxes",
+    "shipping": "Livraison",
+    "shippingHint": "Calculée lors de la commande",
+    "total": "Total",
+    "checkout": "Payer",
+    "empty": "Votre panier est vide"
   }
 }

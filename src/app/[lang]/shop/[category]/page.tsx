@@ -18,8 +18,8 @@ import { getProducts } from "@lib/shopify";
 
 import { ANIMATIONS } from "./_internal/CategoryPage.constants";
 import { CATEGORIES } from "../_internal/ShopPage.constants";
-import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/ShopPage.helpers";
 import { CategoriesUrlSegment } from "../_internal/ShopPage.types";
+import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/ShopPage.utils";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",

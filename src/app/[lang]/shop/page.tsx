@@ -15,6 +15,8 @@ type IProps = {
   params: { lang: Locale };
 };
 
+// TODO : CHECK IF THIS CAN BE DONE VIA THE MIDDLEWARE
+
 const ShopPage: FC<IProps> = (props) => {
   const { params } = props;
   const { lang } = params;
