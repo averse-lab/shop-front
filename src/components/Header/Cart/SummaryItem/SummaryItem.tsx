@@ -1,13 +1,13 @@
 import { FC } from "react";
 
-import s from "./_internal/AmountSummary.module.scss";
+import s from "./_internal/SummaryItem.module.scss";
 
 type IProps = {
   metric: string;
   value: string;
 };
 
-export const AmountSummary: FC<IProps> = (props) => {
+export const SummaryItem: FC<IProps> = (props) => {
   const { metric, value } = props;
 
   return (

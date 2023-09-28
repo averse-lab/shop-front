@@ -42,7 +42,7 @@ export const Button: FC<IProps> = (props) => {
     const { href } = props;
 
     return (
-      <Link className={className} href={href}>
+      <Link className={className} href={href || "#"}>
         {children}
       </Link>
     );

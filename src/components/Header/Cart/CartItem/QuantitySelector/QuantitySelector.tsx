@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useTransition } from "react";
 
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";

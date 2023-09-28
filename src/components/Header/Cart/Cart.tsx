@@ -1,31 +1,49 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
+
+import { CartContext } from "@averse/contexts/CartContext/CartContext";
 
 import { Button } from "@components/Button/Button";
 
 import { useLockBodyScroll } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
-import { Cart } from "@lib/shopify/types";
 
-import s from "./_internal/CartWrapper.module.scss";
-import { AmountSummary } from "./AmountSummary/AmountSummary";
+import { getCartAction } from "./_internal/Cart.actions";
+import s from "./_internal/Cart.module.scss";
+import { CartButton } from "./CartButton/CartButton";
 import { CartItem } from "./CartItem/CartItem";
-import { CartHint } from "../CartHint/CartHint";
+import { SummaryItem } from "./SummaryItem/SummaryItem";
 
 interface IProps {
-  cart: Cart | undefined;
   dictionary: Dictionary;
   lang: Locale;
+  cartId: string | undefined;
 }
 
-export const CartWrapper: FC<IProps> = (props) => {
-  const { cart: cartDefault, dictionary, lang } = props;
+export const Cart: FC<IProps> = (props) => {
+  const { dictionary, lang, cartId } = props;
 
   const [open, setOpen] = useState(false);
-  const [cart, setCart] = useState<Cart | undefined>(cartDefault);
+
+  const { setCart, cart } = useContext(CartContext) || {};
+
+  useEffect(() => {
+    if (setCart === undefined) {
+      return;
+    }
+
+    if (cartId === undefined) {
+      setCart(undefined);
+      return;
+    }
+
+    (async () => {
+      setCart(await getCartAction({ cartId }));
+    })();
+  }, [cartId, setCart]);
 
   useLockBodyScroll(open);
 
@@ -39,7 +57,7 @@ export const CartWrapper: FC<IProps> = (props) => {
 
   return (
     <>
-      <CartHint
+      <CartButton
         className={`${s["cart-wrapper__trigger"]} justify-self-end`}
         quantity={cart?.totalQuantity}
         onClick={handleCartHintClick}
@@ -56,7 +74,7 @@ export const CartWrapper: FC<IProps> = (props) => {
             onClick={handleCloseClick}
             className={`${s["cart-wrapper__close"]} w-6 h-6 cursor-pointer`}
           />
-          {cart !== undefined ? (
+          {cart !== undefined && setCart !== undefined ? (
             <div className='flex flex-col gap-4 flex-1 overflow-y-scroll'>
               {cart.lines.map((item) => (
                 <CartItem
@@ -76,17 +94,17 @@ export const CartWrapper: FC<IProps> = (props) => {
         <div className='flex flex-col gap-4'>
           {cart !== undefined ? (
             <div className='flex flex-col gap-2'>
-              <AmountSummary
+              <SummaryItem
                 metric={dictionary.cart.taxes}
                 value={`${cart.cost.totalTaxAmount.amount}${" "}${
                   cart.cost.totalTaxAmount.currencyCode
                 }`}
               />
-              <AmountSummary
+              <SummaryItem
                 metric={dictionary.cart.shipping}
                 value={dictionary.cart.shippingHint}
               />
-              <AmountSummary
+              <SummaryItem
                 metric={dictionary.cart.total}
                 value={`${cart.cost.totalAmount.amount}${" "}${
                   cart.cost.totalAmount.currencyCode

@@ -2,7 +2,7 @@ import { FC, MouseEventHandler } from "react";
 
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 
-import s from "./_internal/CartHint.module.scss";
+import s from "./_internal/CartButton.module.scss";
 
 interface IProps {
   className?: string;
@@ -10,7 +10,7 @@ interface IProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const CartHint: FC<IProps> = (props) => {
+export const CartButton: FC<IProps> = (props) => {
   const { className, quantity, onClick } = props;
 
   return (

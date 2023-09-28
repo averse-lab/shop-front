@@ -53,6 +53,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
               className={`${s["burger-menu__link"]} text-xl md:text-base text-white relative`}
               key={navItem.display}
               href={`/${lang}/${navItem.url}`}
+              onClick={handleCloseClick}
             >
               {navItem.display}
             </Link>

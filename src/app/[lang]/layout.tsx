@@ -1,0 +1,44 @@
+import { FC, PropsWithChildren } from "react";
+
+import { CartContextProvider } from "@averse/contexts/CartContext/CartContext";
+
+import { Footer } from "@components/Footer/Footer";
+import { Header } from "@components/Header/Header";
+
+import { hankenGrotesk } from "@lib/fonts";
+import { Locale } from "@lib/i18n/types";
+import { getDictionary } from "@lib/i18n/utils";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Averse",
+  description: "Averse is a jewelery brand.",
+};
+
+type IProps = {
+  params: { lang: Locale };
+} & PropsWithChildren;
+
+const LangLayout: FC<IProps> = async (props) => {
+  const { params, children } = props;
+  const { lang } = params;
+
+  const dictionary = await getDictionary(lang);
+
+  return (
+    <html lang={lang}>
+      <body
+        className={`${hankenGrotesk.variable} font-sans min-h-screen flex flex-col`}
+      >
+        <CartContextProvider>
+          <Header dictionary={dictionary} lang={lang} />
+          <main>{children}</main>
+          <Footer />
+        </CartContextProvider>
+      </body>
+    </html>
+  );
+};
+
+export default LangLayout;

@@ -1,3 +1,5 @@
+"server-only";
+
 import { DocumentNode, print } from "graphql";
 
 import {
