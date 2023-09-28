@@ -63,5 +63,3 @@ export const BurgerMenu: FC<IProps> = (props) => {
     </>
   );
 };
-
-// md:px-24 md:py-16
