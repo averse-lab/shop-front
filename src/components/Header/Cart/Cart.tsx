@@ -1,8 +1,9 @@
 "use client";
 
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect } from "react";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 
 import { CartContext } from "@averse/contexts/CartContext/CartContext";
 
@@ -25,9 +26,8 @@ interface IProps {
 export const Cart: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
 
-  const [open, setOpen] = useState(false);
-
-  const { setCart, cart } = useContext(CartContext) || {};
+  const { setCart, cart, isCartOpen, setIsCartOpen } =
+    useContext(CartContext) || {};
 
   useEffect(() => {
     if (setCart === undefined) {
@@ -39,37 +39,53 @@ export const Cart: FC<IProps> = (props) => {
     })();
   }, [setCart]);
 
-  useLockBodyScroll(open);
+  useLockBodyScroll(isCartOpen || false);
 
   const handleCartHintClick = () => {
-    setOpen(true);
+    if (setIsCartOpen === undefined) {
+      return;
+    }
+
+    setIsCartOpen(true);
   };
 
   const handleCloseClick = () => {
-    setOpen(false);
+    if (setIsCartOpen === undefined) {
+      return;
+    }
+
+    setIsCartOpen(false);
   };
 
   return (
     <>
       <CartButton
-        className={`${s["cart-wrapper__trigger"]} justify-self-end`}
+        className={`${s["cart__trigger"]} justify-self-end`}
         quantity={cart?.totalQuantity}
         onClick={handleCartHintClick}
       />
       <div
-        className={`${s["cart-wrapper__modal"]} ${
-          open ? s["cart-wrapper__modal--open"] : ""
-        } ${
-          cart !== undefined ? "gap-4" : ""
-        } fixed flex flex-col justify-between z-20 bg-white border h-full md:h-auto w-full md:w-[400px] md:max-h-[60vh] md:min-h-[350px] top-0 md:top-2 right-0 md:right-2 md:rounded p-6`}
+        className={clsx(
+          s["cart__modal"],
+          isCartOpen && s["cart__modal--open"],
+          cart !== undefined && "gap-4",
+          "fixed z-20 h-screen md:h-auto w-screen md:w-[450px] md:max-h-[70vh] md:min-h-[350px] top-0 md:top-2 right-0 md:right-2",
+          "flex flex-col justify-between px-6 pb-4 pt-6 md:p-6",
+          "bg-white border md:rounded",
+        )}
       >
-        <div className={`flex flex-col flex-1 gap-6`}>
+        <div className={`flex flex-col flex-1 gap-6 overflow-hidden`}>
           <XMarkIcon
             onClick={handleCloseClick}
-            className={`${s["cart-wrapper__close"]} w-6 h-6 cursor-pointer`}
+            className={`${s["cart__close"]} w-6 h-6 cursor-pointer shrink-0`}
           />
           {cart !== undefined && setCart !== undefined ? (
-            <div className='flex flex-col gap-4 flex-1 overflow-y-scroll'>
+            <div
+              className={clsx(
+                s["cart__items-wrapper"],
+                "flex flex-col gap-4 flex-1 overflow-y-scroll",
+              )}
+            >
               {cart.lines.map((item) => (
                 <CartItem
                   key={item.id}
@@ -85,9 +101,9 @@ export const Cart: FC<IProps> = (props) => {
             </div>
           )}
         </div>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-6'>
           {cart !== undefined ? (
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-4'>
               <SummaryItem
                 metric={dictionary.cart.taxes}
                 value={`${cart.cost.totalTaxAmount.amount}${" "}${
@@ -95,6 +111,7 @@ export const Cart: FC<IProps> = (props) => {
                 }`}
               />
               <SummaryItem
+                className={s["cart__shipping-sumary"]}
                 metric={dictionary.cart.shipping}
                 value={dictionary.cart.shippingHint}
               />

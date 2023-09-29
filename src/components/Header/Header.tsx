@@ -29,7 +29,7 @@ export const Header: FC<IProps> = (props) => {
   return (
     <header
       className={clsx(
-        `fixed z-10 w-full grid grid-cols-3 items-center px-6 py-4 bg-transparent`,
+        `fixed z-20 w-full grid grid-cols-3 items-center px-6 py-4 bg-transparent`,
       )}
     >
       <BurgerMenu nav={nav} lang={lang} />

@@ -26,7 +26,7 @@ export const CartItem: FC<IProps> = (props) => {
   const shopSection = SECTIONS.get(SectionsKey.SHOP)!;
 
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex items-center gap-3'>
       <Link
         href={`/${lang}/${shopSection.url}/${product.productType}/${product.handle}`}
       >

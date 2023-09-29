@@ -64,7 +64,7 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <div className='fixed h-[72px] md:h-[96px] w-full top-0 left-0 bg-white border-b border-neutral-200'></div>
+      <div className='fixed z-10 h-[72px] md:h-[96px] w-full top-0 left-0 bg-white border-b border-neutral-200'></div>
       <div className='mt-[72px] md:mt-[96px] flex flex-col grow'>
         <FilterSelector
           filters={filters}
