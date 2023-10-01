@@ -13,11 +13,10 @@
     "description": "Ceci est une description de la page d'accueil.",
     "goToShop": "Aller à la boutique"
   },
-  "products": {
-    "addToBag": "Ajouter au panier",
-    "shippingCondition": "Calculé à la caisse",
-    "card": "Panier d'achat",
-    "proceedToCheckout": "Passer à la caisse"
+  "product": {
+    "size": "Taille",
+    "sizeGuide": "Guide des tailles",
+    "addToCart": "Ajouter au panier"
   },
   "cart": {
     "taxes": "Taxes",

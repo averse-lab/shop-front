@@ -79,7 +79,9 @@ export const Cart: FC<IProps> = (props) => {
             onClick={handleCloseClick}
             className={`${s["cart__close"]} w-6 h-6 cursor-pointer shrink-0`}
           />
-          {cart !== undefined && setCart !== undefined ? (
+          {cart !== undefined &&
+          cart.totalQuantity !== 0 &&
+          setCart !== undefined ? (
             <div
               className={clsx(
                 s["cart__items-wrapper"],
@@ -97,7 +99,7 @@ export const Cart: FC<IProps> = (props) => {
             </div>
           ) : (
             <div className='flex flex-1 justify-center items-center'>
-              <p>{dictionary.cart.empty}</p>
+              <p className='md:py-16'>{dictionary.cart.empty}</p>
             </div>
           )}
         </div>
@@ -127,7 +129,7 @@ export const Cart: FC<IProps> = (props) => {
             className='w-full'
             element='link'
             href={cart ? cart.checkoutUrl : ""}
-            disabled={cart === undefined}
+            disabled={cart === undefined || cart.totalQuantity === 0}
           >
             {dictionary.cart.checkout}
           </Button>

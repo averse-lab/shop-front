@@ -1,0 +1,21 @@
+.logo__blur {
+  inset: 0;
+  --extended-by: 10px;
+  bottom: calc(-1 * var(--extended-by));
+  --cutoff: calc(100% - var(--extended-by));
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--cutoff),
+    transparent var(--cutoff)
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--cutoff),
+    transparent var(--cutoff)
+  );
+  --blur: 10px;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}

@@ -1,0 +1,96 @@
+"use client";
+
+import { FC, useContext, useState, useTransition } from "react";
+
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+
+import { CartContext } from "@averse/contexts/CartContext/CartContext";
+
+import { Button } from "@components/Button/Button";
+import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
+import { Dropdown } from "@components/Dropdown/Dropdown";
+
+import { Dictionary } from "@lib/i18n/types";
+import { Product, ProductVariant } from "@lib/shopify/types";
+
+import { addItemAction } from "./_internal/ProductIntercative";
+
+type IProps = {
+  variants: ProductVariant[];
+  minVariantPrice: Product["priceRange"]["minVariantPrice"];
+  dictionary: Dictionary;
+};
+
+export const ProductInteractive: FC<IProps> = (props) => {
+  const { variants, minVariantPrice, dictionary } = props;
+
+  const [selectedIndex, setSelectedIndex] = useState<number>();
+  const [isPending, startTransition] = useTransition();
+  const { setCart, setIsCartOpen } = useContext(CartContext) || {};
+
+  const options = variants.map<DropdownOption>((variant) => ({
+    value: variant.id,
+    display: variant.title,
+    disabled: !variant.availableForSale,
+  }));
+
+  const handleDropdownIndexChange = (newSelectedIndex: number) => {
+    setSelectedIndex(newSelectedIndex);
+  };
+
+  const handleAddToCartClick = () => {
+    if (selectedIndex === undefined) {
+      return;
+    }
+
+    startTransition(async () => {
+      const cart = await addItemAction(options[selectedIndex].value);
+
+      if (cart instanceof Error) {
+        alert(cart);
+        return;
+      }
+
+      if (setIsCartOpen === undefined || setCart === undefined) {
+        return;
+      }
+
+      setIsCartOpen(true);
+      setCart(cart);
+    });
+  };
+
+  return (
+    <>
+      <p className='font-light mb-6'>
+        {selectedIndex !== undefined
+          ? `${variants[selectedIndex].price.amount} ${variants[selectedIndex].price.currencyCode}`
+          : `${minVariantPrice.amount} ${minVariantPrice.currencyCode}`}
+      </p>
+      <div className='flex items-center justify-between gap-4 mb-7'>
+        <Dropdown
+          className='basis-1/2'
+          name='variant-selector'
+          options={options}
+          selectedIndex={selectedIndex}
+          onChange={handleDropdownIndexChange}
+          placeholder={dictionary.product.size}
+        />
+        <Link className='flex items-center gap-2' href={"#"} target='_blank'>
+          {dictionary.product.sizeGuide}
+          <ArrowTopRightOnSquareIcon className='w-5 h-5 stroke-[1.75]' />
+        </Link>
+      </div>
+      <Button
+        className='w-full'
+        element='button'
+        disabled={selectedIndex === undefined}
+        onClick={handleAddToCartClick}
+        loading={isPending}
+      >
+        {dictionary.product.addToCart}
+      </Button>
+    </>
+  );
+};

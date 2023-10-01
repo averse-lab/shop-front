@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 import Link from "next/link";
 
 import { useLockBodyScroll } from "@lib/hooks";
@@ -34,10 +35,9 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   return (
     <>
-      <Bars3Icon
-        className={`${s["burger-menu__burger"]} w-6 h-6 cursor-pointer`}
-        onClick={handleBurgerClick}
-      />
+      <button className={clsx(s["burger-menu__burger"])}>
+        <Bars3Icon className={`w-6 h-6`} onClick={handleBurgerClick} />
+      </button>
       <div
         className={`${s["burger-menu__menu"]} ${
           open ? s["burger-menu__menu--open"] : null

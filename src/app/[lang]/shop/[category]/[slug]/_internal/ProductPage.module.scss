@@ -1,0 +1,15 @@
+.product-page__description {
+  p:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-page__slider {
+    overflow: auto;
+
+    :global(.embla__container) {
+      flex-direction: column;
+    }
+  }
+}

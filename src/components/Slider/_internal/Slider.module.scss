@@ -1,0 +1,12 @@
+.slider {
+  overflow: hidden;
+}
+
+.slider__container {
+  display: flex;
+}
+
+.slider__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}

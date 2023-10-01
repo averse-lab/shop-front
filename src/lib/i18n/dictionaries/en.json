@@ -13,11 +13,10 @@
     "description": "This is a description of the home page.",
     "goToShop": "Go to Shop"
   },
-  "products": {
-    "addToBag": "Add to bag",
-    "shippingCondition": "Calculated at checkout",
-    "card": "Shopping card",
-    "proceedToCheckout": "Proceed to checkout"
+  "product": {
+    "size": "Size",
+    "sizeGuide": "Size guide",
+    "addToCart": "Add to cart"
   },
   "cart": {
     "taxes": "Taxes",

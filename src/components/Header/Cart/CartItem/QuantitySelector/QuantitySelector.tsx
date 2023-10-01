@@ -73,7 +73,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
         className='w-4 h-4 cursor-pointer'
       />
       {isPending ? (
-        <Spinner />
+        <Spinner className='h-4 w-4' />
       ) : (
         <p className='text-sm min-w-[16px] text-center'>{quantity}</p>
       )}

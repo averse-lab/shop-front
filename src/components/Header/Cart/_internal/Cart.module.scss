@@ -35,6 +35,11 @@
 @media (min-width: 1024px) {
   .cart__trigger {
     &:hover {
+      svg {
+        stroke-width: 1.75;
+        transition: stroke-width 0.5s ease-out;
+      }
+
       & + .cart__modal {
         transform: translate(100%);
       }
@@ -46,10 +51,10 @@
   }
 
   .cart__close {
-    transition: 0.15s stroke-width ease-out;
+    transition: 0.5s stroke-width ease-out;
 
     &:hover {
-      stroke-width: 2;
+      stroke-width: 1.75;
     }
   }
 }
