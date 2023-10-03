@@ -3,6 +3,7 @@
 import { CSSProperties, FC } from "react";
 
 import MuxPlayer from "@mux/mux-player-react";
+import { clsx } from "clsx";
 
 import s from "./_internal/VideoPlayer.module.scss";
 
@@ -17,7 +18,8 @@ export const VideoPlayer: FC<IProps> = (props) => {
 
   return (
     <MuxPlayer
-      className={`${className || null} ${s["video-player"]}`}
+      thumbnailTime={0}
+      className={clsx(className, s["video-player"])}
       streamType='on-demand'
       autoPlay='muted'
       playbackId={playbackId}

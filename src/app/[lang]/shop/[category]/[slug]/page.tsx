@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 
 import { ProductInteractive } from "@components/[slug]/ProductInteractive/ProductInteractive";
 import { Slider } from "@components/Slider/Slider";
+import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { HIDDEN_PRODUCT_TAG } from "@lib/constants";
 import { Locale } from "@lib/i18n/types";
@@ -111,7 +112,23 @@ const ProductPage: FC<IProps> = async (props) => {
           </div>
         </div>
       </div>
-      <div className='h-screen w-full bg-neutral-600'></div>
+      {product.firstAdditionalVideoID !== null ? (
+        <div className='flex flex-col gap-4 bg-black text-white px-6 py-8 md:flex-row'>
+          <VideoPlayer
+            className='md:basis-1/2'
+            playbackId={product.firstAdditionalVideoID.value}
+            aspectRatio={"1 / 1"}
+          />
+          {product.firstAdditionalVideoDescription !== null ? (
+            <div className='md:basis-1/2 flex justify-center items-center'>
+              <p className='lg:max-w-[450px]'>
+                {product.firstAdditionalVideoDescription.value}
+              </p>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
       {/* <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
         {product && (
           <>

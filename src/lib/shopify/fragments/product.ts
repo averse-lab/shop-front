@@ -12,16 +12,16 @@ const productFragment = gql`
     title
     description
     descriptionHtml
-    dimensions: metafield(namespace: "properties", key: "dimensions") {
+    firstAdditionalVideoID: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_id_1"
+    ) {
       value
     }
-    material: metafield(namespace: "properties", key: "material") {
-      value
-    }
-    concept: metafield(namespace: "properties", key: "concept") {
-      value
-    }
-    delay: metafield(namespace: "delivery", key: "delay") {
+    firstAdditionalVideoDescription: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_description_1"
+    ) {
       value
     }
     options {

@@ -108,6 +108,15 @@ export type ShopifyCollection = {
   updatedAt: string;
 };
 
+export type ShopifyProductCustomMetafields = {
+  firstAdditionalVideoID: {
+    value: string;
+  } | null;
+  firstAdditionalVideoDescription: {
+    value: string;
+  } | null;
+};
+
 export type ShopifyProduct = {
   id: string;
   handle: string;
@@ -124,14 +133,10 @@ export type ShopifyProduct = {
   variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;
-  material?: { value: string };
-  concept?: { value: string };
-  delay?: { value: string };
-  dimensions?: { value: string };
   seo: SEO;
   tags: string[];
   updatedAt: string;
-};
+} & ShopifyProductCustomMetafields;
 
 export type ShopifyCartOperation = {
   data: {
