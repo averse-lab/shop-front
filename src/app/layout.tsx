@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Averse",
   description: "Averse is a jewelery brand.",
+  robots: "noindex",
 };
 
 const RootLayout: FC<PropsWithChildren> = (props) => {
