@@ -1,0 +1,9 @@
+@media (min-width: 1024px) {
+  .multiple-additional-videos__player--right {
+    transform: translate(calc(24px + 25%), calc(-32px - 25%));
+  }
+
+  .multiple-additional-videos__player--left {
+    transform: translate(calc(-24px - 25%), calc(32px + 25%));
+  }
+}

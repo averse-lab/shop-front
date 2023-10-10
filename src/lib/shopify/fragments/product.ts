@@ -12,6 +12,12 @@ const productFragment = gql`
     title
     description
     descriptionHtml
+    additionalVideosLayout: metafield(
+      namespace: "custom"
+      key: "additional_mux_videos_layout"
+    ) {
+      value
+    }
     firstAdditionalVideoID: metafield(
       namespace: "custom"
       key: "additional_mux_video_id_1"
@@ -21,6 +27,30 @@ const productFragment = gql`
     firstAdditionalVideoDescription: metafield(
       namespace: "custom"
       key: "additional_mux_video_description_1"
+    ) {
+      value
+    }
+    firstAdditionalVideoAspectRatio: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_ratio_1"
+    ) {
+      value
+    }
+    secondAdditionalVideoID: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_id_2"
+    ) {
+      value
+    }
+    secondAdditionalVideoDescription: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_description_2"
+    ) {
+      value
+    }
+    secondAdditionalVideoAspectRatio: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_ratio_2"
     ) {
       value
     }

@@ -109,10 +109,27 @@ export type ShopifyCollection = {
 };
 
 export type ShopifyProductCustomMetafields = {
+  additionalVideosLayout: {
+    value:
+      | "player to the right / description to the left"
+      | "player to the left / description to the right";
+  } | null;
   firstAdditionalVideoID: {
     value: string;
   } | null;
   firstAdditionalVideoDescription: {
+    value: string;
+  } | null;
+  firstAdditionalVideoAspectRatio: {
+    value: string;
+  } | null;
+  secondAdditionalVideoID: {
+    value: string;
+  } | null;
+  secondAdditionalVideoDescription: {
+    value: string;
+  } | null;
+  secondAdditionalVideoAspectRatio: {
     value: string;
   } | null;
 };

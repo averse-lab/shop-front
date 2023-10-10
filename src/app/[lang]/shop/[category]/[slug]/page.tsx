@@ -6,8 +6,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { ProductInteractive } from "@components/[slug]/ProductInteractive/ProductInteractive";
+import { ProductMultipleAdditionalVideos } from "@components/[slug]/ProductMultipleAdditionalVideos/ProductMultipleAdditionalVideos";
+import { ProductSingleAdditionalVideo } from "@components/[slug]/ProductSingleAdditionalVideo/ProductSingleAdditionalVideo";
 import { Slider } from "@components/Slider/Slider";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { HIDDEN_PRODUCT_TAG } from "@lib/constants";
 import { Locale } from "@lib/i18n/types";
@@ -91,6 +92,7 @@ const ProductPage: FC<IProps> = async (props) => {
                     src={image.url}
                     fill
                     className='aspect-square object-center object-cover'
+                    priority
                   />
                 </div>
               </div>
@@ -112,21 +114,46 @@ const ProductPage: FC<IProps> = async (props) => {
           </div>
         </div>
       </div>
-      {product.firstAdditionalVideoID !== null ? (
-        <div className='flex flex-col gap-4 bg-black text-white px-6 py-8 md:flex-row'>
-          <VideoPlayer
-            className='md:basis-1/2'
-            playbackId={product.firstAdditionalVideoID.value}
-            aspectRatio={"1 / 1"}
-          />
-          {product.firstAdditionalVideoDescription !== null ? (
-            <div className='md:basis-1/2 flex justify-center items-center'>
-              <p className='lg:max-w-[450px]'>
-                {product.firstAdditionalVideoDescription.value}
-              </p>
-            </div>
-          ) : null}
-        </div>
+      {product.firstAdditionalVideoID !== null &&
+      product.firstAdditionalVideoAspectRatio !== null &&
+      product.firstAdditionalVideoDescription !== null &&
+      product.additionalVideosLayout !== null ? (
+        <>
+          {product.secondAdditionalVideoID !== null &&
+          product.secondAdditionalVideoAspectRatio !== null &&
+          product.secondAdditionalVideoDescription !== null ? (
+            <ProductMultipleAdditionalVideos
+              firstVideoPlaybackId={product.firstAdditionalVideoID.value}
+              firstVideoAspectRatio={
+                product.firstAdditionalVideoAspectRatio.value
+              }
+              firstVideodDescription={
+                product.firstAdditionalVideoDescription.value
+              }
+              secondVideoPlaybackId={product.secondAdditionalVideoID.value}
+              secondVideoAspectRatio={
+                product.secondAdditionalVideoAspectRatio.value
+              }
+              secondVideodDescription={
+                product.secondAdditionalVideoDescription.value
+              }
+              inversedLayout={
+                product.additionalVideosLayout.value ===
+                "player to the right / description to the left"
+              }
+            />
+          ) : (
+            <ProductSingleAdditionalVideo
+              playbackId={product.firstAdditionalVideoID.value}
+              aspectRatio={product.firstAdditionalVideoAspectRatio.value}
+              description={product.firstAdditionalVideoDescription.value}
+              inversedLayout={
+                product.additionalVideosLayout.value ===
+                "player to the right / description to the left"
+              }
+            />
+          )}
+        </>
       ) : null}
 
       {/* <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
