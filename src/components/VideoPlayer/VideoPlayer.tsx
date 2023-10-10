@@ -3,8 +3,8 @@
 import { CSSProperties, FC } from "react";
 
 import MuxPlayer from "@mux/mux-player-react";
-
-import s from "./_internal/VideoPlayer.module.scss";
+import { clsx } from "clsx";
+import styled from "styled-components";
 
 interface IProps {
   className?: string;
@@ -16,14 +16,28 @@ export const VideoPlayer: FC<IProps> = (props) => {
   const { className, playbackId, aspectRatio } = props;
 
   return (
-    <MuxPlayer
-      className={`${className || null} ${s["video-player"]}`}
+    <StyledMux
+      thumbnailTime={0}
+      className={clsx(className)}
       streamType='on-demand'
       autoPlay='muted'
       playbackId={playbackId}
+      aspectRatio={aspectRatio}
       nohotkeys
       loop
-      style={{ aspectRatio }}
     />
   );
 };
+
+// TODO : find a way to remove styled-components and pass the aspect-ratio to the style MuxPlayer prop
+
+const StyledMux = styled(MuxPlayer)<{
+  aspectRatio: CSSProperties["aspectRatio"];
+}>`
+  aspect-ratio: ${(props) => props.aspectRatio};
+  --controls: none;
+  --loading-indicator: none;
+  --dialog: none;
+  --media-object-fit: cover;
+  --media-object-position: center;
+`;

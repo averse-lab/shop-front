@@ -12,16 +12,46 @@ const productFragment = gql`
     title
     description
     descriptionHtml
-    dimensions: metafield(namespace: "properties", key: "dimensions") {
+    additionalVideosLayout: metafield(
+      namespace: "custom"
+      key: "additional_mux_videos_layout"
+    ) {
       value
     }
-    material: metafield(namespace: "properties", key: "material") {
+    firstAdditionalVideoID: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_id_1"
+    ) {
       value
     }
-    concept: metafield(namespace: "properties", key: "concept") {
+    firstAdditionalVideoDescription: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_description_1"
+    ) {
       value
     }
-    delay: metafield(namespace: "delivery", key: "delay") {
+    firstAdditionalVideoAspectRatio: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_ratio_1"
+    ) {
+      value
+    }
+    secondAdditionalVideoID: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_id_2"
+    ) {
+      value
+    }
+    secondAdditionalVideoDescription: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_description_2"
+    ) {
+      value
+    }
+    secondAdditionalVideoAspectRatio: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_ratio_2"
+    ) {
       value
     }
     options {

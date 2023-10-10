@@ -1,0 +1,5 @@
+.rich-text {
+  & > *:not(:last-child) {
+    @apply mb-2;
+  }
+}

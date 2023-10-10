@@ -108,6 +108,32 @@ export type ShopifyCollection = {
   updatedAt: string;
 };
 
+export type ShopifyProductCustomMetafields = {
+  additionalVideosLayout: {
+    value:
+      | "player to the right / description to the left"
+      | "player to the left / description to the right";
+  } | null;
+  firstAdditionalVideoID: {
+    value: string;
+  } | null;
+  firstAdditionalVideoDescription: {
+    value: string;
+  } | null;
+  firstAdditionalVideoAspectRatio: {
+    value: string;
+  } | null;
+  secondAdditionalVideoID: {
+    value: string;
+  } | null;
+  secondAdditionalVideoDescription: {
+    value: string;
+  } | null;
+  secondAdditionalVideoAspectRatio: {
+    value: string;
+  } | null;
+};
+
 export type ShopifyProduct = {
   id: string;
   handle: string;
@@ -124,14 +150,10 @@ export type ShopifyProduct = {
   variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;
-  material?: { value: string };
-  concept?: { value: string };
-  delay?: { value: string };
-  dimensions?: { value: string };
   seo: SEO;
   tags: string[];
   updatedAt: string;
-};
+} & ShopifyProductCustomMetafields;
 
 export type ShopifyCartOperation = {
   data: {
