@@ -46,6 +46,7 @@ import {
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
+  SupportedLanguageCode,
 } from "./types";
 import {
   HIDDEN_PRODUCT_TAG,
@@ -389,12 +390,16 @@ export async function getPages(): Promise<Page[]> {
   return removeEdgesAndNodes(res.body.data.pages);
 }
 
-export async function getProduct(handle: string): Promise<Product | undefined> {
+export async function getProduct(
+  handle: string,
+  lang: SupportedLanguageCode,
+): Promise<Product | undefined> {
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],
     variables: {
       handle,
+      lang,
     },
   });
 
@@ -419,10 +424,12 @@ export async function getProducts({
   query,
   reverse,
   sortKey,
+  lang,
 }: {
   query?: string;
   reverse?: boolean;
   sortKey?: string;
+  lang: SupportedLanguageCode;
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
@@ -431,6 +438,7 @@ export async function getProducts({
       query,
       reverse,
       sortKey,
+      lang,
     },
   });
 

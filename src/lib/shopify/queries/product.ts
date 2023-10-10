@@ -3,7 +3,8 @@ import gql from "graphql-tag";
 import productFragment from "../fragments/product";
 
 export const getProductQuery = gql`
-  query getProduct($handle: String!) {
+  query getProduct($handle: String!, $lang: LanguageCode!)
+  @inContext(language: $lang) {
     product(handle: $handle) {
       ...product
     }
@@ -16,7 +17,8 @@ export const getProductsQuery = gql`
     $sortKey: ProductSortKeys
     $reverse: Boolean
     $query: String
-  ) {
+    $lang: LanguageCode!
+  ) @inContext(language: $lang) {
     products(sortKey: $sortKey, reverse: $reverse, query: $query, first: 100) {
       edges {
         node {

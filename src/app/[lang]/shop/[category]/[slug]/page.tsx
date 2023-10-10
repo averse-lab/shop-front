@@ -14,6 +14,7 @@ import { HIDDEN_PRODUCT_TAG } from "@lib/constants";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { getProduct } from "@lib/shopify";
+import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
 
@@ -22,7 +23,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string; lang: Locale };
 }): Promise<Metadata> {
-  const product = await getProduct(params.slug);
+  const languageCode = getSupportedLanguageCodeFromLocale(params.lang);
+  const product = await getProduct(params.slug, languageCode);
 
   if (!product) return notFound();
 
@@ -63,7 +65,9 @@ const ProductPage: FC<IProps> = async (props) => {
   const { params } = props;
   const { slug, lang } = params;
 
-  const product = await getProduct(slug);
+  const languageCode = getSupportedLanguageCodeFromLocale(lang);
+
+  const product = await getProduct(slug, languageCode);
   const dictionary = await getDictionary(lang);
 
   if (product === undefined) {

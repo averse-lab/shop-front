@@ -14,6 +14,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { getProducts } from "@lib/shopify";
+import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import { ANIMATIONS } from "./_internal/CategoryPage.constants";
 import { CATEGORIES } from "../_internal/ShopPage.constants";
@@ -46,11 +47,14 @@ const CategoryPage: FC<IProps> = async (props) => {
     notFound();
   }
 
+  const languageCode = getSupportedLanguageCodeFromLocale(lang);
+
   const products = await getProducts({
     query:
       categoryUrlSegment === CategoriesUrlSegment.ALL_PRODUCTS
         ? category.shopifyId
         : `product_type:${category.shopifyId}`,
+    lang: languageCode,
   });
 
   const filters: Filter[] = Array.from(CATEGORIES, ([_, { url, i18nKey }]) => ({

@@ -1,3 +1,5 @@
+export type SupportedLanguageCode = "EN" | "FR";
+
 export type Maybe<T> = T | null;
 
 export type Connection<T> = {
@@ -268,6 +270,7 @@ export type ShopifyProductOperation = {
   data: { product: ShopifyProduct };
   variables: {
     handle: string;
+    lang: SupportedLanguageCode;
   };
 };
 
@@ -288,5 +291,6 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    lang: SupportedLanguageCode;
   };
 };
