@@ -6,8 +6,6 @@ import MuxPlayer from "@mux/mux-player-react";
 import { clsx } from "clsx";
 import styled from "styled-components";
 
-import s from "./_internal/VideoPlayer.module.scss";
-
 interface IProps {
   className?: string;
   playbackId: string;
@@ -20,7 +18,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
   return (
     <StyledMux
       thumbnailTime={0}
-      className={clsx(className, s["video-player"])}
+      className={clsx(className)}
       streamType='on-demand'
       autoPlay='muted'
       playbackId={playbackId}
@@ -37,4 +35,9 @@ const StyledMux = styled(MuxPlayer)<{
   aspectRatio: CSSProperties["aspectRatio"];
 }>`
   aspect-ratio: ${(props) => props.aspectRatio};
+  --controls: none;
+  --loading-indicator: none;
+  --dialog: none;
+  --media-object-fit: cover;
+  --media-object-position: center;
 `;
