@@ -10,6 +10,7 @@
 .cart__shipping-sumary {
   p:last-child {
     @apply text-sm;
+    @apply text-neutral-600;
   }
 }
 

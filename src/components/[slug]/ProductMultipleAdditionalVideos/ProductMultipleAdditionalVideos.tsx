@@ -62,12 +62,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           aspectRatio={firstVideoAspectRatio}
         />
         <RichTextRenderer
-          className={clsx(
-            "lg:w-[550px]",
-            "2xl:w-[750px]",
-            "lg:-mt-[12.5%]",
-            "lg:text-center",
-          )}
+          className={clsx("lg:w-[550px]", "2xl:w-[750px]", "lg:-mt-[12.5%]")}
           richText={firstVideodDescription}
         />
       </div>
@@ -94,12 +89,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           aspectRatio={secondVideoAspectRatio}
         />
         <RichTextRenderer
-          className={clsx(
-            "lg:w-[550px]",
-            "2xl:w-[750px]",
-            "lg:mt-[12.5%]",
-            "lg:text-center",
-          )}
+          className={clsx("lg:w-[550px]", "2xl:w-[750px]", "lg:mt-[12.5%]")}
           richText={secondVideodDescription}
         />
       </div>

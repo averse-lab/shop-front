@@ -15,7 +15,7 @@ export const CartButton: FC<IProps> = (props) => {
 
   return (
     <button onClick={onClick} className={`${className || ""} relative`}>
-      <ShoppingBagIcon className='w-6 h-6 cursor-pointer hover:stroke-[1.75] hover:scale-105 transition-all' />
+      <ShoppingBagIcon className='w-6 h-6 cursor-pointer lg:hover:stroke-[1.75] lg:hover:scale-105 transition-all' />
       {quantity !== undefined && quantity > 0 ? (
         <div className={`${s["cart-hint__hint"]} bg-black`}>
           <p style={{ fontSize: "8px" }} className='text-white text-semibold'>

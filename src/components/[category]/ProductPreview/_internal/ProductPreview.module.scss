@@ -2,12 +2,24 @@
   .product-preview {
     &:hover {
       .product-preview__image {
-        transform: scale(1.05);
+        @apply scale-[1.025];
+      }
+
+      .product-preview__name {
+        @apply font-medium;
+        @apply scale-[1.025];
       }
     }
   }
 
   .product-preview__image {
     transition: 0.5s transform ease-out;
+  }
+
+  .product-preview__name {
+    transform-origin: left center;
+    transition:
+      0.2s font-weight ease-out,
+      0.2s transform ease-out;
   }
 }

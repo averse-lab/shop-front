@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import Link from "next/link";
 
 import { useLockBodyScroll } from "@lib/hooks";
@@ -38,18 +38,18 @@ export const BurgerMenu: FC<IProps> = (props) => {
     <>
       <button className={clsx(s["burger-menu__burger"], className)}>
         <Bars3Icon
-          className={`w-6 h-6 hover:stroke-[1.75] hover:scale-105 transition-all`}
+          className={`w-6 h-6 lg:hover:stroke-[1.75] lg:hover:scale-105 transition-all`}
           onClick={handleBurgerClick}
         />
       </button>
       <div
         className={`${s["burger-menu__menu"]} ${
           open ? s["burger-menu__menu--open"] : null
-        } fixed flex flex-col  z-20 h-full md:h-auto w-full md:w-auto p-6 uppercase bg-black top-0 left-0 md:top-2 md:left-2 md:rounded`}
+        } fixed flex flex-col  z-20 h-full md:h-auto w-full md:w-auto p-6 uppercase bg-black top-0 left-0 md:top-2 md:left-2 md:rounded md:shadow-md`}
       >
         <XMarkIcon
           onClick={handleCloseClick}
-          className={`w-6 h-6 cursor-pointer text-white self-end hover:stroke-2 hover:scale-105 transition-all`}
+          className={`w-6 h-6 cursor-pointer text-white self-end lg:hover:stroke-2 lg:hover:scale-105 transition-all`}
         />
         <div className='flex flex-1 flex-col items-center justify-center gap-6 md:gap-4 md:px-24 md:py-16'>
           {nav.map((navItem) => (

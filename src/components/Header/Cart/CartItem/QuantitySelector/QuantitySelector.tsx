@@ -67,10 +67,10 @@ export const QuantitySelector: FC<IProps> = (props) => {
   };
 
   return (
-    <div className='flex items-center gap-3 border border-black px-2 py-1 rounded-sm min-h-[30px]'>
+    <div className='flex items-center gap-3 border border-neutral-500 px-2 py-1 rounded-sm min-h-[30px]'>
       <MinusSmallIcon
         onClick={handleMinusClick}
-        className='w-4 h-4 cursor-pointer'
+        className='w-4 h-4 cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all'
       />
       {isPending ? (
         <Spinner className='h-4 w-4' />
@@ -79,7 +79,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
       )}
       <PlusSmallIcon
         onClick={handlePlusClick}
-        className='w-4 h-4 cursor-pointer'
+        className='w-4 h-4 cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all'
       />
     </div>
   );

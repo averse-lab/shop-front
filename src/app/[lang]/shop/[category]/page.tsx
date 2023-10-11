@@ -69,17 +69,18 @@ const CategoryPage: FC<IProps> = async (props) => {
   return (
     <>
       <div className='fixed z-10 h-[72px] md:h-[96px] w-full top-0 left-0 bg-white border-b border-neutral-200'></div>
-      <div className='mt-[72px] md:mt-[96px] flex flex-col grow'>
-        <FilterSelector
-          filters={filters}
-          selectedFilterIndex={selectedFilterIndex}
-        />
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] grow border-t border-b border-black'>
+      <FilterSelector
+        className='fixed z-10 mt-[72px] md:mt-[96px] w-full'
+        filters={filters}
+        selectedFilterIndex={selectedFilterIndex}
+      />
+      <div className='mt-[128px] md:mt-[152px] flex flex-col grow'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] grow border-t border-b border-neutral-500'>
           {products.map((item, idx) => (
             <>
               <ProductPreview
                 key={item.id}
-                className='outline outline-1 outline-black'
+                className='outline outline-1 outline-neutral-500'
                 href={`/${lang}/${shopSection.url}/${item.productType}/${item.handle}`}
                 imageUrl={item.images[0].url}
                 title={item.title}
@@ -90,10 +91,10 @@ const CategoryPage: FC<IProps> = async (props) => {
                 if (animation.index === idx + 1) {
                   return (
                     <VideoPlayer
-                      className='w-full h-full outline outline-1 outline-black overflow-hidden'
+                      className='w-full h-full outline outline-1 outline-neutral-500 overflow-hidden'
                       key={animation.playbackId}
                       playbackId={animation.playbackId}
-                      aspectRatio={animation.aspectRatio}
+                      aspectRatio={"1 / 1"}
                     />
                   );
                 }

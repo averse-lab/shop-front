@@ -58,6 +58,8 @@ export const Cart: FC<IProps> = (props) => {
     setIsCartOpen(false);
   };
 
+  const checkoutDisabled = cart === undefined || cart.totalQuantity === 0;
+
   return (
     <>
       <CartButton
@@ -72,13 +74,14 @@ export const Cart: FC<IProps> = (props) => {
           cart !== undefined && "gap-4",
           "fixed z-20 h-screen md:h-auto w-screen md:w-[450px] md:max-h-[70vh] md:min-h-[350px] top-0 md:top-2 right-0 md:right-2",
           "flex flex-col justify-between px-6 pb-4 pt-6 md:p-6",
-          "bg-white border md:rounded",
+          "bg-white md:border md:border-neutral-100 md:rounded",
+          "md:shadow-md",
         )}
       >
         <div className={`flex flex-col flex-1 gap-6 overflow-hidden`}>
           <XMarkIcon
             onClick={handleCloseClick}
-            className={`w-6 h-6 cursor-pointer hover:stroke-2 hover:scale-105 transition-all shrink-0`}
+            className={`w-6 h-6 cursor-pointer lg:hover:stroke-2 lg:hover:scale-105 transition-all shrink-0`}
           />
           {cart !== undefined &&
           cart.totalQuantity !== 0 &&
@@ -100,7 +103,9 @@ export const Cart: FC<IProps> = (props) => {
             </div>
           ) : (
             <div className='flex flex-1 justify-center items-center'>
-              <p className='md:py-16'>{dictionary.cart.empty}</p>
+              <p className='md:py-16 text-neutral-600'>
+                {dictionary.cart.empty}
+              </p>
             </div>
           )}
         </div>
@@ -129,8 +134,8 @@ export const Cart: FC<IProps> = (props) => {
           <Button
             className='w-full'
             element='link'
-            href={cart ? cart.checkoutUrl : ""}
-            disabled={cart === undefined || cart.totalQuantity === 0}
+            href={!checkoutDisabled ? cart.checkoutUrl : ""}
+            disabled={checkoutDisabled}
           >
             {dictionary.cart.checkout}
           </Button>

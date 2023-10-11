@@ -49,12 +49,12 @@ export const CartItem: FC<IProps> = (props) => {
           <div className='flex items-center'>
             {selectedOptions.map((option) => (
               <p
-                className='text-sm font-light uppercase'
+                className='text-sm font-light uppercase text-neutral-600'
                 key={option.value}
               >{`${option.name} ${option.value}`}</p>
             ))}
           </div>
-          <p className='text-sm font-light uppercase'>
+          <p className='text-sm font-light uppercase text-neutral-600'>
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
           </p>
         </div>

@@ -28,23 +28,23 @@ type ILinkProps = {
 type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;
 
 export const Button: FC<IProps> = (props) => {
-  const { children, className: propsClassName, disabled, loading } = props;
+  const { children, className, disabled, loading, element } = props;
 
-  const className = clsx(
-    propsClassName,
+  const commonClassName = clsx(
+    className,
     s["button"],
     "flex items-center justify-center gap-4",
     "text-white font-medium uppercase text-center",
     "py-3 px-6 rounded",
-    disabled ? "bg-neutral-500" : "bg-black",
+    disabled ? "bg-neutral-400" : "bg-black",
     disabled && "disabled cursor-not-allowed",
   );
 
-  if (props.element === "button") {
+  if (element === "button") {
     const { onClick } = props;
 
     return (
-      <button disabled={disabled} className={className} onClick={onClick}>
+      <button disabled={disabled} className={commonClassName} onClick={onClick}>
         {loading ? <Spinner className='h-6 w-6' /> : children}
       </button>
     );
@@ -52,7 +52,7 @@ export const Button: FC<IProps> = (props) => {
     const { href } = props;
 
     return (
-      <Link className={className} href={href || "#"}>
+      <Link className={commonClassName} href={href || "#"}>
         {loading ? <Spinner className='h-6 w-6' /> : children}
       </Link>
     );

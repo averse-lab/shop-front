@@ -31,18 +31,14 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
         className={clsx(
           "shrink-0",
           "md:w-[50%] md:max-w-[400px]",
-          "lg:max-w-[550px]",
+          "lg:max-w-[650px]",
           "2xl:max-w-[750px]",
         )}
         playbackId={playbackId}
         aspectRatio={aspectRatio}
       />
       <RichTextRenderer
-        className={clsx(
-          "lg:max-w-[550px]",
-          "2xl:max-w-[750px]",
-          inversedLayout ? "lg:text-right" : "lg:text-left",
-        )}
+        className={clsx("lg:max-w-[550px]", "2xl:max-w-[750px]")}
         richText={description}
       />
     </div>

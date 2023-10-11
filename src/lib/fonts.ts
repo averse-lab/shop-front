@@ -1,7 +1,7 @@
-import { Hanken_Grotesk } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 
-export const hankenGrotesk = Hanken_Grotesk({
+export const DMSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-hk",
+  variable: "--font-dms",
 });

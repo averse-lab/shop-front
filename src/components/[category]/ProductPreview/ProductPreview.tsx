@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,19 +20,27 @@ export const ProductPreview: FC<IProps> = (props) => {
 
   return (
     <Link
-      className={`${className || ""} ${
-        s["product-preview"]
-      } relative overflow-hidden flex flex-col justify-end p-4`}
+      className={clsx(
+        className,
+        s["product-preview"],
+        "relative overflow-hidden",
+        "flex flex-col justify-end",
+        "p-4",
+        "aspect-square",
+      )}
       href={href}
     >
       <Image
-        className={`${s["product-preview__image"]} object-cover object-center -z-10`}
+        className={clsx(
+          s["product-preview__image"],
+          "object-cover object-center -z-10",
+        )}
         src={imageUrl}
         alt={`photography of ${title}`}
         fill
       />
-      <p className='uppercase'>{title}</p>
-      <p className='text-sm font-light '>
+      <p className={clsx(s["product-preview__name"], "uppercase")}>{title}</p>
+      <p className='text-sm font-light text-neutral-600'>
         {price} {currency}
       </p>
     </Link>
