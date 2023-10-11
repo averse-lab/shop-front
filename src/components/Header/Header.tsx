@@ -32,11 +32,11 @@ export const Header: FC<IProps> = (props) => {
         `fixed z-20 w-full grid grid-cols-3 items-center px-6 py-4 bg-transparent`,
       )}
     >
-      <BurgerMenu nav={nav} lang={lang} />
+      <BurgerMenu nav={nav} lang={lang} className='justify-self-start' />
       <Link className='justify-self-center' href='/'>
         <Logo className='h-10 w-10 md:w-16 md:h-16' />
       </Link>
-      <Cart dictionary={dictionary} lang={lang} />
+      <Cart dictionary={dictionary} lang={lang} className='justify-self-end' />
     </header>
   );
 };

@@ -19,12 +19,13 @@ import { CartItem } from "./CartItem/CartItem";
 import { SummaryItem } from "./SummaryItem/SummaryItem";
 
 interface IProps {
+  className?: string;
   dictionary: Dictionary;
   lang: Locale;
 }
 
 export const Cart: FC<IProps> = (props) => {
-  const { dictionary, lang } = props;
+  const { dictionary, lang, className } = props;
 
   const { setCart, cart, isCartOpen, setIsCartOpen } =
     useContext(CartContext) || {};
@@ -60,7 +61,7 @@ export const Cart: FC<IProps> = (props) => {
   return (
     <>
       <CartButton
-        className={`${s["cart__trigger"]} justify-self-end`}
+        className={clsx(s["cart__trigger"], className)}
         quantity={cart?.totalQuantity}
         onClick={handleCartHintClick}
       />
@@ -77,7 +78,7 @@ export const Cart: FC<IProps> = (props) => {
         <div className={`flex flex-col flex-1 gap-6 overflow-hidden`}>
           <XMarkIcon
             onClick={handleCloseClick}
-            className={`${s["cart__close"]} w-6 h-6 cursor-pointer shrink-0`}
+            className={`w-6 h-6 cursor-pointer hover:stroke-2 hover:scale-105 transition-all shrink-0`}
           />
           {cart !== undefined &&
           cart.totalQuantity !== 0 &&

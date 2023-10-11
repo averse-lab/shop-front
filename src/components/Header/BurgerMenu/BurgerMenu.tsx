@@ -12,6 +12,7 @@ import s from "./_internal/BurgerMenu.module.scss";
 import { NavItem } from "./_internal/BurgerMenu.types";
 
 type IProps = {
+  className?: string;
   nav: NavItem[];
   lang: string;
 };
@@ -19,7 +20,7 @@ type IProps = {
 export type { NavItem } from "./_internal/BurgerMenu.types";
 
 export const BurgerMenu: FC<IProps> = (props) => {
-  const { nav, lang } = props;
+  const { nav, lang, className } = props;
 
   const [open, setOpen] = useState(false);
 
@@ -35,8 +36,11 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   return (
     <>
-      <button className={clsx(s["burger-menu__burger"])}>
-        <Bars3Icon className={`w-6 h-6`} onClick={handleBurgerClick} />
+      <button className={clsx(s["burger-menu__burger"], className)}>
+        <Bars3Icon
+          className={`w-6 h-6 hover:stroke-[1.75] hover:scale-105 transition-all`}
+          onClick={handleBurgerClick}
+        />
       </button>
       <div
         className={`${s["burger-menu__menu"]} ${
@@ -45,7 +49,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
       >
         <XMarkIcon
           onClick={handleCloseClick}
-          className={`${s["burger-menu__close"]} w-6 h-6 cursor-pointer text-white self-end`}
+          className={`w-6 h-6 cursor-pointer text-white self-end hover:stroke-2 hover:scale-105 transition-all`}
         />
         <div className='flex flex-1 flex-col items-center justify-center gap-6 md:gap-4 md:px-24 md:py-16'>
           {nav.map((navItem) => (
