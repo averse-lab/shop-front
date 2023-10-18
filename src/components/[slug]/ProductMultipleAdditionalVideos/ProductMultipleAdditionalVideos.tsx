@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 
 import { clsx } from "clsx";
 
@@ -9,10 +9,12 @@ import s from "./_internal/ProductMultipleAdditionalVideos.module.scss";
 
 type IProps = {
   firstVideoPlaybackId: string;
-  firstVideoAspectRatio: CSSProperties["aspectRatio"];
+  firstVideoWidthRatio: number;
+  firstVideoHeightRatio: number;
   firstVideodDescription: string;
   secondVideoPlaybackId: string;
-  secondVideoAspectRatio: CSSProperties["aspectRatio"];
+  secondVideoWidthRatio: number;
+  secondVideoHeightRatio: number;
   secondVideodDescription: string;
   inversedLayout: boolean;
 };
@@ -20,10 +22,12 @@ type IProps = {
 export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
   const {
     firstVideoPlaybackId,
-    firstVideoAspectRatio,
+    firstVideoWidthRatio,
+    firstVideoHeightRatio,
     firstVideodDescription,
     secondVideoPlaybackId,
-    secondVideoAspectRatio,
+    secondVideoWidthRatio,
+    secondVideoHeightRatio,
     secondVideodDescription,
     inversedLayout,
   } = props;
@@ -59,7 +63,8 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
             "2xl:max-w-[1000px]",
           )}
           playbackId={firstVideoPlaybackId}
-          aspectRatio={firstVideoAspectRatio}
+          widthRatio={firstVideoWidthRatio}
+          heighRatio={firstVideoHeightRatio}
         />
         <RichTextRenderer
           className={clsx("lg:w-[550px]", "2xl:w-[750px]", "lg:-mt-[12.5%]")}
@@ -86,7 +91,8 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
             "2xl:max-w-[1000px]",
           )}
           playbackId={secondVideoPlaybackId}
-          aspectRatio={secondVideoAspectRatio}
+          widthRatio={secondVideoWidthRatio}
+          heighRatio={secondVideoHeightRatio}
         />
         <RichTextRenderer
           className={clsx("lg:w-[550px]", "2xl:w-[750px]", "lg:mt-[12.5%]")}

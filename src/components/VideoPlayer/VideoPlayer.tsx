@@ -1,43 +1,47 @@
 "use client";
 
-import { CSSProperties, FC } from "react";
+import { FC, useEffect, useRef } from "react";
 
 import MuxPlayer from "@mux/mux-player-react";
 import { clsx } from "clsx";
-import styled from "styled-components";
+
+import s from "./_internal/VideoPlayer.module.scss";
+
+import type MuxPlayerElement from "@mux/mux-player";
 
 interface IProps {
   className?: string;
   playbackId: string;
-  aspectRatio: CSSProperties["aspectRatio"];
+  widthRatio: number;
+  heighRatio: number;
 }
 
 export const VideoPlayer: FC<IProps> = (props) => {
-  const { className, playbackId, aspectRatio } = props;
+  const { className, playbackId, widthRatio, heighRatio } = props;
+
+  const playerRef = useRef<MuxPlayerElement>(null);
+
+  useEffect(() => {
+    if (playerRef.current === null) {
+      return;
+    }
+
+    if (playerRef.current.style.aspectRatio === "") {
+      playerRef.current.style.aspectRatio = `${widthRatio} / ${heighRatio}`;
+    }
+  }, [heighRatio, widthRatio]);
 
   return (
-    <StyledMux
+    <MuxPlayer
+      ref={playerRef}
       thumbnailTime={0}
-      className={clsx(className)}
+      className={clsx(className, s["player"])}
       streamType='on-demand'
       autoPlay='muted'
       playbackId={playbackId}
-      aspectRatio={aspectRatio}
       nohotkeys
       loop
+      style={{ aspectRatio: `${widthRatio} / ${heighRatio}` }}
     />
   );
 };
-
-// TODO : find a way to remove styled-components and pass the aspect-ratio to the style MuxPlayer prop
-
-const StyledMux = styled(MuxPlayer)<{
-  aspectRatio: CSSProperties["aspectRatio"];
-}>`
-  aspect-ratio: ${(props) => props.aspectRatio};
-  --controls: none;
-  --loading-indicator: none;
-  --dialog: none;
-  --media-object-fit: cover;
-  --media-object-position: center;
-`;

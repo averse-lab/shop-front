@@ -122,7 +122,10 @@ export type ShopifyProductCustomMetafields = {
   firstAdditionalVideoDescription: {
     value: string;
   } | null;
-  firstAdditionalVideoAspectRatio: {
+  firstAdditionalVideoWidthRatio: {
+    value: string;
+  } | null;
+  firstAdditionalVideoHeightRatio: {
     value: string;
   } | null;
   secondAdditionalVideoID: {
@@ -131,7 +134,10 @@ export type ShopifyProductCustomMetafields = {
   secondAdditionalVideoDescription: {
     value: string;
   } | null;
-  secondAdditionalVideoAspectRatio: {
+  secondAdditionalVideoWidthRatio: {
+    value: string;
+  } | null;
+  secondAdditionalVideoHeightRatio: {
     value: string;
   } | null;
 };

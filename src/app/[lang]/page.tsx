@@ -28,7 +28,8 @@ const HomePage: FC<IProps> = async (props) => {
       <VideoPlayer
         className={`absolute h-full w-full -z-10`}
         playbackId={HOME_VIDEO.playbackId}
-        aspectRatio={HOME_VIDEO.aspectRatio}
+        widthRatio={HOME_VIDEO.widthRatio}
+        heighRatio={HOME_VIDEO.heightRatio}
       />
       <h1 className='text-4xl font-bold text-white  mb-2'>Averse</h1>
       <p className='mb-2'>HAND ENGRAVER AND JEWELLER BASED IN PARIS</p>

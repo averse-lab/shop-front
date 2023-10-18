@@ -119,25 +119,33 @@ const ProductPage: FC<IProps> = async (props) => {
         </div>
       </div>
       {product.firstAdditionalVideoID !== null &&
-      product.firstAdditionalVideoAspectRatio !== null &&
+      product.firstAdditionalVideoWidthRatio !== null &&
+      product.firstAdditionalVideoHeightRatio !== null &&
       product.firstAdditionalVideoDescription !== null &&
       product.additionalVideosLayout !== null ? (
         <>
           {product.secondAdditionalVideoID !== null &&
-          product.secondAdditionalVideoAspectRatio !== null &&
+          product.secondAdditionalVideoWidthRatio !== null &&
+          product.secondAdditionalVideoHeightRatio !== null &&
           product.secondAdditionalVideoDescription !== null ? (
             <ProductMultipleAdditionalVideos
               firstVideoPlaybackId={product.firstAdditionalVideoID.value}
-              firstVideoAspectRatio={
-                product.firstAdditionalVideoAspectRatio.value
-              }
+              firstVideoWidthRatio={Number(
+                product.firstAdditionalVideoWidthRatio.value,
+              )}
+              firstVideoHeightRatio={Number(
+                product.firstAdditionalVideoHeightRatio.value,
+              )}
               firstVideodDescription={
                 product.firstAdditionalVideoDescription.value
               }
               secondVideoPlaybackId={product.secondAdditionalVideoID.value}
-              secondVideoAspectRatio={
-                product.secondAdditionalVideoAspectRatio.value
-              }
+              secondVideoWidthRatio={Number(
+                product.secondAdditionalVideoWidthRatio.value,
+              )}
+              secondVideoHeightRatio={Number(
+                product.secondAdditionalVideoHeightRatio.value,
+              )}
               secondVideodDescription={
                 product.secondAdditionalVideoDescription.value
               }
@@ -149,7 +157,10 @@ const ProductPage: FC<IProps> = async (props) => {
           ) : (
             <ProductSingleAdditionalVideo
               playbackId={product.firstAdditionalVideoID.value}
-              aspectRatio={product.firstAdditionalVideoAspectRatio.value}
+              widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
+              heightRatio={Number(
+                product.firstAdditionalVideoHeightRatio.value,
+              )}
               description={product.firstAdditionalVideoDescription.value}
               inversedLayout={
                 product.additionalVideosLayout.value ===
@@ -159,69 +170,6 @@ const ProductPage: FC<IProps> = async (props) => {
           )}
         </>
       ) : null}
-
-      {/* <div className='grid grid-cols-1 md:grid-cols-2 w-full h-auto md:h-screen'>
-        {product && (
-          <>
-            <div className='overflow-auto md:h-screen'>
-              {product?.images.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image.url}
-                  width={image.width}
-                  height={image.height}
-                  alt={`Product Image ${index + 1}`}
-                  style={{ objectFit: "cover" }}
-                />
-              ))}
-            </div>
-            <div className='overflow-auto bg-white flex flex-col items-center justify-center text-black md:h-screen overflow-x-hidden overflow-y-hidden'>
-              <ProductDescription product={product} />
-              <div className='mx-5'>
-                <p className={"font-bold text-xs"}>
-                  Design in France, made in France
-                </p>
-                <div className={"border-t-2 border-black mt-3"}>
-                  <div className={"flex mt-3"}>
-                    <h2
-                      className={
-                        "font-bold text-xl text-center text-black mt-4 mb-4"
-                      }
-                    >
-                      Materials
-                    </h2>
-                    <p>{product.material?.value}</p>
-                  </div>
-                </div>
-                <div className={"border-t- border-black mt-3"}>
-                  <div className={"flex mt-3"}>
-                    <h2
-                      className={
-                        "font-bold text-xl text-center text-black mt-4 mb-4"
-                      }
-                    >
-                      Concept
-                    </h2>
-                    <p>{product.material?.value}</p>
-                  </div>
-                </div>
-                <div className={"border-t-2 border-black mt-3"}>
-                  <div className={"flex mt-3"}>
-                    <h2
-                      className={
-                        "font-bold text-xl text-center text-black mt-4 mb-4"
-                      }
-                    >
-                      Materials
-                    </h2>
-                    <p>{product.material?.value}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div> */}
     </>
   );
 };

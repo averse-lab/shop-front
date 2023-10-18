@@ -30,9 +30,15 @@ const productFragment = gql`
     ) {
       value
     }
-    firstAdditionalVideoAspectRatio: metafield(
+    firstAdditionalVideoWidthRatio: metafield(
       namespace: "custom"
-      key: "additional_mux_video_ratio_1"
+      key: "additional_mux_video_width_ratio_1"
+    ) {
+      value
+    }
+    firstAdditionalVideoHeightRatio: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_height_ratio_1"
     ) {
       value
     }
@@ -48,9 +54,15 @@ const productFragment = gql`
     ) {
       value
     }
-    secondAdditionalVideoAspectRatio: metafield(
+    secondAdditionalVideoWidthRatio: metafield(
       namespace: "custom"
-      key: "additional_mux_video_ratio_2"
+      key: "additional_mux_video_width_ratio_2"
+    ) {
+      value
+    }
+    secondAdditionalVideoHeightRatio: metafield(
+      namespace: "custom"
+      key: "additional_mux_video_height_ratio_2"
     ) {
       value
     }

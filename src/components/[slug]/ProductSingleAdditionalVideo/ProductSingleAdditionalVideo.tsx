@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 
 import { clsx } from "clsx";
 
@@ -7,13 +7,15 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 type IProps = {
   playbackId: string;
-  aspectRatio: CSSProperties["aspectRatio"];
+  widthRatio: number;
+  heightRatio: number;
   description: string;
   inversedLayout: boolean;
 };
 
 export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
-  const { playbackId, aspectRatio, description, inversedLayout } = props;
+  const { playbackId, widthRatio, heightRatio, description, inversedLayout } =
+    props;
 
   return (
     <div
@@ -35,7 +37,8 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
           "2xl:max-w-[750px]",
         )}
         playbackId={playbackId}
-        aspectRatio={aspectRatio}
+        widthRatio={widthRatio}
+        heighRatio={heightRatio}
       />
       <RichTextRenderer
         className={clsx("lg:max-w-[550px]", "2xl:max-w-[750px]")}

@@ -74,8 +74,8 @@ const CategoryPage: FC<IProps> = async (props) => {
         filters={filters}
         selectedFilterIndex={selectedFilterIndex}
       />
-      <div className='mt-[128px] md:mt-[152px] flex flex-col grow'>
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] grow border-t border-b border-neutral-500'>
+      <div className='mt-[128px] md:mt-[152px] flex flex-col'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] border-t border-b border-neutral-500'>
           {products.map((item, idx) => (
             <>
               <ProductPreview
@@ -94,7 +94,8 @@ const CategoryPage: FC<IProps> = async (props) => {
                       className='w-full h-full outline outline-1 outline-neutral-500 overflow-hidden'
                       key={animation.playbackId}
                       playbackId={animation.playbackId}
-                      aspectRatio={"1 / 1"}
+                      widthRatio={1}
+                      heighRatio={1}
                     />
                   );
                 }
