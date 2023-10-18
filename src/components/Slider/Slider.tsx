@@ -26,12 +26,15 @@ export const Slider: FC<IProps> = (props) => {
   return (
     <div className={clsx(className, s["slider"], "embla")} ref={ref}>
       <div className={`${s["slider__container"]} embla__container`}>
-        {Children.map(children, (child) => {
+        {Children.map(children, (child, idx) => {
           if (isValidElement(child)) {
             const props = {
-              className: `${s["slider__slide"]} embla__slide ${
-                child.props.className || ""
-              }`,
+              className: clsx(
+                child.props.className,
+                s["slider__slide"],
+                "embla__slide",
+              ),
+              key: idx,
             };
             return cloneElement(child, props);
           }
