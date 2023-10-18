@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 
 export const useLockBodyScroll = (locked: boolean) => {
   useEffect(() => {
@@ -8,4 +8,10 @@ export const useLockBodyScroll = (locked: boolean) => {
       document.body.classList.remove("scroll-locked");
     }
   }, [locked]);
+};
+
+export const useForceReRenderer = () => {
+  const [_, forceReRender] = useReducer((x) => x + 1, 0);
+
+  return forceReRender;
 };
