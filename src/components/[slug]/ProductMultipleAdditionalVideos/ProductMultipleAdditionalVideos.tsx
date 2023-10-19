@@ -47,7 +47,12 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
       <div
         className={clsx(
           "flex flex-col items-center gap-4",
-          inversedLayout ? "lg:flex-row-reverse" : "lg:flex-row",
+          inversedLayout
+            ? [
+                "lg:flex-row-reverse",
+                s["multiple-additional-videos__wrapper--inversed"],
+              ]
+            : ["lg:flex-row", s["multiple-additional-videos__wrapper"]],
         )}
       >
         <VideoPlayer
@@ -74,7 +79,12 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
       <div
         className={clsx(
           "flex flex-col items-center gap-4",
-          inversedLayout ? "lg:flex-row" : "lg:flex-row-reverse",
+          inversedLayout
+            ? [
+                "lg:flex-row",
+                s["multiple-additional-videos__wrapper--inversed"],
+              ]
+            : ["lg:flex-row-reverse", s["multiple-additional-videos__wrapper"]],
           "lg:-mt-[25%]",
         )}
       >
