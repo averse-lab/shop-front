@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 
 import { clsx } from "clsx";
@@ -42,53 +44,62 @@ export const RichTextRenderer: FC<IProps> = (props) => {
 
   const parsedRichText: ParsedRichText = JSON.parse(richText);
 
-  const x = parsedRichText.children.reduce<JSX.Element[][]>(
-    (rootAcc, rootCurr) => {
-      const paragraphs = rootCurr.children.reduce<JSX.Element[]>(
-        (childAcc, childCurr) => {
-          switch (childCurr.type) {
-            case "text":
-              if (childCurr.value !== "") {
-                childAcc.push(
-                  <p
-                    className={clsx(
-                      childCurr.bold && "font-bold",
-                      childCurr.italic && "italic",
-                    )}
-                  >
-                    {childCurr.value}
-                  </p>,
-                );
+  console.log(parsedRichText);
+
+  return (
+    <div className={clsx(className, s["rich-text"])}>
+      {parsedRichText.children.reduce<JSX.Element[][]>(
+        (rootAcc, rootCurr, idx) => {
+          const paragraphs = rootCurr.children.reduce<(JSX.Element | string)[]>(
+            (childAcc, childCurr) => {
+              switch (childCurr.type) {
+                case "text":
+                  if (childCurr.value !== "") {
+                    if (childCurr.bold) {
+                      childAcc.push(
+                        <span className='font-bold'>{childCurr.value}</span>,
+                      );
+                    } else if (childCurr.italic) {
+                      childAcc.push(
+                        <span className='italic'>{childCurr.value}</span>,
+                      );
+                    } else {
+                      childAcc.push(childCurr.value);
+                    }
+                  }
+
+                  break;
+                case "link":
+                  childAcc.push(
+                    <Link
+                      className={clsx(
+                        childCurr.children[0].bold && "font-bold",
+                        childCurr.children[0].italic && "italic",
+                      )}
+                      href={childCurr.url}
+                      title={childCurr.title}
+                      target={childCurr.target}
+                    >
+                      {childCurr.children[0].value}
+                    </Link>,
+                  );
+
+                  break;
               }
 
-              break;
-            case "link":
-              childAcc.push(
-                <Link
-                  className={clsx(
-                    childCurr.children[0].bold && "font-bold",
-                    childCurr.children[0].italic && "italic",
-                  )}
-                  href={childCurr.url}
-                  title={childCurr.title}
-                >
-                  {childCurr.children[0].value}
-                </Link>,
-              );
-              break;
+              return childAcc;
+            },
+            [],
+          );
+
+          if (paragraphs.length > 0) {
+            rootAcc.push([<p key={idx}>{paragraphs}</p>]);
           }
 
-          return childAcc;
+          return rootAcc;
         },
         [],
-      );
-
-      rootAcc.push(paragraphs);
-
-      return rootAcc;
-    },
-    [],
+      )}
+    </div>
   );
-
-  return <div className={clsx(className, s["rich-text"])}>{x}</div>;
 };
