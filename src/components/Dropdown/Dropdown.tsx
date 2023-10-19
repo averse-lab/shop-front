@@ -51,7 +51,9 @@ export const Dropdown: FC<IProps> = (props) => {
         ))}
       </select>
       <ChevronDownIcon
-        className={clsx("absolute top-0 bottom-0 right-1 m-auto w-4 h-4")}
+        className={clsx(
+          "absolute top-0 bottom-0 right-1 m-auto w-4 h-4 pointer-events-none",
+        )}
       />
     </div>
   );
