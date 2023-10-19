@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useContext, useEffect } from "react";
+import { FC, useContext, useEffect, useRef } from "react";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
@@ -9,7 +9,7 @@ import { CartContext } from "@averse/contexts/CartContext/CartContext";
 
 import { Button } from "@components/Button/Button";
 
-import { useLockBodyScroll } from "@lib/hooks";
+import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 
 import { getCartAction } from "./_internal/Cart.actions";
@@ -29,6 +29,7 @@ export const Cart: FC<IProps> = (props) => {
 
   const { setCart, cart, isCartOpen, setIsCartOpen } =
     useContext(CartContext) || {};
+  const cartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (setCart === undefined) {
@@ -39,8 +40,6 @@ export const Cart: FC<IProps> = (props) => {
       setCart(await getCartAction());
     })();
   }, [setCart]);
-
-  useLockBodyScroll(isCartOpen || false);
 
   const handleCartHintClick = () => {
     if (setIsCartOpen === undefined) {
@@ -60,6 +59,13 @@ export const Cart: FC<IProps> = (props) => {
 
   const checkoutDisabled = cart === undefined || cart.totalQuantity === 0;
 
+  useBodyScrollLocker(isCartOpen || false);
+  useClickOutsideDetector(
+    cartRef.current,
+    handleCloseClick,
+    isCartOpen || false,
+  );
+
   return (
     <>
       <CartButton
@@ -68,6 +74,7 @@ export const Cart: FC<IProps> = (props) => {
         onClick={handleCartHintClick}
       />
       <div
+        ref={cartRef}
         className={clsx(
           s["cart__modal"],
           isCartOpen && s["cart__modal--open"],

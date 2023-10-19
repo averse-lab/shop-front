@@ -1,12 +1,12 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { useLockBodyScroll } from "@lib/hooks";
+import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
 
 import s from "./_internal/BurgerMenu.module.scss";
 import { NavItem } from "./_internal/BurgerMenu.types";
@@ -23,8 +23,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
   const { nav, lang, className } = props;
 
   const [open, setOpen] = useState(false);
-
-  useLockBodyScroll(open);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleBurgerClick = () => {
     setOpen(true);
@@ -33,6 +32,9 @@ export const BurgerMenu: FC<IProps> = (props) => {
   const handleCloseClick = () => {
     setOpen(false);
   };
+
+  useBodyScrollLocker(open);
+  useClickOutsideDetector(menuRef.current, handleCloseClick, open === true);
 
   return (
     <>
@@ -43,6 +45,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
         />
       </button>
       <div
+        ref={menuRef}
         className={`${s["burger-menu__menu"]} ${
           open ? s["burger-menu__menu--open"] : null
         } fixed flex flex-col  z-20 h-full md:h-auto w-full md:w-auto p-6 uppercase bg-black top-0 left-0 md:top-2 md:left-2 md:rounded md:shadow-md`}
