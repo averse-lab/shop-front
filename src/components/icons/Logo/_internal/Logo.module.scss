@@ -18,4 +18,5 @@
   --blur: 10px;
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));
+  background-color: rgba($color: white, $alpha: 0.1);
 }
