@@ -44,8 +44,6 @@ export const RichTextRenderer: FC<IProps> = (props) => {
 
   const parsedRichText: ParsedRichText = JSON.parse(richText);
 
-  console.log(parsedRichText);
-
   return (
     <div className={clsx(className, s["rich-text"])}>
       {parsedRichText.children.reduce<JSX.Element[][]>(
