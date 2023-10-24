@@ -12,6 +12,7 @@ import { FilterSelector } from "@components/[category]/FilterSelector/FilterSele
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
+import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { getProducts } from "@lib/shopify";
@@ -30,6 +31,21 @@ export const metadata: Metadata = {
 type IProps = {
   params: { category: string; lang: Locale };
 };
+
+export async function generateStaticParams() {
+  return I18N_CONFIG.locales.reduce<{ lang: string; category: string }[]>(
+    (acc, curr) => {
+      Array.from(CATEGORIES, ([_, { url }]) => ({
+        url,
+      })).forEach(({ url }) => {
+        acc.push({ lang: curr, category: url });
+      });
+
+      return acc;
+    },
+    [],
+  );
+}
 
 const CategoryPage: FC<IProps> = async (props) => {
   const { category: categoryUrlSegment, lang } = props.params;

@@ -3,7 +3,6 @@
 import { FC } from "react";
 
 import MuxPlayer from "@mux/mux-player-react";
-import { clsx } from "clsx";
 
 interface IProps {
   className?: string;
@@ -17,7 +16,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
 
   return (
     <MuxPlayer
-      className={clsx(className)}
+      className={className}
       thumbnailTime={0}
       streamType='on-demand'
       autoPlay='muted'

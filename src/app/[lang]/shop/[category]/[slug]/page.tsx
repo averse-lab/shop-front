@@ -11,12 +11,26 @@ import { ProductSingleAdditionalVideo } from "@components/[slug]/ProductSingleAd
 import { Slider } from "@components/Slider/Slider";
 
 import { HIDDEN_PRODUCT_TAG } from "@lib/constants";
+import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { getProduct } from "@lib/shopify";
+import { getProduct, getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
+
+export async function generateStaticParams() {
+  const products = await getProducts({ lang: "EN" });
+
+  return I18N_CONFIG.locales.reduce<
+    { lang: string; category: string; slug: string }[]
+  >((acc, curr) => {
+    products.forEach(({ productType, handle }) => {
+      acc.push({ lang: curr, category: productType, slug: handle });
+    });
+    return acc;
+  }, []);
+}
 
 export async function generateMetadata({
   params,

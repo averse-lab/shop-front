@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { Button } from "@components/Button/Button";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
