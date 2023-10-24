@@ -22,8 +22,8 @@ export const VideoPlayer: FC<IProps> = (props) => {
       streamType='on-demand'
       autoPlay='muted'
       playbackId={playbackId}
-      nohotkeys
-      loop
+      nohotkeys={true}
+      loop={true}
       style={{ aspectRatio: `${widthRatio} / ${heighRatio}` }}
     />
   );
