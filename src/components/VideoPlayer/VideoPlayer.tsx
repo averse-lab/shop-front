@@ -2,7 +2,8 @@
 
 import { FC } from "react";
 
-import MuxPlayer from "@mux/mux-player-react";
+import MuxVideo from "@mux/mux-video-react";
+import clsx from "clsx";
 
 interface IProps {
   className?: string;
@@ -15,14 +16,12 @@ export const VideoPlayer: FC<IProps> = (props) => {
   const { className, playbackId, widthRatio, heighRatio } = props;
 
   return (
-    <MuxPlayer
-      className={className}
-      thumbnailTime={0}
+    <MuxVideo
+      className={clsx(className, "w-full h-full object-cover object-center")}
       streamType='on-demand'
-      autoPlay='muted'
       playbackId={playbackId}
-      nohotkeys={true}
-      loop={true}
+      autoPlay='muted'
+      loop
       style={{ aspectRatio: `${widthRatio} / ${heighRatio}` }}
     />
   );

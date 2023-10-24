@@ -114,7 +114,7 @@ const CategoryPage: FC<IProps> = async (props) => {
               acc.push(
                 <VideoPlayer
                   key={v4()}
-                  className='w-full h-full outline outline-1 outline-neutral-500 overflow-hidden aspect-square'
+                  className='w-full h-full outline outline-1 outline-neutral-500 overflow-hidden'
                   playbackId={animation.playbackId}
                   widthRatio={1}
                   heighRatio={1}
