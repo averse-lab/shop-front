@@ -11,3 +11,12 @@ body.scroll-locked {
     overflow: visible;
   }
 }
+
+mux-player {
+  pointer-events: none;
+  --controls: none;
+  --dialog: none;
+  --loading-indicator: none;
+  --media-object-fit: cover;
+  --media-object-position: center;
+}
