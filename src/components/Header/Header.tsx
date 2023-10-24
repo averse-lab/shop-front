@@ -21,10 +21,12 @@ interface IProps {
 export const Header: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
 
-  const nav: NavItem[] = Array.from(SECTIONS, ([_, { url, i18nKey }]) => ({
-    url,
-    display: dictionary.menu[i18nKey],
-  }));
+  const nav: NavItem[] = Object.values(SECTIONS).map<NavItem>(
+    ({ url, i18nKey }) => ({
+      url,
+      display: dictionary.menu[i18nKey],
+    }),
+  );
 
   return (
     <header

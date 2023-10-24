@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
-import { SectionsKey } from "@averse/app/[lang]/_internal/HomePage.types";
 
 import { Locale } from "@lib/i18n/types";
 import { Cart, CartItem as ShopifyCartItem } from "@lib/shopify/types";
@@ -23,7 +22,7 @@ export const CartItem: FC<IProps> = (props) => {
   const { merchandise, cost, quantity } = item;
   const { product, selectedOptions } = merchandise;
 
-  const shopSection = SECTIONS.get(SectionsKey.SHOP)!;
+  const shopSection = SECTIONS.shop;
 
   return (
     <div className='flex items-center gap-3'>

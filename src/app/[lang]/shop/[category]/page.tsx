@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { v4 } from "uuid";
 
 import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
-import { SectionsKey } from "@averse/app/[lang]/_internal/HomePage.types";
 
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
@@ -58,7 +57,7 @@ const CategoryPage: FC<IProps> = async (props) => {
   }
 
   const category = CATEGORIES.get(categoryKey);
-  const shopSection = SECTIONS.get(SectionsKey.SHOP);
+  const shopSection = SECTIONS.shop;
 
   if (category === undefined || shopSection === undefined) {
     notFound();

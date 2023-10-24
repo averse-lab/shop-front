@@ -7,7 +7,6 @@ import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 
 import { HOME_VIDEO, SECTIONS } from "./_internal/HomePage.constants";
-import { SectionsKey } from "./_internal/HomePage.types";
 import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
 import { CategoriesKey } from "./shop/_internal/ShopPage.types";
 
@@ -23,7 +22,7 @@ const HomePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const shopSection = SECTIONS.get(SectionsKey.SHOP)!;
+  const shopSection = SECTIONS.shop;
   const allProductsCategory = CATEGORIES.get(CategoriesKey.ALL_PRODUCTS)!;
 
   return (

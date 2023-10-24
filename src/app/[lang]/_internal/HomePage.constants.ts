@@ -1,6 +1,6 @@
 import { MuxVideoSource } from "@lib/types";
 
-import { SectionsKey, SectionValue } from "./HomePage.types";
+import { SectionKey, SectionValue } from "./HomePage.types";
 
 export const HOME_VIDEO: MuxVideoSource = {
   playbackId: "9NAAiw4fOQs02P00n7nSKuP1GEQfwrRipeVG2pgllB01WI",
@@ -8,8 +8,8 @@ export const HOME_VIDEO: MuxVideoSource = {
   heightRatio: 9,
 };
 
-export const SECTIONS: Map<SectionsKey, SectionValue> = new Map([
-  [SectionsKey.HOME, { i18nKey: "home", url: "" }],
-  [SectionsKey.SHOP, { i18nKey: "shop", url: "shop" }],
-  [SectionsKey.ABOUT, { i18nKey: "about", url: "about" }],
-]);
+export const SECTIONS: Record<SectionKey, SectionValue> = {
+  home: { i18nKey: "home", url: "" },
+  shop: { i18nKey: "shop", url: "shop" },
+  about: { i18nKey: "about", url: "about" },
+};
