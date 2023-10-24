@@ -1,3 +1,5 @@
+import { FC, PropsWithChildren, createElement } from "react";
+
 import { ReadonlyURLSearchParams } from "next/navigation";
 
 import { Locale } from "./i18n/types";
@@ -22,4 +24,14 @@ export const getSupportedLanguageCodeFromLocale = (
     case "fr":
       return "FR";
   }
+};
+
+export const combineProviders = (
+  providers: FC<PropsWithChildren>[],
+): FC<PropsWithChildren> => {
+  return ({ children }) => {
+    return providers.reduceRight((acc, curr) => {
+      return createElement(curr, null, acc);
+    }, children);
+  };
 };
