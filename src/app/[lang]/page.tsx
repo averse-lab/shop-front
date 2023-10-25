@@ -8,7 +8,6 @@ import { Locale } from "@lib/i18n/types";
 
 import { HOME_VIDEO, SECTIONS } from "./_internal/HomePage.constants";
 import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
-import { CategoriesKey } from "./shop/_internal/ShopPage.types";
 
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
@@ -22,9 +21,6 @@ const HomePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const shopSection = SECTIONS.shop;
-  const allProductsCategory = CATEGORIES.get(CategoriesKey.ALL_PRODUCTS)!;
-
   return (
     <div className='relative h-screen flex flex-col justify-center items-center text-center p-4'>
       <VideoPlayer
@@ -37,7 +33,7 @@ const HomePage: FC<IProps> = async (props) => {
       <p className='mb-2'>HAND ENGRAVER AND JEWELLER BASED IN PARIS</p>
       <Button
         element='link'
-        href={`/${lang}/${shopSection.url}/${allProductsCategory.url}`}
+        href={`/${lang}/${SECTIONS.shop.url}/${CATEGORIES.allProducts.url}`}
       >
         Go to shop
       </Button>

@@ -19,16 +19,17 @@ import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
 
+type Params = { slug: string; category: string; lang: Locale };
+
 export async function generateStaticParams() {
   const products = await getProducts({ lang: "EN" });
 
-  return I18N_CONFIG.locales.reduce<
-    { lang: string; category: string; slug: string }[]
-  >((acc, curr) => {
+  return I18N_CONFIG.locales.reduce<Params[]>((staticParams, curr) => {
     products.forEach(({ productType, handle }) => {
-      acc.push({ lang: curr, category: productType, slug: handle });
+      staticParams.push({ lang: curr, category: productType, slug: handle });
     });
-    return acc;
+
+    return staticParams;
   }, []);
 }
 
@@ -72,16 +73,17 @@ export async function generateMetadata({
 }
 
 interface IProps {
-  params: { slug: string; lang: Locale };
+  params: Params;
 }
 
 const ProductPage: FC<IProps> = async (props) => {
   const { params } = props;
   const { slug, lang } = params;
 
-  const languageCode = getSupportedLanguageCodeFromLocale(lang);
-
-  const product = await getProduct(slug, languageCode);
+  const product = await getProduct(
+    slug,
+    getSupportedLanguageCodeFromLocale(lang),
+  );
   const dictionary = await getDictionary(lang);
 
   if (product === undefined) {

@@ -1,14 +1,10 @@
-import { CategoriesKey, CategoriesUrlSegment } from "./ShopPage.types";
+import { CATEGORIES } from "./ShopPage.constants";
+import { CategoryValue } from "./ShopPage.types";
 
-export const mapCategoryUrlSegmentToCategoryKey = (
+export const getCategoryFromCategoryUrlSegment = (
   categoryUrlSegment: string,
-): CategoriesKey | undefined => {
-  switch (categoryUrlSegment) {
-    case CategoriesUrlSegment.RINGS:
-      return CategoriesKey.RINGS;
-    case CategoriesUrlSegment.ALL_PRODUCTS:
-      return CategoriesKey.ALL_PRODUCTS;
-    case CategoriesUrlSegment.NECKLACES:
-      return CategoriesKey.NECKLACES;
-  }
+): CategoryValue | undefined => {
+  return Object.values(CATEGORIES).find(
+    (category) => category.url === categoryUrlSegment,
+  );
 };

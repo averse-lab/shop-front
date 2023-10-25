@@ -19,68 +19,62 @@ import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import { ANIMATIONS } from "./_internal/CategoryPage.constants";
 import { CATEGORIES } from "../_internal/ShopPage.constants";
-import { CategoriesUrlSegment } from "../_internal/ShopPage.types";
-import { mapCategoryUrlSegmentToCategoryKey } from "../_internal/ShopPage.utils";
+import { getCategoryFromCategoryUrlSegment } from "../_internal/ShopPage.utils";
 
 export const metadata: Metadata = {
   title: "Averse - Shop",
   description: "Shop for products in the store.",
 };
 
-type IProps = {
-  params: { category: string; lang: Locale };
-};
+type Params = { category: string; lang: Locale };
 
 export async function generateStaticParams() {
-  return I18N_CONFIG.locales.reduce<{ lang: string; category: string }[]>(
-    (acc, curr) => {
-      Array.from(CATEGORIES, ([_, { url }]) => ({
-        url,
-      })).forEach(({ url }) => {
-        acc.push({ lang: curr, category: url });
+  return I18N_CONFIG.locales.reduce<Params[]>((staticParams, locale) => {
+    Object.values(CATEGORIES)
+      .map(({ url }) => ({ url }))
+      .forEach(({ url }) => {
+        staticParams.push({ lang: locale, category: url });
       });
 
-      return acc;
-    },
-    [],
-  );
+    return staticParams;
+  }, []);
 }
+
+type IProps = {
+  params: Params;
+};
 
 const CategoryPage: FC<IProps> = async (props) => {
   const { category: categoryUrlSegment, lang } = props.params;
 
   const dictionary = await getDictionary(lang);
-  const categoryKey = mapCategoryUrlSegmentToCategoryKey(categoryUrlSegment);
+  const category = getCategoryFromCategoryUrlSegment(categoryUrlSegment);
 
-  if (categoryKey === undefined) {
+  if (category === undefined) {
     notFound();
   }
-
-  const category = CATEGORIES.get(categoryKey);
-  const shopSection = SECTIONS.shop;
-
-  if (category === undefined || shopSection === undefined) {
-    notFound();
-  }
-
-  const languageCode = getSupportedLanguageCodeFromLocale(lang);
 
   const products = await getProducts({
     query:
-      categoryUrlSegment === CategoriesUrlSegment.ALL_PRODUCTS
+      categoryUrlSegment === CATEGORIES.allProducts.url
         ? category.shopifyId
         : `product_type:${category.shopifyId}`,
-    lang: languageCode,
+    lang: getSupportedLanguageCodeFromLocale(lang),
   });
 
-  const filters: Filter[] = Array.from(CATEGORIES, ([_, { url, i18nKey }]) => ({
-    url,
-    display: dictionary.categories[i18nKey],
-  }));
+  const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(
+    ({ url, i18nKey }) => ({
+      url,
+      display: dictionary.categories[i18nKey],
+    }),
+  );
 
-  const selectedFilterIndex = filters.reduce((acc, curr, idx) => {
-    return curr.url === categoryUrlSegment ? idx : acc;
-  }, 0);
+  const selectedFilterIndex = filters.reduce(
+    (selectedFilterIndex, filter, idx) => {
+      return filter.url === categoryUrlSegment ? idx : selectedFilterIndex;
+    },
+    0,
+  );
 
   return (
     <>
@@ -92,16 +86,16 @@ const CategoryPage: FC<IProps> = async (props) => {
       />
       <div className='mt-[128px] md:mt-[152px] flex flex-col'>
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] border-t border-b border-neutral-500'>
-          {products.reduce<JSX.Element[]>((acc, curr, idx) => {
-            acc.push(
+          {products.reduce<JSX.Element[]>((gridElements, product, idx) => {
+            gridElements.push(
               <ProductPreview
-                key={curr.id}
+                key={product.id}
                 className='outline outline-1 outline-neutral-500'
-                href={`/${lang}/${shopSection.url}/${curr.productType}/${curr.handle}`}
-                imageUrl={curr.images[0].url}
-                title={curr.title}
-                price={curr.priceRange.maxVariantPrice.amount}
-                currency={curr.priceRange.maxVariantPrice.currencyCode}
+                href={`/${lang}/${SECTIONS.shop.url}/${product.productType}/${product.handle}`}
+                imageUrl={product.images[0].url}
+                title={product.title}
+                price={product.priceRange.maxVariantPrice.amount}
+                currency={product.priceRange.maxVariantPrice.currencyCode}
               />,
             );
 
@@ -110,10 +104,10 @@ const CategoryPage: FC<IProps> = async (props) => {
             );
 
             if (animation !== undefined) {
-              acc.push(
+              gridElements.push(
                 <VideoPlayer
                   key={v4()}
-                  className='w-full h-full outline outline-1 outline-neutral-500 overflow-hidden'
+                  className='w-full h-full outline outline-1 outline-neutral-500'
                   playbackId={animation.playbackId}
                   widthRatio={1}
                   heighRatio={1}
@@ -121,7 +115,7 @@ const CategoryPage: FC<IProps> = async (props) => {
               );
             }
 
-            return acc;
+            return gridElements;
           }, [])}
         </div>
       </div>
