@@ -13,6 +13,7 @@ type ICommonProps = {
   className?: string;
   disabled?: boolean;
   loading?: boolean;
+  transparent?: boolean;
 };
 
 type IButtonProps = {
@@ -28,15 +29,16 @@ type ILinkProps = {
 type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;
 
 export const Button: FC<IProps> = (props) => {
-  const { children, className, disabled, loading, element } = props;
+  const { children, className, disabled, loading, transparent, element } =
+    props;
 
   const commonClassName = clsx(
     className,
     s["button"],
+    transparent && s["button--transparent"],
     "flex items-center justify-center gap-4",
     "text-white font-medium uppercase text-center",
-    "py-3 px-6 rounded",
-    disabled ? "bg-neutral-400" : "bg-black",
+    "py-3 px-6 rounded-sm",
     disabled && "disabled cursor-not-allowed",
   );
 

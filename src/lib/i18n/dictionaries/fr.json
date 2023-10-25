@@ -10,8 +10,7 @@
     "allProducts": "Tous les produits"
   },
   "home": {
-    "description": "Ceci est une description de la page d'accueil.",
-    "goToShop": "Aller à la boutique"
+    "enterWebsite": "Enter_website"
   },
   "product": {
     "size": "Taille",
