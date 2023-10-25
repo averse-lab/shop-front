@@ -18,6 +18,10 @@ import { getProduct, getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
+import {
+  isProductWithSingleAdditionalVideo,
+  isProductWithMultipleAdditionalVideos,
+} from "./_internal/ProductPage.utils";
 
 type Params = { slug: string; category: string; lang: Locale };
 
@@ -134,57 +138,46 @@ const ProductPage: FC<IProps> = async (props) => {
           </div>
         </div>
       </div>
-      {product.firstAdditionalVideoID !== null &&
-      product.firstAdditionalVideoWidthRatio !== null &&
-      product.firstAdditionalVideoHeightRatio !== null &&
-      product.firstAdditionalVideoDescription !== null &&
-      product.additionalVideosLayout !== null ? (
-        <>
-          {product.secondAdditionalVideoID !== null &&
-          product.secondAdditionalVideoWidthRatio !== null &&
-          product.secondAdditionalVideoHeightRatio !== null &&
-          product.secondAdditionalVideoDescription !== null ? (
-            <ProductMultipleAdditionalVideos
-              firstVideoPlaybackId={product.firstAdditionalVideoID.value}
-              firstVideoWidthRatio={Number(
-                product.firstAdditionalVideoWidthRatio.value,
-              )}
-              firstVideoHeightRatio={Number(
-                product.firstAdditionalVideoHeightRatio.value,
-              )}
-              firstVideodDescription={
-                product.firstAdditionalVideoDescription.value
-              }
-              secondVideoPlaybackId={product.secondAdditionalVideoID.value}
-              secondVideoWidthRatio={Number(
-                product.secondAdditionalVideoWidthRatio.value,
-              )}
-              secondVideoHeightRatio={Number(
-                product.secondAdditionalVideoHeightRatio.value,
-              )}
-              secondVideodDescription={
-                product.secondAdditionalVideoDescription.value
-              }
-              inversedLayout={
-                product.additionalVideosLayout.value ===
-                "player to the right / description to the left"
-              }
-            />
-          ) : (
-            <ProductSingleAdditionalVideo
-              playbackId={product.firstAdditionalVideoID.value}
-              widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
-              heightRatio={Number(
-                product.firstAdditionalVideoHeightRatio.value,
-              )}
-              description={product.firstAdditionalVideoDescription.value}
-              inversedLayout={
-                product.additionalVideosLayout.value ===
-                "player to the right / description to the left"
-              }
-            />
-          )}
-        </>
+      {isProductWithSingleAdditionalVideo(product) ? (
+        isProductWithMultipleAdditionalVideos(product) ? (
+          <ProductMultipleAdditionalVideos
+            firstVideoPlaybackId={product.firstAdditionalVideoID.value}
+            firstVideoWidthRatio={Number(
+              product.firstAdditionalVideoWidthRatio.value,
+            )}
+            firstVideoHeightRatio={Number(
+              product.firstAdditionalVideoHeightRatio.value,
+            )}
+            firstVideodDescription={
+              product.firstAdditionalVideoDescription.value
+            }
+            secondVideoPlaybackId={product.secondAdditionalVideoID.value}
+            secondVideoWidthRatio={Number(
+              product.secondAdditionalVideoWidthRatio.value,
+            )}
+            secondVideoHeightRatio={Number(
+              product.secondAdditionalVideoHeightRatio.value,
+            )}
+            secondVideodDescription={
+              product.secondAdditionalVideoDescription.value
+            }
+            inversedLayout={
+              product.additionalVideosLayout.value ===
+              "player to the right / description to the left"
+            }
+          />
+        ) : (
+          <ProductSingleAdditionalVideo
+            playbackId={product.firstAdditionalVideoID.value}
+            widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
+            heightRatio={Number(product.firstAdditionalVideoHeightRatio.value)}
+            description={product.firstAdditionalVideoDescription.value}
+            inversedLayout={
+              product.additionalVideosLayout.value ===
+              "player to the right / description to the left"
+            }
+          />
+        )
       ) : null}
     </>
   );
