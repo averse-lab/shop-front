@@ -23,6 +23,15 @@
     "shippingHint": "Calculated after checkout",
     "total": "Total",
     "checkout": "Checkout",
-    "empty": "Votre panier est vide"
+    "empty": "Your cart is empty"
+  },
+  "about": {
+    "paragraph1": "Averse is a jewellry atelier. Products are imagined in Paris, and made in France, using precious metals, and gems.",
+    "paragraph2": "Each piece, is designed by Matthieu Braccini, and each piece, have a story, based of his universe.",
+    "paragraph3": "All of his artistic creations, from sculptures to illustrations and drawings, revolve around a central theme: the intricate tapestry of mental health and the profound spectrum of human emotions. Through his work, he skillfully explores the intricate web of emotions and how we can metaphorically describe the depths of these feelings.",
+    "paragraph4": "Jewels of Averse, are a concentrate, an overview of this exploration.",
+    "paragraph5": "\"Une averse\" is a downpour, a sudden, and unexpected heavy fall of rain.",
+    "paragraph6": "When the downpour falls, suddenly, we can see no further than a few meters. We find ourselves isolated, in this moment to endure in solitude. But such intense rain is only temporary; the clouds release their tears, restoring calm.",
+    "quote": "Personne ne verra vos larmes sous l'averse."
   }
 }

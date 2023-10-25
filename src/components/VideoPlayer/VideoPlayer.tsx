@@ -18,6 +18,8 @@ export const VideoPlayer: FC<IProps> = (props) => {
   return (
     <MuxVideo
       className={clsx(className, "w-full h-full object-cover object-center")}
+      controls={false}
+      playsInline
       streamType='on-demand'
       playbackId={playbackId}
       autoPlay='muted'
