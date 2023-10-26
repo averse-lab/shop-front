@@ -82,14 +82,22 @@ export const Cart: FC<IProps> = (props) => {
         )}
       >
         <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
-          <XMarkIcon
-            onClick={closeCart}
+          <button
             className={clsx(
-              "h-6 w-6",
-              "shrink-0",
-              "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-2",
+              s["cart__close-btn"],
+              "p-2 lg:p-1",
+              "shrink-0 self-start",
+              "rounded-full bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
             )}
-          />
+          >
+            <XMarkIcon
+              onClick={closeCart}
+              className={clsx(
+                "h-6 w-6",
+                "transition-all duration-200 ease-out",
+              )}
+            />
+          </button>
           {cart !== undefined &&
           cart.totalQuantity !== 0 &&
           setCart !== undefined ? (

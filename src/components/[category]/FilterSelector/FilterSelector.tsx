@@ -29,7 +29,7 @@ export const FilterSelector: FC<IProps> = (props) => {
         <Link
           className={clsx(
             s["filters-selector__link"],
-            "transition-all duration-200",
+            "transition-all duration-200 ease-out",
             "whitespace-nowrap lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
             idx === selectedFilterIndex && "scale-[1.025] font-medium",
             idx === selectedFilterIndex ? "text-black" : "text-neutral-600",

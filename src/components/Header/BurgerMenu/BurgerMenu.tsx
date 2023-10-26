@@ -46,7 +46,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
         <Bars3Icon
           className={clsx(
             "h-6 w-6",
-            "transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
+            "transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
           )}
           onClick={openMenu}
         />
@@ -62,14 +62,19 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "bg-black uppercase  md:rounded md:shadow-md",
         )}
       >
-        <XMarkIcon
-          onClick={closeMenu}
+        <button
           className={clsx(
+            s["burger-menu__close-btn"],
+            "p-2 lg:p-1",
             "self-end",
-            "h-6 w-6",
-            "cursor-pointer text-white transition-all lg:hover:scale-105 lg:hover:stroke-2",
+            "rounded-full bg-neutral-900 text-white transition-all duration-200 ease-out hover:bg-neutral-900/100 lg:bg-neutral-900/0",
           )}
-        />
+        >
+          <XMarkIcon
+            onClick={closeMenu}
+            className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
+          />
+        </button>
         <div
           className={clsx(
             "flex flex-1 flex-col items-center justify-center gap-6 md:gap-4",

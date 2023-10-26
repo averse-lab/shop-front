@@ -34,6 +34,14 @@
 }
 
 @media (min-width: 1024px) {
+  .cart__close-btn {
+    &:hover {
+      svg {
+        @apply stroke-[1.75];
+      }
+    }
+  }
+
   .cart__trigger {
     &:hover {
       & + .cart__modal {

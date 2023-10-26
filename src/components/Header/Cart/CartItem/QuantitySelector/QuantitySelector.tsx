@@ -79,7 +79,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
         onClick={removeQuantity}
         className={clsx(
           "h-4 w-4",
-          "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
+          "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
         )}
       />
       {isPending ? (
@@ -93,7 +93,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
         onClick={addQuantity}
         className={clsx(
           "h-4 w-4",
-          "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
+          "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
         )}
       />
     </div>

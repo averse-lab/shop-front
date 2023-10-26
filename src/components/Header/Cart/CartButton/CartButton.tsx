@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+import { clsx } from "clsx";
 
 import s from "./_internal/CartButton.module.scss";
 
@@ -19,7 +19,7 @@ export const CartButton: FC<IProps> = (props) => {
       <ShoppingBagIcon
         className={clsx(
           "h-6 w-6",
-          "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
+          "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
         )}
       />
       {quantity !== undefined && quantity > 0 ? (
