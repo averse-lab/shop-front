@@ -26,8 +26,8 @@ export const Logo: FC<IProps> = (props) => {
       <div
         className={clsx(
           s["logo__blur"],
-          "absolute top-0 left-0 z-0",
-          "w-full h-full",
+          "absolute left-0 top-0 z-0",
+          "h-full w-full",
         )}
       ></div>
     </div>

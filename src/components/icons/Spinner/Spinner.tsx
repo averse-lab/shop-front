@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import clsx from "clsx";
+
 type IProps = {
   className?: string;
 };
@@ -9,7 +11,7 @@ export const Spinner: FC<IProps> = (props) => {
 
   return (
     <svg
-      className={`${className || ""} animate-spin`}
+      className={clsx(className, "animate-spin")}
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'

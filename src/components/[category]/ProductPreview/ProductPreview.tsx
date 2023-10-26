@@ -23,24 +23,25 @@ export const ProductPreview: FC<IProps> = (props) => {
       className={clsx(
         className,
         s["product-preview"],
-        "relative overflow-hidden",
-        "flex flex-col justify-end",
+        "relative ",
         "p-4",
-        "aspect-square",
+        "flex flex-col justify-end",
+        "aspect-square overflow-hidden",
       )}
       href={href}
     >
       <Image
         className={clsx(
           s["product-preview__image"],
-          "object-cover object-center -z-10",
+          "-z-10",
+          "object-cover object-center",
         )}
         src={imageUrl}
         alt={`photography of ${title}`}
         fill
       />
       <p className={clsx(s["product-preview__name"], "uppercase")}>{title}</p>
-      <p className='text-sm font-light text-neutral-600'>
+      <p className={clsx("text-sm font-light text-neutral-600")}>
         {price} {currency}
       </p>
     </Link>

@@ -31,14 +31,25 @@ export const Header: FC<IProps> = (props) => {
   return (
     <header
       className={clsx(
-        `fixed z-20 w-full grid grid-cols-3 items-center px-6 py-4 bg-transparent`,
+        "fixed z-20",
+        "w-full px-6 py-4",
+        "grid grid-cols-3 items-center",
+        "bg-transparent",
       )}
     >
-      <BurgerMenu nav={nav} lang={lang} className='justify-self-start' />
-      <Link className='justify-self-center' href='/'>
-        <Logo className='h-10 w-10 md:w-16 md:h-16' />
+      <BurgerMenu
+        nav={nav}
+        lang={lang}
+        className={clsx("justify-self-start")}
+      />
+      <Link className={clsx("justify-self-center")} href='/'>
+        <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
-      <Cart dictionary={dictionary} lang={lang} className='justify-self-end' />
+      <Cart
+        dictionary={dictionary}
+        lang={lang}
+        className={clsx("justify-self-end")}
+      />
     </header>
   );
 };

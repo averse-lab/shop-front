@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,35 +26,37 @@ export const CartItem: FC<IProps> = (props) => {
   const shopSection = SECTIONS.shop;
 
   return (
-    <div className='flex items-center gap-3'>
+    <div className={clsx("flex items-center gap-3")}>
       <Link
         href={`/${lang}/${shopSection.url}/${product.productType}/${product.handle}`}
       >
         <Image
-          className='object-center object-cover rounded'
+          className={clsx("rounded object-cover object-center")}
           src={product.featuredImage.url}
           alt={`${product.title} photography`}
           width={120}
           height={120}
         />
       </Link>
-      <div className='flex flex-col items-start h-full p-1 gap-3'>
-        <div className='flex flex-col'>
+      <div className={clsx("flex flex-col items-start gap-3", "h-full p-1")}>
+        <div className={clsx("flex flex-col")}>
           <Link
             href={`/${lang}/${shopSection.url}/${product.productType}/${product.handle}`}
-            className='uppercase'
+            className={clsx("uppercase")}
           >
             {product.title}
           </Link>
-          <div className='flex items-center'>
+          <div className={clsx("flex items-center")}>
             {selectedOptions.map((option) => (
               <p
-                className='text-sm font-light uppercase text-neutral-600'
+                className={clsx(
+                  "text-sm font-light uppercase text-neutral-600",
+                )}
                 key={option.value}
               >{`${option.name} ${option.value}`}</p>
             ))}
           </div>
-          <p className='text-sm font-light uppercase text-neutral-600'>
+          <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
           </p>
         </div>

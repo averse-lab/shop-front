@@ -20,21 +20,19 @@ export const FilterSelector: FC<IProps> = (props) => {
       className={clsx(
         className,
         s["filters-selector"],
-        "bg-white border-b border-neutral-200",
-        "gap-6",
         "p-4",
-        "shadow",
+        "gap-6",
+        "border-b border-neutral-200 bg-white shadow",
       )}
     >
       {filters.map(({ display, url }, idx) => (
         <Link
           className={clsx(
             s["filters-selector__link"],
-            "whitespace-nowrap",
-            idx === selectedFilterIndex && "font-medium scale-[1.025]",
-            idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
-            "lg:hover:font-medium lg:hover:scale-[1.025] lg:hover:text-black",
             "transition-all duration-200",
+            "whitespace-nowrap lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
+            idx === selectedFilterIndex && "scale-[1.025] font-medium",
+            idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
           )}
           key={url}
           href={url}
