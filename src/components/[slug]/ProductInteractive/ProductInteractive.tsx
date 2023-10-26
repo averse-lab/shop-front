@@ -3,7 +3,7 @@
 import { FC, useContext, useState, useTransition } from "react";
 
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+import { clsx } from "clsx";
 import Link from "next/link";
 
 import { CartContext } from "@averse/contexts/CartContext/CartContext";

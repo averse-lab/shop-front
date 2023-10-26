@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import clsx from "clsx";
+import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { v4 } from "uuid";
