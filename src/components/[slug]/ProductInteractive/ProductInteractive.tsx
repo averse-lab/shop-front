@@ -84,7 +84,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
           target='_blank'
         >
           {dictionary.product.sizeGuide}
-          <ArrowTopRightOnSquareIcon className='w-5 h-5 stroke-[1.75]' />
+          <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
         </Link>
       </div>
       <Button

@@ -34,7 +34,7 @@ export const Dropdown: FC<IProps> = (props) => {
           s["dropdown__select"],
           "px-1 py-2",
           "basis-full",
-          "appearance-none bg-transparent cursor-pointer",
+          "cursor-pointer appearance-none bg-transparent",
         )}
         id={name}
         onChange={handleChange}
@@ -52,8 +52,8 @@ export const Dropdown: FC<IProps> = (props) => {
       </select>
       <ChevronDownIcon
         className={clsx(
-          "absolute top-0 bottom-0 right-1 m-auto",
-          "w-4 h-4",
+          "absolute bottom-0 right-1 top-0 m-auto",
+          "h-4 w-4",
           "pointer-events-none",
         )}
       />

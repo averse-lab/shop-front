@@ -81,9 +81,9 @@ const CategoryPage: FC<IProps> = async (props) => {
     <>
       <div
         className={clsx(
-          "fixed z-10 top-0 left-0",
-          "h-[72px] md:h-[96px] w-full",
-          "bg-white border-b border-neutral-200",
+          "fixed left-0 top-0 z-10",
+          "h-[72px] w-full md:h-[96px]",
+          "border-b border-neutral-200 bg-white",
         )}
       ></div>
       <FilterSelector
@@ -94,8 +94,8 @@ const CategoryPage: FC<IProps> = async (props) => {
       <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>
         <div
           className={clsx(
-            "grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr]",
-            "border-t border-b border-neutral-500",
+            "grid auto-rows-[1fr] grid-cols-2 gap-px lg:grid-cols-4",
+            "border-b border-t border-neutral-500",
           )}
         >
           {products.reduce<JSX.Element[]>((gridElements, product, idx) => {
@@ -120,7 +120,7 @@ const CategoryPage: FC<IProps> = async (props) => {
                 <VideoPlayer
                   key={v4()}
                   className={clsx(
-                    "w-full h-full",
+                    "h-full w-full",
                     "outline outline-1 outline-neutral-500",
                   )}
                   playbackId={animation.playbackId}

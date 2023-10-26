@@ -31,7 +31,7 @@ export const CartItem: FC<IProps> = (props) => {
         href={`/${lang}/${shopSection.url}/${product.productType}/${product.handle}`}
       >
         <Image
-          className={clsx("object-center object-cover rounded")}
+          className={clsx("rounded object-cover object-center")}
           src={product.featuredImage.url}
           alt={`${product.title} photography`}
           width={120}

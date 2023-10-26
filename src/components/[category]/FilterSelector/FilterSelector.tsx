@@ -22,7 +22,7 @@ export const FilterSelector: FC<IProps> = (props) => {
         s["filters-selector"],
         "p-4",
         "gap-6",
-        "bg-white border-b border-neutral-200 shadow",
+        "border-b border-neutral-200 bg-white shadow",
       )}
     >
       {filters.map(({ display, url }, idx) => (
@@ -30,9 +30,8 @@ export const FilterSelector: FC<IProps> = (props) => {
           className={clsx(
             s["filters-selector__link"],
             "transition-all duration-200",
-
-            "whitespace-nowrap lg:hover:font-medium lg:hover:scale-[1.025] lg:hover:text-black",
-            idx === selectedFilterIndex && "font-medium scale-[1.025]",
+            "whitespace-nowrap lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
+            idx === selectedFilterIndex && "scale-[1.025] font-medium",
             idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
           )}
           key={url}

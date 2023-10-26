@@ -75,19 +75,19 @@ export const Cart: FC<IProps> = (props) => {
           s["cart__modal"],
           isCartOpen && s["cart__modal--open"],
           cart !== undefined && "gap-4",
-          "fixed z-20 top-0 md:top-2 right-0 md:right-2",
-          "h-screen md:h-auto w-screen md:w-[450px] md:max-h-[70vh] md:min-h-[350px] px-6 pb-4 pt-6 md:p-6",
+          "fixed right-0 top-0 z-20 md:right-2 md:top-2",
+          "h-screen w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
           "flex flex-col justify-between",
-          "bg-white md:border md:border-neutral-100 md:rounded md:shadow-md",
+          "bg-white md:rounded md:border md:border-neutral-100 md:shadow-md",
         )}
       >
-        <div className={clsx("flex flex-col flex-1 gap-6", "overflow-hidden")}>
+        <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
           <XMarkIcon
             onClick={closeCart}
             className={clsx(
-              "w-6 h-6",
+              "h-6 w-6",
               "shrink-0",
-              "cursor-pointer lg:hover:stroke-2 lg:hover:scale-105 transition-all",
+              "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-2",
             )}
           />
           {cart !== undefined &&
@@ -96,7 +96,7 @@ export const Cart: FC<IProps> = (props) => {
             <div
               className={clsx(
                 s["cart__items-wrapper"],
-                "flex flex-col gap-4 flex-1",
+                "flex flex-1 flex-col gap-4",
                 "overflow-y-scroll",
               )}
             >
@@ -110,7 +110,7 @@ export const Cart: FC<IProps> = (props) => {
               ))}
             </div>
           ) : (
-            <div className={clsx("flex flex-1 justify-center items-center")}>
+            <div className={clsx("flex flex-1 items-center justify-center")}>
               <p className={clsx('md:py-16", "text-neutral-600')}>
                 {dictionary.cart.empty}
               </p>

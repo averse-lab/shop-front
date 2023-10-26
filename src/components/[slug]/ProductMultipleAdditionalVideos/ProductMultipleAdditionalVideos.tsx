@@ -35,9 +35,9 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
   return (
     <div
       className={clsx(
-        "lg:min-h-screen px-6 py-8 lg:px-12",
+        "px-6 py-8 lg:min-h-screen lg:px-12",
         "flex flex-col gap-16 lg:gap-0",
-        "bg-black overflow-hidden",
+        "overflow-hidden bg-black",
         "text-white",
       )}
     >
@@ -67,7 +67,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           heighRatio={firstVideoHeightRatio}
         />
         <RichTextRenderer
-          className={clsx("lg:w-[550px] 2xl:w-[750px] lg:-mt-[12.5%]")}
+          className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
           richText={firstVideodDescription}
         />
       </div>
@@ -91,14 +91,14 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
               }`
             ],
             "shrink-0",
-            "md:w-[50%] md:max-w-[400px lg:max-w-[650px] 2xl:max-w-[1000px]",
+            "md:max-w-[400px md:w-[50%] lg:max-w-[650px] 2xl:max-w-[1000px]",
           )}
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
           heighRatio={secondVideoHeightRatio}
         />
         <RichTextRenderer
-          className={clsx("lg:w-[550px] 2xl:w-[750px] lg:mt-[12.5%]")}
+          className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
           richText={secondVideodDescription}
         />
       </div>

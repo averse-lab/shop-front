@@ -35,7 +35,7 @@ const HomePage: FC<IProps> = async (props) => {
       className={clsx(
         "relative",
         "h-screen p-4",
-        "flex flex-col justify-center items-center",
+        "flex flex-col items-center justify-center",
         "text-center",
       )}
     >

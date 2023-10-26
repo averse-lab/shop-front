@@ -18,15 +18,15 @@ export const CartButton: FC<IProps> = (props) => {
     <button onClick={onClick} className={clsx(className, "relative")}>
       <ShoppingBagIcon
         className={clsx(
-          "w-6 h-6",
-          "cursor-pointer lg:hover:stroke-[1.75] lg:hover:scale-105 transition-all",
+          "h-6 w-6",
+          "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
         )}
       />
       {quantity !== undefined && quantity > 0 ? (
         <div className={clsx(s["cart-hint__hint"], "bg-black")}>
           <p
             style={{ fontSize: "8px" }}
-            className={clsx("text-white text-semibold")}
+            className={clsx("text-semibold text-white")}
           >
             {quantity}
           </p>

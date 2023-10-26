@@ -43,7 +43,7 @@ export const Header: FC<IProps> = (props) => {
         className={clsx("justify-self-start")}
       />
       <Link className={clsx("justify-self-center")} href='/'>
-        <Logo className={clsx("h-10 w-10 md:w-16 md:h-16")} />
+        <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
       <Cart
         dictionary={dictionary}

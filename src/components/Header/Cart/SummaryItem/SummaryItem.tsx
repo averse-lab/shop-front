@@ -18,7 +18,7 @@ export const SummaryItem: FC<IProps> = (props) => {
       className={clsx(
         className,
         s["amount-summary"],
-        "flex justify-between items-center",
+        "flex items-center justify-between",
       )}
     >
       <p>{metric}</p>

@@ -72,28 +72,28 @@ export const QuantitySelector: FC<IProps> = (props) => {
       className={clsx(
         "min-h-[30px] px-2 py-1",
         "flex items-center gap-3",
-        "border border-neutral-500 rounded-sm",
+        "rounded-sm border border-neutral-500",
       )}
     >
       <MinusSmallIcon
         onClick={removeQuantity}
         className={clsx(
-          "w-4 h-4",
-          "cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all",
+          "h-4 w-4",
+          "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
         )}
       />
       {isPending ? (
         <Spinner className={clsx("h-4 w-4")} />
       ) : (
-        <p className={clsx("text-sm text-center", "min-w-[16px]")}>
+        <p className={clsx("text-center text-sm", "min-w-[16px]")}>
           {quantity}
         </p>
       )}
       <PlusSmallIcon
         onClick={addQuantity}
         className={clsx(
-          "w-4 h-4",
-          "cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all",
+          "h-4 w-4",
+          "cursor-pointer transition-all lg:hover:scale-105 lg:hover:stroke-[1.75]",
         )}
       />
     </div>

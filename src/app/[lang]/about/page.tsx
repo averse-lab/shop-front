@@ -29,10 +29,10 @@ const AboutPage: FC<IProps> = async (props) => {
     <div className={clsx("min-h-screen px-6 py-4", "bg-black")}>
       <div
         className={clsx(
-          "mt-[72px] md:mt-[96px] m-auto",
+          "m-auto mt-[72px] md:mt-[96px]",
           "lg:max-w-[550px]",
-          "flex flex-col justify-center items-center",
-          "text-white text-center",
+          "flex flex-col items-center justify-center",
+          "text-center text-white",
         )}
       >
         <VideoPlayer
