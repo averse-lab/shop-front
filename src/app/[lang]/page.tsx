@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import clsx from "clsx";
+
 import { Button } from "@components/Button/Button";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
@@ -29,9 +31,16 @@ const HomePage: FC<IProps> = async (props) => {
   const dictionary = await getDictionary(lang);
 
   return (
-    <div className='relative h-screen flex flex-col justify-center items-center text-center p-4'>
+    <div
+      className={clsx(
+        "relative",
+        "h-screen p-4",
+        "flex flex-col justify-center items-center",
+        "text-center",
+      )}
+    >
       <VideoPlayer
-        className={`absolute h-full w-full -z-10`}
+        className={clsx("absolute -z-10", "h-full w-full")}
         playbackId={HOME_VIDEO.playbackId}
         widthRatio={HOME_VIDEO.widthRatio}
         heighRatio={HOME_VIDEO.heightRatio}

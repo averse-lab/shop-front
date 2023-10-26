@@ -36,26 +36,31 @@ export const Button: FC<IProps> = (props) => {
     className,
     s["button"],
     transparent && s["button--transparent"],
+    "py-3 px-6 ",
     "flex items-center justify-center gap-4",
-    "text-white font-medium uppercase text-center",
-    "py-3 px-6 rounded-sm",
+    "rounded-sm",
     disabled && "disabled cursor-not-allowed",
+    "text-white font-medium uppercase text-center",
   );
 
   if (element === "button") {
     const { onClick } = props;
 
     return (
-      <button disabled={disabled} className={commonClassName} onClick={onClick}>
-        {loading ? <Spinner className='h-6 w-6' /> : children}
+      <button
+        disabled={disabled}
+        className={clsx(commonClassName)}
+        onClick={onClick}
+      >
+        {loading ? <Spinner className={clsx("h-6 w-6")} /> : children}
       </button>
     );
   } else {
     const { href } = props;
 
     return (
-      <Link className={commonClassName} href={href || "#"}>
-        {loading ? <Spinner className='h-6 w-6' /> : children}
+      <Link className={clsx(commonClassName)} href={href || "#"}>
+        {loading ? <Spinner className={clsx("h-6 w-6")} /> : children}
       </Link>
     );
   }

@@ -35,13 +35,10 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
   return (
     <div
       className={clsx(
-        "lg:min-h-screen",
-        "flex flex-col gap-16",
-        "lg:gap-0",
-        "bg-black text-white",
-        "px-6 py-8",
-        "lg:px-12",
-        "overflow-hidden",
+        "lg:min-h-screen px-6 py-8 lg:px-12",
+        "flex flex-col gap-16 lg:gap-0",
+        "bg-black overflow-hidden",
+        "text-white",
       )}
     >
       <div
@@ -49,10 +46,10 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           "flex flex-col items-center gap-4",
           inversedLayout
             ? [
-                "lg:flex-row-reverse",
                 s["multiple-additional-videos__wrapper--inversed"],
+                "lg:flex-row-reverse",
               ]
-            : ["lg:flex-row", s["multiple-additional-videos__wrapper"]],
+            : [s["multiple-additional-videos__wrapper"], "lg:flex-row"],
         )}
       >
         <VideoPlayer
@@ -62,30 +59,28 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
                 inversedLayout ? "right" : "left"
               }`
             ],
+            "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[1000px]",
             "shrink-0",
-            "md:w-[50%] md:max-w-[400px]",
-            "lg:max-w-[650px]",
-            "2xl:max-w-[1000px]",
           )}
           playbackId={firstVideoPlaybackId}
           widthRatio={firstVideoWidthRatio}
           heighRatio={firstVideoHeightRatio}
         />
         <RichTextRenderer
-          className={clsx("lg:w-[550px]", "2xl:w-[750px]", "lg:-mt-[12.5%]")}
+          className={clsx("lg:w-[550px] 2xl:w-[750px] lg:-mt-[12.5%]")}
           richText={firstVideodDescription}
         />
       </div>
       <div
         className={clsx(
+          "lg:-mt-[25%]",
           "flex flex-col items-center gap-4",
           inversedLayout
             ? [
-                "lg:flex-row",
                 s["multiple-additional-videos__wrapper--inversed"],
+                "lg:flex-row",
               ]
-            : ["lg:flex-row-reverse", s["multiple-additional-videos__wrapper"]],
-          "lg:-mt-[25%]",
+            : [s["multiple-additional-videos__wrapper"], "lg:flex-row-reverse"],
         )}
       >
         <VideoPlayer
@@ -96,16 +91,14 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
               }`
             ],
             "shrink-0",
-            "md:w-[50%] md:max-w-[400px]",
-            "lg:max-w-[650px]",
-            "2xl:max-w-[1000px]",
+            "md:w-[50%] md:max-w-[400px lg:max-w-[650px] 2xl:max-w-[1000px]",
           )}
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
           heighRatio={secondVideoHeightRatio}
         />
         <RichTextRenderer
-          className={clsx("lg:w-[550px]", "2xl:w-[750px]", "lg:mt-[12.5%]")}
+          className={clsx("lg:w-[550px] 2xl:w-[750px] lg:mt-[12.5%]")}
           richText={secondVideodDescription}
         />
       </div>

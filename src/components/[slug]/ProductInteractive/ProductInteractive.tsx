@@ -3,6 +3,7 @@
 import { FC, useContext, useState, useTransition } from "react";
 
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 import Link from "next/link";
 
 import { CartContext } from "@averse/contexts/CartContext/CartContext";
@@ -35,11 +36,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
     disabled: !variant.availableForSale,
   }));
 
-  const handleDropdownIndexChange = (newSelectedIndex: number) => {
+  const updateSelectedIndex = (newSelectedIndex: number) => {
     setSelectedIndex(newSelectedIndex);
   };
 
-  const handleAddToCartClick = () => {
+  const addToCart = () => {
     if (selectedIndex === undefined) {
       return;
     }
@@ -63,30 +64,34 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   return (
     <>
-      <p className='font-light mb-6'>
+      <p className={clsx("mb-6", "font-light")}>
         {selectedIndex !== undefined
           ? `${variants[selectedIndex].price.amount} ${variants[selectedIndex].price.currencyCode}`
           : `${minVariantPrice.amount} ${minVariantPrice.currencyCode}`}
       </p>
-      <div className='flex items-center justify-between gap-4 mb-7'>
+      <div className={clsx("mb-7", "flex items-center justify-between gap-4")}>
         <Dropdown
-          className='basis-1/2'
+          className={clsx("basis-1/2")}
           name='variant-selector'
           options={options}
           selectedIndex={selectedIndex}
-          onChange={handleDropdownIndexChange}
+          onChange={updateSelectedIndex}
           placeholder={dictionary.product.size}
         />
-        <Link className='flex items-center gap-2' href={"#"} target='_blank'>
+        <Link
+          className={clsx("flex items-center gap-2")}
+          href={"#"}
+          target='_blank'
+        >
           {dictionary.product.sizeGuide}
           <ArrowTopRightOnSquareIcon className='w-5 h-5 stroke-[1.75]' />
         </Link>
       </div>
       <Button
-        className='w-full'
+        className={clsx("w-full")}
         element='button'
         disabled={selectedIndex === undefined}
-        onClick={handleAddToCartClick}
+        onClick={addToCart}
         loading={isPending}
       >
         {dictionary.product.addToCart}

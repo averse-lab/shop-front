@@ -96,10 +96,10 @@ const ProductPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <div className='flex flex-col lg:flex-row'>
-        <div className='lg:basis-1/2'>
+      <div className={clsx("flex flex-col lg:flex-row")}>
+        <div className={clsx("lg:basis-1/2")}>
           <Slider
-            className={s["product-page__slider"]}
+            className={clsx(s["product-page__slider"])}
             options={{
               breakpoints: {
                 "(min-width: 1024px)": {
@@ -109,13 +109,18 @@ const ProductPage: FC<IProps> = async (props) => {
             }}
           >
             {product.images.map((image) => (
-              <div key={image.url} className='grid grid-cols-1 auto-rows-fr'>
-                <div className={`aspect-square relative overflow-hidden`}>
+              <div
+                key={image.url}
+                className={clsx("grid grid-cols-1 auto-rows-fr")}
+              >
+                <div
+                  className={clsx("relative", "aspect-square overflow-hidden")}
+                >
                   <Image
                     alt={image.altText}
                     src={image.url}
                     fill
-                    className='aspect-square object-center object-cover'
+                    className={clsx("aspect-square object-center object-cover")}
                     priority
                   />
                 </div>
@@ -123,9 +128,15 @@ const ProductPage: FC<IProps> = async (props) => {
             ))}
           </Slider>
         </div>
-        <div className='px-6 py-4 lg:sticky lg:top-0 lg:h-screen lg:basis-1/2 lg:flex lg:flex-col lg:justify-center lg:items-center'>
-          <div className='lg:w-2/3 lg:max-w-[450px]'>
-            <h1 className='text-lg uppercase'>{product.title}</h1>
+        <div
+          className={clsx(
+            "lg:sticky lg:top-0",
+            "px-6 py-4 lg:h-screen",
+            "lg:basis-1/2 lg:flex lg:flex-col lg:justify-center lg:items-center",
+          )}
+        >
+          <div className={clsx("lg:w-2/3 lg:max-w-[450px]")}>
+            <h1 className={clsx("text-lg uppercase")}>{product.title}</h1>
             <ProductInteractive
               variants={product.variants}
               minVariantPrice={product.priceRange.minVariantPrice}

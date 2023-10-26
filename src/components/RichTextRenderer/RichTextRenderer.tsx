@@ -53,13 +53,13 @@ export const RichTextRenderer: FC<IProps> = (props) => {
                 if (childCurr.value !== "") {
                   if (childCurr.bold) {
                     childAcc.push(
-                      <span key={v4()} className='font-bold'>
+                      <span key={v4()} className={clsx("font-bold")}>
                         {childCurr.value}
                       </span>,
                     );
                   } else if (childCurr.italic) {
                     childAcc.push(
-                      <span key={v4()} className='italic'>
+                      <span key={v4()} className={clsx("italic")}>
                         {childCurr.value}
                       </span>,
                     );

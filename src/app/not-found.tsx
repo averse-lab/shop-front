@@ -10,9 +10,9 @@ const NotFound: FC = () => {
       <body
         className={clsx(
           DMSans.variable,
-          "font-sans",
           "min-h-screen",
           "flex flex-col",
+          "font-sans",
         )}
       >
         <main>

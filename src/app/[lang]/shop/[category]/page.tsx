@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import clsx from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { v4 } from "uuid";
@@ -78,19 +79,30 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <div className='fixed z-10 h-[72px] md:h-[96px] w-full top-0 left-0 bg-white border-b border-neutral-200'></div>
+      <div
+        className={clsx(
+          "fixed z-10 top-0 left-0",
+          "h-[72px] md:h-[96px] w-full",
+          "bg-white border-b border-neutral-200",
+        )}
+      ></div>
       <FilterSelector
-        className='fixed z-10 mt-[72px] md:mt-[96px] w-full'
+        className={clsx("fixed z-10 mt-[72px] md:mt-[96px]", "w-full")}
         filters={filters}
         selectedFilterIndex={selectedFilterIndex}
       />
-      <div className='mt-[128px] md:mt-[152px] flex flex-col'>
-        <div className='grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr] border-t border-b border-neutral-500'>
+      <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>
+        <div
+          className={clsx(
+            "grid grid-cols-2 lg:grid-cols-4 gap-px auto-rows-[1fr]",
+            "border-t border-b border-neutral-500",
+          )}
+        >
           {products.reduce<JSX.Element[]>((gridElements, product, idx) => {
             gridElements.push(
               <ProductPreview
                 key={product.id}
-                className='outline outline-1 outline-neutral-500'
+                className={clsx("outline outline-1 outline-neutral-500")}
                 href={`/${lang}/${SECTIONS.shop.url}/${product.productType}/${product.handle}`}
                 imageUrl={product.images[0].url}
                 title={product.title}
@@ -107,7 +119,10 @@ const CategoryPage: FC<IProps> = async (props) => {
               gridElements.push(
                 <VideoPlayer
                   key={v4()}
-                  className='w-full h-full outline outline-1 outline-neutral-500'
+                  className={clsx(
+                    "w-full h-full",
+                    "outline outline-1 outline-neutral-500",
+                  )}
                   playbackId={animation.playbackId}
                   widthRatio={1}
                   heighRatio={1}

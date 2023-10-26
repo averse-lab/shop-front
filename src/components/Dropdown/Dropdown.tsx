@@ -27,13 +27,13 @@ export const Dropdown: FC<IProps> = (props) => {
   };
 
   return (
-    <div className={clsx(className, s["dropdown"], "relative flex")}>
+    <div className={clsx(className, s["dropdown"], "relative", "flex")}>
       <select
         value={currentValue}
         className={clsx(
           s["dropdown__select"],
-          "basis-full",
           "px-1 py-2",
+          "basis-full",
           "appearance-none bg-transparent cursor-pointer",
         )}
         id={name}
@@ -52,7 +52,9 @@ export const Dropdown: FC<IProps> = (props) => {
       </select>
       <ChevronDownIcon
         className={clsx(
-          "absolute top-0 bottom-0 right-1 m-auto w-4 h-4 pointer-events-none",
+          "absolute top-0 bottom-0 right-1 m-auto",
+          "w-4 h-4",
+          "pointer-events-none",
         )}
       />
     </div>

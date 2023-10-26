@@ -3,6 +3,7 @@
 import { FC, useTransition } from "react";
 
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 
 import { Spinner } from "@components/icons/Spinner/Spinner";
 
@@ -26,7 +27,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
 
   const [isPending, startTransition] = useTransition();
 
-  const handlePlusClick = () => {
+  const addQuantity = () => {
     startTransition(async () => {
       const cart = await updateItemQuantity({
         lineId,
@@ -43,7 +44,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
     });
   };
 
-  const handleMinusClick = () => {
+  const removeQuantity = () => {
     startTransition(async () => {
       let cart: Cart | Error;
 
@@ -67,19 +68,33 @@ export const QuantitySelector: FC<IProps> = (props) => {
   };
 
   return (
-    <div className='flex items-center gap-3 border border-neutral-500 px-2 py-1 rounded-sm min-h-[30px]'>
+    <div
+      className={clsx(
+        "min-h-[30px] px-2 py-1",
+        "flex items-center gap-3",
+        "border border-neutral-500 rounded-sm",
+      )}
+    >
       <MinusSmallIcon
-        onClick={handleMinusClick}
-        className='w-4 h-4 cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all'
+        onClick={removeQuantity}
+        className={clsx(
+          "w-4 h-4",
+          "cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all",
+        )}
       />
       {isPending ? (
-        <Spinner className='h-4 w-4' />
+        <Spinner className={clsx("h-4 w-4")} />
       ) : (
-        <p className='text-sm min-w-[16px] text-center'>{quantity}</p>
+        <p className={clsx("text-sm text-center", "min-w-[16px]")}>
+          {quantity}
+        </p>
       )}
       <PlusSmallIcon
-        onClick={handlePlusClick}
-        className='w-4 h-4 cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all'
+        onClick={addQuantity}
+        className={clsx(
+          "w-4 h-4",
+          "cursor-pointer lg:hover:scale-105 lg:hover:stroke-[1.75] transition-all",
+        )}
       />
     </div>
   );
