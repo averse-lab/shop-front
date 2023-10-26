@@ -9,7 +9,7 @@ version. You can use [NVM](https://github.com/nvm-sh/nvm) to install different N
 running :
 
 ```bash
-nvm use
+nvm install
 ```
 
 ## Yarn
