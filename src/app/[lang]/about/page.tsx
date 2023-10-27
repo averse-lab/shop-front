@@ -45,7 +45,9 @@ const AboutPage: FC<IProps> = async (props) => {
         <p className={clsx("mb-4")}>{dictionary.about.paragraph2}</p>
         <p className={clsx("mb-4")}>{dictionary.about.paragraph3}</p>
         <p className={clsx("mb-12")}>{dictionary.about.paragraph4}</p>
-        <p className={clsx("mb-4")}>{dictionary.about.paragraph5}</p>
+        {lang === "en" ? (
+          <p className={clsx("mb-4")}>{dictionary.about.paragraph5}</p>
+        ) : null}
         <p className={clsx("mb-4")}>{dictionary.about.paragraph6}</p>
         <p className={clsx("mb-12 text-2xl")}>[&emsp;]</p>
         <p>{dictionary.about.quote}</p>
