@@ -59,12 +59,14 @@ export const Footer: FC<IProps> = (props) => {
           />
         </Link>
       </div>
-      <div className={clsx("flex items-center gap-2 self-center")}>
+      <div
+        className={clsx("flex items-center gap-[6px] self-center", "text-sm")}
+      >
         <p>Website by</p>
         <Link href='https://instagram.com/wearestudio99'>
           <WeAreStudio99
             className={clsx(
-              "h-6",
+              "h-4",
               "transition-all duration-200 ease-out lg:hover:scale-105",
             )}
           />

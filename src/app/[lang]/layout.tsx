@@ -33,7 +33,7 @@ const LangLayout: FC<IProps> = async (props) => {
       <body
         className={clsx(
           DMSans.variable,
-          "mb-[192px] lg:mb-[200px]",
+          "mb-[188px] lg:mb-[204px]",
           "min-h-screen",
           "flex flex-col",
           "bg-black",
