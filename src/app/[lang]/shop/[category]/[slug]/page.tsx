@@ -10,10 +10,9 @@ import { ProductMultipleAdditionalVideos } from "@components/[slug]/ProductMulti
 import { ProductSingleAdditionalVideo } from "@components/[slug]/ProductSingleAdditionalVideo/ProductSingleAdditionalVideo";
 import { Slider } from "@components/Slider/Slider";
 
-import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { getProduct, getProducts } from "@lib/shopify";
+import { getProduct } from "@lib/shopify";
 import { HIDDEN_PRODUCT_TAG } from "@lib/shopify/constants";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
@@ -25,17 +24,17 @@ import {
 
 type Params = { slug: string; category: string; lang: Locale };
 
-export async function generateStaticParams() {
-  const products = await getProducts({ lang: "EN" });
+// export async function generateStaticParams() {
+//   const products = await getProducts({ lang: "EN" });
 
-  return I18N_CONFIG.locales.reduce<Params[]>((staticParams, curr) => {
-    products.forEach(({ productType, handle }) => {
-      staticParams.push({ lang: curr, category: productType, slug: handle });
-    });
+//   return I18N_CONFIG.locales.reduce<Params[]>((staticParams, curr) => {
+//     products.forEach(({ productType, handle }) => {
+//       staticParams.push({ lang: curr, category: productType, slug: handle });
+//     });
 
-    return staticParams;
-  }, []);
-}
+//     return staticParams;
+//   }, []);
+// }
 
 export async function generateMetadata({
   params,
