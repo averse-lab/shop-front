@@ -2,7 +2,7 @@ import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { TAGS } from "@lib/constants";
+import { TAGS } from "@lib/shopify/constants";
 
 export const runtime = "edge";
 

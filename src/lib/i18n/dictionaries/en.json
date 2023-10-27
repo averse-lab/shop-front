@@ -1,8 +1,10 @@
 {
-  "menu": {
+  "pages": {
     "home": "Home",
     "shop": "Shop",
-    "about": "About"
+    "about": "About",
+    "legal": "Legals",
+    "contact": "Contact"
   },
   "categories": {
     "rings": "Rings",

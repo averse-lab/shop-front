@@ -3,6 +3,11 @@
 import { DocumentNode, print } from "graphql";
 
 import {
+  HIDDEN_PRODUCT_TAG,
+  SHOPIFY_GRAPHQL_API_ENDPOINT,
+  TAGS,
+} from "./constants";
+import {
   addToCartMutation,
   createCartMutation,
   editCartItemsMutation,
@@ -21,6 +26,7 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery,
 } from "./queries/product";
+import { isShopifyError } from "./type-guards";
 import {
   Cart,
   Collection,
@@ -48,12 +54,6 @@ import {
   ShopifyUpdateCartOperation,
   SupportedLanguageCode,
 } from "./types";
-import {
-  HIDDEN_PRODUCT_TAG,
-  SHOPIFY_GRAPHQL_API_ENDPOINT,
-  TAGS,
-} from "../constants";
-import { isShopifyError } from "../type-guards";
 
 const domain = `https://${process.env.SHOPIFY_STORE_DOMAIN!}`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;

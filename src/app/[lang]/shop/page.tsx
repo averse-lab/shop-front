@@ -1,11 +1,10 @@
 import { FC } from "react";
 
 import { RedirectType } from "next/dist/client/components/redirect";
-import { notFound, redirect } from "next/navigation";
-
-import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
+import { redirect } from "next/navigation";
 
 import { Locale } from "@lib/i18n/types";
+import { PAGES } from "@lib/routing/constants";
 
 import { CATEGORIES } from "./_internal/ShopPage.constants";
 
@@ -19,15 +18,8 @@ const ShopPage: FC<IProps> = (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const allProductsCategory = CATEGORIES.allProducts;
-  const shopSection = SECTIONS.shop;
-
-  if (allProductsCategory === undefined || shopSection === undefined) {
-    return notFound();
-  }
-
   redirect(
-    `/${lang}/${shopSection.url}/${allProductsCategory.url}`,
+    `/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`,
     RedirectType.replace,
   );
 };

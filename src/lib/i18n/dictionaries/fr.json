@@ -1,8 +1,10 @@
 {
-  "menu": {
+  "pages": {
     "home": "Accueil",
     "shop": "Boutique",
-    "about": "À propos"
+    "about": "À propos",
+    "legal": "Mentions légales",
+    "contact": "Contact"
   },
   "categories": {
     "rings": "Bagues",

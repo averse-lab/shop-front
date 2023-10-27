@@ -10,11 +10,11 @@ import { ProductMultipleAdditionalVideos } from "@components/[slug]/ProductMulti
 import { ProductSingleAdditionalVideo } from "@components/[slug]/ProductSingleAdditionalVideo/ProductSingleAdditionalVideo";
 import { Slider } from "@components/Slider/Slider";
 
-import { HIDDEN_PRODUCT_TAG } from "@lib/constants";
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { getProduct, getProducts } from "@lib/shopify";
+import { HIDDEN_PRODUCT_TAG } from "@lib/shopify/constants";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";

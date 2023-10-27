@@ -5,8 +5,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { v4 } from "uuid";
 
-import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
-
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
@@ -15,6 +13,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { PAGES } from "@lib/routing/constants";
 import { getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
@@ -94,6 +93,7 @@ const CategoryPage: FC<IProps> = async (props) => {
       <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>
         <div
           className={clsx(
+            "z-0",
             "grid auto-rows-[1fr] grid-cols-2 gap-px lg:grid-cols-4",
             "border-b border-t border-neutral-500",
           )}
@@ -103,7 +103,7 @@ const CategoryPage: FC<IProps> = async (props) => {
               <ProductPreview
                 key={product.id}
                 className={clsx("outline outline-1 outline-neutral-500")}
-                href={`/${lang}/${SECTIONS.shop.url}/${product.productType}/${product.handle}`}
+                href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
                 imageUrl={product.images[0].url}
                 title={product.title}
                 price={product.priceRange.maxVariantPrice.amount}

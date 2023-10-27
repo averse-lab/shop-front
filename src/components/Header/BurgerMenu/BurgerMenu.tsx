@@ -11,20 +11,17 @@ import { clsx } from "clsx";
 import Link from "next/link";
 
 import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
+import { LinkDetail } from "@lib/routing/types";
 
 import s from "./_internal/BurgerMenu.module.scss";
-import { NavItem } from "./_internal/BurgerMenu.types";
 
 type IProps = {
   className?: string;
-  nav: NavItem[];
-  lang: string;
+  nav: LinkDetail[];
 };
 
-export type { NavItem } from "./_internal/BurgerMenu.types";
-
 export const BurgerMenu: FC<IProps> = (props) => {
-  const { nav, lang, className } = props;
+  const { nav, className } = props;
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -81,17 +78,17 @@ export const BurgerMenu: FC<IProps> = (props) => {
             "md:px-24 md:py-16",
           )}
         >
-          {nav.map((navItem) => (
+          {nav.map((link) => (
             <div
               className={clsx(s["burger-menu__link"], "relative", "text-white")}
-              key={navItem.display}
+              key={link.display}
             >
               <Link
                 className={clsx("relative", "text-xl md:text-base")}
-                href={`/${lang}/${navItem.url}`}
+                href={link.href}
                 onClick={closeMenu}
               >
-                {navItem.display}
+                {link.display}
               </Link>
               <ArrowUpRightIcon
                 className={clsx(

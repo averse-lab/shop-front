@@ -3,13 +3,13 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { SECTIONS } from "@averse/app/[lang]/_internal/HomePage.constants";
+import { MAIN_NAV } from "@averse/app/[lang]/_internal/HomePage.constants";
 
 import { Logo } from "@components/icons/Logo/Logo";
 
 import { Dictionary, Locale } from "@lib/i18n/types";
+import { LinkDetail } from "@lib/routing/types";
 
-import { NavItem } from "./BurgerMenu/_internal/BurgerMenu.types";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { Cart } from "./Cart/Cart";
 
@@ -21,10 +21,10 @@ interface IProps {
 export const Header: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
 
-  const nav: NavItem[] = Object.values(SECTIONS).map<NavItem>(
+  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
     ({ url, i18nKey }) => ({
-      url,
-      display: dictionary.menu[i18nKey],
+      href: `/${lang}/${url}`,
+      display: dictionary.pages[i18nKey],
     }),
   );
 
@@ -37,11 +37,7 @@ export const Header: FC<IProps> = (props) => {
         "bg-transparent",
       )}
     >
-      <BurgerMenu
-        nav={nav}
-        lang={lang}
-        className={clsx("justify-self-start")}
-      />
+      <BurgerMenu nav={nav} className={clsx("justify-self-start")} />
       <Link className={clsx("justify-self-center")} href='/'>
         <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>

@@ -8,8 +8,9 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { PAGES } from "@lib/routing/constants";
 
-import { HOME_VIDEO, SECTIONS } from "./_internal/HomePage.constants";
+import { HOME_VIDEO } from "./_internal/HomePage.constants";
 import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
 
 export async function generateStaticParams() {
@@ -47,7 +48,7 @@ const HomePage: FC<IProps> = async (props) => {
       />
       <Button
         element='link'
-        href={`/${lang}/${SECTIONS.shop.url}/${CATEGORIES.allProducts.url}`}
+        href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
         transparent
       >
         {dictionary.home.enterWebsite}

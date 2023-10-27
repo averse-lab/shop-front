@@ -1,8 +1,7 @@
-import { Dictionary } from "@lib/i18n/types";
+import { PageKey } from "@lib/routing/types";
+import { PickStringLiteralUnion } from "@lib/types";
 
-export type SectionKey = "home" | "shop" | "about";
-
-export type SectionValue = {
-  i18nKey: keyof Dictionary["menu"];
-  url: string;
-};
+export type MainNavKey = PickStringLiteralUnion<
+  PageKey,
+  "about" | "home" | "shop"
+>;

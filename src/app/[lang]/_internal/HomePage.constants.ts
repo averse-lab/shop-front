@@ -1,6 +1,8 @@
+import { PAGES } from "@lib/routing/constants";
+import { PageValue } from "@lib/routing/types";
 import { MuxVideoSource } from "@lib/types";
 
-import { SectionKey, SectionValue } from "./HomePage.types";
+import { MainNavKey } from "./HomePage.types";
 
 export const HOME_VIDEO: MuxVideoSource = {
   playbackId: "9NAAiw4fOQs02P00n7nSKuP1GEQfwrRipeVG2pgllB01WI",
@@ -8,8 +10,8 @@ export const HOME_VIDEO: MuxVideoSource = {
   heightRatio: 9,
 };
 
-export const SECTIONS: Record<SectionKey, SectionValue> = {
-  home: { i18nKey: "home", url: "" },
-  shop: { i18nKey: "shop", url: "shop" },
-  about: { i18nKey: "about", url: "about" },
+export const MAIN_NAV: Record<MainNavKey, PageValue> = {
+  home: PAGES.home,
+  shop: PAGES.shop,
+  about: PAGES.about,
 };
