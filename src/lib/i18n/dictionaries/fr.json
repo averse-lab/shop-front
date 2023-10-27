@@ -3,8 +3,8 @@
     "home": "Accueil",
     "shop": "Boutique",
     "about": "À propos",
-    "legal": "Mentions légales",
-    "contact": "Contact"
+    "legalNotices": "Mentions légales",
+    "termsAndConditions": "Conditions Générales de Vente"
   },
   "categories": {
     "rings": "Bagues",
@@ -40,5 +40,10 @@
     "paragraph5": "\"Une averse\" est une lourde chute de pluie soudaine et inattendue.",
     "paragraph6": "Quand l'averse tombe, soudain, on ne voit plus qu'à quelques mètres. Nous nous retrouvons isolés, dans ce moment à endurer dans la solitude. Mais cette pluie intense n'est que temporaire ; les nuages libèrent leurs larmes, ramenant le calme.",
     "quote": "Personne ne verra vos larmes sous l'averse."
+  },
+  "legalNotices": {
+    "editor": "Editeur",
+    "publicationDirector": "Directeur de la publication",
+    "host": "Hebergeur"
   }
 }
