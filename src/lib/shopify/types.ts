@@ -112,6 +112,9 @@ export type ShopifyCollection = {
 };
 
 export type ShopifyProductCustomMetafields = {
+  shippingDelays: {
+    value: string;
+  } | null;
   additionalVideosLayout: {
     value:
       | "player to the right / description to the left"

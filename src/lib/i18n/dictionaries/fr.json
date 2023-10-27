@@ -18,7 +18,11 @@
     "size": "Taille",
     "sizeGuide": "Guide des tailles",
     "addToCart": "Ajouter au panier",
-    "notInStock": "Ce bijoux n'est plus en stock, la livraison pourra être allongée"
+    "madeToOrder": "Cet article est fabriqué sur commande.",
+    "notInStock": "Veuillez vous référer aux conditions générales de vente pour les délais de production et de livraison",
+    "notInStockCustom": "Comptez jusqu'a",
+    "forDelivery": "de livraison.",
+    "inStock": "Cet article est en stock"
   },
   "cart": {
     "taxes": "Taxes",

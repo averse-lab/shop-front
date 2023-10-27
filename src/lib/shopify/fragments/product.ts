@@ -12,6 +12,9 @@ const productFragment = gql`
     title
     description
     descriptionHtml
+    shippingDelays: metafield(namespace: "custom", key: "shipping_delays") {
+      value
+    }
     additionalVideosLayout: metafield(
       namespace: "custom"
       key: "additional_mux_videos_layout"

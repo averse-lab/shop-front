@@ -141,6 +141,7 @@ const ProductPage: FC<IProps> = async (props) => {
               variants={product.variants}
               minVariantPrice={product.priceRange.minVariantPrice}
               dictionary={dictionary}
+              shippingDelays={product.shippingDelays?.value}
             />
             <div
               className={clsx(s["product-page__description"], "mt-6")}
