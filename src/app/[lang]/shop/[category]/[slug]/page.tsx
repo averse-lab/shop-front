@@ -101,6 +101,7 @@ const ProductPage: FC<IProps> = async (props) => {
           <Slider
             className={clsx(s["product-page__slider"])}
             options={{
+              loop: true,
               breakpoints: {
                 "(min-width: 1024px)": {
                   active: false,
