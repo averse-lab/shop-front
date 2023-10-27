@@ -17,7 +17,8 @@
   "product": {
     "size": "Size",
     "sizeGuide": "Size guide",
-    "addToCart": "Add to cart"
+    "addToCart": "Add to cart",
+    "notInStock": "This jewel isn't in stock anymore, shipping may be delayed"
   },
   "cart": {
     "taxes": "Taxes",

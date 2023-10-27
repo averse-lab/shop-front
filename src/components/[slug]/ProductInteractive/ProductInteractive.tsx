@@ -96,6 +96,19 @@ export const ProductInteractive: FC<IProps> = (props) => {
       >
         {dictionary.product.addToCart}
       </Button>
+      {selectedIndex !== undefined &&
+      variants[selectedIndex].currentlyNotInStock ? (
+        <div className={clsx("mt-5", "flex items-center gap-4")}>
+          <div
+            className={clsx(
+              "h-3 w-3",
+              "flex-shrink-0",
+              "rounded-full bg-orange-400",
+            )}
+          ></div>
+          <p className={clsx("italic")}>{dictionary.product.notInStock}</p>
+        </div>
+      ) : null}
     </>
   );
 };

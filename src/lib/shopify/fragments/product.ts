@@ -87,6 +87,7 @@ const productFragment = gql`
           id
           title
           availableForSale
+          currentlyNotInStock
           selectedOptions {
             name
             value

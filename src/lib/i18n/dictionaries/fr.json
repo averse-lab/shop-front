@@ -17,7 +17,8 @@
   "product": {
     "size": "Taille",
     "sizeGuide": "Guide des tailles",
-    "addToCart": "Ajouter au panier"
+    "addToCart": "Ajouter au panier",
+    "notInStock": "Ce bijoux n'est plus en stock, la livraison pourra être allongée"
   },
   "cart": {
     "taxes": "Taxes",
