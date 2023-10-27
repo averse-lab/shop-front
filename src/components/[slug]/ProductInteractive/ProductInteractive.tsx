@@ -103,9 +103,9 @@ export const ProductInteractive: FC<IProps> = (props) => {
             className={clsx(
               "h-3 w-3",
               "flex-shrink-0",
-              "rounded-full bg-orange-400",
+              "rounded-full",
               variants[selectedIndex].currentlyNotInStock
-                ? "bg-neutral-600"
+                ? "bg-neutral-400"
                 : "bg-green-500",
             )}
           ></div>
