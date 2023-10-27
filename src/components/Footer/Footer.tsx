@@ -1,36 +1,74 @@
 import { FC } from "react";
 
+import { MinusIcon } from "@heroicons/react/24/outline";
+import { clsx } from "clsx";
 import Link from "next/link";
 
-export const Footer: FC = () => {
+import { Instagram } from "@components/icons/Instagram/Instagram";
+import { WeAreStudio99 } from "@components/icons/WeAreStudio99/WeAreStudio99";
+
+import { Dictionary, Locale } from "@lib/i18n/types";
+import { LinkDetail } from "@lib/routing/types";
+
+import { FOOTER_NAV } from "./_internal/Footer.constants";
+
+type IProps = {
+  dictionary: Dictionary;
+  lang: Locale;
+};
+
+export const Footer: FC<IProps> = (props) => {
+  const { dictionary, lang } = props;
+
+  const nav: LinkDetail[] = Object.values(FOOTER_NAV).map(
+    ({ url, i18nKey }) => ({
+      href: `/${lang}/${url}`,
+      display: dictionary.pages[i18nKey],
+    }),
+  );
+
   return (
-    <footer className={"bg-black px-7 pb-10 pt-10 text-white"}>
-      {/*   2 colums with 3 rows */}
-      <h1 className={"text-xl"}>Averse</h1>
-      <div className='grid grid-cols-1 gap-4'>
-        <ul
-          className={"flex flex-col gap-2 text-sm underline underline-offset-2"}
-        >
-          <li>
-            <Link href='#'>Home</Link>
-          </li>
-          <li>
-            <Link href='about'>About</Link>
-          </li>
-        </ul>
+    <footer
+      className={clsx(
+        "fixed bottom-0 left-0 -z-20",
+        "w-full px-6 py-4 lg:pb-6",
+        "flex flex-col gap-6",
+        "bg-black",
+        "text-white",
+      )}
+    >
+      <MinusIcon className={clsx("self-center", "h-6 w-6")} />
+      <div
+        className={clsx(
+          "mb-2",
+          "flex items-center justify-between lg:flex-col lg:gap-4",
+        )}
+      >
+        <nav className={clsx("flex flex-col gap-2 lg:flex-row lg:gap-6")}>
+          {nav.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.display}
+            </Link>
+          ))}
+        </nav>
+        <Link href='https://instagram.com/averseparis'>
+          <Instagram
+            className={clsx(
+              "transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-2",
+            )}
+          />
+        </Link>
       </div>
-      {/*    Full width div with a text on right side */}
-      <div className={"mt-5 flex flex-row justify-between"}>
-        <p className={"text-sm"}>© 2021 Averse</p>
-        <p className={"text-sm"}>
-          Website by{" "}
-          <a
-            href='
-        https://www.linkedin.com/in/alexandru-georgescu-1b0b0b1a4/'
-          >
-            T.Walterspieler
-          </a>
-        </p>
+      <div className={clsx("flex items-center gap-2 self-center")}>
+        <p>Website by</p>
+        <Link href='https://instagram.com/wearestudio99'>
+          <WeAreStudio99
+            className={clsx(
+              "h-6",
+              "transition-all duration-200 ease-out lg:hover:scale-105",
+            )}
+          />
+        </Link>
       </div>
     </footer>
   );

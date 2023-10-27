@@ -33,15 +33,19 @@ const LangLayout: FC<IProps> = async (props) => {
       <body
         className={clsx(
           DMSans.variable,
+          "mb-[192px] lg:mb-[200px]",
           "min-h-screen",
           "flex flex-col",
+          "bg-black",
           "font-sans",
         )}
       >
         <CartContextProvider>
           <Header dictionary={dictionary} lang={lang} />
-          <main className={clsx("flex grow flex-col")}>{children}</main>
-          <Footer />
+          <main className={clsx("flex grow flex-col", "bg-white")}>
+            {children}
+          </main>
+          <Footer dictionary={dictionary} lang={lang} />
         </CartContextProvider>
       </body>
     </html>
