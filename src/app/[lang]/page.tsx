@@ -34,7 +34,7 @@ const HomePage: FC<IProps> = async (props) => {
   return (
     <div
       className={clsx(
-        "relative",
+        "relative z-0",
         "h-screen p-4",
         "flex flex-col items-center justify-center",
         "text-center",
