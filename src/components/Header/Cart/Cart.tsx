@@ -76,7 +76,7 @@ export const Cart: FC<IProps> = (props) => {
           isCartOpen && s["cart__modal--open"],
           cart !== undefined && "gap-4",
           "fixed right-0 top-0 z-20 md:right-2 md:top-2",
-          "h-screen w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
+          "h-[100dvh] w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
           "flex flex-col justify-between",
           "bg-white md:rounded md:border md:border-neutral-100 md:shadow-md",
         )}

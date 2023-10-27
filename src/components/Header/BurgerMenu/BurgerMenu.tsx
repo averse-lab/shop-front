@@ -55,7 +55,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           open && s["burger-menu__menu--open"],
           "fixed left-0 top-0 z-20 md:left-2 md:top-2",
           "flex flex-col",
-          "h-full w-full p-6 md:h-auto md:w-auto",
+          "h-[100dvh] w-screen p-6 md:h-auto md:w-auto",
           "bg-black uppercase  md:rounded md:shadow-md",
         )}
       >
