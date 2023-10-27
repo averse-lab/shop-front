@@ -106,7 +106,7 @@ const CategoryPage: FC<IProps> = async (props) => {
                 href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
                 imageUrl={product.images[0].url}
                 title={product.title}
-                price={product.priceRange.maxVariantPrice.amount}
+                price={product.priceRange.minVariantPrice.amount}
                 currency={product.priceRange.maxVariantPrice.currencyCode}
               />,
             );
