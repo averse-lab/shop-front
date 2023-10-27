@@ -106,7 +106,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
               "rounded-full",
               variants[selectedIndex].currentlyNotInStock
                 ? "bg-neutral-400"
-                : "bg-green-500",
+                : "bg-green-600",
             )}
           ></div>
           <p className={clsx("italic")}>
