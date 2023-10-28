@@ -86,6 +86,11 @@ export type ProductVariant = {
   price: Money;
 };
 
+export type Policy = {
+  title: string;
+  body: string;
+};
+
 export type SEO = {
   title: string;
   description: string;
@@ -301,6 +306,22 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    lang: SupportedLanguageCode;
+  };
+};
+
+export type PolicyKey = "privacyPolicy" | "termsOfService";
+
+export type ShopifyPolicyOperation<Key extends PolicyKey> = {
+  data: {
+    shop: {
+      [key in Key]: {
+        title: string;
+        body: string;
+      };
+    };
+  };
+  variables: {
     lang: SupportedLanguageCode;
   };
 };

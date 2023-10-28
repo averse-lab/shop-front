@@ -1,6 +1,6 @@
-"server-only";
-
 import { DocumentNode, print } from "graphql";
+
+import { getPolicyQuery } from "@lib/shopify/queries/policies";
 
 import {
   HIDDEN_PRODUCT_TAG,
@@ -34,6 +34,7 @@ import {
   Image,
   Menu,
   Page,
+  Policy,
   Product,
   ShopifyAddToCartOperation,
   ShopifyCart,
@@ -46,6 +47,7 @@ import {
   ShopifyMenuOperation,
   ShopifyPageOperation,
   ShopifyPagesOperation,
+  ShopifyPolicyOperation,
   ShopifyProduct,
   ShopifyProductOperation,
   ShopifyProductRecommendationsOperation,
@@ -54,6 +56,8 @@ import {
   ShopifyUpdateCartOperation,
   SupportedLanguageCode,
 } from "./types";
+
+("server-only");
 
 const domain = `https://${process.env.SHOPIFY_STORE_DOMAIN!}`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
@@ -444,4 +448,34 @@ export async function getProducts({
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+export async function getPrivacyPolicy({
+  lang,
+}: {
+  lang: SupportedLanguageCode;
+}): Promise<Policy> {
+  const res = await shopifyFetch<ShopifyPolicyOperation<"privacyPolicy">>({
+    query: getPolicyQuery("privacyPolicy"),
+    variables: {
+      lang,
+    },
+  });
+
+  return res.body.data.shop.privacyPolicy;
+}
+
+export async function getTermsOfService({
+  lang,
+}: {
+  lang: SupportedLanguageCode;
+}): Promise<Policy> {
+  const res = await shopifyFetch<ShopifyPolicyOperation<"termsOfService">>({
+    query: getPolicyQuery("termsOfService"),
+    variables: {
+      lang,
+    },
+  });
+
+  return res.body.data.shop.termsOfService;
 }

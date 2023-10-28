@@ -3,5 +3,5 @@ import { PickStringLiteralUnion } from "@lib/types";
 
 export type FooterNavKey = PickStringLiteralUnion<
   PageKey,
-  "termsAndConditions" | "legalNotices"
+  "termsOfService" | "privacyPolicy"
 >;
