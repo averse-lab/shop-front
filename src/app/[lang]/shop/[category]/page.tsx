@@ -26,7 +26,10 @@ export const metadata: Metadata = {
   description: "Shop for products in the store.",
 };
 
-type Params = { category: string; lang: Locale };
+type Params = {
+  category: string;
+  lang: Locale;
+};
 
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.reduce<Params[]>((staticParams, locale) => {
@@ -108,6 +111,7 @@ const CategoryPage: FC<IProps> = async (props) => {
                 title={product.title}
                 price={product.priceRange.minVariantPrice.amount}
                 currency={product.priceRange.maxVariantPrice.currencyCode}
+                index={idx}
               />,
             );
 

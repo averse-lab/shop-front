@@ -13,10 +13,11 @@ interface IProps {
   title: string;
   price: string;
   currency: string;
+  index: number;
 }
 
 export const ProductPreview: FC<IProps> = (props) => {
-  const { className, href, imageUrl, title, price, currency } = props;
+  const { className, href, imageUrl, title, price, currency, index } = props;
 
   return (
     <Link
@@ -39,6 +40,8 @@ export const ProductPreview: FC<IProps> = (props) => {
         src={imageUrl}
         alt={`photography of ${title}`}
         fill
+        sizes={"100%"}
+        priority={index < 4}
       />
       <p className={clsx(s["product-preview__name"], "uppercase")}>{title}</p>
       <p className={clsx("text-sm font-light text-neutral-600")}>
