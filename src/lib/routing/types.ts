@@ -6,8 +6,9 @@ export type PageKey =
   | "home"
   | "shop"
   | "about"
-  | "termsOfService"
-  | "privacyPolicy";
+  | "termsOfSale"
+  | "privacyPolicy"
+  | "legalNotice";
 
 export type PageValue = {
   i18nKey: keyof Dictionary["pages"];

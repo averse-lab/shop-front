@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { getTermsOfService } from "@lib/shopify";
+import { getPage } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 type Params = {
@@ -15,14 +15,14 @@ type IProps = {
   params: Params;
 };
 
-const TermsOfServicePage: FC<IProps> = async (props) => {
+const LegalNoticePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const legal = await getTermsOfService({
+  const legal = await getPage({
     lang: getSupportedLanguageCodeFromLocale(lang),
+    handle: "legal-notice",
   });
-
   const dictionary = await getDictionary(lang);
 
   return (
@@ -45,7 +45,7 @@ const TermsOfServicePage: FC<IProps> = async (props) => {
               "max-w-xs text-4xl font-bold uppercase text-black underline md:fixed"
             }
           >
-            {dictionary.pages.termsOfService}
+            {dictionary.pages.legalNotice}
           </h1>
         </div>
         <div className={"flex justify-center md:w-1/2"}>
@@ -59,4 +59,4 @@ const TermsOfServicePage: FC<IProps> = async (props) => {
   );
 };
 
-export default TermsOfServicePage;
+export default LegalNoticePage;

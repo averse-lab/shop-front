@@ -3,8 +3,10 @@
     "home": "Accueil",
     "shop": "Boutique",
     "about": "À propos",
-    "termsOfService": "Conditions Générales de Vente",
-    "privacyPolicy": "Politique de Confidentialité"
+    "termsOfService": "Conditions d'utilisation",
+    "termsOfSale": "Conditions générales de vente",
+    "privacyPolicy": "Politique de Confidentialité",
+    "legalNotice": "Mentions légales"
   },
   "categories": {
     "rings": "Bagues",

@@ -377,10 +377,16 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   );
 }
 
-export async function getPage(handle: string): Promise<Page> {
+export async function getPage({
+  lang,
+  handle,
+}: {
+  lang: SupportedLanguageCode;
+  handle: string;
+}): Promise<Page> {
   const res = await shopifyFetch<ShopifyPageOperation>({
     query: getPageQuery,
-    variables: { handle },
+    variables: { handle, lang },
   });
 
   return res.body.data.pageByHandle;

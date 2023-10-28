@@ -4,7 +4,9 @@
     "shop": "Shop",
     "about": "About",
     "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacy Policy"
+    "termsOfSale": "Terms of Sale",
+    "privacyPolicy": "Privacy Policy",
+    "legalNotice": "Legal Notice"
   },
   "categories": {
     "rings": "Rings",

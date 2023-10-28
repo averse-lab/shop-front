@@ -21,7 +21,8 @@ const pageFragment = gql`
 `;
 
 export const getPageQuery = gql`
-  query getPage($handle: String!) {
+  query getPage($handle: String!, $lang: LanguageCode!)
+  @inContext(language: $lang) {
     pageByHandle(handle: $handle) {
       ...page
     }
