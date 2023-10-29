@@ -56,7 +56,7 @@ const AboutPage: FC<IProps> = async (props) => {
         <VideoPlayer
           className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
           playbackId={playbackId}
-          heighRatio={heightRatio}
+          heightRatio={heightRatio}
           widthRatio={widthRatio}
         />
         <p>{dictionary.about.paragraph1}</p>

@@ -64,7 +64,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           )}
           playbackId={firstVideoPlaybackId}
           widthRatio={firstVideoWidthRatio}
-          heighRatio={firstVideoHeightRatio}
+          heightRatio={firstVideoHeightRatio}
         />
         <RichTextRenderer
           className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
@@ -95,7 +95,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           )}
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
-          heighRatio={secondVideoHeightRatio}
+          heightRatio={secondVideoHeightRatio}
         />
         <RichTextRenderer
           className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}

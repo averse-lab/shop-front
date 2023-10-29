@@ -9,11 +9,11 @@ interface IProps {
   className?: string;
   playbackId: string;
   widthRatio: number;
-  heighRatio: number;
+  heightRatio: number;
 }
 
 export const VideoPlayer: FC<IProps> = (props) => {
-  const { className, playbackId, widthRatio, heighRatio } = props;
+  const { className, playbackId, widthRatio, heightRatio } = props;
 
   return (
     <MuxVideo
@@ -24,7 +24,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
       playbackId={playbackId}
       autoPlay='muted'
       loop
-      style={{ aspectRatio: `${widthRatio} / ${heighRatio}` }}
+      style={{ aspectRatio: `${widthRatio} / ${heightRatio}` }}
     />
   );
 };

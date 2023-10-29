@@ -141,7 +141,7 @@ const CategoryPage: FC<IProps> = async (props) => {
                   )}
                   playbackId={animation.playbackId}
                   widthRatio={1}
-                  heighRatio={1}
+                  heightRatio={1}
                 />,
               );
             }

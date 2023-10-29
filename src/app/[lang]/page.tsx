@@ -44,7 +44,7 @@ const HomePage: FC<IProps> = async (props) => {
         className={clsx("absolute -z-10", "h-full w-full")}
         playbackId={HOME_VIDEO.playbackId}
         widthRatio={HOME_VIDEO.widthRatio}
-        heighRatio={HOME_VIDEO.heightRatio}
+        heightRatio={HOME_VIDEO.heightRatio}
       />
       <Button
         element='link'

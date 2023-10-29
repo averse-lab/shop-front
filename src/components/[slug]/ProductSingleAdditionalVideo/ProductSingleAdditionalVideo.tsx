@@ -34,7 +34,7 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
         )}
         playbackId={playbackId}
         widthRatio={widthRatio}
-        heighRatio={heightRatio}
+        heightRatio={heightRatio}
       />
       <RichTextRenderer
         className={clsx("lg:max-w-[550px] 2xl:max-w-[750px]")}
