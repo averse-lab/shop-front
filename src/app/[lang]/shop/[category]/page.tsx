@@ -48,8 +48,6 @@ async function getBlurHash(playbackId: string) {
   const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
     await muxBlurHash(playbackId);
 
-  console.log(blurHash, blurHashBase64, sourceWidth, sourceHeight);
-
   return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
 }
 

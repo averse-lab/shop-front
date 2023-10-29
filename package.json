@@ -12,6 +12,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.4.2",
     "@heroicons/react": "^2.0.18",
+    "@mux/blurhash": "^0.1.2",
     "@mux/mux-video-react": "^0.8.0",
     "@types/node": "20.8.9",
     "@types/react": "18.2.33",
