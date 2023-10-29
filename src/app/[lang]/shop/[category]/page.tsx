@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -43,6 +44,15 @@ type Params = {
   lang: Locale;
 };
 
+async function getBlurHash(playbackId: string) {
+  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
+    await muxBlurHash(playbackId);
+
+  console.log(blurHash, blurHashBase64, sourceWidth, sourceHeight);
+
+  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
+}
+
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.reduce<Params[]>((staticParams, locale) => {
     Object.values(CATEGORIES)
@@ -61,6 +71,13 @@ type IProps = {
 
 const CategoryPage: FC<IProps> = async (props) => {
   const { category: categoryUrlSegment, lang } = props.params;
+  const blurHashBase64AnimationsArray = await Promise.all(
+    ANIMATIONS.map(async (animation) => {
+      const { blurHashBase64 } = await getBlurHash(animation.playbackId);
+
+      return blurHashBase64;
+    }),
+  );
 
   const dictionary = await getDictionary(lang);
   const category = getCategoryFromCategoryUrlSegment(categoryUrlSegment);
@@ -140,6 +157,9 @@ const CategoryPage: FC<IProps> = async (props) => {
                     "outline outline-1 outline-neutral-500",
                   )}
                   playbackId={animation.playbackId}
+                  blurHashBase64={
+                    blurHashBase64AnimationsArray[animation.index]
+                  }
                   widthRatio={1}
                   heightRatio={1}
                 />,

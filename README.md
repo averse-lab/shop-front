@@ -31,7 +31,8 @@ and not the VSCode built in one.
 
 _(Optional)_
 
-If you want to use the project specific, optimized, editor configuration, duplicate the `.vscode.sample` sample folder into the VSCode workspace configuration folder `.vscode` by running :
+If you want to use the project specific, optimized, editor configuration, duplicate the `.vscode.sample` sample folder
+into the VSCode workspace configuration folder `.vscode` by running :
 
 ```bash
 cp -R .vscode.sample .vscode
@@ -44,7 +45,8 @@ redacted to cover all the major steps in chronological order so you better do th
 
 ### Setup environment variables
 
-Create your `.env.local` environment variable file. You can dublicate the `.env.local.example` template file into `.env.local` by running :
+Create your `.env.local` environment variable file. You can duplicate the `.env.local.example` template file
+into `.env.local` by running :
 
 ```bash
 cp .env.local.sample .env.local

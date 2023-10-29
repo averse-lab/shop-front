@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 
 import { Button } from "@components/Button/Button";
@@ -13,10 +14,6 @@ import { PAGES } from "@lib/routing/constants";
 import { HOME_VIDEO } from "./_internal/HomePage.constants";
 import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
 
-export async function generateStaticParams() {
-  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
-}
-
 type Params = {
   lang: Locale;
 };
@@ -25,9 +22,22 @@ type IProps = {
   params: Params;
 };
 
+export async function generateStaticParams() {
+  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
+}
+
+async function getBlurHash(playbackId: string) {
+  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
+    await muxBlurHash(playbackId);
+
+  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
+}
+
 const HomePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
+
+  const blurData = await getBlurHash(HOME_VIDEO.playbackId);
 
   const dictionary = await getDictionary(lang);
 
@@ -45,6 +55,7 @@ const HomePage: FC<IProps> = async (props) => {
         playbackId={HOME_VIDEO.playbackId}
         widthRatio={HOME_VIDEO.widthRatio}
         heightRatio={HOME_VIDEO.heightRatio}
+        blurHashBase64={blurData.blurHashBase64}
       />
       <Button
         element='link'

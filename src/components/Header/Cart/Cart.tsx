@@ -9,7 +9,7 @@ import { CartContext } from "@averse/contexts/CartContext/CartContext";
 
 import { Button } from "@components/Button/Button";
 
-import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
+import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 
 import { getCartAction } from "./_internal/Cart.actions";
@@ -135,7 +135,7 @@ export const Cart: FC<IProps> = (props) => {
                 }`}
               />
               <SummaryItem
-                className={clsx(s["cart__shipping-sumary"])}
+                className={clsx(s["cart__shipping-summary"])}
                 metric={dictionary.cart.shipping}
                 value={dictionary.cart.shippingHint}
               />

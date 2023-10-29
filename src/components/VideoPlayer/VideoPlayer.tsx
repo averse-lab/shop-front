@@ -10,10 +10,12 @@ interface IProps {
   playbackId: string;
   widthRatio: number;
   heightRatio: number;
+  blurHashBase64?: string;
 }
 
-export const VideoPlayer: FC<IProps> = (props) => {
-  const { className, playbackId, widthRatio, heightRatio } = props;
+export const VideoPlayer: FC<IProps> = async (props) => {
+  const { className, playbackId, widthRatio, heightRatio, blurHashBase64 } =
+    props;
 
   return (
     <MuxVideo
@@ -21,6 +23,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
       controls={false}
       playsInline
       streamType='on-demand'
+      placeholder={blurHashBase64}
       playbackId={playbackId}
       autoPlay='muted'
       loop

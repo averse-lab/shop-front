@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -24,17 +25,16 @@ import {
 
 type Params = { slug: string; category: string; lang: Locale };
 
-// export async function generateStaticParams() {
-//   const products = await getProducts({ lang: "EN" });
+async function getBlurHash(playbackId: string | undefined) {
+  if (!playbackId) {
+    return;
+  }
 
-//   return I18N_CONFIG.locales.reduce<Params[]>((staticParams, curr) => {
-//     products.forEach(({ productType, handle }) => {
-//       staticParams.push({ lang: curr, category: productType, slug: handle });
-//     });
+  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
+    await muxBlurHash(playbackId);
 
-//     return staticParams;
-//   }, []);
-// }
+  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
+}
 
 export async function generateMetadata({
   params,
@@ -92,6 +92,13 @@ const ProductPage: FC<IProps> = async (props) => {
   if (product === undefined) {
     notFound();
   }
+
+  const firstVideoBlurData = await getBlurHash(
+    product.firstAdditionalVideoID?.value,
+  );
+  const secondVideoBlurData = await getBlurHash(
+    product.secondAdditionalVideoID?.value,
+  );
 
   return (
     <>
@@ -154,13 +161,15 @@ const ProductPage: FC<IProps> = async (props) => {
         isProductWithMultipleAdditionalVideos(product) ? (
           <ProductMultipleAdditionalVideos
             firstVideoPlaybackId={product.firstAdditionalVideoID.value}
+            firstVideoBlurHashBase64={firstVideoBlurData?.blurHashBase64}
+            secondVideoBlurHashBase64={secondVideoBlurData?.blurHashBase64}
             firstVideoWidthRatio={Number(
               product.firstAdditionalVideoWidthRatio.value,
             )}
             firstVideoHeightRatio={Number(
               product.firstAdditionalVideoHeightRatio.value,
             )}
-            firstVideodDescription={
+            firstVideoDescription={
               product.firstAdditionalVideoDescription.value
             }
             secondVideoPlaybackId={product.secondAdditionalVideoID.value}
@@ -170,10 +179,10 @@ const ProductPage: FC<IProps> = async (props) => {
             secondVideoHeightRatio={Number(
               product.secondAdditionalVideoHeightRatio.value,
             )}
-            secondVideodDescription={
+            secondVideoDescription={
               product.secondAdditionalVideoDescription.value
             }
-            inversedLayout={
+            reversedLayout={
               product.additionalVideosLayout.value ===
               "player to the right / description to the left"
             }
@@ -184,7 +193,7 @@ const ProductPage: FC<IProps> = async (props) => {
             widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
             heightRatio={Number(product.firstAdditionalVideoHeightRatio.value)}
             description={product.firstAdditionalVideoDescription.value}
-            inversedLayout={
+            reversedLayout={
               product.additionalVideosLayout.value ===
               "player to the right / description to the left"
             }

@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
@@ -17,6 +18,13 @@ type Params = {
 type IProps = {
   params: Params;
 };
+
+async function getBlurHash(playbackId: string) {
+  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
+    await muxBlurHash(playbackId);
+
+  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
+}
 
 export async function generateMetadata({
   params,
@@ -41,6 +49,8 @@ const AboutPage: FC<IProps> = async (props) => {
 
   const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
 
+  const blurData = await getBlurHash(playbackId);
+
   const dictionary = await getDictionary(lang);
 
   return (
@@ -58,6 +68,7 @@ const AboutPage: FC<IProps> = async (props) => {
           playbackId={playbackId}
           heightRatio={heightRatio}
           widthRatio={widthRatio}
+          blurHashBase64={blurData.blurHashBase64}
         />
         <p>{dictionary.about.paragraph1}</p>
         <p className={clsx("mb-4")}>{dictionary.about.paragraph2}</p>

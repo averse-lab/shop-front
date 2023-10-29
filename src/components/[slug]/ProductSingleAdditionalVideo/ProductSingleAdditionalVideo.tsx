@@ -10,11 +10,11 @@ type IProps = {
   widthRatio: number;
   heightRatio: number;
   description: string;
-  inversedLayout: boolean;
+  reversedLayout: boolean;
 };
 
 export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
-  const { playbackId, widthRatio, heightRatio, description, inversedLayout } =
+  const { playbackId, widthRatio, heightRatio, description, reversedLayout } =
     props;
 
   return (
@@ -22,7 +22,7 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
       className={clsx(
         "px-6 py-8 lg:min-h-screen lg:px-12",
         "flex flex-col items-center gap-4 lg:justify-center lg:gap-24",
-        inversedLayout ? "lg:flex-row-reverse" : "lg:flex-row",
+        reversedLayout ? "lg:flex-row-reverse" : "lg:flex-row",
         "bg-black",
         "text-white",
       )}

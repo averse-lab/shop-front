@@ -9,27 +9,31 @@ import s from "./_internal/ProductMultipleAdditionalVideos.module.scss";
 
 type IProps = {
   firstVideoPlaybackId: string;
+  firstVideoBlurHashBase64?: string;
   firstVideoWidthRatio: number;
   firstVideoHeightRatio: number;
-  firstVideodDescription: string;
+  firstVideoDescription: string;
   secondVideoPlaybackId: string;
+  secondVideoBlurHashBase64?: string;
   secondVideoWidthRatio: number;
   secondVideoHeightRatio: number;
-  secondVideodDescription: string;
-  inversedLayout: boolean;
+  secondVideoDescription: string;
+  reversedLayout: boolean;
 };
 
 export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
   const {
     firstVideoPlaybackId,
+    firstVideoBlurHashBase64,
     firstVideoWidthRatio,
     firstVideoHeightRatio,
-    firstVideodDescription,
+    firstVideoDescription,
     secondVideoPlaybackId,
+    secondVideoBlurHashBase64,
     secondVideoWidthRatio,
     secondVideoHeightRatio,
-    secondVideodDescription,
-    inversedLayout,
+    secondVideoDescription,
+    reversedLayout,
   } = props;
 
   return (
@@ -44,9 +48,9 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
       <div
         className={clsx(
           "flex flex-col items-center gap-4",
-          inversedLayout
+          reversedLayout
             ? [
-                s["multiple-additional-videos__wrapper--inversed"],
+                s["multiple-additional-videos__wrapper--reversed"],
                 "lg:flex-row-reverse",
               ]
             : [s["multiple-additional-videos__wrapper"], "lg:flex-row"],
@@ -56,7 +60,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           className={clsx(
             s[
               `multiple-additional-videos__player--${
-                inversedLayout ? "right" : "left"
+                reversedLayout ? "right" : "left"
               }`
             ],
             "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[1000px]",
@@ -65,19 +69,20 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           playbackId={firstVideoPlaybackId}
           widthRatio={firstVideoWidthRatio}
           heightRatio={firstVideoHeightRatio}
+          blurHashBase64={firstVideoBlurHashBase64}
         />
         <RichTextRenderer
           className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
-          richText={firstVideodDescription}
+          richText={firstVideoDescription}
         />
       </div>
       <div
         className={clsx(
           "lg:-mt-[25%]",
           "flex flex-col items-center gap-4",
-          inversedLayout
+          reversedLayout
             ? [
-                s["multiple-additional-videos__wrapper--inversed"],
+                s["multiple-additional-videos__wrapper--reversed"],
                 "lg:flex-row",
               ]
             : [s["multiple-additional-videos__wrapper"], "lg:flex-row-reverse"],
@@ -87,7 +92,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           className={clsx(
             s[
               `multiple-additional-videos__player--${
-                inversedLayout ? "left" : "right"
+                reversedLayout ? "left" : "right"
               }`
             ],
             "shrink-0",
@@ -96,10 +101,11 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
           heightRatio={secondVideoHeightRatio}
+          blurHashBase64={secondVideoBlurHashBase64}
         />
         <RichTextRenderer
           className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
-          richText={secondVideodDescription}
+          richText={secondVideoDescription}
         />
       </div>
     </div>
