@@ -18,8 +18,8 @@ import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
 import {
-  isProductWithSingleAdditionalVideo,
   isProductWithMultipleAdditionalVideos,
+  isProductWithSingleAdditionalVideo,
 } from "./_internal/ProductPage.utils";
 
 type Params = { slug: string; category: string; lang: Locale };
@@ -50,7 +50,7 @@ export async function generateMetadata({
   const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
 
   return {
-    title: product.seo.title || product.title,
+    title: `${product.seo.title || product.title} | Averse`,
     description: product.seo.description || product.description,
     robots: {
       index: indexable,

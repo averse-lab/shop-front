@@ -21,10 +21,22 @@ import { ANIMATIONS } from "./_internal/CategoryPage.constants";
 import { CATEGORIES } from "../_internal/ShopPage.constants";
 import { getCategoryFromCategoryUrlSegment } from "../_internal/ShopPage.utils";
 
-export const metadata: Metadata = {
-  title: "Averse - Shop",
-  description: "Shop for products in the store.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string; lang: Locale };
+}): Promise<Metadata> {
+  const dictionary = await getDictionary(params.lang);
+
+  return {
+    title: `${dictionary.pages.shop} | Averse`,
+    description: dictionary.about.paragraph1,
+    openGraph: {
+      title: `${dictionary.pages.shop} | Averse`,
+      description: dictionary.about.paragraph1,
+    },
+  };
+}
 
 type Params = {
   category: string;

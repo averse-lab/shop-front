@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import { clsx } from "clsx";
+import { Metadata } from "next";
 
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
@@ -16,6 +17,23 @@ type Params = {
 type IProps = {
   params: Params;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string; lang: Locale };
+}): Promise<Metadata> {
+  const dictionary = await getDictionary(params.lang);
+
+  return {
+    title: `${dictionary.about.title} | Averse`,
+    description: dictionary.about.paragraph1,
+    openGraph: {
+      title: `${dictionary.about.title} | Averse`,
+      description: dictionary.about.paragraph1,
+    },
+  };
+}
 
 const AboutPage: FC<IProps> = async (props) => {
   const { params } = props;
