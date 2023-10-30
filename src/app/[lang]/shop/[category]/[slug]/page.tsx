@@ -14,7 +14,6 @@ import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { PAGES } from "@lib/routing/constants";
 import { getProduct } from "@lib/shopify";
-import { HIDDEN_PRODUCT_TAG } from "@lib/shopify/constants";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
