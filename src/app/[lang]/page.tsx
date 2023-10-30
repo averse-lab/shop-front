@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
+import { Metadata } from "next";
 
 import { Button } from "@components/Button/Button";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
@@ -14,6 +15,35 @@ import { PAGES } from "@lib/routing/constants";
 import { HOME_VIDEO } from "./_internal/HomePage.constants";
 import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
 
+export async function generateStaticParams() {
+  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
+}
+
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang } = params;
+
+  const dictionary = await getDictionary(lang);
+  const { metadata } = dictionary.home;
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    twitter: {
+      card: "summary",
+      title: metadata.title,
+      description: metadata.cardsDescription,
+      images: {
+        url: "/images/open-graph/twitter-cards.webp",
+        alt: lang === "en" ? "Averse logo" : "Logo Averse",
+        type: "image/webp",
+        height: 1024,
+        width: 1024,
+      },
+    },
+  };
+}
+
 type Params = {
   lang: Locale;
 };
@@ -21,10 +51,6 @@ type Params = {
 type IProps = {
   params: Params;
 };
-
-export async function generateStaticParams() {
-  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
-}
 
 async function getBlurHash(playbackId: string) {
   const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =

@@ -14,7 +14,12 @@
     "allProducts": "All Products"
   },
   "home": {
-    "enterWebsite": "Enter_website"
+    "enterWebsite": "Enter_website",
+    "metadata": {
+      "title": "Averse",
+      "description": "Jewelry atelier - Design by Matthieu Braccini and made in France. Averse draws its inspiration from the exploration of the spectrum of human emotions",
+      "cardsDescription": "Jewelry atelier - Design by Matthieu Braccini and made in France."
+    }
   },
   "product": {
     "size": "Size",

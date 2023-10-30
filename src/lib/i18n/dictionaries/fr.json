@@ -14,7 +14,12 @@
     "allProducts": "Tous les produits"
   },
   "home": {
-    "enterWebsite": "Enter_website"
+    "enterWebsite": "Enter_website",
+    "metadata": {
+      "title": "Averse",
+      "description": "Atelier de joaillerie - Design par Matthieu Braccini et fabrication en France. Averse puise son inspiration dans l'exploration du spectre des émotions.",
+      "cardsDescription": "Atelier de joaillerie - Bijoux designés par Matthieu Braccini et fabriqués en France."
+    }
   },
   "product": {
     "size": "Taille",
