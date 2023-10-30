@@ -15,7 +15,7 @@ import { Dropdown } from "@components/Dropdown/Dropdown";
 import { Dictionary } from "@lib/i18n/types";
 import { Product, ProductVariant } from "@lib/shopify/types";
 
-import { addItemAction } from "./_internal/ProductIntercative";
+import { addItemAction } from "./_internal/ProductIntercative.actions";
 
 type IProps = {
   variants: ProductVariant[];
@@ -113,7 +113,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
             {variants[selectedIndex].currentlyNotInStock
               ? `${dictionary.product.madeToOrder} ${
                   shippingDelays
-                    ? `${dictionary.product.notInStockCustom} ${shippingDelays} ${dictionary.product.forDelivery}`
+                    ? `${dictionary.product.notInStockCustom} ${shippingDelays}`
                     : dictionary.product.notInStock
                 }`
               : dictionary.product.inStock}

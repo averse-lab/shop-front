@@ -22,8 +22,7 @@
     "addToCart": "Add to cart",
     "madeToOrder": "This item is made to order.",
     "notInStock": "Please refer to the general terms and conditions of sale for production and delivery time.",
-    "notInStockCustom": "Please allow up to",
-    "forDelivery": "for delivery.",
+    "notInStockCustom": "Delivery time may vary between",
     "inStock": "This item is in stock"
   },
   "cart": {
