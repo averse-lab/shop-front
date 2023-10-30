@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -19,37 +18,13 @@ import { getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import { ANIMATIONS } from "./_internal/CategoryPage.constants";
+import {
+  getMetadataDescription,
+  getMetadataTitle,
+  getMetadataTwitterDescription,
+} from "./_internal/CategoryPage.utils";
 import { CATEGORIES } from "../_internal/ShopPage.constants";
 import { getCategoryFromCategoryUrlSegment } from "../_internal/ShopPage.utils";
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string; lang: Locale };
-}): Promise<Metadata> {
-  const dictionary = await getDictionary(params.lang);
-
-  return {
-    title: `${dictionary.pages.shop} | Averse`,
-    description: dictionary.about.paragraph1,
-    openGraph: {
-      title: `${dictionary.pages.shop} | Averse`,
-      description: dictionary.about.paragraph1,
-    },
-  };
-}
-
-type Params = {
-  category: string;
-  lang: Locale;
-};
-
-async function getBlurHash(playbackId: string) {
-  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
-    await muxBlurHash(playbackId);
-
-  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
-}
 
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.reduce<Params[]>((staticParams, locale) => {
@@ -63,19 +38,55 @@ export async function generateStaticParams() {
   }, []);
 }
 
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang, category } = params;
+
+  const dictionary = await getDictionary(lang);
+  const { metadata } = dictionary.shop;
+
+  return {
+    title: getMetadataTitle(category, metadata),
+    description: getMetadataDescription(category, metadata),
+    twitter: {
+      card: "summary",
+      title: getMetadataTitle(category, metadata),
+      description: getMetadataTwitterDescription(category, metadata),
+      images: {
+        url: "/images/open-graph/twitter-cards.webp",
+        alt: lang === "en" ? "Averse logo" : "Logo Averse",
+        type: "image/webp",
+        height: 1024,
+        width: 1024,
+      },
+    },
+    openGraph: {
+      type: "website",
+      title: getMetadataTitle(category, metadata),
+      description: getMetadataTwitterDescription(category, metadata),
+      url: `/${lang}/${PAGES.shop.url}/${category}`,
+      images: {
+        url: "/images/open-graph/facebook-og.webp",
+        alt: "Averse logo",
+        type: "image/webp",
+        height: 1024,
+        width: 1955,
+      },
+    },
+  };
+}
+
+type Params = {
+  category: string;
+  lang: Locale;
+};
+
 type IProps = {
   params: Params;
 };
 
 const CategoryPage: FC<IProps> = async (props) => {
   const { category: categoryUrlSegment, lang } = props.params;
-  const blurHashBase64AnimationsArray = await Promise.all(
-    ANIMATIONS.map(async (animation) => {
-      const { blurHashBase64 } = await getBlurHash(animation.playbackId);
-
-      return blurHashBase64;
-    }),
-  );
 
   const dictionary = await getDictionary(lang);
   const category = getCategoryFromCategoryUrlSegment(categoryUrlSegment);
@@ -156,9 +167,6 @@ const CategoryPage: FC<IProps> = async (props) => {
                     "outline outline-1 outline-neutral-500",
                   )}
                   playbackId={animation.playbackId}
-                  blurHashBase64={
-                    blurHashBase64AnimationsArray[animation.index]
-                  }
                   widthRatio={1}
                   heightRatio={1}
                 />,

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
+import { Metadata } from "next";
 
 import { Button } from "@components/Button/Button";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
@@ -14,6 +14,48 @@ import { PAGES } from "@lib/routing/constants";
 import { HOME_VIDEO } from "./_internal/HomePage.constants";
 import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
 
+export async function generateStaticParams() {
+  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
+}
+
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang } = params;
+
+  const dictionary = await getDictionary(lang);
+  const { metadata } = dictionary.home;
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    twitter: {
+      card: "summary",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      images: {
+        url: "/images/open-graph/twitter-cards.webp",
+        alt: lang === "en" ? "Averse logo" : "Logo Averse",
+        type: "image/webp",
+        height: 1024,
+        width: 1024,
+      },
+    },
+    openGraph: {
+      type: "website",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      url: `/`,
+      images: {
+        url: "/images/open-graph/facebook-og.webp",
+        alt: "Averse logo",
+        type: "image/webp",
+        height: 1024,
+        width: 1955,
+      },
+    },
+  };
+}
+
 type Params = {
   lang: Locale;
 };
@@ -22,22 +64,9 @@ type IProps = {
   params: Params;
 };
 
-export async function generateStaticParams() {
-  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
-}
-
-async function getBlurHash(playbackId: string) {
-  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
-    await muxBlurHash(playbackId);
-
-  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
-}
-
 const HomePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
-
-  const blurData = await getBlurHash(HOME_VIDEO.playbackId);
 
   const dictionary = await getDictionary(lang);
 
@@ -55,7 +84,6 @@ const HomePage: FC<IProps> = async (props) => {
         playbackId={HOME_VIDEO.playbackId}
         widthRatio={HOME_VIDEO.widthRatio}
         heightRatio={HOME_VIDEO.heightRatio}
-        blurHashBase64={blurData.blurHashBase64}
       />
       <Button
         element='link'

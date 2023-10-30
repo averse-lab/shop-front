@@ -11,13 +11,6 @@ import { DMSans } from "@lib/fonts";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Averse",
-  description: "Averse is a jewelery brand.",
-};
-
 type IProps = {
   params: { lang: Locale };
 } & PropsWithChildren;

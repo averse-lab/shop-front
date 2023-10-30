@@ -14,7 +14,31 @@
     "allProducts": "Tous les produits"
   },
   "home": {
-    "enterWebsite": "Enter_website"
+    "enterWebsite": "Enter_website",
+    "metadata": {
+      "title": "Averse",
+      "description": "Atelier de joaillerie - Design par Matthieu Braccini et fabrication en France. Averse puise son inspiration dans l'exploration du spectre des émotions.",
+      "twitterDescription": "Atelier de joaillerie - Bijoux designés par Matthieu Braccini et fabriqués en France."
+    }
+  },
+  "shop": {
+    "metadata": {
+      "rings": {
+        "title": "Bagues | Averse",
+        "description": "Découvrez la collection de bagues Averse. Créées à partir de métaux et de pierres précieuses - Design par Matthieu Braccini et fabrication en France.",
+        "twitterDescription": "Découvrez la collection de bagues Averse. Créées à partir de métaux et de pierres précieuses"
+      },
+      "necklaces": {
+        "title": "Colliers | Averse",
+        "description": "Découvrez la collection de colliers Averse. Créés à partir de métaux et de pierres précieuses - Design par Matthieu Braccini et fabrication en France.",
+        "twitterDescription": "Découvrez la collection de colliers Averse. Créés à partir de métaux et de pierres précieuses"
+      },
+      "allProducts": {
+        "title": "Boutique | Averse",
+        "description": "Découvrez la collection de bijoux Averse. Créés à partir de métaux et de pierres précieuses - Design par Matthieu Braccini et fabrication en France.",
+        "twitterDescription": "Découvrez la collection de bijoux Averse. Créés à partir de métaux et de pierres précieuses"
+      }
+    }
   },
   "product": {
     "size": "Taille",
@@ -41,6 +65,11 @@
     "paragraph4": "Les bijoux d'Averse, sont un concentré, un aperçu de cette exploration.",
     "paragraph5": "",
     "paragraph6": "Quand l’averse tombe, soudainement, On ne voit alors pas plus loin qu’à quelques mètres. On se retrouve isolé, dans ce moment à passer en solitaire. Mais une pluie si intense n’est que temporaire, les nuages se délestent de leurs larmes, et rétablissant le calme.",
-    "quote": "Personne ne verra vos larmes sous l'averse."
+    "quote": "Personne ne verra vos larmes sous l'averse.",
+    "metadata": {
+      "title": "À propos | Averse",
+      "description": "Découvrez la génèse d'Averse, son univers et les inspirations de son créateur Matthieu Braccini",
+      "twitterDescription": "Découvrez la génèse d'Averse, son univers et les inspirations de son créateur Matthieu Braccini"
+    }
   }
 }

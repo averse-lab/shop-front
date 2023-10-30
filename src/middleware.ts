@@ -3,6 +3,9 @@ import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
 import { I18N_CONFIG } from "@lib/i18n/config";
+import { PAGES } from "@lib/routing/constants";
+
+import { CATEGORIES } from "./app/[lang]/shop/_internal/ShopPage.constants";
 
 import type { NextRequest } from "next/server";
 
@@ -25,15 +28,25 @@ export function middleware(request: NextRequest) {
   const nextReq = request.nextUrl;
   const pathname = nextReq.pathname;
   const origin = nextReq.origin;
-
+  const locale = getLocale(request);
+  const pathnameIsPublicImages = pathname.startsWith("/images");
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}`),
   );
 
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
-
+  if (pathnameIsMissingLocale && !pathnameIsPublicImages) {
     return NextResponse.redirect(new URL(`/${locale}`, origin));
+  }
+
+  const shopRegExp = new RegExp(`\/(fr|en)\/${PAGES.shop.url}$`, "g");
+
+  if (pathname.match(shopRegExp)) {
+    return NextResponse.redirect(
+      new URL(
+        `/${locale}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`,
+        origin,
+      ),
+    );
   }
 }
 

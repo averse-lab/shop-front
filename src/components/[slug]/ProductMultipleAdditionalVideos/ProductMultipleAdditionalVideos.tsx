@@ -9,12 +9,10 @@ import s from "./_internal/ProductMultipleAdditionalVideos.module.scss";
 
 type IProps = {
   firstVideoPlaybackId: string;
-  firstVideoBlurHashBase64?: string;
   firstVideoWidthRatio: number;
   firstVideoHeightRatio: number;
   firstVideoDescription: string;
   secondVideoPlaybackId: string;
-  secondVideoBlurHashBase64?: string;
   secondVideoWidthRatio: number;
   secondVideoHeightRatio: number;
   secondVideoDescription: string;
@@ -24,12 +22,10 @@ type IProps = {
 export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
   const {
     firstVideoPlaybackId,
-    firstVideoBlurHashBase64,
     firstVideoWidthRatio,
     firstVideoHeightRatio,
     firstVideoDescription,
     secondVideoPlaybackId,
-    secondVideoBlurHashBase64,
     secondVideoWidthRatio,
     secondVideoHeightRatio,
     secondVideoDescription,
@@ -69,7 +65,6 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           playbackId={firstVideoPlaybackId}
           widthRatio={firstVideoWidthRatio}
           heightRatio={firstVideoHeightRatio}
-          blurHashBase64={firstVideoBlurHashBase64}
         />
         <RichTextRenderer
           className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
@@ -101,7 +96,6 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
           heightRatio={secondVideoHeightRatio}
-          blurHashBase64={secondVideoBlurHashBase64}
         />
         <RichTextRenderer
           className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}

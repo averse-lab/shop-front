@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
@@ -11,6 +10,44 @@ import { getDictionary } from "@lib/i18n/utils";
 
 import { ABOUT_VIDEO } from "./_internal/AboutPage.constants";
 
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang } = params;
+
+  const dictionary = await getDictionary(lang);
+  const { metadata } = dictionary.about;
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    twitter: {
+      card: "summary",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      images: {
+        url: "/images/open-graph/twitter-cards.webp",
+        alt: lang === "en" ? "Averse logo" : "Logo Averse",
+        type: "image/webp",
+        height: 1024,
+        width: 1024,
+      },
+    },
+    openGraph: {
+      type: "website",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      url: `/`,
+      images: {
+        url: "/images/open-graph/facebook-og.webp",
+        alt: "Averse logo",
+        type: "image/webp",
+        height: 1024,
+        width: 1955,
+      },
+    },
+  };
+}
+
 type Params = {
   lang: Locale;
 };
@@ -19,37 +56,11 @@ type IProps = {
   params: Params;
 };
 
-async function getBlurHash(playbackId: string) {
-  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
-    await muxBlurHash(playbackId);
-
-  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string; lang: Locale };
-}): Promise<Metadata> {
-  const dictionary = await getDictionary(params.lang);
-
-  return {
-    title: `${dictionary.about.title} | Averse`,
-    description: dictionary.about.paragraph1,
-    openGraph: {
-      title: `${dictionary.about.title} | Averse`,
-      description: dictionary.about.paragraph1,
-    },
-  };
-}
-
 const AboutPage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
   const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
-
-  const blurData = await getBlurHash(playbackId);
 
   const dictionary = await getDictionary(lang);
 
@@ -68,7 +79,6 @@ const AboutPage: FC<IProps> = async (props) => {
           playbackId={playbackId}
           heightRatio={heightRatio}
           widthRatio={widthRatio}
-          blurHashBase64={blurData.blurHashBase64}
         />
         <p>{dictionary.about.paragraph1}</p>
         <p className={clsx("mb-4")}>{dictionary.about.paragraph2}</p>

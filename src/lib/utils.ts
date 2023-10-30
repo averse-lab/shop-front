@@ -1,5 +1,7 @@
 import { FC, PropsWithChildren, createElement } from "react";
 
+import muxBlurHash from "@mux/blurhash";
+
 import { Locale } from "./i18n/types";
 import { SupportedLanguageCode } from "./shopify/types";
 
@@ -22,4 +24,11 @@ export const combineProviders = (
       return createElement(curr, null, acc);
     }, children);
   };
+};
+
+export const getBlurHash = async (playbackId: string) => {
+  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
+    await muxBlurHash(playbackId);
+
+  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
 };

@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -13,8 +12,8 @@ import { Slider } from "@components/Slider/Slider";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { PAGES } from "@lib/routing/constants";
 import { getProduct } from "@lib/shopify";
-import { HIDDEN_PRODUCT_TAG } from "@lib/shopify/constants";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
@@ -23,57 +22,49 @@ import {
   isProductWithSingleAdditionalVideo,
 } from "./_internal/ProductPage.utils";
 
-type Params = { slug: string; category: string; lang: Locale };
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang, slug } = params;
 
-async function getBlurHash(playbackId: string | undefined) {
-  if (!playbackId) {
-    return;
+  const languageCode = getSupportedLanguageCodeFromLocale(lang);
+  const product = await getProduct(slug, languageCode);
+
+  if (!product) {
+    return {};
   }
 
-  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
-    await muxBlurHash(playbackId);
-
-  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string; lang: Locale };
-}): Promise<Metadata> {
-  const languageCode = getSupportedLanguageCodeFromLocale(params.lang);
-  const product = await getProduct(params.slug, languageCode);
-
-  if (!product) return notFound();
-
-  const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  const { featuredImage, title, seo, description, productType } = product;
 
   return {
-    title: `${product.seo.title || product.title} | Averse`,
-    description: product.seo.description || product.description,
-    robots: {
-      index: indexable,
-      follow: indexable,
-      googleBot: {
-        index: indexable,
-        follow: indexable,
+    title: seo.title || `${title} | Averse`,
+    description: seo.description || description,
+    twitter: {
+      card: "summary",
+      title: seo.title || `${title} | Averse`,
+      description: seo.description || description,
+      images: {
+        url: featuredImage.url,
+        alt: featuredImage.altText,
+        height: featuredImage.height,
+        width: featuredImage.width,
       },
     },
-    openGraph: url
-      ? {
-          images: [
-            {
-              url,
-              width,
-              height,
-              alt,
-            },
-          ],
-        }
-      : null,
+    openGraph: {
+      type: "website",
+      title: seo.title || `${title} | Averse`,
+      description: seo.description || description,
+      url: `${lang}/${PAGES.shop.url}/${productType}/${slug}`,
+      images: {
+        url: featuredImage.url,
+        alt: featuredImage.altText,
+        height: featuredImage.height,
+        width: featuredImage.width,
+      },
+    },
   };
 }
+
+type Params = { slug: string; category: string; lang: Locale };
 
 interface IProps {
   params: Params;
@@ -92,13 +83,6 @@ const ProductPage: FC<IProps> = async (props) => {
   if (product === undefined) {
     notFound();
   }
-
-  const firstVideoBlurData = await getBlurHash(
-    product.firstAdditionalVideoID?.value,
-  );
-  const secondVideoBlurData = await getBlurHash(
-    product.secondAdditionalVideoID?.value,
-  );
 
   return (
     <>
@@ -161,8 +145,6 @@ const ProductPage: FC<IProps> = async (props) => {
         isProductWithMultipleAdditionalVideos(product) ? (
           <ProductMultipleAdditionalVideos
             firstVideoPlaybackId={product.firstAdditionalVideoID.value}
-            firstVideoBlurHashBase64={firstVideoBlurData?.blurHashBase64}
-            secondVideoBlurHashBase64={secondVideoBlurData?.blurHashBase64}
             firstVideoWidthRatio={Number(
               product.firstAdditionalVideoWidthRatio.value,
             )}
