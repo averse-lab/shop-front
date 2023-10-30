@@ -27,12 +27,13 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { metadata } = dictionary.home;
 
   return {
+    metadataBase: new URL(process.env.BASE_URL || "https://averse-paris.com"),
     title: metadata.title,
     description: metadata.description,
     twitter: {
       card: "summary",
       title: metadata.title,
-      description: metadata.cardsDescription,
+      description: metadata.twitterDescription,
       images: {
         url: "/images/open-graph/twitter-cards.webp",
         alt: lang === "en" ? "Averse logo" : "Logo Averse",

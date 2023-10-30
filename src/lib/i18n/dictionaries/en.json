@@ -18,7 +18,26 @@
     "metadata": {
       "title": "Averse",
       "description": "Jewelry atelier - Design by Matthieu Braccini and made in France. Averse draws its inspiration from the exploration of the spectrum of human emotions",
-      "cardsDescription": "Jewelry atelier - Design by Matthieu Braccini and made in France."
+      "twitterDescription": "Jewelry atelier - Design by Matthieu Braccini and made in France."
+    }
+  },
+  "shop": {
+    "metadata": {
+      "rings": {
+        "title": "Averse - Rings",
+        "description": "Discover the Averse rings collection. Created from precious metals and stones - Design by Matthieu Braccini and made in France",
+        "twitterDescription": "Discover the Averse rings collection. Created from precious metals and stones"
+      },
+      "necklaces": {
+        "title": "Averse - Necklaces",
+        "description": "Discover the Averse necklaces collection. Created from precious metals and stones - Design by Matthieu Braccini and made in France",
+        "twitterDescription": "Discover the Averse necklaces collection. Created from precious metals and stones"
+      },
+      "allProducts": {
+        "title": "Averse - Shop",
+        "description": "Discover the Averse jewels collection. Created from precious metals and stones - Design by Matthieu Braccini and made in France",
+        "twitterDescription": "Discover the Averse jewels collection. Created from precious metals and stones"
+      }
     }
   },
   "product": {

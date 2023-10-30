@@ -18,7 +18,26 @@
     "metadata": {
       "title": "Averse",
       "description": "Atelier de joaillerie - Design par Matthieu Braccini et fabrication en France. Averse puise son inspiration dans l'exploration du spectre des émotions.",
-      "cardsDescription": "Atelier de joaillerie - Bijoux designés par Matthieu Braccini et fabriqués en France."
+      "twitterDescription": "Atelier de joaillerie - Bijoux designés par Matthieu Braccini et fabriqués en France."
+    }
+  },
+  "shop": {
+    "metadata": {
+      "rings": {
+        "title": "Averse - Bagues",
+        "description": "Découvrez la collection de bagues Averse. Créées à partir de métaux et de pierres précieuses - Design par Matthieu Braccini et fabrication en France.",
+        "twitterDescription": "Découvrez la collection de bagues Averse. Créées à partir de métaux et de pierres précieuses"
+      },
+      "necklaces": {
+        "title": "Averse - Colliers",
+        "description": "Découvrez la collection de colliers Averse. Créés à partir de métaux et de pierres précieuses - Design par Matthieu Braccini et fabrication en France.",
+        "twitterDescription": "Découvrez la collection de colliers Averse. Créés à partir de métaux et de pierres précieuses"
+      },
+      "allProducts": {
+        "title": "Averse - Boutique",
+        "description": "Découvrez la collection de bijoux Averse. Créés à partir de métaux et de pierres précieuses - Design par Matthieu Braccini et fabrication en France.",
+        "twitterDescription": "Découvrez la collection de bijoux Averse. Créés à partir de métaux et de pierres précieuses"
+      }
     }
   },
   "product": {

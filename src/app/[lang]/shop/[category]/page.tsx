@@ -19,22 +19,45 @@ import { getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import { ANIMATIONS } from "./_internal/CategoryPage.constants";
+import {
+  getMetadataDescription,
+  getMetadataTitle,
+  getMetadataTwitterDescription,
+} from "./_internal/CategoryPage.utils";
 import { CATEGORIES } from "../_internal/ShopPage.constants";
 import { getCategoryFromCategoryUrlSegment } from "../_internal/ShopPage.utils";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string; lang: Locale };
-}): Promise<Metadata> {
-  const dictionary = await getDictionary(params.lang);
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang, category } = params;
+
+  const dictionary = await getDictionary(lang);
 
   return {
-    title: `${dictionary.pages.shop} | Averse`,
-    description: dictionary.about.paragraph1,
+    metadataBase: new URL(process.env.BASE_URL || "https://averse-paris.com"),
+    title: getMetadataTitle(category, dictionary.shop.metadata),
+    description: getMetadataDescription(category, dictionary.shop.metadata),
+    twitter: {
+      card: "summary",
+      title: getMetadataTitle(category, dictionary.shop.metadata),
+      description: getMetadataTwitterDescription(
+        category,
+        dictionary.shop.metadata,
+      ),
+      images: {
+        url: "/images/open-graph/twitter-cards.webp",
+        alt: lang === "en" ? "Averse logo" : "Logo Averse",
+        type: "image/webp",
+        height: 1024,
+        width: 1024,
+      },
+    },
     openGraph: {
-      title: `${dictionary.pages.shop} | Averse`,
-      description: dictionary.about.paragraph1,
+      title: getMetadataTitle(category, dictionary.shop.metadata),
+      description: getMetadataTwitterDescription(
+        category,
+        dictionary.shop.metadata,
+      ),
     },
   };
 }
