@@ -99,7 +99,7 @@ const ProductPage: FC<IProps> = async (props) => {
               },
             }}
           >
-            {product.images.map((image) => (
+            {product.images.map((image, idx) => (
               <div
                 key={image.url}
                 className={clsx("grid auto-rows-fr grid-cols-1")}
@@ -112,7 +112,8 @@ const ProductPage: FC<IProps> = async (props) => {
                     src={image.url}
                     fill
                     className={clsx("aspect-square object-cover object-center")}
-                    priority
+                    priority={idx < 2}
+                    sizes='(min-width: 1024px) 50vw, 100vw'
                   />
                 </div>
               </div>
