@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import muxBlurHash from "@mux/blurhash";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
@@ -27,7 +26,6 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { metadata } = dictionary.home;
 
   return {
-    metadataBase: new URL(process.env.BASE_URL || "https://averse-paris.com"),
     title: metadata.title,
     description: metadata.description,
     twitter: {
@@ -42,6 +40,19 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
         width: 1024,
       },
     },
+    openGraph: {
+      type: "website",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      url: `/`,
+      images: {
+        url: "/images/open-graph/facebook-og.webp",
+        alt: "Averse logo",
+        type: "image/webp",
+        height: 1024,
+        width: 1955,
+      },
+    },
   };
 }
 
@@ -53,18 +64,9 @@ type IProps = {
   params: Params;
 };
 
-async function getBlurHash(playbackId: string) {
-  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
-    await muxBlurHash(playbackId);
-
-  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
-}
-
 const HomePage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
-
-  const blurData = await getBlurHash(HOME_VIDEO.playbackId);
 
   const dictionary = await getDictionary(lang);
 
@@ -82,7 +84,6 @@ const HomePage: FC<IProps> = async (props) => {
         playbackId={HOME_VIDEO.playbackId}
         widthRatio={HOME_VIDEO.widthRatio}
         heightRatio={HOME_VIDEO.heightRatio}
-        blurHashBase64={blurData.blurHashBase64}
       />
       <Button
         element='link'
