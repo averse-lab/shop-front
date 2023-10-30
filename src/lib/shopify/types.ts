@@ -86,6 +86,11 @@ export type ProductVariant = {
   price: Money;
 };
 
+export type Policy = {
+  title: string;
+  body: string;
+};
+
 export type SEO = {
   title: string;
   description: string;
@@ -177,7 +182,11 @@ export type ShopifyCartOperation = {
 };
 
 export type ShopifyCreateCartOperation = {
-  data: { cartCreate: { cart: ShopifyCart } };
+  data: {
+    cartCreate: {
+      cart: ShopifyCart;
+    };
+  };
 };
 
 export type ShopifyAddToCartOperation = {
@@ -266,8 +275,13 @@ export type ShopifyMenuOperation = {
 };
 
 export type ShopifyPageOperation = {
-  data: { pageByHandle: Page };
-  variables: { handle: string };
+  data: {
+    pageByHandle: Page;
+  };
+  variables: {
+    handle: string;
+    lang: SupportedLanguageCode;
+  };
 };
 
 export type ShopifyPagesOperation = {
@@ -277,7 +291,9 @@ export type ShopifyPagesOperation = {
 };
 
 export type ShopifyProductOperation = {
-  data: { product: ShopifyProduct };
+  data: {
+    product: ShopifyProduct;
+  };
   variables: {
     handle: string;
     lang: SupportedLanguageCode;
@@ -301,6 +317,27 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    lang: SupportedLanguageCode;
+  };
+};
+
+export type PolicyKey =
+  | "privacyPolicy"
+  | "termsOfService"
+  | "refundPolicy"
+  | "shippingPolicy"
+  | "subscriptionPolicy";
+
+export type ShopifyPolicyOperation<Key extends PolicyKey> = {
+  data: {
+    shop: {
+      [key in Key]: {
+        title: string;
+        body: string;
+      };
+    };
+  };
+  variables: {
     lang: SupportedLanguageCode;
   };
 };

@@ -3,8 +3,10 @@
     "home": "Accueil",
     "shop": "Boutique",
     "about": "À propos",
-    "legalNotices": "Mentions légales",
-    "termsAndConditions": "Conditions Générales de Vente"
+    "termsOfService": "Conditions d'utilisation",
+    "termsOfSale": "Conditions générales de vente",
+    "privacyPolicy": "Politique de Confidentialité",
+    "legalNotice": "Mentions légales"
   },
   "categories": {
     "rings": "Bagues",
@@ -41,10 +43,5 @@
     "paragraph5": "",
     "paragraph6": "Quand l’averse tombe, soudainement, On ne voit alors pas plus loin qu’à quelques mètres. On se retrouve isolé, dans ce moment à passer en solitaire. Mais une pluie si intense n’est que temporaire, les nuages se délestent de leurs larmes, et rétablissant le calme.",
     "quote": "Personne ne verra vos larmes sous l'averse."
-  },
-  "legalNotices": {
-    "editor": "Editeur",
-    "publicationDirector": "Directeur de la publication",
-    "host": "Hebergeur"
   }
 }

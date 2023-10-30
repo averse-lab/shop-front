@@ -3,8 +3,10 @@
     "home": "Home",
     "shop": "Shop",
     "about": "About",
-    "legalNotices": "Legal notices",
-    "termsAndConditions": "Terms and Conditions"
+    "termsOfService": "Terms of Service",
+    "termsOfSale": "Terms of Sale",
+    "privacyPolicy": "Privacy Policy",
+    "legalNotice": "Legal Notice"
   },
   "categories": {
     "rings": "Rings",
@@ -41,10 +43,5 @@
     "paragraph5": "\"Une averse\" is a downpour, a sudden, and unexpected heavy fall of rain.",
     "paragraph6": "When the downpour falls, suddenly, we can see no further than a few meters. We find ourselves isolated, in this moment to endure in solitude. But such intense rain is only temporary; the clouds release their tears, restoring calm.",
     "quote": "Personne ne verra vos larmes sous l'averse."
-  },
-  "legalNotices": {
-    "editor": "Editor",
-    "publicationDirector": "Publication director",
-    "host": "Host"
   }
 }
