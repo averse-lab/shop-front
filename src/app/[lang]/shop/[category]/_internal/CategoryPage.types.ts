@@ -1,4 +1,5 @@
 export type Animation = {
   playbackId: string;
-  index: number;
+  gridIndex: number;
+  gridDesktopIndex: number;
 };

@@ -41,7 +41,7 @@ export const ProductPreview: FC<IProps> = (props) => {
         alt={`photography of ${title}`}
         fill
         sizes='(min-width: 1024px) 25vw, 50vw'
-        priority={index < 5}
+        priority={index < 6}
       />
       <p className={clsx(s["product-preview__name"], "uppercase")}>{title}</p>
       <p className={clsx("text-sm font-light text-neutral-600")}>

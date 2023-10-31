@@ -5,10 +5,10 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { v4 } from "uuid";
 
+import { Animation } from "@components/[category]/Animation/Animation";
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
@@ -140,41 +140,29 @@ const CategoryPage: FC<IProps> = async (props) => {
             "border-b border-t border-neutral-500",
           )}
         >
-          {products.reduce<JSX.Element[]>((gridElements, product, idx) => {
-            gridElements.push(
-              <ProductPreview
-                key={product.id}
-                className={clsx("outline outline-1 outline-neutral-500")}
-                href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                imageUrl={product.images[0].url}
-                title={product.title}
-                price={product.priceRange.minVariantPrice.amount}
-                currency={product.priceRange.maxVariantPrice.currencyCode}
+          {products.map((product, idx) => (
+            <ProductPreview
+              key={product.id}
+              className={clsx("outline outline-1 outline-neutral-500")}
+              href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+              imageUrl={product.images[0].url}
+              title={product.title}
+              price={product.priceRange.minVariantPrice.amount}
+              currency={product.priceRange.maxVariantPrice.currencyCode}
+              index={idx}
+            />
+          ))}
+          {ANIMATIONS.map((animation, idx) => {
+            return (
+              <Animation
+                key={v4()}
+                playbackId={animation.playbackId}
+                gridIndex={animation.gridIndex}
+                gridDesktopIndex={animation.gridDesktopIndex}
                 index={idx}
-              />,
+              />
             );
-
-            const animation = ANIMATIONS.find(
-              (animation) => animation.index === idx,
-            );
-
-            if (animation !== undefined) {
-              gridElements.push(
-                <VideoPlayer
-                  key={v4()}
-                  className={clsx(
-                    "h-full w-full",
-                    "outline outline-1 outline-neutral-500",
-                  )}
-                  playbackId={animation.playbackId}
-                  widthRatio={1}
-                  heightRatio={1}
-                />,
-              );
-            }
-
-            return gridElements;
-          }, [])}
+          })}
         </div>
       </div>
     </>

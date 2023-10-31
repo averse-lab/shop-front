@@ -112,7 +112,7 @@ const ProductPage: FC<IProps> = async (props) => {
                     src={image.url}
                     fill
                     className={clsx("aspect-square object-cover object-center")}
-                    priority={idx < 2}
+                    priority={idx <= 2}
                     sizes='(min-width: 1024px) 50vw, 100vw'
                   />
                 </div>

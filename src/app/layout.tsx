@@ -2,8 +2,6 @@ import "@averse/app/globals.css";
 
 import { FC, PropsWithChildren } from "react";
 
-import Head from "next/head";
-
 import { getDictionary } from "@lib/i18n/utils";
 
 import type { Metadata } from "next";
@@ -15,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     robots: "no-index",
     metadataBase: new URL(process.env.BASE_URL || "https://averse-paris.com"),
+    themeColor: "#000000",
     title: metadata.title,
     description: metadata.description,
     twitter: {
@@ -48,15 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const RootLayout: FC<PropsWithChildren> = (props) => {
   const { children } = props;
 
-  return (
-    <>
-      <Head>
-        <link rel='icon' href='/favicon.ico' sizes='any' />
-        <meta name='theme-color' content='#000000' />
-      </Head>
-      {children}
-    </>
-  );
+  return children;
 };
 
 export default RootLayout;
