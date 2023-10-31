@@ -137,7 +137,6 @@ const CategoryPage: FC<IProps> = async (props) => {
           className={clsx(
             "z-0",
             "grid auto-rows-[1fr] grid-cols-2 gap-px lg:grid-cols-4",
-            "border-b border-t border-neutral-500",
           )}
         >
           {products.map((product, idx) => (
