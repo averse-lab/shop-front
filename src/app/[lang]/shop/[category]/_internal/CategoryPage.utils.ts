@@ -1,5 +1,7 @@
 import { Dictionary } from "@lib/i18n/types";
 
+import { ANIMATIONS } from "./CategoryPage.constants";
+import { Animation } from "./CategoryPage.types";
 import { CATEGORIES } from "../../_internal/ShopPage.constants";
 
 export const getMetadataTitle = (
@@ -47,5 +49,20 @@ export const getMetadataTwitterDescription = (
       return metadata.necklaces.description;
     default:
       return metadata.allProducts.description;
+  }
+};
+
+export const getAnimationsFromCategoryUrlSegment = (
+  categoryUrlSegment: string,
+): Animation[] => {
+  switch (categoryUrlSegment) {
+    case CATEGORIES.allProducts.url:
+      return ANIMATIONS.allProducts;
+    case CATEGORIES.rings.url:
+      return ANIMATIONS.rings;
+    case CATEGORIES.necklaces.url:
+      return ANIMATIONS.necklaces;
+    default:
+      return ANIMATIONS.allProducts;
   }
 };

@@ -17,8 +17,8 @@ import { PAGES } from "@lib/routing/constants";
 import { getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
-import { ANIMATIONS } from "./_internal/CategoryPage.constants";
 import {
+  getAnimationsFromCategoryUrlSegment,
   getMetadataDescription,
   getMetadataTitle,
   getMetadataTwitterDescription,
@@ -151,17 +151,19 @@ const CategoryPage: FC<IProps> = async (props) => {
               index={idx}
             />
           ))}
-          {ANIMATIONS.map((animation, idx) => {
-            return (
-              <Animation
-                key={v4()}
-                playbackId={animation.playbackId}
-                gridIndex={animation.gridIndex}
-                gridDesktopIndex={animation.gridDesktopIndex}
-                index={idx}
-              />
-            );
-          })}
+          {getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(
+            (animation, idx) => {
+              return (
+                <Animation
+                  key={v4()}
+                  playbackId={animation.playbackId}
+                  gridIndex={animation.gridIndex}
+                  gridDesktopIndex={animation.gridDesktopIndex}
+                  index={idx}
+                />
+              );
+            },
+          )}
         </div>
       </div>
     </>

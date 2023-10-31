@@ -9,8 +9,8 @@ import { getCustomGridPositionStyle } from "./_internal/Animation.utils";
 type IProps = {
   playbackId: string;
   index: number;
-  gridIndex: number;
-  gridDesktopIndex: number;
+  gridIndex: number | undefined;
+  gridDesktopIndex: number | undefined;
 };
 
 export const Animation: FC<IProps> = (props) => {
