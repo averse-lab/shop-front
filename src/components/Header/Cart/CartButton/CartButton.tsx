@@ -9,13 +9,18 @@ interface IProps {
   className?: string;
   quantity?: number;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  ariaLabel: string;
 }
 
 export const CartButton: FC<IProps> = (props) => {
-  const { className, quantity, onClick } = props;
+  const { className, quantity, onClick, ariaLabel } = props;
 
   return (
-    <button onClick={onClick} className={clsx(className, "relative")}>
+    <button
+      onClick={onClick}
+      className={clsx(className, "relative")}
+      aria-label={ariaLabel}
+    >
       <ShoppingBagIcon
         className={clsx(
           "h-6 w-6",

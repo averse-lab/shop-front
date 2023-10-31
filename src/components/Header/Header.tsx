@@ -20,6 +20,7 @@ interface IProps {
 
 export const Header: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
+  const { averseHomeAriaLabel } = dictionary.header;
 
   const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
     ({ url, i18nKey }) => ({
@@ -37,8 +38,16 @@ export const Header: FC<IProps> = (props) => {
         "bg-transparent",
       )}
     >
-      <BurgerMenu nav={nav} className={clsx("justify-self-start")} />
-      <Link className={clsx("justify-self-center")} href='/'>
+      <BurgerMenu
+        nav={nav}
+        className={clsx("justify-self-start")}
+        dictionary={dictionary}
+      />
+      <Link
+        className={clsx("justify-self-center")}
+        href='/'
+        aria-label={averseHomeAriaLabel}
+      >
         <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
       <Cart

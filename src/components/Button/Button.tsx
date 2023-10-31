@@ -14,6 +14,7 @@ type ICommonProps = {
   disabled?: boolean;
   loading?: boolean;
   transparent?: boolean;
+  ariaLabel?: string;
 };
 
 type IButtonProps = {
@@ -29,8 +30,15 @@ type ILinkProps = {
 type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;
 
 export const Button: FC<IProps> = (props) => {
-  const { children, className, disabled, loading, transparent, element } =
-    props;
+  const {
+    children,
+    className,
+    disabled,
+    loading,
+    transparent,
+    element,
+    ariaLabel,
+  } = props;
 
   const commonClassName = clsx(
     className,
@@ -48,6 +56,7 @@ export const Button: FC<IProps> = (props) => {
 
     return (
       <button
+        aria-label={ariaLabel}
         disabled={disabled}
         className={clsx(commonClassName)}
         onClick={onClick}
@@ -59,7 +68,11 @@ export const Button: FC<IProps> = (props) => {
     const { href } = props;
 
     return (
-      <Link className={clsx(commonClassName)} href={href || "#"}>
+      <Link
+        aria-label={ariaLabel}
+        className={clsx(commonClassName)}
+        href={href || "#"}
+      >
         {loading ? <Spinner className={clsx("h-6 w-6")} /> : children}
       </Link>
     );

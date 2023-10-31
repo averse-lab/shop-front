@@ -15,6 +15,7 @@
   },
   "home": {
     "enterWebsite": "Enter_website",
+    "enterWebsiteAriaLabel": "Entrer sur le site",
     "metadata": {
       "title": "Averse",
       "description": "Atelier de joaillerie - Design par Matthieu Braccini et fabrication en France. Averse puise son inspiration dans l'exploration du spectre des émotions.",
@@ -71,5 +72,16 @@
       "description": "Découvrez la génèse d'Averse, son univers et les inspirations de son créateur Matthieu Braccini",
       "twitterDescription": "Découvrez la génèse d'Averse, son univers et les inspirations de son créateur Matthieu Braccini"
     }
+  },
+  "footer": {
+    "averseInstaAriaLabel": "Voir le compte Instagram d'Averse Paris",
+    "weAreStudio99AriaLabel": "Voir le compte Instagram du WeAreStudio99 (developeurs du site)"
+  },
+  "header": {
+    "averseHomeAriaLabel": "Retourner à l'accueil",
+    "openBurgerMenuAriaLabel": "Ouvrir la pop-up du menu de navigation",
+    "openCartAriaLabel": "Ouvrir la pop-up du panier",
+    "closeBurgerMenuAriaLabel": "Fermer la pop-up du menu de navigation",
+    "closeCartAriaLabel": "Fermer la pop-up du panier"
   }
 }

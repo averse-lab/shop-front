@@ -19,6 +19,7 @@ type IProps = {
 
 export const Footer: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
+  const { averseInstaAriaLabel, weAreStudio99AriaLabel } = dictionary.footer;
 
   const nav: LinkDetail[] = Object.values(FOOTER_NAV).map(
     ({ url, i18nKey }) => ({
@@ -51,7 +52,10 @@ export const Footer: FC<IProps> = (props) => {
             </Link>
           ))}
         </nav>
-        <Link href='https://instagram.com/averseparis'>
+        <Link
+          href='https://instagram.com/averseparis'
+          aria-label={averseInstaAriaLabel}
+        >
           <Instagram
             className={clsx(
               "transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-2",
@@ -63,7 +67,10 @@ export const Footer: FC<IProps> = (props) => {
         className={clsx("flex items-center gap-[6px] self-center", "text-sm")}
       >
         <p>Website by</p>
-        <Link href='https://instagram.com/wearestudio99'>
+        <Link
+          href='https://instagram.com/wearestudio99'
+          aria-label={weAreStudio99AriaLabel}
+        >
           <WeAreStudio99
             className={clsx(
               "h-4",

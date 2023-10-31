@@ -11,6 +11,7 @@ import { clsx } from "clsx";
 import Link from "next/link";
 
 import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
+import { Dictionary } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import s from "./_internal/BurgerMenu.module.scss";
@@ -18,10 +19,13 @@ import s from "./_internal/BurgerMenu.module.scss";
 type IProps = {
   className?: string;
   nav: LinkDetail[];
+  dictionary: Dictionary;
 };
 
 export const BurgerMenu: FC<IProps> = (props) => {
-  const { nav, className } = props;
+  const { nav, className, dictionary } = props;
+  const { openBurgerMenuAriaLabel, closeBurgerMenuAriaLabel } =
+    dictionary.header;
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -39,7 +43,10 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   return (
     <>
-      <button className={clsx(className, s["burger-menu__burger"])}>
+      <button
+        className={clsx(className, s["burger-menu__burger"])}
+        aria-label={openBurgerMenuAriaLabel}
+      >
         <Bars3Icon
           className={clsx(
             "h-6 w-6",
@@ -66,6 +73,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
             "self-end",
             "rounded-full bg-neutral-900 text-white transition-all duration-200 ease-out hover:bg-neutral-900/100 lg:bg-neutral-900/0",
           )}
+          aria-label={closeBurgerMenuAriaLabel}
         >
           <XMarkIcon
             onClick={closeMenu}

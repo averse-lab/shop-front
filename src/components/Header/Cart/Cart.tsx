@@ -26,6 +26,7 @@ interface IProps {
 
 export const Cart: FC<IProps> = (props) => {
   const { dictionary, lang, className } = props;
+  const { openCartAriaLabel, closeBurgerMenuAriaLabel } = dictionary.header;
 
   const { setCart, cart, isCartOpen, setIsCartOpen } =
     useContext(CartContext) || {};
@@ -68,6 +69,7 @@ export const Cart: FC<IProps> = (props) => {
         className={clsx(className, s["cart__trigger"])}
         quantity={cart?.totalQuantity}
         onClick={openCart}
+        ariaLabel={openCartAriaLabel}
       />
       <div
         ref={cartRef}
@@ -89,6 +91,7 @@ export const Cart: FC<IProps> = (props) => {
               "shrink-0 self-start",
               "rounded-full bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
             )}
+            aria-label={closeBurgerMenuAriaLabel}
           >
             <XMarkIcon
               onClick={closeCart}

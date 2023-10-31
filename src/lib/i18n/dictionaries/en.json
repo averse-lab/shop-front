@@ -15,6 +15,7 @@
   },
   "home": {
     "enterWebsite": "Enter_website",
+    "enterWebsiteAriaLabel": "Enter website",
     "metadata": {
       "title": "Averse",
       "description": "Jewelry atelier - Design by Matthieu Braccini and made in France. Averse draws its inspiration from the exploration of the spectrum of human emotions",
@@ -71,5 +72,16 @@
       "description": "Discover the genesis of Averse, its universe and the inspirations of its creator Matthieu Braccini.",
       "twitterDescription": "Discover the genesis of Averse, its universe and the inspirations of its creator Matthieu Braccini."
     }
+  },
+  "footer": {
+    "averseInstaAriaLabel": "See the Averse Paris Instagram account",
+    "weAreStudio99AriaLabel": "See the WeAreStudio99 (website developers) Instagram account"
+  },
+  "header": {
+    "averseHomeAriaLabel": "Return to home",
+    "openBurgerMenuAriaLabel": "Open the navigation menu pop-up",
+    "openCartAriaLabel": "Open the cart pop-up",
+    "closeBurgerMenuAriaLabel": "Close the navigation menu pop-up",
+    "closeCartAriaLabel": "Close the cart pop-up"
   }
 }

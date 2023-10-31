@@ -69,6 +69,7 @@ const HomePage: FC<IProps> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
+  const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
 
   return (
     <div
@@ -89,8 +90,9 @@ const HomePage: FC<IProps> = async (props) => {
         element='link'
         href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
         transparent
+        ariaLabel={enterWebsiteAriaLabel}
       >
-        {dictionary.home.enterWebsite}
+        {enterWebsite}
       </Button>
     </div>
   );
