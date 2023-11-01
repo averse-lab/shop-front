@@ -12,23 +12,27 @@ import { StateSetter } from "@lib/types";
 import { QuantitySelector } from "./QuantitySelector/QuantitySelector";
 
 type IProps = {
+  className?: string;
   item: ShopifyCartItem;
   lang: Locale;
   setCart: StateSetter<Cart | undefined>;
 };
 
 export const CartItem: FC<IProps> = (props) => {
-  const { item, lang, setCart } = props;
+  const { item, lang, setCart, className } = props;
   const { merchandise, cost, quantity } = item;
   const { product, selectedOptions } = merchandise;
 
   return (
-    <div className={clsx("flex items-center gap-3")}>
+    <div className={clsx(className, "flex items-center gap-3")}>
       <Link
         href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
       >
         <Image
-          className={clsx("rounded object-cover object-center")}
+          className={clsx(
+            "h-[120px] w-[120px]",
+            "rounded object-cover object-center",
+          )}
           src={product.featuredImage.url}
           alt={`${product.title} photography`}
           width={120}

@@ -16,11 +16,17 @@
 
 .cart__items-wrapper {
   &::-webkit-scrollbar {
-    display: none;
+    background: transparent;
+    width: 2.5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(115, 115, 115);
+    border-radius: 9999px;
   }
 
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+  scrollbar-color: rgb(115, 115, 115);
 }
 
 @media (min-width: 768px) {

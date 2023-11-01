@@ -76,7 +76,7 @@ export const Cart: FC<IProps> = (props) => {
         className={clsx(
           s["cart__modal"],
           isCartOpen && s["cart__modal--open"],
-          cart !== undefined && "gap-4",
+          cart !== undefined && "gap-6",
           "fixed right-0 top-0 z-20 md:right-2 md:top-2",
           "h-[100dvh] w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
           "flex flex-col justify-between",
