@@ -3,13 +3,16 @@ import { FC, PropsWithChildren } from "react";
 import { clsx } from "clsx";
 
 import { CartContextProvider } from "@averse/contexts/CartContext/CartContext";
+import { HeaderContextProvider } from "@averse/contexts/HeaderContext/HeaderContext";
 
 import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header/Header";
+import { WhiteIconSetter } from "@components/WhiteIconSetter/WhiteIconSetter";
 
 import { DMSans } from "@lib/fonts";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { combineProviders } from "@lib/utils";
 
 type IProps = {
   params: { lang: Locale };
@@ -20,6 +23,11 @@ const LangLayout: FC<IProps> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
+
+  const AppProvider = combineProviders([
+    CartContextProvider,
+    HeaderContextProvider,
+  ]);
 
   return (
     <html lang={lang}>
@@ -33,13 +41,14 @@ const LangLayout: FC<IProps> = async (props) => {
           "font-sans",
         )}
       >
-        <CartContextProvider>
+        <AppProvider>
+          <WhiteIconSetter />
           <Header dictionary={dictionary} lang={lang} />
           <main className={clsx("flex grow flex-col", "bg-white")}>
             {children}
           </main>
           <Footer dictionary={dictionary} lang={lang} />
-        </CartContextProvider>
+        </AppProvider>
       </body>
     </html>
   );

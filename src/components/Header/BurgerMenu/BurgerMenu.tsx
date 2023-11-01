@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useRef, useState } from "react";
+import { FC, useContext, useRef, useState } from "react";
 
 import {
   ArrowUpRightIcon,
@@ -9,6 +9,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "next/link";
+
+import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
 
 import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
 import { Dictionary } from "@lib/i18n/types";
@@ -29,6 +31,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { whiteIcons } = useContext(HeaderContext) || {};
 
   const openMenu = () => {
     setOpen(true);
@@ -51,6 +54,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           className={clsx(
             "h-6 w-6",
             "transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
+            whiteIcons && "text-white",
           )}
           onClick={openMenu}
         />
@@ -63,7 +67,8 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "fixed left-0 top-0 z-20 md:left-2 md:top-2",
           "flex flex-col",
           "h-[100dvh] w-screen p-6 md:h-auto md:w-auto",
-          "bg-black uppercase  md:rounded md:shadow-md",
+          "uppercase  md:rounded md:shadow-md",
+          whiteIcons ? "bg-white text-black" : "bg-black text-white",
         )}
       >
         <button
@@ -71,7 +76,13 @@ export const BurgerMenu: FC<IProps> = (props) => {
             s["burger-menu__close-btn"],
             "p-2 lg:p-1",
             "self-end",
-            "rounded-full bg-neutral-900 text-white transition-all duration-200 ease-out hover:bg-neutral-900/100 lg:bg-neutral-900/0",
+            "rounded-full transition-all duration-200 ease-out",
+            whiteIcons
+              ? "bg-neutral-100 text-black"
+              : "bg-neutral-900 text-white",
+            whiteIcons
+              ? "lg:bg-neutral-100/0 lg:hover:bg-neutral-100/100"
+              : "lg:bg-neutral-900/0 lg:hover:bg-neutral-900/100",
           )}
           aria-label={closeBurgerMenuAriaLabel}
         >
@@ -88,7 +99,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
         >
           {nav.map((link) => (
             <div
-              className={clsx(s["burger-menu__link"], "relative", "text-white")}
+              className={clsx(s["burger-menu__link"], "relative")}
               key={link.display}
             >
               <Link
