@@ -4,7 +4,11 @@ import { FC, PropsWithChildren } from "react";
 
 import { getDictionary } from "@lib/i18n/utils";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  themeColor: "black",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const dictionary = await getDictionary("en");
@@ -13,7 +17,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     robots: "no-index",
     metadataBase: new URL(process.env.BASE_URL || "https://averse-paris.com"),
-    themeColor: "#000000",
     title: metadata.title,
     description: metadata.description,
     twitter: {
