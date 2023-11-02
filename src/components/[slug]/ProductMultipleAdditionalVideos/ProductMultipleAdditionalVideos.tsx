@@ -6,6 +6,7 @@ import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer"
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import s from "./_internal/ProductMultipleAdditionalVideos.module.scss";
+import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
   firstVideoPlaybackId: string;
@@ -33,7 +34,7 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
   } = props;
 
   return (
-    <div
+    <AdditionalVideosObserver
       className={clsx(
         "px-6 py-8 lg:min-h-screen lg:px-12",
         "flex flex-col gap-16 lg:gap-0",
@@ -102,6 +103,6 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           richText={secondVideoDescription}
         />
       </div>
-    </div>
+    </AdditionalVideosObserver>
   );
 };

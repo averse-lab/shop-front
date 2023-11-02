@@ -5,6 +5,8 @@ import { clsx } from "clsx";
 import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
+import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
+
 type IProps = {
   playbackId: string;
   widthRatio: number;
@@ -18,7 +20,7 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
     props;
 
   return (
-    <div
+    <AdditionalVideosObserver
       className={clsx(
         "px-6 py-8 lg:min-h-screen lg:px-12",
         "flex flex-col items-center gap-4 lg:justify-center lg:gap-24",
@@ -40,6 +42,6 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
         className={clsx("lg:max-w-[550px] 2xl:max-w-[750px]")}
         richText={description}
       />
-    </div>
+    </AdditionalVideosObserver>
   );
 };

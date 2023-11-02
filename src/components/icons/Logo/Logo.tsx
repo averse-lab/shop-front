@@ -1,6 +1,10 @@
-import { FC } from "react";
+"use client";
+
+import { FC, useContext, useEffect, useRef } from "react";
 
 import { clsx } from "clsx";
+
+import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
 
 import s from "./_internal/Logo.module.scss";
 
@@ -11,8 +15,27 @@ interface IProps {
 export const Logo: FC<IProps> = (props) => {
   const { className } = props;
 
+  const logoRef = useRef<HTMLDivElement>(null);
+  const { setLogoRef, hideLogo } = useContext(HeaderContext) || {};
+
+  useEffect(() => {
+    if (setLogoRef === undefined) {
+      return;
+    }
+
+    setLogoRef(logoRef);
+  }, [setLogoRef]);
+
   return (
-    <div className={clsx(className, "relative")}>
+    <div
+      className={clsx(
+        className,
+        "relative",
+        "transition-all duration-200 ease-out",
+        hideLogo && "opacity-0",
+      )}
+      ref={logoRef}
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='24'

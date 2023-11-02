@@ -9,11 +9,11 @@ import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
 import { PAGES } from "@lib/routing/constants";
 
 export const WhiteIconSetter: FC = () => {
-  const { whiteIcons, setWhiteIcons } = useContext(HeaderContext) || {};
+  const { setWhiteIcons } = useContext(HeaderContext) || {};
   const pathname = usePathname();
 
   useEffect(() => {
-    if (whiteIcons === undefined || setWhiteIcons === undefined) {
+    if (setWhiteIcons === undefined) {
       return;
     }
 
@@ -24,6 +24,6 @@ export const WhiteIconSetter: FC = () => {
     } else {
       setWhiteIcons(false);
     }
-  }, [pathname, setWhiteIcons, whiteIcons]);
+  }, [pathname, setWhiteIcons]);
   return null;
 };
