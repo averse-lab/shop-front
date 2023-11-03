@@ -6,14 +6,14 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { CartContext } from "@averse/contexts/CartContext/CartContext";
-
 import { Button } from "@components/Button/Button";
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
 
 import { Dictionary } from "@lib/i18n/types";
 import { Product, ProductVariant } from "@lib/shopify/types";
+
+import { CartContext } from "@contexts/CartContext/CartContext";
 
 import { addItemAction } from "./_internal/ProductIntercative.actions";
 

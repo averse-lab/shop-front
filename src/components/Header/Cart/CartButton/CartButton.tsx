@@ -3,7 +3,7 @@ import { FC, MouseEventHandler, useContext } from "react";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 
-import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
+import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import s from "./_internal/CartButton.module.scss";
 

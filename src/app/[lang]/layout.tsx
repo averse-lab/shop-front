@@ -2,9 +2,6 @@ import { FC, PropsWithChildren } from "react";
 
 import { clsx } from "clsx";
 
-import { CartContextProvider } from "@averse/contexts/CartContext/CartContext";
-import { HeaderContextProvider } from "@averse/contexts/HeaderContext/HeaderContext";
-
 import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header/Header";
 import { WhiteIconSetter } from "@components/WhiteIconSetter/WhiteIconSetter";
@@ -13,6 +10,9 @@ import { DMSans } from "@lib/fonts";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { combineProviders } from "@lib/utils";
+
+import { CartContextProvider } from "@contexts/CartContext/CartContext";
+import { HeaderContextProvider } from "@contexts/HeaderContext/HeaderContext";
 
 type IProps = {
   params: { lang: Locale };

@@ -4,9 +4,9 @@ import { FC, useContext, useEffect } from "react";
 
 import { usePathname } from "next/navigation";
 
-import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
-
 import { PAGES } from "@lib/routing/constants";
+
+import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 export const WhiteIconSetter: FC = () => {
   const { setWhiteIcons } = useContext(HeaderContext) || {};

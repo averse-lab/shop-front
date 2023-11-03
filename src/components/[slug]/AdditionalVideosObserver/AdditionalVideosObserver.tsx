@@ -5,7 +5,7 @@ import { FC, PropsWithChildren, useContext } from "react";
 import { clsx } from "clsx";
 import { useInView } from "react-intersection-observer";
 
-import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
+import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import { OBSERVER_THRESHOLDS } from "./_internal/AdditionalVideosObserver.constants";
 

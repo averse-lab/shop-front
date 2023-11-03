@@ -10,11 +10,11 @@ import {
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
-
 import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
 import { Dictionary } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
+
+import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import s from "./_internal/BurgerMenu.module.scss";
 

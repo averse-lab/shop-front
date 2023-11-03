@@ -4,7 +4,7 @@ import { FC, useContext, useEffect, useRef } from "react";
 
 import { clsx } from "clsx";
 
-import { HeaderContext } from "@averse/contexts/HeaderContext/HeaderContext";
+import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import s from "./_internal/Logo.module.scss";
 
