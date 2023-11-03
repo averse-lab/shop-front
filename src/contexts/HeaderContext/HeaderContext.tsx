@@ -10,7 +10,7 @@ import {
 
 import { StateSetter } from "@lib/types";
 
-type HeaderContextValue = {
+export type HeaderContextValue = {
   whiteIcons: boolean;
   setWhiteIcons: StateSetter<boolean>;
   logoRef: RefObject<HTMLDivElement> | undefined;

@@ -9,6 +9,7 @@ import { Animation } from "@components/[category]/Animation/Animation";
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { Observer } from "@components/Observer/Observer";
 
 import { I18N_CONFIG } from "@lib/i18n/config";
@@ -120,6 +121,7 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
+      <HeaderContextInitializer />
       <div
         className={clsx(
           "fixed left-0 top-0 z-10",

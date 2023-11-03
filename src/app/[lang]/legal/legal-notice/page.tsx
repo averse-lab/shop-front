@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
+
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { getPage } from "@lib/shopify";
@@ -27,6 +29,7 @@ const LegalNoticePage: FC<IProps> = async (props) => {
 
   return (
     <>
+      <HeaderContextInitializer />
       <div
         className={clsx(
           "fixed left-0 top-0 z-10",

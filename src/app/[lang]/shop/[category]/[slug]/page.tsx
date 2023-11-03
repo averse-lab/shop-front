@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { MultipleAdditionalVideos } from "@components/[slug]/MultipleAdditionalVideos/MultipleAdditionalVideos";
 import { ProductInteractive } from "@components/[slug]/ProductInteractive/ProductInteractive";
 import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo/SingleAdditionalVideo";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { Slider } from "@components/Slider/Slider";
 
 import { Locale } from "@lib/i18n/types";
@@ -86,6 +87,7 @@ const ProductPage: FC<IProps> = async (props) => {
 
   return (
     <>
+      <HeaderContextInitializer />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <div className={clsx("lg:basis-1/2")}>
           <Slider

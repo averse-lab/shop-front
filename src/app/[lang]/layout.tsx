@@ -4,7 +4,6 @@ import { clsx } from "clsx";
 
 import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header/Header";
-import { WhiteIconSetter } from "@components/WhiteIconSetter/WhiteIconSetter";
 
 import { DMSans } from "@lib/fonts";
 import { Locale } from "@lib/i18n/types";
@@ -42,7 +41,6 @@ const LangLayout: FC<IProps> = async (props) => {
         )}
       >
         <AppProvider>
-          <WhiteIconSetter />
           <Header dictionary={dictionary} lang={lang} />
           <main className={clsx("flex grow flex-col", "bg-white")}>
             {children}

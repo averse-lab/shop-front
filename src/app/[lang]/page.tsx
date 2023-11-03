@@ -4,6 +4,7 @@ import { clsx } from "clsx";
 import { Metadata } from "next";
 
 import { Button } from "@components/Button/Button";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { I18N_CONFIG } from "@lib/i18n/config";
@@ -71,29 +72,32 @@ const HomePage: FC<IProps> = async (props) => {
   const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
 
   return (
-    <div
-      className={clsx(
-        "relative z-0",
-        "h-screen p-4",
-        "flex flex-col items-center justify-center",
-        "text-center",
-      )}
-    >
-      <VideoPlayer
-        className={clsx("absolute -z-10", "h-full w-full")}
-        heightRatio={HOME_VIDEO.heightRatio}
-        playbackId={HOME_VIDEO.playbackId}
-        widthRatio={HOME_VIDEO.widthRatio}
-      />
-      <Button
-        ariaLabel={enterWebsiteAriaLabel}
-        element='link'
-        href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
-        transparent
+    <>
+      <HeaderContextInitializer />
+      <div
+        className={clsx(
+          "relative z-0",
+          "h-screen p-4",
+          "flex flex-col items-center justify-center",
+          "text-center",
+        )}
       >
-        {enterWebsite}
-      </Button>
-    </div>
+        <VideoPlayer
+          className={clsx("absolute -z-10", "h-full w-full")}
+          heightRatio={HOME_VIDEO.heightRatio}
+          playbackId={HOME_VIDEO.playbackId}
+          widthRatio={HOME_VIDEO.widthRatio}
+        />
+        <Button
+          ariaLabel={enterWebsiteAriaLabel}
+          element='link'
+          href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+          transparent
+        >
+          {enterWebsite}
+        </Button>
+      </div>
+    </>
   );
 };
 
