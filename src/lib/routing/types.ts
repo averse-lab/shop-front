@@ -15,6 +15,14 @@ export type PageValue = {
   url: string;
 };
 
+export type CategoryKey = "allProducts" | "rings" | "necklaces";
+
+export interface CategoryValue {
+  i18nKey: keyof Dictionary["categories"];
+  shopifyId: string;
+  url: string;
+}
+
 export type LinkDetail = {
   display: string;
   href: string;

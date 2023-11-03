@@ -3,9 +3,7 @@ import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
 import { I18N_CONFIG } from "@lib/i18n/config";
-import { PAGES } from "@lib/routing/constants";
-
-import { CATEGORIES } from "./app/[lang]/shop/_internal/ShopPage.constants";
+import { CATEGORIES, PAGES } from "@lib/routing/constants";
 
 import type { NextRequest } from "next/server";
 

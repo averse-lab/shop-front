@@ -1,4 +1,4 @@
-import { PageKey, PageValue } from "./types";
+import { CategoryKey, CategoryValue, PageKey, PageValue } from "./types";
 
 export const PAGES: Record<PageKey, PageValue> = {
   home: { i18nKey: "home", url: "" },
@@ -9,5 +9,19 @@ export const PAGES: Record<PageKey, PageValue> = {
   privacyPolicy: {
     i18nKey: "privacyPolicy",
     url: "legal/privacy-policy",
+  },
+};
+
+export const CATEGORIES: Record<CategoryKey, CategoryValue> = {
+  rings: { i18nKey: "rings", shopifyId: "rings", url: "rings" },
+  allProducts: {
+    i18nKey: "allProducts",
+    shopifyId: "",
+    url: "all-products",
+  },
+  necklaces: {
+    i18nKey: "necklaces",
+    shopifyId: "necklaces",
+    url: "necklaces",
   },
 };

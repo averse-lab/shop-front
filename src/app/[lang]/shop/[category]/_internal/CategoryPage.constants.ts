@@ -1,5 +1,6 @@
+import { CategoryKey } from "@lib/routing/types";
+
 import { Animation } from "./CategoryPage.types";
-import { CategoryKey } from "../../_internal/ShopPage.types";
 
 export const ANIMATIONS: Record<CategoryKey, Animation[]> = {
   allProducts: [

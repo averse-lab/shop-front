@@ -1,5 +1,5 @@
-import { CATEGORIES } from "./ShopPage.constants";
-import { CategoryValue } from "./ShopPage.types";
+import { CATEGORIES } from "@lib/routing/constants";
+import { CategoryValue } from "@lib/routing/types";
 
 export const getCategoryFromCategoryUrlSegment = (
   categoryUrlSegment: string,

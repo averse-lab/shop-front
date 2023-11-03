@@ -9,10 +9,9 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { PAGES } from "@lib/routing/constants";
+import { CATEGORIES, PAGES } from "@lib/routing/constants";
 
 import { HOME_VIDEO } from "./_internal/HomePage.constants";
-import { CATEGORIES } from "./shop/_internal/ShopPage.constants";
 
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));

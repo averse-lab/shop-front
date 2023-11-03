@@ -13,7 +13,7 @@ import { ProductPreview } from "@components/[category]/ProductPreview/ProductPre
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { PAGES } from "@lib/routing/constants";
+import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
@@ -23,7 +23,6 @@ import {
   getMetadataTitle,
   getMetadataTwitterDescription,
 } from "./_internal/CategoryPage.utils";
-import { CATEGORIES } from "../_internal/ShopPage.constants";
 import { getCategoryFromCategoryUrlSegment } from "../_internal/ShopPage.utils";
 
 export async function generateStaticParams() {

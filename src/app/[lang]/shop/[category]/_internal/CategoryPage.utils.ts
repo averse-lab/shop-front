@@ -1,8 +1,8 @@
 import { Dictionary } from "@lib/i18n/types";
+import { CATEGORIES } from "@lib/routing/constants";
 
 import { ANIMATIONS } from "./CategoryPage.constants";
 import { Animation } from "./CategoryPage.types";
-import { CATEGORIES } from "../../_internal/ShopPage.constants";
 
 export const getMetadataTitle = (
   category: string,

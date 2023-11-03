@@ -4,12 +4,11 @@ import { clsx } from "clsx";
 import Link from "next/link";
 
 import { ABOUT_VIDEO } from "@averse/app/[lang]/about/_internal/AboutPage.constants";
-import { CATEGORIES } from "@averse/app/[lang]/shop/_internal/ShopPage.constants";
 
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { DMSans } from "@lib/fonts";
-import { PAGES } from "@lib/routing/constants";
+import { CATEGORIES, PAGES } from "@lib/routing/constants";
 
 const NotFound: FC = async () => {
   const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
