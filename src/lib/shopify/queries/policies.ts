@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-import { PolicyKey } from "@lib/shopify/types";
+import { PolicyKey } from "../types";
 
 export function getPolicyQuery(policyKey: PolicyKey) {
   const queryString = `

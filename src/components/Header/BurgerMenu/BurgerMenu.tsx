@@ -11,21 +11,22 @@ import { clsx } from "clsx";
 import Link from "next/link";
 
 import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
-import { Dictionary } from "@lib/i18n/types";
+import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
+import { MAIN_NAV } from "./_internal/BurgerMenu.constants";
 import s from "./_internal/BurgerMenu.module.scss";
 
 type IProps = {
   className?: string;
-  nav: LinkDetail[];
   dictionary: Dictionary;
+  lang: Locale;
 };
 
 export const BurgerMenu: FC<IProps> = (props) => {
-  const { nav, className, dictionary } = props;
+  const { className, dictionary, lang } = props;
   const { openBurgerMenuAriaLabel, closeBurgerMenuAriaLabel } =
     dictionary.header;
 
@@ -43,6 +44,13 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   useBodyScrollLocker(open);
   useClickOutsideDetector(menuRef.current, closeMenu, open === true);
+
+  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
+    ({ url, i18nKey }) => ({
+      href: `/${lang}/${url}`,
+      display: dictionary.pages[i18nKey],
+    }),
+  );
 
   return (
     <>

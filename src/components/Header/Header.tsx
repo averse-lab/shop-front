@@ -3,12 +3,9 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { MAIN_NAV } from "@averse/app/[lang]/_internal/HomePage.constants";
-
 import { Logo } from "@components/icons/Logo/Logo";
 
 import { Dictionary, Locale } from "@lib/i18n/types";
-import { LinkDetail } from "@lib/routing/types";
 
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { Cart } from "./Cart/Cart";
@@ -22,13 +19,6 @@ export const Header: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
   const { averseHomeAriaLabel } = dictionary.header;
 
-  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
-    ({ url, i18nKey }) => ({
-      href: `/${lang}/${url}`,
-      display: dictionary.pages[i18nKey],
-    }),
-  );
-
   return (
     <header
       className={clsx(
@@ -41,7 +31,7 @@ export const Header: FC<IProps> = (props) => {
       <BurgerMenu
         className={clsx("justify-self-start")}
         dictionary={dictionary}
-        nav={nav}
+        lang={lang}
       />
       <Link
         aria-label={averseHomeAriaLabel}
