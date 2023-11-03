@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
-import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import s from "./_internal/ProductMultipleAdditionalVideos.module.scss";
+import { AdditionalVideoDescription } from "../AdditionalVideoDescription/AdditionalVideoDescription";
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
@@ -67,9 +67,9 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           widthRatio={firstVideoWidthRatio}
           heightRatio={firstVideoHeightRatio}
         />
-        <RichTextRenderer
+        <AdditionalVideoDescription
           className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
-          richText={firstVideoDescription}
+          description={firstVideoDescription}
         />
       </div>
       <div
@@ -98,9 +98,9 @@ export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
           widthRatio={secondVideoWidthRatio}
           heightRatio={secondVideoHeightRatio}
         />
-        <RichTextRenderer
+        <AdditionalVideoDescription
           className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
-          richText={secondVideoDescription}
+          description={secondVideoDescription}
         />
       </div>
     </AdditionalVideosObserver>

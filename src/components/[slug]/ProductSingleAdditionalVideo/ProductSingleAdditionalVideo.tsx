@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
-import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
+import { AdditionalVideoDescription } from "../AdditionalVideoDescription/AdditionalVideoDescription";
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
@@ -38,9 +38,9 @@ export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
         widthRatio={widthRatio}
         heightRatio={heightRatio}
       />
-      <RichTextRenderer
+      <AdditionalVideoDescription
         className={clsx("lg:max-w-[550px] 2xl:max-w-[750px]")}
-        richText={description}
+        description={description}
       />
     </AdditionalVideosObserver>
   );
