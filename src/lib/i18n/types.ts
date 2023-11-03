@@ -1,5 +1,3 @@
-import "server-only";
-
 import { DICTIONARIES } from "./constants";
 
 export type Locale = keyof typeof DICTIONARIES;

@@ -1,6 +1,6 @@
-import { DocumentNode, print } from "graphql";
+import "server-only";
 
-import { getPolicyQuery } from "@lib/shopify/queries/policies";
+import { DocumentNode, print } from "graphql";
 
 import {
   HIDDEN_PRODUCT_TAG,
@@ -21,6 +21,7 @@ import {
 } from "./queries/collection";
 import { getMenuQuery } from "./queries/menu";
 import { getPageQuery, getPagesQuery } from "./queries/page";
+import { getPolicyQuery } from "./queries/policies";
 import {
   getProductQuery,
   getProductRecommendationsQuery,
@@ -56,8 +57,6 @@ import {
   ShopifyUpdateCartOperation,
   SupportedLanguageCode,
 } from "./types";
-
-("server-only");
 
 const domain = `https://${process.env.SHOPIFY_STORE_DOMAIN!}`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
