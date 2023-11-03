@@ -136,16 +136,16 @@ const CategoryPage: FC<IProps> = async (props) => {
         >
           {products.map((product, idx) => (
             <Observer
-              className={clsx(
-                "outline outline-1 outline-neutral-500 transition-all duration-200 ease-out",
-                `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,
-              )}
-              inViewClassName={clsx("opacity-100")}
+              className={clsx("outline outline-1 outline-neutral-500")}
+              inViewClassName={clsx("[&>a]:opacity-100")}
               key={product.id}
               options={{ triggerOnce: true, threshold: 0.5 }}
-              outOfViewClassName={clsx("opacity-0")}
+              outOfViewClassName={clsx("[&>a]:opacity-0")}
             >
               <ProductPreview
+                className={clsx(
+                  "lg:[&:nth-child(3n+4)]:delay-400 transition-all duration-200 ease-out even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300",
+                )}
                 currency={product.priceRange.maxVariantPrice.currencyCode}
                 href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
                 imageUrl={product.images[0].url}
