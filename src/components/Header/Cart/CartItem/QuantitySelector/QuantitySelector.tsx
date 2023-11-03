@@ -13,7 +13,7 @@ import { StateSetter } from "@lib/types";
 import {
   removeItem,
   updateItemQuantity,
-} from "./_internal/QuantitySelector.utils";
+} from "./_internal/QuantitySelector.actions";
 
 type IProps = {
   quantity: number;
