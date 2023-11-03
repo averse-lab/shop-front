@@ -29,7 +29,6 @@ export const Dropdown: FC<IProps> = (props) => {
   return (
     <div className={clsx(className, s["dropdown"], "relative", "flex")}>
       <select
-        value={currentValue}
         className={clsx(
           s["dropdown__select"],
           "px-1 py-2",
@@ -38,6 +37,7 @@ export const Dropdown: FC<IProps> = (props) => {
         )}
         id={name}
         onChange={handleChange}
+        value={currentValue}
       >
         {placeholder !== undefined ? (
           <option disabled value=''>
@@ -45,7 +45,7 @@ export const Dropdown: FC<IProps> = (props) => {
           </option>
         ) : null}
         {options.map((option, idx) => (
-          <option key={option.value} value={idx} disabled={option.disabled}>
+          <option disabled={option.disabled} key={option.value} value={idx}>
             {option.display}
           </option>
         ))}

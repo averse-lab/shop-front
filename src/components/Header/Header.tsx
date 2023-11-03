@@ -39,21 +39,21 @@ export const Header: FC<IProps> = (props) => {
       )}
     >
       <BurgerMenu
-        nav={nav}
         className={clsx("justify-self-start")}
         dictionary={dictionary}
+        nav={nav}
       />
       <Link
+        aria-label={averseHomeAriaLabel}
         className={clsx("justify-self-center")}
         href='/'
-        aria-label={averseHomeAriaLabel}
       >
         <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
       <Cart
+        className={clsx("justify-self-end")}
         dictionary={dictionary}
         lang={lang}
-        className={clsx("justify-self-end")}
       />
     </header>
   );

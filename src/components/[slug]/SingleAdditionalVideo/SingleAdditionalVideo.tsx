@@ -34,9 +34,9 @@ export const SingleAdditionalVideo: FC<IProps> = (props) => {
           "shrink-0",
           "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[750px]",
         )}
+        heightRatio={heightRatio}
         playbackId={playbackId}
         widthRatio={widthRatio}
-        heightRatio={heightRatio}
       />
       <AdditionalVideoDescription
         className={clsx("lg:max-w-[550px] 2xl:max-w-[750px]")}

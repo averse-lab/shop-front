@@ -44,8 +44,8 @@ const NotFound: FC = async () => {
               </h1>
               <VideoPlayer
                 className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
-                playbackId={playbackId}
                 heightRatio={heightRatio}
+                playbackId={playbackId}
                 widthRatio={widthRatio}
               />
               <button

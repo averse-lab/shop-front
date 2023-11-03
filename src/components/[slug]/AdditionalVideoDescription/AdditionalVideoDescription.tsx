@@ -22,7 +22,6 @@ export const AdditionalVideoDescription: FC<IProps> = (props) => {
 
   return (
     <RichTextRenderer
-      reference={ref}
       className={clsx(
         className,
         "transition-all duration-200 ease-out",
@@ -30,6 +29,7 @@ export const AdditionalVideoDescription: FC<IProps> = (props) => {
           ? "opacity-1 translate-y-0 lg:translate-x-0"
           : "-translate-y-2 opacity-0 lg:-translate-x-2",
       )}
+      reference={ref}
       richText={description}
     />
   );

@@ -57,8 +57,8 @@ export const Button: FC<IProps> = (props) => {
     return (
       <button
         aria-label={ariaLabel}
-        disabled={disabled}
         className={clsx(commonClassName)}
+        disabled={disabled}
         onClick={onClick}
       >
         {loading ? <Spinner className={clsx("h-6 w-6")} /> : children}

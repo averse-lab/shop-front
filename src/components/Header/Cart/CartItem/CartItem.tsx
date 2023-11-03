@@ -29,21 +29,21 @@ export const CartItem: FC<IProps> = (props) => {
         href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
       >
         <Image
+          alt={`${product.title} photography`}
           className={clsx(
             "h-[120px] w-[120px]",
             "rounded object-cover object-center",
           )}
-          src={product.featuredImage.url}
-          alt={`${product.title} photography`}
-          width={120}
           height={120}
+          src={product.featuredImage.url}
+          width={120}
         />
       </Link>
       <div className={clsx("flex flex-col items-start gap-3", "h-full p-1")}>
         <div className={clsx("flex flex-col")}>
           <Link
-            href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
             className={clsx("uppercase")}
+            href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
           >
             {product.title}
           </Link>
@@ -63,9 +63,9 @@ export const CartItem: FC<IProps> = (props) => {
         </div>
         <QuantitySelector
           lineId={item.id}
-          variantId={item.merchandise.id}
           quantity={quantity}
           setCart={setCart}
+          variantId={item.merchandise.id}
         />
       </div>
     </div>

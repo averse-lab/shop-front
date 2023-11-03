@@ -74,10 +74,10 @@ export const ProductInteractive: FC<IProps> = (props) => {
         <Dropdown
           className={clsx("basis-1/2")}
           name='variant-selector'
-          options={options}
-          selectedIndex={selectedIndex}
           onChange={updateSelectedIndex}
+          options={options}
           placeholder={dictionary.product.size}
+          selectedIndex={selectedIndex}
         />
         <Link
           className={clsx("flex items-center gap-2")}
@@ -90,10 +90,10 @@ export const ProductInteractive: FC<IProps> = (props) => {
       </div>
       <Button
         className={clsx("w-full")}
-        element='button'
         disabled={selectedIndex === undefined}
-        onClick={addToCart}
+        element='button'
         loading={isPending}
+        onClick={addToCart}
       >
         {dictionary.product.addToCart}
       </Button>

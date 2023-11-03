@@ -101,19 +101,19 @@ const ProductPage: FC<IProps> = async (props) => {
           >
             {product.images.map((image, idx) => (
               <div
-                key={image.url}
                 className={clsx("grid auto-rows-fr grid-cols-1")}
+                key={image.url}
               >
                 <div
                   className={clsx("relative", "aspect-square overflow-hidden")}
                 >
                   <Image
                     alt={image.altText}
-                    src={image.url}
-                    fill
                     className={clsx("aspect-square object-cover object-center")}
+                    fill
                     priority={idx <= 2}
                     sizes='(min-width: 1024px) 50vw, 100vw'
+                    src={image.url}
                   />
                 </div>
               </div>
@@ -130,10 +130,10 @@ const ProductPage: FC<IProps> = async (props) => {
           <div className={clsx("lg:w-2/3 lg:max-w-[450px]")}>
             <h1 className={clsx("text-lg uppercase")}>{product.title}</h1>
             <ProductInteractive
-              variants={product.variants}
-              minVariantPrice={product.priceRange.minVariantPrice}
               dictionary={dictionary}
+              minVariantPrice={product.priceRange.minVariantPrice}
               shippingDelays={product.shippingDelays?.value}
+              variants={product.variants}
             />
             <div
               className={clsx(s["product-page__description"], "mt-6")}
@@ -145,41 +145,41 @@ const ProductPage: FC<IProps> = async (props) => {
       {isProductWithSingleAdditionalVideo(product) ? (
         isProductWithMultipleAdditionalVideos(product) ? (
           <MultipleAdditionalVideos
+            firstVideoDescription={
+              product.firstAdditionalVideoDescription.value
+            }
+            firstVideoHeightRatio={Number(
+              product.firstAdditionalVideoHeightRatio.value,
+            )}
             firstVideoPlaybackId={product.firstAdditionalVideoID.value}
             firstVideoWidthRatio={Number(
               product.firstAdditionalVideoWidthRatio.value,
             )}
-            firstVideoHeightRatio={Number(
-              product.firstAdditionalVideoHeightRatio.value,
-            )}
-            firstVideoDescription={
-              product.firstAdditionalVideoDescription.value
+            reversedLayout={
+              product.additionalVideosLayout.value ===
+              "player to the right / description to the left"
             }
+            secondVideoDescription={
+              product.secondAdditionalVideoDescription.value
+            }
+            secondVideoHeightRatio={Number(
+              product.secondAdditionalVideoHeightRatio.value,
+            )}
             secondVideoPlaybackId={product.secondAdditionalVideoID.value}
             secondVideoWidthRatio={Number(
               product.secondAdditionalVideoWidthRatio.value,
             )}
-            secondVideoHeightRatio={Number(
-              product.secondAdditionalVideoHeightRatio.value,
-            )}
-            secondVideoDescription={
-              product.secondAdditionalVideoDescription.value
-            }
-            reversedLayout={
-              product.additionalVideosLayout.value ===
-              "player to the right / description to the left"
-            }
           />
         ) : (
           <SingleAdditionalVideo
-            playbackId={product.firstAdditionalVideoID.value}
-            widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
-            heightRatio={Number(product.firstAdditionalVideoHeightRatio.value)}
             description={product.firstAdditionalVideoDescription.value}
+            heightRatio={Number(product.firstAdditionalVideoHeightRatio.value)}
+            playbackId={product.firstAdditionalVideoID.value}
             reversedLayout={
               product.additionalVideosLayout.value ===
               "player to the right / description to the left"
             }
+            widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
           />
         )
       ) : null}

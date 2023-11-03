@@ -27,9 +27,9 @@ export const Animation: FC<IProps> = (props) => {
           "h-full w-full",
           "outline outline-1 outline-neutral-500",
         )}
+        heightRatio={1}
         playbackId={playbackId}
         widthRatio={1}
-        heightRatio={1}
       />
     </>
   );

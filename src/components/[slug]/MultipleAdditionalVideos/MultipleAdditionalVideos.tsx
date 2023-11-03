@@ -63,9 +63,9 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
             "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[1000px]",
             "shrink-0",
           )}
+          heightRatio={firstVideoHeightRatio}
           playbackId={firstVideoPlaybackId}
           widthRatio={firstVideoWidthRatio}
-          heightRatio={firstVideoHeightRatio}
         />
         <AdditionalVideoDescription
           className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
@@ -94,9 +94,9 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
             "shrink-0",
             "md:max-w-[400px md:w-[50%] lg:max-w-[650px] 2xl:max-w-[1000px]",
           )}
+          heightRatio={secondVideoHeightRatio}
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
-          heightRatio={secondVideoHeightRatio}
         />
         <AdditionalVideoDescription
           className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}

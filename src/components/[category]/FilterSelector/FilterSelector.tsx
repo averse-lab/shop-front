@@ -34,8 +34,8 @@ export const FilterSelector: FC<IProps> = (props) => {
             idx === selectedFilterIndex && "scale-[1.025] font-medium",
             idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
           )}
-          key={url}
           href={url}
+          key={url}
         >
           {display}
         </Link>

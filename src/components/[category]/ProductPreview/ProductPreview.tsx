@@ -32,16 +32,16 @@ export const ProductPreview: FC<IProps> = (props) => {
       href={href}
     >
       <Image
+        alt={`photography of ${title}`}
         className={clsx(
           s["product-preview__image"],
           "-z-10",
           "object-cover object-center",
         )}
-        src={imageUrl}
-        alt={`photography of ${title}`}
         fill
-        sizes='(min-width: 1024px) 25vw, 50vw'
         priority={index < 6}
+        sizes='(min-width: 1024px) 25vw, 50vw'
+        src={imageUrl}
       />
       <p className={clsx(s["product-preview__name"], "uppercase")}>{title}</p>
       <p className={clsx("text-sm font-light text-neutral-600")}>

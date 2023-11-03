@@ -17,13 +17,13 @@ export const VideoPlayer: FC<IProps> = async (props) => {
 
   return (
     <MuxVideo
+      autoPlay='muted'
       className={clsx(className, "h-full w-full", "object-cover object-center")}
       controls={false}
+      loop
+      playbackId={playbackId}
       playsInline
       streamType='on-demand'
-      playbackId={playbackId}
-      autoPlay='muted'
-      loop
       style={{ aspectRatio: `${widthRatio} / ${heightRatio}` }}
     />
   );

@@ -82,15 +82,15 @@ const HomePage: FC<IProps> = async (props) => {
     >
       <VideoPlayer
         className={clsx("absolute -z-10", "h-full w-full")}
+        heightRatio={HOME_VIDEO.heightRatio}
         playbackId={HOME_VIDEO.playbackId}
         widthRatio={HOME_VIDEO.widthRatio}
-        heightRatio={HOME_VIDEO.heightRatio}
       />
       <Button
+        ariaLabel={enterWebsiteAriaLabel}
         element='link'
         href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
         transparent
-        ariaLabel={enterWebsiteAriaLabel}
       >
         {enterWebsite}
       </Button>

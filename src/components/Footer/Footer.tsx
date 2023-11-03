@@ -47,14 +47,14 @@ export const Footer: FC<IProps> = (props) => {
       >
         <nav className={clsx("flex flex-col gap-2 lg:flex-row lg:gap-6")}>
           {nav.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link href={link.href} key={link.href}>
               {link.display}
             </Link>
           ))}
         </nav>
         <Link
-          href='https://instagram.com/averseparis'
           aria-label={averseInstaAriaLabel}
+          href='https://instagram.com/averseparis'
         >
           <Instagram
             className={clsx(
@@ -68,8 +68,8 @@ export const Footer: FC<IProps> = (props) => {
       >
         <p>Website by</p>
         <Link
-          href='https://instagram.com/wearestudio99'
           aria-label={weAreStudio99AriaLabel}
+          href='https://instagram.com/wearestudio99'
         >
           <WeAreStudio99
             className={clsx(

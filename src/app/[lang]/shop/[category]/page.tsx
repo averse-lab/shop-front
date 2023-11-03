@@ -141,25 +141,25 @@ const CategoryPage: FC<IProps> = async (props) => {
         >
           {products.map((product, idx) => (
             <ProductPreview
-              key={product.id}
               className={clsx("outline outline-1 outline-neutral-500")}
+              currency={product.priceRange.maxVariantPrice.currencyCode}
               href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
               imageUrl={product.images[0].url}
-              title={product.title}
-              price={product.priceRange.minVariantPrice.amount}
-              currency={product.priceRange.maxVariantPrice.currencyCode}
               index={idx}
+              key={product.id}
+              price={product.priceRange.minVariantPrice.amount}
+              title={product.title}
             />
           ))}
           {getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(
             (animation, idx) => {
               return (
                 <Animation
+                  gridDesktopIndex={animation.gridDesktopIndex}
+                  gridIndex={animation.gridIndex}
+                  index={idx}
                   key={v4()}
                   playbackId={animation.playbackId}
-                  gridIndex={animation.gridIndex}
-                  gridDesktopIndex={animation.gridDesktopIndex}
-                  index={idx}
                 />
               );
             },

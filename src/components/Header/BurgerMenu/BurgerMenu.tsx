@@ -47,8 +47,8 @@ export const BurgerMenu: FC<IProps> = (props) => {
   return (
     <>
       <button
-        className={clsx(className, s["burger-menu__burger"])}
         aria-label={openBurgerMenuAriaLabel}
+        className={clsx(className, s["burger-menu__burger"])}
       >
         <Bars3Icon
           className={clsx(
@@ -60,7 +60,6 @@ export const BurgerMenu: FC<IProps> = (props) => {
         />
       </button>
       <div
-        ref={menuRef}
         className={clsx(
           s["burger-menu__menu"],
           open && s["burger-menu__menu--open"],
@@ -70,8 +69,10 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "uppercase  md:rounded md:shadow-md",
           whiteIcons ? "bg-white text-black" : "bg-black text-white",
         )}
+        ref={menuRef}
       >
         <button
+          aria-label={closeBurgerMenuAriaLabel}
           className={clsx(
             s["burger-menu__close-btn"],
             "p-2 lg:p-1",
@@ -84,11 +85,10 @@ export const BurgerMenu: FC<IProps> = (props) => {
               ? "lg:bg-neutral-100/0 lg:hover:bg-neutral-100/100"
               : "lg:bg-neutral-900/0 lg:hover:bg-neutral-900/100",
           )}
-          aria-label={closeBurgerMenuAriaLabel}
         >
           <XMarkIcon
-            onClick={closeMenu}
             className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
+            onClick={closeMenu}
           />
         </button>
         <div

@@ -50,8 +50,8 @@ const TermsOfSalePage: FC<IProps> = async (props) => {
         </div>
         <div className={"flex justify-center md:w-1/2"}>
           <div
-            dangerouslySetInnerHTML={{ __html: legal.body }}
             className={"mb-5 flex-grow px-10"}
+            dangerouslySetInnerHTML={{ __html: legal.body }}
           />
         </div>
       </div>

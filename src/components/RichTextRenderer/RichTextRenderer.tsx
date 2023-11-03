@@ -54,13 +54,13 @@ export const RichTextRenderer: FC<IProps> = (props) => {
                 if (childCurr.value !== "") {
                   if (childCurr.bold) {
                     childAcc.push(
-                      <span key={v4()} className={clsx("font-bold")}>
+                      <span className={clsx("font-bold")} key={v4()}>
                         {childCurr.value}
                       </span>,
                     );
                   } else if (childCurr.italic) {
                     childAcc.push(
-                      <span key={v4()} className={clsx("italic")}>
+                      <span className={clsx("italic")} key={v4()}>
                         {childCurr.value}
                       </span>,
                     );
@@ -78,8 +78,8 @@ export const RichTextRenderer: FC<IProps> = (props) => {
                       childCurr.children[0].italic && "italic",
                     )}
                     href={childCurr.url}
-                    title={childCurr.title}
                     target={childCurr.target}
+                    title={childCurr.title}
                   >
                     {childCurr.children[0].value}
                   </Link>,

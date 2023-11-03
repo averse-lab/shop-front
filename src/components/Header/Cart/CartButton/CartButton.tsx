@@ -21,9 +21,9 @@ export const CartButton: FC<IProps> = (props) => {
 
   return (
     <button
-      onClick={onClick}
-      className={clsx(className, "relative")}
       aria-label={ariaLabel}
+      className={clsx(className, "relative")}
+      onClick={onClick}
     >
       <ShoppingBagIcon
         className={clsx(
@@ -39,7 +39,7 @@ export const CartButton: FC<IProps> = (props) => {
             whiteIcons ? "bg-white text-black" : "bg-black text-white",
           )}
         >
-          <p style={{ fontSize: "8px" }} className={clsx("text-semibold")}>
+          <p className={clsx("text-semibold")} style={{ fontSize: "8px" }}>
             {quantity}
           </p>
         </div>

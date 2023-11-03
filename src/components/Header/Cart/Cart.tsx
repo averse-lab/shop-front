@@ -66,13 +66,12 @@ export const Cart: FC<IProps> = (props) => {
   return (
     <>
       <CartButton
-        className={clsx(className, s["cart__trigger"])}
-        quantity={cart?.totalQuantity}
-        onClick={openCart}
         ariaLabel={openCartAriaLabel}
+        className={clsx(className, s["cart__trigger"])}
+        onClick={openCart}
+        quantity={cart?.totalQuantity}
       />
       <div
-        ref={cartRef}
         className={clsx(
           s["cart__modal"],
           isCartOpen && s["cart__modal--open"],
@@ -82,23 +81,24 @@ export const Cart: FC<IProps> = (props) => {
           "flex flex-col justify-between",
           "bg-white md:rounded md:border md:border-neutral-100 md:shadow-md",
         )}
+        ref={cartRef}
       >
         <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
           <button
+            aria-label={closeBurgerMenuAriaLabel}
             className={clsx(
               s["cart__close-btn"],
               "p-2 lg:p-1",
               "shrink-0 self-start",
               "rounded-full bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
             )}
-            aria-label={closeBurgerMenuAriaLabel}
           >
             <XMarkIcon
-              onClick={closeCart}
               className={clsx(
                 "h-6 w-6",
                 "transition-all duration-200 ease-out",
               )}
+              onClick={closeCart}
             />
           </button>
           {cart !== undefined &&
@@ -113,8 +113,8 @@ export const Cart: FC<IProps> = (props) => {
             >
               {cart.lines.map((item) => (
                 <CartItem
-                  key={item.id}
                   item={item}
+                  key={item.id}
                   lang={lang}
                   setCart={setCart}
                 />
@@ -152,9 +152,9 @@ export const Cart: FC<IProps> = (props) => {
           ) : null}
           <Button
             className={clsx("w-full")}
+            disabled={checkoutDisabled}
             element='link'
             href={!checkoutDisabled ? cart.checkoutUrl : ""}
-            disabled={checkoutDisabled}
           >
             {dictionary.cart.checkout}
           </Button>
