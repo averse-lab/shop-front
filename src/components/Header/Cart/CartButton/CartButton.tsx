@@ -32,18 +32,19 @@ export const CartButton: FC<IProps> = (props) => {
           whiteIcons && "text-white",
         )}
       />
-      {quantity !== undefined && quantity > 0 ? (
-        <div
-          className={clsx(
-            s["cart-hint__hint"],
-            whiteIcons ? "bg-white text-black" : "bg-black text-white",
-          )}
-        >
-          <p className={clsx("text-semibold")} style={{ fontSize: "8px" }}>
-            {quantity}
-          </p>
-        </div>
-      ) : null}
+
+      <div
+        className={clsx(
+          s["cart-hint__hint"],
+          "scale-0 transition-all duration-200 ease-out",
+          whiteIcons ? "bg-white text-black" : "bg-black text-white",
+          quantity !== undefined && quantity > 0 && "scale-100",
+        )}
+      >
+        <p className={clsx("text-semibold")} style={{ fontSize: "8px" }}>
+          {quantity}
+        </p>
+      </div>
     </button>
   );
 };
