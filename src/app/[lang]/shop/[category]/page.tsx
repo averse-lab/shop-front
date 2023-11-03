@@ -121,16 +121,9 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer />
-      <div
-        className={clsx(
-          "fixed left-0 top-0 z-10",
-          "h-[72px] w-full md:h-[96px]",
-          "border-b border-neutral-200 bg-white",
-        )}
-      ></div>
+      <HeaderContextInitializer whiteBackground />
       <FilterSelector
-        className={clsx("fixed z-10 mt-[72px] md:mt-[96px]", "w-full")}
+        className={clsx("fixed left-0 top-[72px] z-10 md:top-[96px]", "w-full")}
         filters={filters}
         selectedFilterIndex={selectedFilterIndex}
       />

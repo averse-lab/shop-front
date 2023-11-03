@@ -32,7 +32,7 @@ export const Logo: FC<IProps> = (props) => {
         className,
         "relative",
         "transition-all duration-200 ease-out",
-        hideLogo && "opacity-0",
+        hideLogo === false ? "opacity-100" : "opacity-0",
       )}
       ref={logoRef}
     >

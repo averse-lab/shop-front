@@ -1,7 +1,5 @@
 import { FC } from "react";
 
-import { clsx } from "clsx";
-
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 
 import { Locale } from "@lib/i18n/types";
@@ -29,16 +27,9 @@ const PrivacyPolicyPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer whiteBackground />
       <div
-        className={clsx(
-          "fixed left-0 top-0 z-10",
-          "h-[72px] w-full md:h-[96px]",
-          "border-b border-neutral-200 bg-white",
-        )}
-      ></div>
-      <div
-        className={"flex w-full flex-col pt-[72px] md:flex-row md:pt-[96px] "}
+        className={"mt-[72px] flex w-full flex-col md:mt-[96px] md:flex-row "}
       >
         <div
           className={"mb-5 mt-10 flex justify-center md:min-h-screen md:w-1/2"}
