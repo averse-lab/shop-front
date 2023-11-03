@@ -1,4 +1,4 @@
-import { FC, LegacyRef } from "react";
+import { FC } from "react";
 
 import { clsx } from "clsx";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import s from "./_internal/RichTextRenderer.module.scss";
 
 type IProps = {
   className?: string;
-  reference: LegacyRef<HTMLDivElement>;
   richText: string;
 };
 
@@ -40,12 +39,12 @@ type ParsedRichText = {
 };
 
 export const RichTextRenderer: FC<IProps> = (props) => {
-  const { richText, className, reference } = props;
+  const { richText, className } = props;
 
   const parsedRichText: ParsedRichText = JSON.parse(richText);
 
   return (
-    <div className={clsx(className, s["rich-text"])} ref={reference}>
+    <div className={clsx(className, s["rich-text"])}>
       {parsedRichText.children.reduce<JSX.Element[][]>((rootAcc, rootCurr) => {
         const paragraphs = rootCurr.children.reduce<(JSX.Element | string)[]>(
           (childAcc, childCurr) => {

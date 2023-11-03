@@ -2,9 +2,10 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
+import { Observer } from "@components/Observer/Observer";
+import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
-import { AdditionalVideoDescription } from "../AdditionalVideoDescription/AdditionalVideoDescription";
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
@@ -38,10 +39,20 @@ export const SingleAdditionalVideo: FC<IProps> = (props) => {
         playbackId={playbackId}
         widthRatio={widthRatio}
       />
-      <AdditionalVideoDescription
-        className={clsx("lg:max-w-[550px] 2xl:max-w-[750px]")}
-        description={description}
-      />
+      <Observer
+        className={clsx(
+          "lg:max-w-[550px] 2xl:max-w-[750px]",
+          "transition-all duration-200 ease-out",
+        )}
+        inViewClassName='opacity-1 translate-y-0 lg:translate-x-0'
+        options={{
+          triggerOnce: true,
+          rootMargin: "-25% 0%",
+        }}
+        outOfViewClassName='-translate-y-2 opacity-0 lg:-translate-x-2'
+      >
+        <RichTextRenderer richText={description} />
+      </Observer>
     </AdditionalVideosObserver>
   );
 };

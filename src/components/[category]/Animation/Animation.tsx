@@ -23,7 +23,6 @@ export const Animation: FC<IProps> = (props) => {
       </style>
       <VideoPlayer
         className={clsx(
-          `animation-${index}`,
           "h-full w-full",
           "outline outline-1 outline-neutral-500",
         )}

@@ -2,10 +2,11 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
+import { Observer } from "@components/Observer/Observer";
+import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import s from "./_internal/MultipleAdditionalVideos.module.scss";
-import { AdditionalVideoDescription } from "../AdditionalVideoDescription/AdditionalVideoDescription";
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
@@ -67,10 +68,23 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
           playbackId={firstVideoPlaybackId}
           widthRatio={firstVideoWidthRatio}
         />
-        <AdditionalVideoDescription
-          className={clsx("lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
-          description={firstVideoDescription}
-        />
+
+        <Observer
+          className={clsx(
+            "lg:-mt-[12.5%] lg:w-[550px] 2xl:w-[750px]",
+            "transition-all duration-200 ease-out",
+          )}
+          inViewClassName={clsx("translate-y-0 opacity-100 lg:translate-x-0")}
+          options={{
+            triggerOnce: true,
+            rootMargin: "-25% 0%",
+          }}
+          outOfViewClassName={clsx(
+            "-translate-y-2 opacity-0 lg:-translate-x-2",
+          )}
+        >
+          <RichTextRenderer richText={firstVideoDescription} />
+        </Observer>
       </div>
       <div
         className={clsx(
@@ -98,10 +112,21 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
           playbackId={secondVideoPlaybackId}
           widthRatio={secondVideoWidthRatio}
         />
-        <AdditionalVideoDescription
-          className={clsx("lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]")}
-          description={secondVideoDescription}
-        />
+
+        <Observer
+          className={clsx(
+            "lg:mt-[12.5%] lg:w-[550px] 2xl:w-[750px]",
+            "transition-all duration-200 ease-out",
+          )}
+          inViewClassName='opacity-1 translate-y-0 lg:translate-x-0'
+          options={{
+            triggerOnce: true,
+            rootMargin: "-25% 0%",
+          }}
+          outOfViewClassName='-translate-y-2 opacity-0 lg:-translate-x-2'
+        >
+          <RichTextRenderer richText={secondVideoDescription} />
+        </Observer>
       </div>
     </AdditionalVideosObserver>
   );

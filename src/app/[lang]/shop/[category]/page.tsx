@@ -9,6 +9,7 @@ import { Animation } from "@components/[category]/Animation/Animation";
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
+import { Observer } from "@components/Observer/Observer";
 
 import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
@@ -139,27 +140,47 @@ const CategoryPage: FC<IProps> = async (props) => {
           )}
         >
           {products.map((product, idx) => (
-            <ProductPreview
-              className={clsx("outline outline-1 outline-neutral-500")}
-              currency={product.priceRange.maxVariantPrice.currencyCode}
-              href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-              imageUrl={product.images[0].url}
-              index={idx}
+            <Observer
+              className={clsx(
+                "outline outline-1 outline-neutral-500 transition-all duration-200 ease-out",
+                `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,
+              )}
+              inViewClassName={clsx("opacity-100")}
               key={product.id}
-              price={product.priceRange.minVariantPrice.amount}
-              title={product.title}
-            />
+              options={{ triggerOnce: true, threshold: 0.5 }}
+              outOfViewClassName={clsx("opacity-0")}
+            >
+              <ProductPreview
+                currency={product.priceRange.maxVariantPrice.currencyCode}
+                href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+                imageUrl={product.images[0].url}
+                index={idx}
+                price={product.priceRange.minVariantPrice.amount}
+                title={product.title}
+              />
+            </Observer>
           ))}
           {getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(
             (animation, idx) => {
               return (
-                <Animation
-                  gridDesktopIndex={animation.gridDesktopIndex}
-                  gridIndex={animation.gridIndex}
-                  index={idx}
+                <Observer
+                  className={clsx(
+                    `animation-${idx}`,
+                    "transition-all duration-200 ease-out",
+                    `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,
+                  )}
+                  inViewClassName={clsx("opacity-100")}
                   key={v4()}
-                  playbackId={animation.playbackId}
-                />
+                  options={{ triggerOnce: true, threshold: 0.5 }}
+                  outOfViewClassName={clsx("opacity-0")}
+                >
+                  <Animation
+                    gridDesktopIndex={animation.gridDesktopIndex}
+                    gridIndex={animation.gridIndex}
+                    index={idx}
+                    playbackId={animation.playbackId}
+                  />
+                </Observer>
               );
             },
           )}
