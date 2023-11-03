@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import { MultipleAdditionalVideos } from "@components/[slug]/MultipleAdditionalVideos/MultipleAdditionalVideos";
 import { ProductInteractive } from "@components/[slug]/ProductInteractive/ProductInteractive";
-import { ProductMultipleAdditionalVideos } from "@components/[slug]/ProductMultipleAdditionalVideos/ProductMultipleAdditionalVideos";
-import { ProductSingleAdditionalVideo } from "@components/[slug]/ProductSingleAdditionalVideo/ProductSingleAdditionalVideo";
+import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo/SingleAdditionalVideo";
 import { Slider } from "@components/Slider/Slider";
 
 import { Locale } from "@lib/i18n/types";
@@ -144,7 +144,7 @@ const ProductPage: FC<IProps> = async (props) => {
       </div>
       {isProductWithSingleAdditionalVideo(product) ? (
         isProductWithMultipleAdditionalVideos(product) ? (
-          <ProductMultipleAdditionalVideos
+          <MultipleAdditionalVideos
             firstVideoPlaybackId={product.firstAdditionalVideoID.value}
             firstVideoWidthRatio={Number(
               product.firstAdditionalVideoWidthRatio.value,
@@ -171,7 +171,7 @@ const ProductPage: FC<IProps> = async (props) => {
             }
           />
         ) : (
-          <ProductSingleAdditionalVideo
+          <SingleAdditionalVideo
             playbackId={product.firstAdditionalVideoID.value}
             widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
             heightRatio={Number(product.firstAdditionalVideoHeightRatio.value)}

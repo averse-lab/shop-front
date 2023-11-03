@@ -15,7 +15,7 @@ type IProps = {
   reversedLayout: boolean;
 };
 
-export const ProductSingleAdditionalVideo: FC<IProps> = (props) => {
+export const SingleAdditionalVideo: FC<IProps> = (props) => {
   const { playbackId, widthRatio, heightRatio, description, reversedLayout } =
     props;
 

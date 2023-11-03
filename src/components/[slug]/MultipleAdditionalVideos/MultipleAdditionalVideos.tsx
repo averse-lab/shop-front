@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
-import s from "./_internal/ProductMultipleAdditionalVideos.module.scss";
+import s from "./_internal/MultipleAdditionalVideos.module.scss";
 import { AdditionalVideoDescription } from "../AdditionalVideoDescription/AdditionalVideoDescription";
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
@@ -20,7 +20,7 @@ type IProps = {
   reversedLayout: boolean;
 };
 
-export const ProductMultipleAdditionalVideos: FC<IProps> = (props) => {
+export const MultipleAdditionalVideos: FC<IProps> = (props) => {
   const {
     firstVideoPlaybackId,
     firstVideoWidthRatio,
