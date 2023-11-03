@@ -19,11 +19,11 @@ import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import {
   getAnimationsFromCategoryUrlSegment,
+  getCategoryFromCategoryUrlSegment,
   getMetadataDescription,
   getMetadataTitle,
   getMetadataTwitterDescription,
 } from "./_internal/CategoryPage.utils";
-import { getCategoryFromCategoryUrlSegment } from "../_internal/ShopPage.utils";
 
 export async function generateStaticParams() {
   return I18N_CONFIG.locales.reduce<Params[]>((staticParams, locale) => {

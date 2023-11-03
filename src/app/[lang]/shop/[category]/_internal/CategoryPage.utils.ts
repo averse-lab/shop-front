@@ -1,5 +1,6 @@
 import { Dictionary } from "@lib/i18n/types";
 import { CATEGORIES } from "@lib/routing/constants";
+import { CategoryValue } from "@lib/routing/types";
 
 import { ANIMATIONS } from "./CategoryPage.constants";
 import { Animation } from "./CategoryPage.types";
@@ -65,4 +66,12 @@ export const getAnimationsFromCategoryUrlSegment = (
     default:
       return ANIMATIONS.allProducts;
   }
+};
+
+export const getCategoryFromCategoryUrlSegment = (
+  categoryUrlSegment: string,
+): CategoryValue | undefined => {
+  return Object.values(CATEGORIES).find(
+    (category) => category.url === categoryUrlSegment,
+  );
 };
