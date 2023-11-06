@@ -21,7 +21,7 @@ type IProps = {
   variants: ProductVariant[];
   minVariantPrice: Product["priceRange"]["minVariantPrice"];
   dictionary: Dictionary;
-  shippingDelays?: string;
+  shippingDelays: string | null;
 };
 
 export const ProductInteractive: FC<IProps> = (props) => {

@@ -18,7 +18,7 @@ type IProps = {
   secondVideoWidthRatio: number;
   secondVideoHeightRatio: number;
   secondVideoDescription: string;
-  reversedLayout: boolean;
+  inversedLayout: boolean;
 };
 
 export const MultipleAdditionalVideos: FC<IProps> = (props) => {
@@ -31,7 +31,7 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
     secondVideoWidthRatio,
     secondVideoHeightRatio,
     secondVideoDescription,
-    reversedLayout,
+    inversedLayout,
   } = props;
 
   return (
@@ -46,7 +46,7 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
       <div
         className={clsx(
           "flex flex-col items-center gap-4",
-          reversedLayout
+          inversedLayout
             ? [
                 s["multiple-additional-videos__wrapper--reversed"],
                 "lg:flex-row-reverse",
@@ -58,7 +58,7 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
           className={clsx(
             s[
               `multiple-additional-videos__player--${
-                reversedLayout ? "right" : "left"
+                inversedLayout ? "right" : "left"
               }`
             ],
             "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[1000px]",
@@ -90,7 +90,7 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
         className={clsx(
           "lg:-mt-[25%]",
           "flex flex-col items-center gap-4",
-          reversedLayout
+          inversedLayout
             ? [
                 s["multiple-additional-videos__wrapper--reversed"],
                 "lg:flex-row",
@@ -102,7 +102,7 @@ export const MultipleAdditionalVideos: FC<IProps> = (props) => {
           className={clsx(
             s[
               `multiple-additional-videos__player--${
-                reversedLayout ? "left" : "right"
+                inversedLayout ? "left" : "right"
               }`
             ],
             "shrink-0",

@@ -148,8 +148,11 @@ const CategoryPage: FC<IProps> = async (props) => {
                 )}
                 currency={product.priceRange.maxVariantPrice.currencyCode}
                 href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                imageUrl={product.images[0].url}
+                imageUrl={
+                  product.images.length > 0 ? product.images[0].url : ""
+                }
                 index={idx}
+                light={product.customMetafields.darkFeaturedImage || false}
                 price={product.priceRange.minVariantPrice.amount}
                 title={product.title}
               />

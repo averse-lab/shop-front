@@ -32,6 +32,7 @@ import {
   Cart,
   Collection,
   Connection,
+  ProductCustomMetafields,
   Image,
   Menu,
   Page,
@@ -50,6 +51,7 @@ import {
   ShopifyPagesOperation,
   ShopifyPolicyOperation,
   ShopifyProduct,
+  ShopifyProductCustomMetafields,
   ShopifyProductOperation,
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
@@ -181,10 +183,78 @@ const reshapeImages = (images: Connection<Image>, productTitle: string) => {
   });
 };
 
+const reshapeCustomMetafields = (
+  shopifyProductCustomMetafields: ShopifyProductCustomMetafields,
+): ProductCustomMetafields => {
+  const {
+    shippingDelays,
+    darkFeaturedImage,
+    additionalVideosLayout,
+    firstAdditionalVideoID,
+    firstAdditionalVideoDescription,
+    firstAdditionalVideoWidthRatio,
+    firstAdditionalVideoHeightRatio,
+    secondAdditionalVideoID,
+    secondAdditionalVideoDescription,
+    secondAdditionalVideoWidthRatio,
+    secondAdditionalVideoHeightRatio,
+  } = shopifyProductCustomMetafields;
+
+  return {
+    shippingDelays: shippingDelays !== null ? shippingDelays.value : null,
+    darkFeaturedImage:
+      darkFeaturedImage !== null
+        ? darkFeaturedImage.value === "true"
+          ? true
+          : darkFeaturedImage.value === "false"
+          ? false
+          : null
+        : null,
+    additionalVideosLayout:
+      additionalVideosLayout !== null
+        ? additionalVideosLayout.value ===
+          "player to the left / description to the right"
+          ? "standard"
+          : additionalVideosLayout.value ===
+            "player to the right / description to the left"
+          ? "inversed"
+          : null
+        : null,
+    firstAdditionalVideoID:
+      firstAdditionalVideoID !== null ? firstAdditionalVideoID.value : null,
+    firstAdditionalVideoDescription:
+      firstAdditionalVideoDescription !== null
+        ? firstAdditionalVideoDescription.value
+        : null,
+    firstAdditionalVideoWidthRatio:
+      firstAdditionalVideoWidthRatio !== null
+        ? Number(firstAdditionalVideoWidthRatio.value)
+        : null,
+    firstAdditionalVideoHeightRatio:
+      firstAdditionalVideoHeightRatio !== null
+        ? Number(firstAdditionalVideoHeightRatio.value)
+        : null,
+    secondAdditionalVideoID:
+      secondAdditionalVideoID !== null ? secondAdditionalVideoID.value : null,
+    secondAdditionalVideoDescription:
+      secondAdditionalVideoDescription !== null
+        ? secondAdditionalVideoDescription.value
+        : null,
+    secondAdditionalVideoWidthRatio:
+      secondAdditionalVideoWidthRatio !== null
+        ? Number(secondAdditionalVideoWidthRatio.value)
+        : null,
+    secondAdditionalVideoHeightRatio:
+      secondAdditionalVideoHeightRatio !== null
+        ? Number(secondAdditionalVideoHeightRatio.value)
+        : null,
+  };
+};
+
 const reshapeProduct = (
   product: ShopifyProduct,
   filterHiddenProducts: boolean = true,
-) => {
+): Product | undefined => {
   if (
     !product ||
     (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))
@@ -192,12 +262,42 @@ const reshapeProduct = (
     return undefined;
   }
 
-  const { images, variants, ...rest } = product;
+  const {
+    images,
+    variants,
+    shippingDelays,
+    darkFeaturedImage,
+    additionalVideosLayout,
+    firstAdditionalVideoID,
+    firstAdditionalVideoDescription,
+    firstAdditionalVideoHeightRatio,
+    firstAdditionalVideoWidthRatio,
+    secondAdditionalVideoID,
+    secondAdditionalVideoDescription,
+    secondAdditionalVideoWidthRatio,
+    secondAdditionalVideoHeightRatio,
+    ...rest
+  } = product;
+
+  const shopifyProductCustomMetafields = {
+    shippingDelays,
+    darkFeaturedImage,
+    additionalVideosLayout,
+    firstAdditionalVideoID,
+    firstAdditionalVideoDescription,
+    firstAdditionalVideoHeightRatio,
+    firstAdditionalVideoWidthRatio,
+    secondAdditionalVideoID,
+    secondAdditionalVideoDescription,
+    secondAdditionalVideoWidthRatio,
+    secondAdditionalVideoHeightRatio,
+  };
 
   return {
     ...rest,
     images: reshapeImages(images, product.title),
     variants: removeEdgesAndNodes(variants),
+    customMetafields: reshapeCustomMetafields(shopifyProductCustomMetafields),
   };
 };
 

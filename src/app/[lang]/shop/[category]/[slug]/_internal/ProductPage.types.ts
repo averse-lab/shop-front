@@ -1,19 +1,39 @@
 import { Product } from "@lib/shopify/types";
 import { NonNullablePick } from "@lib/types";
 
-export type ProductWithSingleAdditionalVideo = NonNullablePick<
-  Product,
+type ProductWithSingleAdditionalVideoProperties =
   | "firstAdditionalVideoID"
   | "firstAdditionalVideoWidthRatio"
   | "firstAdditionalVideoHeightRatio"
   | "firstAdditionalVideoDescription"
-  | "additionalVideosLayout"
->;
+  | "additionalVideosLayout";
 
-export type ProductWithMultipleAdditionalVideos = NonNullablePick<
-  ProductWithSingleAdditionalVideo,
+export type ProductWithSingleAdditionalVideo = Omit<
+  Product,
+  "customMetafields"
+> & {
+  customMetafields: NonNullablePick<
+    Product["customMetafields"],
+    ProductWithSingleAdditionalVideoProperties
+  >;
+};
+
+type ProductWithMultipleAdditionalVideosProperties =
   | "secondAdditionalVideoID"
   | "secondAdditionalVideoWidthRatio"
   | "secondAdditionalVideoHeightRatio"
-  | "secondAdditionalVideoDescription"
->;
+  | "secondAdditionalVideoDescription";
+
+export type ProductWithMultipleAdditionalVideos = Omit<
+  Product,
+  "customMetafields"
+> & {
+  customMetafields: Pick<
+    ProductWithSingleAdditionalVideo["customMetafields"],
+    ProductWithSingleAdditionalVideoProperties
+  > &
+    NonNullablePick<
+      Product["customMetafields"],
+      ProductWithMultipleAdditionalVideosProperties
+    >;
+};

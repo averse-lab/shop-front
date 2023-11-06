@@ -36,6 +36,8 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
 
   const { featuredImage, title, seo, description, productType } = product;
 
+  console.log(product);
+
   return {
     title: seo.title || `${title} | Averse`,
     description: seo.description || description,
@@ -43,24 +45,28 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
       card: "summary",
       title: seo.title || `${title} | Averse`,
       description: seo.description || description,
-      images: {
-        url: featuredImage.url,
-        alt: featuredImage.altText,
-        height: featuredImage.height,
-        width: featuredImage.width,
-      },
+      images: featuredImage
+        ? {
+            url: featuredImage.url,
+            alt: featuredImage.altText,
+            height: featuredImage.height,
+            width: featuredImage.width,
+          }
+        : undefined,
     },
     openGraph: {
       type: "website",
       title: seo.title || `${title} | Averse`,
       description: seo.description || description,
       url: `${lang}/${PAGES.shop.url}/${productType}/${slug}`,
-      images: {
-        url: featuredImage.url,
-        alt: featuredImage.altText,
-        height: featuredImage.height,
-        width: featuredImage.width,
-      },
+      images: featuredImage
+        ? {
+            url: featuredImage.url,
+            alt: featuredImage.altText,
+            height: featuredImage.height,
+            width: featuredImage.width,
+          }
+        : undefined,
     },
   };
 }
@@ -134,7 +140,7 @@ const ProductPage: FC<IProps> = async (props) => {
             <ProductInteractive
               dictionary={dictionary}
               minVariantPrice={product.priceRange.minVariantPrice}
-              shippingDelays={product.shippingDelays?.value}
+              shippingDelays={product.customMetafields.shippingDelays}
               variants={product.variants}
             />
             <div
@@ -148,40 +154,46 @@ const ProductPage: FC<IProps> = async (props) => {
         isProductWithMultipleAdditionalVideos(product) ? (
           <MultipleAdditionalVideos
             firstVideoDescription={
-              product.firstAdditionalVideoDescription.value
+              product.customMetafields.firstAdditionalVideoDescription
             }
-            firstVideoHeightRatio={Number(
-              product.firstAdditionalVideoHeightRatio.value,
-            )}
-            firstVideoPlaybackId={product.firstAdditionalVideoID.value}
-            firstVideoWidthRatio={Number(
-              product.firstAdditionalVideoWidthRatio.value,
-            )}
-            reversedLayout={
-              product.additionalVideosLayout.value ===
-              "player to the right / description to the left"
+            firstVideoHeightRatio={
+              product.customMetafields.firstAdditionalVideoHeightRatio
+            }
+            firstVideoPlaybackId={
+              product.customMetafields.firstAdditionalVideoID
+            }
+            firstVideoWidthRatio={
+              product.customMetafields.firstAdditionalVideoWidthRatio
+            }
+            inversedLayout={
+              product.customMetafields.additionalVideosLayout === "inversed"
             }
             secondVideoDescription={
-              product.secondAdditionalVideoDescription.value
+              product.customMetafields.secondAdditionalVideoDescription
             }
-            secondVideoHeightRatio={Number(
-              product.secondAdditionalVideoHeightRatio.value,
-            )}
-            secondVideoPlaybackId={product.secondAdditionalVideoID.value}
-            secondVideoWidthRatio={Number(
-              product.secondAdditionalVideoWidthRatio.value,
-            )}
+            secondVideoHeightRatio={
+              product.customMetafields.secondAdditionalVideoHeightRatio
+            }
+            secondVideoPlaybackId={
+              product.customMetafields.secondAdditionalVideoID
+            }
+            secondVideoWidthRatio={
+              product.customMetafields.secondAdditionalVideoWidthRatio
+            }
           />
         ) : (
           <SingleAdditionalVideo
-            description={product.firstAdditionalVideoDescription.value}
-            heightRatio={Number(product.firstAdditionalVideoHeightRatio.value)}
-            playbackId={product.firstAdditionalVideoID.value}
-            reversedLayout={
-              product.additionalVideosLayout.value ===
-              "player to the right / description to the left"
+            description={
+              product.customMetafields.firstAdditionalVideoDescription
             }
-            widthRatio={Number(product.firstAdditionalVideoWidthRatio.value)}
+            heightRatio={
+              product.customMetafields.firstAdditionalVideoHeightRatio
+            }
+            inversedLayout={
+              product.customMetafields.additionalVideosLayout === "inversed"
+            }
+            playbackId={product.customMetafields.firstAdditionalVideoID}
+            widthRatio={product.customMetafields.firstAdditionalVideoWidthRatio}
           />
         )
       ) : null}

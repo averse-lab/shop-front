@@ -6,14 +6,14 @@ import {
 } from "./ProductPage.types";
 
 export const isProductWithSingleAdditionalVideo = (
-  product: any,
+  product: Product,
 ): product is ProductWithSingleAdditionalVideo => {
   return (
-    product.firstAdditionalVideoID !== null &&
-    product.firstAdditionalVideoWidthRatio !== null &&
-    product.firstAdditionalVideoHeightRatio !== null &&
-    product.firstAdditionalVideoDescription !== null &&
-    product.additionalVideosLayout !== null
+    product.customMetafields.firstAdditionalVideoID !== null &&
+    product.customMetafields.firstAdditionalVideoWidthRatio !== null &&
+    product.customMetafields.firstAdditionalVideoHeightRatio !== null &&
+    product.customMetafields.firstAdditionalVideoDescription !== null &&
+    product.customMetafields.additionalVideosLayout !== null
   );
 };
 
@@ -21,9 +21,9 @@ export const isProductWithMultipleAdditionalVideos = (
   product: Product,
 ): product is ProductWithMultipleAdditionalVideos => {
   return (
-    product.secondAdditionalVideoID !== null &&
-    product.secondAdditionalVideoWidthRatio !== null &&
-    product.secondAdditionalVideoHeightRatio !== null &&
-    product.secondAdditionalVideoDescription !== null
+    product.customMetafields.secondAdditionalVideoID !== null &&
+    product.customMetafields.secondAdditionalVideoWidthRatio !== null &&
+    product.customMetafields.secondAdditionalVideoHeightRatio !== null &&
+    product.customMetafields.secondAdditionalVideoDescription !== null
   );
 };

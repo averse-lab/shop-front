@@ -63,9 +63,29 @@ export type Page = {
   updatedAt: string;
 };
 
-export type Product = Omit<ShopifyProduct, "variants" | "images"> & {
+export type ShopifyProductCustomMetafieldsKeys = keyof ProductCustomMetafields;
+
+export type Product = Omit<
+  ShopifyProduct,
+  "variants" | "images" | ShopifyProductCustomMetafieldsKeys
+> & {
   variants: ProductVariant[];
   images: Image[];
+  customMetafields: ProductCustomMetafields;
+};
+
+export type ProductCustomMetafields = {
+  shippingDelays: string | null;
+  darkFeaturedImage: boolean | null;
+  additionalVideosLayout: "standard" | "inversed" | null;
+  firstAdditionalVideoID: string | null;
+  firstAdditionalVideoDescription: string | null;
+  firstAdditionalVideoWidthRatio: number | null;
+  firstAdditionalVideoHeightRatio: number | null;
+  secondAdditionalVideoID: string | null;
+  secondAdditionalVideoDescription: string | null;
+  secondAdditionalVideoWidthRatio: number | null;
+  secondAdditionalVideoHeightRatio: number | null;
 };
 
 export type ProductOption = {
@@ -120,6 +140,9 @@ export type ShopifyProductCustomMetafields = {
   shippingDelays: {
     value: string;
   } | null;
+  darkFeaturedImage: {
+    value: string;
+  } | null;
   additionalVideosLayout: {
     value:
       | "player to the right / description to the left"
@@ -165,7 +188,7 @@ export type ShopifyProduct = {
     minVariantPrice: Money;
   };
   variants: Connection<ProductVariant>;
-  featuredImage: Image;
+  featuredImage: Image | null;
   images: Connection<Image>;
   seo: SEO;
   tags: string[];

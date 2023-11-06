@@ -35,7 +35,7 @@ export const CartItem: FC<IProps> = (props) => {
             "rounded object-cover object-center",
           )}
           height={120}
-          src={product.featuredImage.url}
+          src={product.featuredImage !== null ? product.featuredImage.url : ""}
           width={120}
         />
       </Link>
