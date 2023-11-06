@@ -11,6 +11,7 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import { FOOTER_NAV } from "./_internal/Footer.constants";
+import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
 
 type IProps = {
   dictionary: Dictionary;
@@ -63,21 +64,23 @@ export const Footer: FC<IProps> = (props) => {
           />
         </Link>
       </div>
-      <div
-        className={clsx("flex items-center gap-[6px] self-center", "text-sm")}
-      >
-        <p>Website by</p>
-        <Link
-          aria-label={weAreStudio99AriaLabel}
-          href='https://instagram.com/wearestudio99'
-        >
-          <WeAreStudio99
-            className={clsx(
-              "h-4",
-              "transition-all duration-200 ease-out lg:hover:scale-105",
-            )}
-          />
-        </Link>
+      <div className={clsx("flex items-center gap-6 self-center", "text-sm")}>
+        <div className={clsx("flex items-center gap-[6px]")}>
+          <p>Website by</p>
+          <Link
+            aria-label={weAreStudio99AriaLabel}
+            href='https://instagram.com/wearestudio99'
+          >
+            <WeAreStudio99
+              className={clsx(
+                "h-4",
+                "transition-all duration-200 ease-out lg:hover:scale-105",
+              )}
+            />
+          </Link>
+        </div>
+        <div>-</div>
+        <LanguageSelector lang={lang} />
       </div>
     </footer>
   );
