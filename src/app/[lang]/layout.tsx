@@ -36,7 +36,7 @@ const LangLayout: FC<IProps> = async (props) => {
           "mb-[220px] lg:mb-[204px]",
           "min-h-screen",
           "flex flex-col",
-          "bg-black",
+          "bg-black shadow-md",
           "font-sans",
         )}
       >
