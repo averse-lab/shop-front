@@ -1,3 +1,9 @@
+.burger-menu__burger {
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 0px 0px rgba($color: white, $alpha: 0.1);
+  background-color: rgba($color: white, $alpha: 0.1);
+}
+
 .burger-menu__menu {
   transition: 0.2s transform ease-out;
   transform: translate(-100%);
@@ -20,6 +26,8 @@
 @media (min-width: 1024px) {
   .burger-menu__burger {
     &:hover {
+      box-shadow: 0px 0px 0px 1px rgba($color: white, $alpha: 0.1);
+
       & + .burger-menu__menu {
         transform: translate(-100%);
       }

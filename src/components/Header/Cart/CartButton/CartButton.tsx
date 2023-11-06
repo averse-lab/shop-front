@@ -22,20 +22,26 @@ export const CartButton: FC<IProps> = (props) => {
   return (
     <button
       aria-label={ariaLabel}
-      className={clsx(className, "relative")}
+      className={clsx(
+        className,
+        s["cart-btn__btn"],
+        "relative",
+        "p-1",
+        "rounded transition-all duration-200",
+      )}
       onClick={onClick}
     >
       <ShoppingBagIcon
         className={clsx(
           "h-6 w-6",
-          "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
+          "scale-90 cursor-pointer transition-all duration-200 ease-out lg:hover:stroke-[1.75]",
           whiteIcons && "text-white",
         )}
       />
 
       <div
         className={clsx(
-          s["cart-hint__hint"],
+          s["cart-btn__hint"],
           "scale-0 transition-all duration-200 ease-out",
           whiteIcons ? "bg-white text-black" : "bg-black text-white",
           quantity !== undefined && quantity > 0 && "scale-100",

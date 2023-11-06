@@ -56,15 +56,20 @@ export const BurgerMenu: FC<IProps> = (props) => {
     <>
       <button
         aria-label={openBurgerMenuAriaLabel}
-        className={clsx(className, s["burger-menu__burger"])}
+        className={clsx(
+          className,
+          s["burger-menu__burger"],
+          "p-1",
+          "rounded transition-all duration-200",
+        )}
+        onClick={openMenu}
       >
         <Bars3Icon
           className={clsx(
             "h-6 w-6",
-            "transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
+            "transition-all duration-200 ease-out lg:hover:stroke-[1.75]",
             whiteIcons && "text-white",
           )}
-          onClick={openMenu}
         />
       </button>
       <div
@@ -93,10 +98,10 @@ export const BurgerMenu: FC<IProps> = (props) => {
               ? "lg:bg-neutral-100/0 lg:hover:bg-neutral-100/100"
               : "lg:bg-neutral-900/0 lg:hover:bg-neutral-900/100",
           )}
+          onClick={closeMenu}
         >
           <XMarkIcon
             className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
-            onClick={closeMenu}
           />
         </button>
         <div

@@ -92,13 +92,13 @@ export const Cart: FC<IProps> = (props) => {
               "shrink-0 self-start",
               "rounded-full bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
             )}
+            onClick={closeCart}
           >
             <XMarkIcon
               className={clsx(
                 "h-6 w-6",
                 "transition-all duration-200 ease-out",
               )}
-              onClick={closeCart}
             />
           </button>
           {cart !== undefined &&
