@@ -36,8 +36,6 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
 
   const { featuredImage, title, seo, description, productType } = product;
 
-  console.log(product);
-
   return {
     title: seo.title || `${title} | Averse`,
     description: seo.description || description,
