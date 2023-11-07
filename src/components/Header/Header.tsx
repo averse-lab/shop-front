@@ -44,7 +44,7 @@ export const Header: FC<IProps> = (props) => {
       <Link
         aria-label={averseHomeAriaLabel}
         className={clsx("justify-self-center")}
-        href='/'
+        href={`/${lang}`}
       >
         <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
