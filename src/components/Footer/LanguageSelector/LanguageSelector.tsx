@@ -22,7 +22,7 @@ export const LanguageSelector: FC<IProps> = (props) => {
         lang === "fr" ? "en" : "fr",
       )}
     >
-      {lang === "fr" ? <>&#x1F1FA;&#x1F1F8;</> : <>&#x1F1EB;&#x1F1F7;</>}
+      {lang === "fr" ? <>&#x1F1EC;&#x1F1E7;</> : <>&#x1F1EB;&#x1F1F7;</>}
     </Link>
   );
 };
