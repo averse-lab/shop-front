@@ -3,9 +3,6 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { v4 } from "uuid";
-
-import { Animation } from "@components/[category]/Animation/Animation";
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
@@ -20,7 +17,6 @@ import { getProducts } from "@lib/shopify";
 import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import {
-  getAnimationsFromCategoryUrlSegment,
   getCategoryFromCategoryUrlSegment,
   getMetadataDescription,
   getMetadataTitle,
@@ -158,30 +154,30 @@ const CategoryPage: FC<IProps> = async (props) => {
               />
             </Observer>
           ))}
-          {getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(
-            (animation, idx) => {
-              return (
-                <Observer
-                  className={clsx(
-                    `animation-${idx}`,
-                    "transition-all duration-200 ease-out",
-                    `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,
-                  )}
-                  inViewClassName={clsx("opacity-100")}
-                  key={v4()}
-                  options={{ triggerOnce: true, threshold: 0.5 }}
-                  outOfViewClassName={clsx("opacity-0")}
-                >
-                  <Animation
-                    gridDesktopIndex={animation.gridDesktopIndex}
-                    gridIndex={animation.gridIndex}
-                    index={idx}
-                    playbackId={animation.playbackId}
-                  />
-                </Observer>
-              );
-            },
-          )}
+          {/*{getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(*/}
+          {/*  (animation, idx) => {*/}
+          {/*    return (*/}
+          {/*      <Observer*/}
+          {/*        className={clsx(*/}
+          {/*          `animation-${idx}`,*/}
+          {/*          "transition-all duration-200 ease-out",*/}
+          {/*          `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,*/}
+          {/*        )}*/}
+          {/*        inViewClassName={clsx("opacity-100")}*/}
+          {/*        key={v4()}*/}
+          {/*        options={{ triggerOnce: true, threshold: 0.5 }}*/}
+          {/*        outOfViewClassName={clsx("opacity-0")}*/}
+          {/*      >*/}
+          {/*        <Animation*/}
+          {/*          gridDesktopIndex={animation.gridDesktopIndex}*/}
+          {/*          gridIndex={animation.gridIndex}*/}
+          {/*          index={idx}*/}
+          {/*          playbackId={animation.playbackId}*/}
+          {/*        />*/}
+          {/*      </Observer>*/}
+          {/*    );*/}
+          {/*  },*/}
+          {/*)}*/}
         </div>
       </div>
     </>
