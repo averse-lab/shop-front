@@ -113,6 +113,7 @@ export const Cart: FC<IProps> = (props) => {
             >
               {cart.lines.map((item) => (
                 <CartItem
+                  dictionary={dictionary}
                   item={item}
                   key={item.id}
                   lang={lang}

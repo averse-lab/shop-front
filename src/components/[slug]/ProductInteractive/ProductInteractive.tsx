@@ -15,6 +15,7 @@ import { Product, ProductVariant } from "@lib/shopify/types";
 
 import { CartContext } from "@contexts/CartContext/CartContext";
 
+import { checkIsUniqueSize } from "./_internal/ProductInteractive.utils";
 import { addItemAction } from "./_internal/ProductIntercative.actions";
 
 type IProps = {
@@ -37,35 +38,50 @@ export const ProductInteractive: FC<IProps> = (props) => {
     disabled: !variant.availableForSale,
   }));
 
-  const uniqueSize =
-    variants.length === 1 &&
-    variants[0].selectedOptions.length === 1 &&
-    variants[0].selectedOptions[0].name === "Title";
+  const uniqueSize = checkIsUniqueSize(variants);
 
   const updateSelectedIndex = (newSelectedIndex: number) => {
     setSelectedIndex(newSelectedIndex);
   };
 
   const addToCart = () => {
-    if (selectedIndex === undefined) {
-      return;
+    if (uniqueSize) {
+      startTransition(async () => {
+        const cart = await addItemAction(options[0].value);
+
+        if (cart instanceof Error) {
+          alert(cart);
+          return;
+        }
+
+        if (setIsCartOpen === undefined || setCart === undefined) {
+          return;
+        }
+
+        setIsCartOpen(true);
+        setCart(cart);
+      });
+    } else {
+      if (selectedIndex === undefined) {
+        return;
+      }
+
+      startTransition(async () => {
+        const cart = await addItemAction(options[selectedIndex].value);
+
+        if (cart instanceof Error) {
+          alert(cart);
+          return;
+        }
+
+        if (setIsCartOpen === undefined || setCart === undefined) {
+          return;
+        }
+
+        setIsCartOpen(true);
+        setCart(cart);
+      });
     }
-
-    startTransition(async () => {
-      const cart = await addItemAction(options[selectedIndex].value);
-
-      if (cart instanceof Error) {
-        alert(cart);
-        return;
-      }
-
-      if (setIsCartOpen === undefined || setCart === undefined) {
-        return;
-      }
-
-      setIsCartOpen(true);
-      setCart(cart);
-    });
   };
 
   return (
@@ -102,7 +118,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
       </div>
       <Button
         className={clsx("w-full")}
-        disabled={selectedIndex === undefined}
+        disabled={!uniqueSize && selectedIndex === undefined}
         element='button'
         loading={isPending}
         onClick={addToCart}

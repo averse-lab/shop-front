@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Locale } from "@lib/i18n/types";
+import { Dictionary, Locale } from "@lib/i18n/types";
 import { PAGES } from "@lib/routing/constants";
 import { Cart, CartItem as ShopifyCartItem } from "@lib/shopify/types";
 import { StateSetter } from "@lib/types";
@@ -16,12 +16,16 @@ type IProps = {
   item: ShopifyCartItem;
   lang: Locale;
   setCart: StateSetter<Cart | undefined>;
+  dictionary: Dictionary;
 };
 
 export const CartItem: FC<IProps> = (props) => {
-  const { item, lang, setCart, className } = props;
+  const { item, lang, setCart, className, dictionary } = props;
   const { merchandise, cost, quantity } = item;
   const { product, selectedOptions } = merchandise;
+
+  const uniqueSize =
+    selectedOptions.length === 1 && selectedOptions[0].name === "Title";
 
   return (
     <div className={clsx(className, "flex items-center gap-3")}>
@@ -48,14 +52,24 @@ export const CartItem: FC<IProps> = (props) => {
             {product.title}
           </Link>
           <div className={clsx("flex items-center")}>
-            {selectedOptions.map((option) => (
+            {uniqueSize ? (
               <p
                 className={clsx(
                   "text-sm font-light uppercase text-neutral-600",
                 )}
-                key={option.value}
-              >{`${option.name} ${option.value}`}</p>
-            ))}
+              >
+                {dictionary.product.uniqueSize}
+              </p>
+            ) : (
+              selectedOptions.map((option) => (
+                <p
+                  className={clsx(
+                    "text-sm font-light uppercase text-neutral-600",
+                  )}
+                  key={option.value}
+                >{`${option.value}`}</p>
+              ))
+            )}
           </div>
           <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
