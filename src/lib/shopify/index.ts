@@ -1,6 +1,9 @@
 import "server-only";
 
 import { DocumentNode, print } from "graphql";
+import { revalidateTag } from "next/cache";
+import { headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
 import {
   HIDDEN_PRODUCT_TAG,
@@ -32,12 +35,12 @@ import {
   Cart,
   Collection,
   Connection,
-  ProductCustomMetafields,
   Image,
   Menu,
   Page,
   Policy,
   Product,
+  ProductCustomMetafields,
   ShopifyAddToCartOperation,
   ShopifyCart,
   ShopifyCartOperation,
@@ -87,7 +90,6 @@ export async function shopifyFetch<T>({
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Storefront-Access-Token": key,
-        // "Accept-Language": "fr",
         ...headers,
       },
       body: JSON.stringify({
@@ -331,7 +333,6 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
-    cache: "no-store",
   });
 
   return reshapeCart(res.body.data.cartCreate.cart);
@@ -347,7 +348,6 @@ export async function addToCart(
       cartId,
       lines,
     },
-    cache: "no-store",
   });
   return reshapeCart(res.body.data.cartLinesAdd.cart);
 }
@@ -362,7 +362,6 @@ export async function removeFromCart(
       cartId,
       lineIds,
     },
-    cache: "no-store",
   });
 
   return reshapeCart(res.body.data.cartLinesRemove.cart);
@@ -378,7 +377,6 @@ export async function updateCart(
       cartId,
       lines,
     },
-    cache: "no-store",
   });
 
   return reshapeCart(res.body.data.cartLinesUpdate.cart);
@@ -388,10 +386,9 @@ export async function getCart(cartId: string): Promise<Cart | undefined> {
   const res = await shopifyFetch<ShopifyCartOperation>({
     query: getCartQuery,
     variables: { cartId },
-    cache: "no-store",
   });
 
-  // Old carts becomes `null` when you checkout.
+  // Old carts becomes `null` when you check out.
   if (!res.body.data.cart) {
     return undefined;
   }
@@ -517,7 +514,7 @@ export async function getProduct(
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],
-    cache: "no-store",
+
     variables: {
       handle,
       lang,
@@ -597,4 +594,40 @@ export async function getTermsOfService({
   });
 
   return res.body.data.shop.termsOfService;
+}
+
+export async function revalidate(req: NextRequest): Promise<NextResponse> {
+  const collectionWebhooks = [
+    "collections/create",
+    "collections/delete",
+    "collections/update",
+  ];
+  const productWebhooks = [
+    "products/create",
+    "products/delete",
+    "products/update",
+  ];
+  const topic = headers().get("x-shopify-topic") || "unknown";
+  const secret = req.nextUrl.searchParams.get("secret");
+  const isCollectionUpdate = collectionWebhooks.includes(topic);
+  const isProductUpdate = productWebhooks.includes(topic);
+
+  if (!secret || secret !== process.env.SHOPIFY_REVALIDATION_SECRET) {
+    console.error("Invalid revalidation secret.");
+    return NextResponse.json({ status: 200 });
+  }
+
+  if (!isCollectionUpdate && !isProductUpdate) {
+    return NextResponse.json({ status: 200 });
+  }
+
+  if (isCollectionUpdate) {
+    revalidateTag(TAGS.collections);
+  }
+
+  if (isProductUpdate) {
+    revalidateTag(TAGS.products);
+  }
+
+  return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });
 }
