@@ -48,7 +48,8 @@
     "madeToOrder": "This item is made to order.",
     "notInStock": "Please refer to the general terms and conditions of sale for production and delivery time.",
     "notInStockCustom": "Delivery time may vary between",
-    "inStock": "This item is in stock"
+    "inStock": "This item is in stock",
+    "uniqueSize": "Unique size"
   },
   "cart": {
     "taxes": "Taxes",

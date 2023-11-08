@@ -48,7 +48,8 @@
     "madeToOrder": "Cet article est fabriqué sur commande.",
     "notInStock": "Veuillez vous référer aux conditions générales de vente pour les délais de production et de livraison",
     "notInStockCustom": "Le temps de livraison pourra varier entre",
-    "inStock": "Cet article est en stock"
+    "inStock": "Cet article est en stock",
+    "uniqueSize": "Taille unique"
   },
   "cart": {
     "taxes": "Taxes",

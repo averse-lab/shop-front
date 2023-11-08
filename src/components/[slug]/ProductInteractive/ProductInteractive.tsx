@@ -2,9 +2,9 @@
 
 import { FC, useContext, useState, useTransition } from "react";
 
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+// import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
-import Link from "next/link";
+// import Link from "next/link";
 
 import { Button } from "@components/Button/Button";
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
@@ -36,6 +36,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
     display: variant.title,
     disabled: !variant.availableForSale,
   }));
+
+  const uniqueSize =
+    variants.length === 1 &&
+    variants[0].selectedOptions.length === 1 &&
+    variants[0].selectedOptions[0].name === "Title";
 
   const updateSelectedIndex = (newSelectedIndex: number) => {
     setSelectedIndex(newSelectedIndex);
@@ -71,22 +76,29 @@ export const ProductInteractive: FC<IProps> = (props) => {
           : `${minVariantPrice.amount} ${minVariantPrice.currencyCode}`}
       </p>
       <div className={clsx("mb-7", "flex items-center justify-between gap-4")}>
-        <Dropdown
-          className={clsx("basis-1/2")}
-          name='variant-selector'
-          onChange={updateSelectedIndex}
-          options={options}
-          placeholder={dictionary.product.size}
-          selectedIndex={selectedIndex}
-        />
-        <Link
-          className={clsx("flex items-center gap-2")}
-          href={"#"}
-          target='_blank'
-        >
-          {dictionary.product.sizeGuide}
-          <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
-        </Link>
+        {uniqueSize ? (
+          <p className='font-medium'>{dictionary.product.uniqueSize}</p>
+        ) : (
+          <Dropdown
+            className={clsx("basis-1/2")}
+            name='variant-selector'
+            onChange={updateSelectedIndex}
+            options={options}
+            placeholder={dictionary.product.size}
+            selectedIndex={selectedIndex}
+          />
+        )}
+
+        {/* {!uniqueSize ? (
+          <Link
+            className={clsx("flex items-center gap-2")}
+            href={"#"}
+            target='_blank'
+          >
+            {dictionary.product.sizeGuide}
+            <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
+          </Link>
+        ) : null} */}
       </div>
       <Button
         className={clsx("w-full")}
