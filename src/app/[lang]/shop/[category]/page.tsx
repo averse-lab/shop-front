@@ -100,6 +100,7 @@ const CategoryPage: FC<IProps> = async (props) => {
         : `product_type:${category.shopifyId}`,
     lang: getSupportedLanguageCodeFromLocale(lang),
     cache: "no-store",
+    sortKey: "PRICE",
   });
 
   const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(
