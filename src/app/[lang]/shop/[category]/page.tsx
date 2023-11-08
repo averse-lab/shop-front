@@ -10,7 +10,6 @@ import { ProductPreview } from "@components/[category]/ProductPreview/ProductPre
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { Observer } from "@components/Observer/Observer";
 
-import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
@@ -23,18 +22,6 @@ import {
   getMetadataTitle,
   getMetadataTwitterDescription,
 } from "./_internal/CategoryPage.utils";
-
-export async function generateStaticParams() {
-  return I18N_CONFIG.locales.reduce<Params[]>((staticParams, locale) => {
-    Object.values(CATEGORIES)
-      .map(({ url }) => ({ url }))
-      .forEach(({ url }) => {
-        staticParams.push({ lang: locale, category: url });
-      });
-
-    return staticParams;
-  }, []);
-}
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;

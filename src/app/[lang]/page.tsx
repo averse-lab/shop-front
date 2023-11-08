@@ -7,16 +7,11 @@ import { Button } from "@components/Button/Button";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
-import { I18N_CONFIG } from "@lib/i18n/config";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 
 import { HOME_VIDEO } from "./_internal/HomePage.constants";
-
-export async function generateStaticParams() {
-  return I18N_CONFIG.locales.map((locale) => ({ lang: locale }));
-}
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;
