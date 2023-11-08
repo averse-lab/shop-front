@@ -3,6 +3,7 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
 import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
