@@ -15,7 +15,6 @@ export async function generateMetadata(): Promise<Metadata> {
   const { metadata } = dictionary.home;
 
   return {
-    robots: "no-index",
     metadataBase: new URL(process.env.BASE_URL || "https://averse-paris.com"),
     title: metadata.title,
     description: metadata.description,
