@@ -131,30 +131,32 @@ const CategoryPage: FC<IProps> = async (props) => {
             "grid auto-rows-[1fr] grid-cols-2 gap-px lg:grid-cols-4",
           )}
         >
-          {products.map((product, idx) => (
-            <Observer
-              className={clsx(
-                "lg:[&:nth-child(3n+4)>a]:delay-400 outline outline-1 outline-neutral-500 lg:[&:nth-child(3n+2)>a]:delay-200 lg:[&:nth-child(3n+3)>a]:delay-300 [&>a]:even:delay-100",
-              )}
-              inViewClassName={clsx("[&>a]:opacity-100")}
-              key={product.id}
-              options={{ triggerOnce: true, threshold: 0.5 }}
-              outOfViewClassName={clsx("[&>a]:opacity-0")}
-            >
-              <ProductPreview
-                className={clsx("transition-all duration-200 ease-out")}
-                currency={product.priceRange.maxVariantPrice.currencyCode}
-                href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                imageUrl={
-                  product.images.length > 0 ? product.images[0].url : ""
-                }
-                index={idx}
-                light={product.customMetafields.darkFeaturedImage || false}
-                price={product.priceRange.minVariantPrice.amount}
-                title={product.title}
-              />
-            </Observer>
-          ))}
+          {products.map((product, idx) =>
+            !product.customMetafields.hideOnWebsite ? (
+              <Observer
+                className={clsx(
+                  "lg:[&:nth-child(3n+4)>a]:delay-400 outline outline-1 outline-neutral-500 lg:[&:nth-child(3n+2)>a]:delay-200 lg:[&:nth-child(3n+3)>a]:delay-300 [&>a]:even:delay-100",
+                )}
+                inViewClassName={clsx("[&>a]:opacity-100")}
+                key={product.id}
+                options={{ triggerOnce: true, threshold: 0.5 }}
+                outOfViewClassName={clsx("[&>a]:opacity-0")}
+              >
+                <ProductPreview
+                  className={clsx("transition-all duration-200 ease-out")}
+                  currency={product.priceRange.maxVariantPrice.currencyCode}
+                  href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+                  imageUrl={
+                    product.images.length > 0 ? product.images[0].url : ""
+                  }
+                  index={idx}
+                  light={product.customMetafields.darkFeaturedImage || false}
+                  price={product.priceRange.minVariantPrice.amount}
+                  title={product.title}
+                />
+              </Observer>
+            ) : null,
+          )}
           {/*{getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(*/}
           {/*  (animation, idx) => {*/}
           {/*    return (*/}

@@ -12,6 +12,9 @@ const productFragment = gql`
     title
     description
     descriptionHtml
+    hideOnWebsite: metafield(namespace: "custom", key: "hide_on_website") {
+      value
+    }
     shippingDelays: metafield(namespace: "custom", key: "shipping_delays") {
       value
     }

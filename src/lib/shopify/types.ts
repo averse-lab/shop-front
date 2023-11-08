@@ -75,6 +75,7 @@ export type Product = Omit<
 };
 
 export type ProductCustomMetafields = {
+  hideOnWebsite: boolean | null;
   shippingDelays: string | null;
   darkFeaturedImage: boolean | null;
   additionalVideosLayout: "standard" | "inversed" | null;
@@ -137,6 +138,9 @@ export type ShopifyCollection = {
 };
 
 export type ShopifyProductCustomMetafields = {
+  hideOnWebsite: {
+    value: string;
+  } | null;
   shippingDelays: {
     value: string;
   } | null;

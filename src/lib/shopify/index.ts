@@ -187,6 +187,7 @@ const reshapeCustomMetafields = (
   shopifyProductCustomMetafields: ShopifyProductCustomMetafields,
 ): ProductCustomMetafields => {
   const {
+    hideOnWebsite,
     shippingDelays,
     darkFeaturedImage,
     additionalVideosLayout,
@@ -201,6 +202,14 @@ const reshapeCustomMetafields = (
   } = shopifyProductCustomMetafields;
 
   return {
+    hideOnWebsite:
+      hideOnWebsite !== null
+        ? hideOnWebsite.value === "true"
+          ? true
+          : hideOnWebsite.value === "false"
+          ? false
+          : null
+        : null,
     shippingDelays: shippingDelays !== null ? shippingDelays.value : null,
     darkFeaturedImage:
       darkFeaturedImage !== null
@@ -276,10 +285,12 @@ const reshapeProduct = (
     secondAdditionalVideoDescription,
     secondAdditionalVideoWidthRatio,
     secondAdditionalVideoHeightRatio,
+    hideOnWebsite,
     ...rest
   } = product;
 
   const shopifyProductCustomMetafields = {
+    hideOnWebsite,
     shippingDelays,
     darkFeaturedImage,
     additionalVideosLayout,
