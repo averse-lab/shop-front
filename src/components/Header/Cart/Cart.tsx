@@ -131,12 +131,12 @@ export const Cart: FC<IProps> = (props) => {
         <div className={clsx("flex flex-col gap-6")}>
           {cart !== undefined ? (
             <div className={clsx("flex flex-col gap-4")}>
-              <SummaryItem
-                metric={dictionary.cart.taxes}
-                value={`${cart.cost.totalTaxAmount.amount}${" "}${
-                  cart.cost.totalTaxAmount.currencyCode
-                }`}
-              />
+              {/*<SummaryItem*/}
+              {/*  metric={dictionary.cart.taxes}*/}
+              {/*  value={`${cart.cost.totalTaxAmount.amount}${" "}${*/}
+              {/*    cart.cost.totalTaxAmount.currencyCode*/}
+              {/*  }`}*/}
+              {/*/>*/}
               <SummaryItem
                 className={clsx(s["cart__shipping-summary"])}
                 metric={dictionary.cart.shipping}
