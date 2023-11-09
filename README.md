@@ -1,12 +1,13 @@
-<h1 align="center">
-Averse Shop
-</h1>
+# Averse - Shop Front
 
-## Node
+This README outlines the necessary steps to get the **shop-front** development environment up and running. Please follow
+the instructions carefully to ensure compatibility across different work environments.
 
-To avoid incompatibilities between different work environments it's important for everybody to work with the same Node
-version. You can use [NVM](https://github.com/nvm-sh/nvm) to install different Node versions and set the correct one by
-running :
+## Node.js
+
+To synchronize Node.js versions across different environments, we recommend
+using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm). Once installed, you can set the project's Node.js
+version with the following command:
 
 ```bash
 nvm install
@@ -14,25 +15,23 @@ nvm install
 
 ## Yarn
 
-This project have been bootstrapped using Yarn so it's highly recommended to also use this packet manager during
-development. If you did the step above, you should now be using Node 18 _(lts/hydrogen)_. Yarn is built into this Node
-version and can be used after activating `corepack` by running :
+Yarn is the package manager of choice for this project. After ensuring you are using Node.js 18 _(lts/hydrogen)_,
+activate `corepack` to use Yarn by running:
 
 ```bash
 corepack enable
 ```
 
-## VSCode
+## Visual Studio Code
 
-To avoid incompatibilities between different work environments it's important for everybody to work with the same
-Typescript version. If you're using VSCode make sure
-to [use the workspace version](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-the-workspace-version-of-typescript)
-and not the VSCode built in one.
+Uniformity in the TypeScript version used across different development setups is crucial. For VSCode users, ensure that
+you [use the workspace version of TypeScript](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-the-workspace-version-of-typescript)
+rather than the built-in version provided by VSCode.
 
-_(Optional)_
+### Optional: Optimized Editor Configuration
 
-If you want to use the project specific, optimized, editor configuration, duplicate the `.vscode.sample` sample folder
-into the VSCode workspace configuration folder `.vscode` by running :
+For an enhanced development experience with project-specific editor settings, copy the `.vscode.sample` folder to your
+workspace configuration folder `.vscode`:
 
 ```bash
 cp -R .vscode.sample .vscode
@@ -40,34 +39,37 @@ cp -R .vscode.sample .vscode
 
 ## Getting Started
 
-Be sure to have covered all the upcoming sections to ensure a flawless development experience. Documentation has been
-redacted to cover all the major steps in chronological order so you better do them one after another.
+Ensure that you follow the sections below in sequence to set up your development environment without issues.
+Documentation is provided to guide you through the major setup steps.
 
-### Setup environment variables
+### Setup Environment Variables
 
-Create your `.env.local` environment variable file. You can duplicate the `.env.local.example` template file
-into `.env.local` by running :
+Begin by creating a `.env.local` file for your environment variables. Use the `.env.local.example` as a template:
 
 ```bash
 cp .env.local.sample .env.local
 ```
 
-and replace the placeholders by your own values.
+Replace the placeholders in the newly created file with your actual values.
 
-### Install dependencies
+### Install Dependencies
+
+To install the project dependencies, run:
 
 ```bash
 yarn install
 ```
 
-## Running the app
+## Running the App
+
+To start the application in watch mode during development:
 
 ```bash
-# watch mode
-$ yarn run dev
+yarn run dev
 ```
 
+For running the application in production mode:
+
 ```bash
-# Production mode
-$ yarn run start
+yarn run start
 ```
