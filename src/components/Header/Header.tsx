@@ -56,11 +56,3 @@ export const Header: FC<IProps> = (props) => {
     </header>
   );
 };
-
-<div
-  className={clsx(
-    "fixed left-0 top-0 z-10",
-    "h-[72px] w-full md:h-[96px]",
-    "border-b border-neutral-200 bg-white",
-  )}
-></div>;
