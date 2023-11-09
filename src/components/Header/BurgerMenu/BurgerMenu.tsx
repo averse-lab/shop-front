@@ -10,7 +10,7 @@ import {
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { useClickOutsideDetector, useBodyScrollLocker } from "@lib/hooks";
+import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
@@ -43,7 +43,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
   };
 
   useBodyScrollLocker(open);
-  useClickOutsideDetector(menuRef.current, closeMenu, open === true);
+  useClickOutsideDetector(menuRef.current, closeMenu, open);
 
   const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
     ({ url, i18nKey }) => ({
