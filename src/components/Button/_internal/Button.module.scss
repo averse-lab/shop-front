@@ -1,6 +1,6 @@
 .button {
   background-color: black;
-  box-shadow: 0px 0px 0px 0px black;
+  box-shadow: 0 0 0 0 black;
 
   &:global(.disabled) {
     @apply bg-neutral-400;
@@ -9,25 +9,24 @@
 
 .button--transparent {
   background-color: rgba($color: black, $alpha: 0.8);
-  box-shadow: 0px 0px 0px 0px rgba($color: black, $alpha: 0.8);
+  box-shadow: 0 0 0 0 rgba($color: black, $alpha: 0.8);
   backdrop-filter: blur(6px);
 }
 
 @media (min-width: 1024px) {
   .button {
-    transition:
-      box-shadow 0.2s ease-out,
-      font-weight 0.2s ease-out;
+    transition: box-shadow 0.2s ease-out,
+    font-weight 0.2s ease-out;
 
     &:not(:global(.disabled)):hover {
-      box-shadow: 0px 0px 0px 1px black;
+      box-shadow: 0 0 0 1px black;
       @apply font-semibold;
     }
   }
 
   .button--transparent {
     &:not(:global(.disabled)):hover {
-      box-shadow: 0px 0px 0px 1px rgba($color: black, $alpha: 0.8);
+      box-shadow: 0 0 0 1px rgba($color: black, $alpha: 0.8);
     }
   }
 }
