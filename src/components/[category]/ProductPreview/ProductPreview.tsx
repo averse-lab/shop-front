@@ -60,7 +60,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           light ? "text-neutral-400" : "text-neutral-600",
         )}
       >
-        {price} {currency}
+        {Number(price).toFixed()} {currency}
       </p>
     </Link>
   );
