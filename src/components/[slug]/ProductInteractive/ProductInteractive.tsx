@@ -88,8 +88,12 @@ export const ProductInteractive: FC<IProps> = (props) => {
     <>
       <p className={clsx("mb-6", "font-light")}>
         {selectedIndex !== undefined
-          ? `${variants[selectedIndex].price.amount} ${variants[selectedIndex].price.currencyCode}`
-          : `${minVariantPrice.amount} ${minVariantPrice.currencyCode}`}
+          ? `${Number(variants[selectedIndex].price.amount).toFixed()} ${
+              variants[selectedIndex].price.currencyCode
+            }`
+          : `${Number(minVariantPrice.amount).toFixed()} ${
+              minVariantPrice.currencyCode
+            }`}
       </p>
       <div className={clsx("mb-7", "flex items-center justify-between gap-4")}>
         {uniqueSize ? (
