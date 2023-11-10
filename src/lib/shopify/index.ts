@@ -32,12 +32,12 @@ import {
   Cart,
   Collection,
   Connection,
-  ProductCustomMetafields,
   Image,
   Menu,
   Page,
   Policy,
   Product,
+  ProductCustomMetafields,
   ShopifyAddToCartOperation,
   ShopifyCart,
   ShopifyCartOperation,
@@ -87,7 +87,6 @@ export async function shopifyFetch<T>({
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Storefront-Access-Token": key,
-        // "Accept-Language": "fr",
         ...headers,
       },
       body: JSON.stringify({
@@ -349,6 +348,7 @@ export async function addToCart(
     },
     cache: "no-store",
   });
+
   return reshapeCart(res.body.data.cartLinesAdd.cart);
 }
 
@@ -391,7 +391,7 @@ export async function getCart(cartId: string): Promise<Cart | undefined> {
     cache: "no-store",
   });
 
-  // Old carts becomes `null` when you checkout.
+  // Old carts becomes `null` when you check out.
   if (!res.body.data.cart) {
     return undefined;
   }
@@ -517,7 +517,7 @@ export async function getProduct(
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],
-    cache: "no-store",
+
     variables: {
       handle,
       lang,

@@ -6,7 +6,7 @@ import { TAGS } from "@lib/shopify/constants";
 
 export const runtime = "edge";
 
-export async function POST(req: NextRequest): Promise<Response> {
+export async function POST(req: NextRequest): Promise<NextResponse> {
   const collectionWebhooks = [
     "collections/create",
     "collections/delete",
@@ -17,6 +17,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     "products/delete",
     "products/update",
   ];
+
   const topic = headers().get("x-shopify-topic") || "unknown";
   const secret = req.nextUrl.searchParams.get("secret");
   const isCollectionUpdate = collectionWebhooks.includes(topic);
@@ -28,7 +29,6 @@ export async function POST(req: NextRequest): Promise<Response> {
   }
 
   if (!isCollectionUpdate && !isProductUpdate) {
-    // We don't need to revalidate anything for any other topics.
     return NextResponse.json({ status: 200 });
   }
 
