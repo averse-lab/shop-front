@@ -1,5 +1,7 @@
 import { useEffect, useReducer } from "react";
 
+import Lenis from "@studio-freight/lenis";
+
 export const useBodyScrollLocker = (locked: boolean) => {
   useEffect(() => {
     if (locked) {
@@ -8,6 +10,19 @@ export const useBodyScrollLocker = (locked: boolean) => {
       document.body.classList.remove("scroll-locked");
     }
   }, [locked]);
+};
+
+export const useSmoothScroll = () => {
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    const raf: FrameRequestCallback = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+  }, []);
 };
 
 export const useForceReRenderer = () => {
