@@ -77,12 +77,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-localematcher@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "@formatjs/intl-localematcher@npm:0.5.0"
+"@formatjs/intl-localematcher@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@formatjs/intl-localematcher@npm:0.5.1"
   dependencies:
     tslib: ^2.4.0
-  checksum: 5c6dc271640df498292585060bb2defc6183045d5a14052b2f6005872e66a8d2ae0c3c2900710dd73128c580b07989d7d3b149b845f38231ea57ac055aef73e0
+  checksum: 8a2a00f6a794d9fb1a0e605e80e69e44271b8f34465e9436c198719338084ce71a0e8e73610d9c751eea15586c5a24ef539bd2b18d8bee94971cf920fc08cc2b
   languageName: node
   linkType: hard
 
@@ -355,6 +355,13 @@ __metadata:
   version: 1.5.1
   resolution: "@rushstack/eslint-patch@npm:1.5.1"
   checksum: e4c25322312dbaa29e835a7ab4fbac53c8731dd0da65e46646e38945e296429e7fb91c2ef3da5af5d5938d44b0cde1d5290438ebb3dcb015e02b80b5e2530d24
+  languageName: node
+  linkType: hard
+
+"@studio-freight/lenis@npm:^1.0.27":
+  version: 1.0.27
+  resolution: "@studio-freight/lenis@npm:1.0.27"
+  checksum: 377dcb417e111ac19dd7644a4e5d6ddf839a7b32c05c7eb00cbb6369f2116e6620581cd0eaef67ad43adf168e79d93f27ae9dc26aee80843129d05958cbfb01f
   languageName: node
   linkType: hard
 
@@ -932,10 +939,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "averse-front@workspace:."
   dependencies:
-    "@formatjs/intl-localematcher": ^0.5.0
+    "@formatjs/intl-localematcher": ^0.5.1
     "@heroicons/react": ^2.0.18
     "@mux/blurhash": ^0.1.2
     "@mux/mux-video-react": ^0.8.0
+    "@studio-freight/lenis": ^1.0.27
     "@types/negotiator": ^0.6.3
     "@types/node": 20.9.0
     "@types/react": 18.2.37
@@ -956,11 +964,11 @@ __metadata:
     negotiator: ^0.6.3
     next: 14.0.1
     postcss: 8.4.31
-    prettier: ^3.0.3
+    prettier: ^3.1.0
     prettier-plugin-tailwindcss: ^0.5.7
     react: 18.2.0
     react-dom: 18.2.0
-    react-intersection-observer: ^9.5.2
+    react-intersection-observer: ^9.5.3
     sass: ^1.69.5
     server-only: ^0.0.1
     tailwindcss: 3.3.5
@@ -3887,12 +3895,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "prettier@npm:3.0.3"
+"prettier@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "prettier@npm:3.1.0"
   bin:
     prettier: bin/prettier.cjs
-  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
+  checksum: 44b556bd56f74d7410974fbb2418bb4e53a894d3e7b42f6f87779f69f27a6c272fa7fc27cec0118cd11730ef3246478052e002cbd87e9a253f9cd04a56aa7d9b
   languageName: node
   linkType: hard
 
@@ -3981,12 +3989,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-intersection-observer@npm:^9.5.2":
-  version: 9.5.2
-  resolution: "react-intersection-observer@npm:9.5.2"
+"react-intersection-observer@npm:^9.5.3":
+  version: 9.5.3
+  resolution: "react-intersection-observer@npm:9.5.3"
   peerDependencies:
     react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: cdbe40544930d59fc3820bce017fb688910cbecd7baaf382387a3d60d98a36e1d1e4bc27a876775e99b2a9f86762286a29d7bca21f3345f653cff29850c2641d
+  checksum: 2281912a9fe7a52bb1237c1b5299873beee358f79325eb9ba80fc0e4b7640963c1b27528f873453746e93981c503f880fdea9f786ebeae2e6a4216b50d180941
   languageName: node
   linkType: hard
 
@@ -4910,7 +4918,7 @@ __metadata:
 
 "typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
   version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=ad5954"
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=1f5320"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
