@@ -2,12 +2,10 @@ import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
-import { I18N_CONFIG } from "@lib/i18n/config";
+import { I18N_CONFIG, I18N_LOCALES } from "@lib/i18n/config";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 
 import type { NextRequest } from "next/server";
-
-const locales = ["en", "fr"];
 
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
@@ -28,7 +26,7 @@ export function middleware(request: NextRequest) {
   const origin = nextReq.origin;
   const locale = getLocale(request);
   const pathnameIsPublicImages = pathname.startsWith("/images");
-  const pathnameIsMissingLocale = locales.every(
+  const pathnameIsMissingLocale = I18N_LOCALES.every(
     (locale) => !pathname.startsWith(`/${locale}`),
   );
 
