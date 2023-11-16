@@ -25,3 +25,9 @@ export const CATEGORIES: Record<CategoryKey, CategoryValue> = {
     url: "necklaces",
   },
 };
+
+export const PUBLIC_PATHS: string[] = [
+  "/images",
+  "/robots.txt",
+  "/sitemap.xml",
+];
