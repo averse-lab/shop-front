@@ -1,6 +1,6 @@
 {
   "name": "averse-front",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3162",
@@ -10,7 +10,7 @@
     "format": "prettier --write ./src"
   },
   "dependencies": {
-    "@formatjs/intl-localematcher": "^0.5.1",
+    "@formatjs/intl-localematcher": "^0.5.2",
     "@heroicons/react": "^2.0.18",
     "@mux/blurhash": "^0.1.2",
     "@mux/mux-video-react": "^0.8.0",
@@ -38,8 +38,8 @@
   "devDependencies": {
     "@types/negotiator": "^0.6.3",
     "@types/uuid": "^9.0.7",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.0",

@@ -3,7 +3,7 @@ import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
 import { I18N_CONFIG, I18N_LOCALES } from "@lib/i18n/config";
-import { CATEGORIES, PAGES } from "@lib/routing/constants";
+import { CATEGORIES, PAGES, PUBLIC_PATHS } from "@lib/routing/constants";
 
 import type { NextRequest } from "next/server";
 
@@ -25,12 +25,23 @@ export function middleware(request: NextRequest) {
   const pathname = nextReq.pathname;
   const origin = nextReq.origin;
   const locale = getLocale(request);
-  const pathnameIsPublicImages = pathname.startsWith("/images");
+
+  const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce(
+    (pathnameIsPublicPath, publicPath) => {
+      if (pathname.startsWith(publicPath)) {
+        pathnameIsPublicPath = true;
+      }
+
+      return pathnameIsPublicPath;
+    },
+    false,
+  );
+
   const pathnameIsMissingLocale = I18N_LOCALES.every(
     (locale) => !pathname.startsWith(`/${locale}`),
   );
 
-  if (pathnameIsMissingLocale && !pathnameIsPublicImages) {
+  if (pathnameIsMissingLocale && !pathnameIsPublicPath) {
     return NextResponse.redirect(new URL(`/${locale}`, origin));
   }
 
