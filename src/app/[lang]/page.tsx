@@ -23,6 +23,14 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: metadata.title,
     description: metadata.description,
+    alternates: {
+      canonical: `${process.env.BASE_URL}/${lang}`,
+      languages: {
+        en: `${process.env.BASE_URL}/en`,
+        fr: `${process.env.BASE_URL}/fr`,
+        "x-default": `${process.env.BASE_URL}`,
+      },
+    },
     twitter: {
       card: "summary",
       title: metadata.title,
@@ -87,6 +95,7 @@ const HomePage: FC<IProps> = async (props) => {
           ariaLabel={enterWebsiteAriaLabel}
           element='link'
           href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+          hrefLang={lang}
           transparent
         >
           {enterWebsite}

@@ -33,6 +33,14 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: getMetadataTitle(category, metadata),
     description: getMetadataDescription(category, metadata),
+    alternates: {
+      canonical: `${process.env.BASE_URL}/${lang}/shop/${category}`,
+      languages: {
+        en: `${process.env.BASE_URL}/en/shop/${category}`,
+        fr: `${process.env.BASE_URL}/fr/shop/${category}`,
+        "x-default": `${process.env.BASE_URL}/shop/${category}`,
+      },
+    },
     twitter: {
       card: "summary",
       title: getMetadataTitle(category, metadata),
@@ -93,6 +101,7 @@ const CategoryPage: FC<IProps> = async (props) => {
     ({ url, i18nKey }) => ({
       url,
       display: dictionary.categories[i18nKey],
+      lang,
     }),
   );
 
@@ -137,6 +146,7 @@ const CategoryPage: FC<IProps> = async (props) => {
                     product.images.length > 0 ? product.images[0].url : ""
                   }
                   index={idx}
+                  lang={lang}
                   light={product.customMetafields.darkFeaturedImage || false}
                   price={product.priceRange.minVariantPrice.amount}
                   title={product.title}

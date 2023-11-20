@@ -48,7 +48,7 @@ export const Footer: FC<IProps> = (props) => {
       >
         <nav className={clsx("flex flex-col gap-2 lg:flex-row lg:gap-6")}>
           {nav.map((link) => (
-            <Link href={link.href} key={link.href}>
+            <Link href={link.href} hrefLang={lang} key={link.href}>
               {link.display}
             </Link>
           ))}

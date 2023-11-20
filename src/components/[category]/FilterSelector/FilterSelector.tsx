@@ -25,7 +25,7 @@ export const FilterSelector: FC<IProps> = (props) => {
         "border-b border-neutral-200 bg-white shadow",
       )}
     >
-      {filters.map(({ display, url }, idx) => (
+      {filters.map(({ display, url, lang }, idx) => (
         <Link
           className={clsx(
             s["filters-selector__link"],
@@ -35,6 +35,7 @@ export const FilterSelector: FC<IProps> = (props) => {
             idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
           )}
           href={url}
+          hrefLang={lang}
           key={url}
         >
           {display}

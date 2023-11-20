@@ -15,11 +15,21 @@ interface IProps {
   currency: string;
   index: number;
   light: boolean;
+  lang: "en" | "fr";
 }
 
 export const ProductPreview: FC<IProps> = (props) => {
-  const { className, href, imageUrl, title, price, currency, index, light } =
-    props;
+  const {
+    className,
+    href,
+    lang,
+    imageUrl,
+    title,
+    price,
+    currency,
+    index,
+    light,
+  } = props;
 
   return (
     <Link
@@ -32,6 +42,7 @@ export const ProductPreview: FC<IProps> = (props) => {
         "aspect-square overflow-hidden",
       )}
       href={href}
+      hrefLang={lang}
     >
       <Image
         alt={`photography of ${title}`}

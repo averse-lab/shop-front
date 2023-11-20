@@ -25,6 +25,7 @@ type IButtonProps = {
 type ILinkProps = {
   element: "link";
   href: string;
+  hrefLang: "en" | "fr";
 };
 
 type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;
@@ -44,11 +45,11 @@ export const Button: FC<IProps> = (props) => {
     className,
     s["button"],
     transparent && s["button--transparent"],
-    "py-3 px-6 ",
+    "px-6 py-3 ",
     "flex items-center justify-center gap-4",
     "rounded-sm",
     disabled && "disabled cursor-not-allowed",
-    "text-white font-medium uppercase text-center",
+    "text-center font-medium uppercase text-white",
   );
 
   if (element === "button") {
@@ -65,13 +66,14 @@ export const Button: FC<IProps> = (props) => {
       </button>
     );
   } else {
-    const { href } = props;
+    const { href, hrefLang } = props;
 
     return (
       <Link
         aria-label={ariaLabel}
         className={clsx(commonClassName)}
         href={href || "#"}
+        hrefLang={hrefLang}
       >
         {loading ? <Spinner className={clsx("h-6 w-6")} /> : children}
       </Link>

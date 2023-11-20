@@ -39,6 +39,14 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: seo.title || `${title} | Averse`,
     description: seo.description || description,
+    alternates: {
+      canonical: `${process.env.BASE_URL}/${lang}/${PAGES.shop.url}/${productType}/${slug}`,
+      languages: {
+        en: `${process.env.BASE_URL}/en/${PAGES.shop.url}/${productType}/${slug}`,
+        fr: `${process.env.BASE_URL}/fr/${PAGES.shop.url}/${productType}/${slug}`,
+        "x-default": `${process.env.BASE_URL}/${PAGES.shop.url}/${productType}/${slug}`,
+      },
+    },
     twitter: {
       card: "summary",
       title: seo.title || `${title} | Averse`,

@@ -21,6 +21,14 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: metadata.title,
     description: metadata.description,
+    alternates: {
+      canonical: `${process.env.BASE_URL}/${lang}/about`,
+      languages: {
+        en: `${process.env.BASE_URL}/en/about`,
+        fr: `${process.env.BASE_URL}/fr/about`,
+        "x-default": `${process.env.BASE_URL}/about`,
+      },
+    },
     twitter: {
       card: "summary",
       title: metadata.title,
