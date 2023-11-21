@@ -92,7 +92,7 @@ const ProductPage: FC<IProps> = async (props) => {
   );
   const dictionary = await getDictionary(lang);
 
-  if (product === undefined || product.customMetafields.hideOnWebsite) {
+  if (product === undefined) {
     notFound();
   }
 
