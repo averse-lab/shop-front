@@ -71,12 +71,14 @@ const AboutPage: FC<IProps> = async (props) => {
   return (
     <>
       <HeaderContextInitializer hideLogo whiteIcons />
-      <div className={clsx("min-h-screen px-6 py-4", "bg-black")}>
+      <div
+        className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}
+      >
         <div
           className={clsx(
             "m-auto mt-[72px] md:mt-[96px]",
             "lg:max-w-[550px]",
-            "flex flex-col items-center justify-center",
+            "flex flex-1 flex-col items-center justify-center",
             "text-center text-white",
           )}
         >
