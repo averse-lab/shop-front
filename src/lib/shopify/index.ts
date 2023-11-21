@@ -206,8 +206,8 @@ const reshapeCustomMetafields = (
         ? hideOnWebsite.value === "true"
           ? true
           : hideOnWebsite.value === "false"
-          ? false
-          : null
+            ? false
+            : null
         : null,
     shippingDelays: shippingDelays !== null ? shippingDelays.value : null,
     darkFeaturedImage:
@@ -215,8 +215,8 @@ const reshapeCustomMetafields = (
         ? darkFeaturedImage.value === "true"
           ? true
           : darkFeaturedImage.value === "false"
-          ? false
-          : null
+            ? false
+            : null
         : null,
     additionalVideosLayout:
       additionalVideosLayout !== null
@@ -224,9 +224,9 @@ const reshapeCustomMetafields = (
           "player to the left / description to the right"
           ? "standard"
           : additionalVideosLayout.value ===
-            "player to the right / description to the left"
-          ? "inversed"
-          : null
+              "player to the right / description to the left"
+            ? "inversed"
+            : null
         : null,
     firstAdditionalVideoID:
       firstAdditionalVideoID !== null ? firstAdditionalVideoID.value : null,
@@ -517,7 +517,6 @@ export async function getProduct(
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
     tags: [TAGS.products],
-
     variables: {
       handle,
       lang,
