@@ -7,6 +7,8 @@ import Link from "next/link";
 
 import { Spinner } from "@components/icons/Spinner/Spinner";
 
+import { Locale } from "@lib/i18n/types";
+
 import s from "./_internal/Button.module.scss";
 
 type ICommonProps = {
@@ -25,7 +27,7 @@ type IButtonProps = {
 type ILinkProps = {
   element: "link";
   href: string;
-  hrefLang: "en" | "fr";
+  hrefLang: Locale;
 };
 
 type IProps = (IButtonProps | ILinkProps) & PropsWithChildren & ICommonProps;

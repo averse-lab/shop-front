@@ -4,6 +4,8 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Locale } from "@lib/i18n/types";
+
 import s from "./_internal/ProductPreview.module.scss";
 
 interface IProps {
@@ -15,7 +17,7 @@ interface IProps {
   currency: string;
   index: number;
   light: boolean;
-  lang: "en" | "fr";
+  lang: Locale;
 }
 
 export const ProductPreview: FC<IProps> = (props) => {
