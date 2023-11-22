@@ -38,7 +38,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
       languages: {
         en: `${process.env.BASE_URL}/en/shop/${category}`,
         fr: `${process.env.BASE_URL}/fr/shop/${category}`,
-        "x-default": `${process.env.BASE_URL}/shop/${category}`,
+        "x-default": `${process.env.BASE_URL}/en/shop/${category}`,
       },
     },
     twitter: {
@@ -101,7 +101,6 @@ const CategoryPage: FC<IProps> = async (props) => {
     ({ url, i18nKey }) => ({
       url,
       display: dictionary.categories[i18nKey],
-      lang,
     }),
   );
 
@@ -118,6 +117,7 @@ const CategoryPage: FC<IProps> = async (props) => {
       <FilterSelector
         className={clsx("fixed left-0 top-[72px] z-10 md:top-[96px]", "w-full")}
         filters={filters}
+        lang={lang}
         selectedFilterIndex={selectedFilterIndex}
       />
       <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>

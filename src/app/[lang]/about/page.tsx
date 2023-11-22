@@ -26,7 +26,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
       languages: {
         en: `${process.env.BASE_URL}/en/about`,
         fr: `${process.env.BASE_URL}/fr/about`,
-        "x-default": `${process.env.BASE_URL}/about`,
+        "x-default": `${process.env.BASE_URL}/en/about`,
       },
     },
     twitter: {

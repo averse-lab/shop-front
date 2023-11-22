@@ -44,7 +44,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
       languages: {
         en: `${process.env.BASE_URL}/en/${PAGES.shop.url}/${productType}/${slug}`,
         fr: `${process.env.BASE_URL}/fr/${PAGES.shop.url}/${productType}/${slug}`,
-        "x-default": `${process.env.BASE_URL}/${PAGES.shop.url}/${productType}/${slug}`,
+        "x-default": `${process.env.BASE_URL}/en/${PAGES.shop.url}/${productType}/${slug}`,
       },
     },
     twitter: {

@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
       languages: {
         en: `${process.env.BASE_URL}/en`,
         fr: `${process.env.BASE_URL}/fr`,
-        "x-default": `${process.env.BASE_URL}`,
+        "x-default": `${process.env.BASE_URL}/en`,
       },
     },
     twitter: {
