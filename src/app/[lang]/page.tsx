@@ -10,6 +10,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
+import { generateAlternates } from "@lib/utils";
 
 import { HOME_VIDEO } from "./_internal/HomePage.constants";
 
@@ -23,14 +24,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: metadata.title,
     description: metadata.description,
-    alternates: {
-      canonical: `${process.env.BASE_URL}/${lang}`,
-      languages: {
-        en: `${process.env.BASE_URL}/en`,
-        fr: `${process.env.BASE_URL}/fr`,
-        "x-default": `${process.env.BASE_URL}/en`,
-      },
-    },
+    alternates: generateAlternates("", lang),
     twitter: {
       card: "summary",
       title: metadata.title,

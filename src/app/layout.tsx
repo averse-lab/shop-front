@@ -3,6 +3,7 @@ import "@averse/app/globals.css";
 import { FC, PropsWithChildren } from "react";
 
 import { getDictionary } from "@lib/i18n/utils";
+import { generateAlternates } from "@lib/utils";
 
 import type { Metadata, Viewport } from "next";
 
@@ -18,14 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(process.env.BASE_URL || "https://averseparis.com"),
     title: metadata.title,
     description: metadata.description,
-    alternates: {
-      canonical: `${process.env.BASE_URL}/en`,
-      languages: {
-        en: `${process.env.BASE_URL}/en`,
-        fr: `${process.env.BASE_URL}/fr`,
-        "x-default": `${process.env.BASE_URL}/en`,
-      },
-    },
+    alternates: generateAlternates("", "en"),
     twitter: {
       card: "summary",
       title: metadata.title,

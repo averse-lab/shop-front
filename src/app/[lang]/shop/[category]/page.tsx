@@ -14,7 +14,10 @@ import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { getProducts } from "@lib/shopify";
-import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
+import {
+  generateAlternates,
+  getSupportedLanguageCodeFromLocale,
+} from "@lib/utils";
 
 import {
   getCategoryFromCategoryUrlSegment,
@@ -33,14 +36,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: getMetadataTitle(category, metadata),
     description: getMetadataDescription(category, metadata),
-    alternates: {
-      canonical: `${process.env.BASE_URL}/${lang}/shop/${category}`,
-      languages: {
-        en: `${process.env.BASE_URL}/en/shop/${category}`,
-        fr: `${process.env.BASE_URL}/fr/shop/${category}`,
-        "x-default": `${process.env.BASE_URL}/en/shop/${category}`,
-      },
-    },
+    alternates: generateAlternates(`/${PAGES.shop.url}/${category}`, lang),
     twitter: {
       card: "summary",
       title: getMetadataTitle(category, metadata),
