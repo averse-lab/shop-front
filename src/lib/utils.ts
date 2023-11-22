@@ -105,7 +105,8 @@ export const generateAlternates = (
     Record<Locale | "x-default", string>
   >(
     (languages, language) => {
-      languages[language] = `${process.env.BASE_URL}/${lang}${pathWithoutLang}`;
+      languages[language] =
+        `${process.env.BASE_URL}/${language}${pathWithoutLang}`;
 
       return languages;
     },
