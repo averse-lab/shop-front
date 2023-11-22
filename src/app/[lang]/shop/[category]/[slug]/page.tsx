@@ -15,7 +15,10 @@ import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { PAGES } from "@lib/routing/constants";
 import { getProduct } from "@lib/shopify";
-import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
+import {
+  generateAlternates,
+  getSupportedLanguageCodeFromLocale,
+} from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
 import {
@@ -39,6 +42,10 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: seo.title || `${title} | Averse`,
     description: seo.description || description,
+    alternates: generateAlternates(
+      `/${PAGES.shop.url}/${productType}/${slug}`,
+      lang,
+    ),
     twitter: {
       card: "summary",
       title: seo.title || `${title} | Averse`,

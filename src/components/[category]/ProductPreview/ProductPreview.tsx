@@ -4,6 +4,8 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Locale } from "@lib/i18n/types";
+
 import s from "./_internal/ProductPreview.module.scss";
 
 interface IProps {
@@ -15,11 +17,21 @@ interface IProps {
   currency: string;
   index: number;
   light: boolean;
+  lang: Locale;
 }
 
 export const ProductPreview: FC<IProps> = (props) => {
-  const { className, href, imageUrl, title, price, currency, index, light } =
-    props;
+  const {
+    className,
+    href,
+    lang,
+    imageUrl,
+    title,
+    price,
+    currency,
+    index,
+    light,
+  } = props;
 
   return (
     <Link
@@ -32,6 +44,7 @@ export const ProductPreview: FC<IProps> = (props) => {
         "aspect-square overflow-hidden",
       )}
       href={href}
+      hrefLang={lang}
     >
       <Image
         alt={`photography of ${title}`}

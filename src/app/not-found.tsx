@@ -44,7 +44,12 @@ const NotFound: FC = async () => {
               playbackId={playbackId}
               widthRatio={widthRatio}
             />
-            <Button className='border border-white' element='link' href='/'>
+            <Button
+              className='border border-white'
+              element='link'
+              href='/'
+              hrefLang={"en"}
+            >
               {dictionary.notFound.goBackHome}
             </Button>
           </div>

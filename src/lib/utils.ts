@@ -2,10 +2,23 @@ import { FC, PropsWithChildren, createElement } from "react";
 
 import muxBlurHash from "@mux/blurhash";
 import { MetadataRoute } from "next";
+import { AlternateURLs } from "next/dist/lib/metadata/types/alternative-urls-types";
 
+import { DICTIONARIES } from "./i18n/constants";
 import { Locale } from "./i18n/types";
 import { CATEGORIES } from "./routing/constants";
 import { SupportedLanguageCode } from "./shopify/types";
+
+export const getLocaleFromString = (string: string): Locale | undefined => {
+  switch (string) {
+    case "en":
+      return string;
+    case "fr":
+      return string;
+    default:
+      return;
+  }
+};
 
 export const getSupportedLanguageCodeFromLocale = (
   locale: Locale,
@@ -80,4 +93,32 @@ export const generateStaticPagesSitemapItems = (
       priority: 0.2,
     },
   ];
+};
+
+export const generateAlternates = (
+  pathWithoutLang: string,
+  lang: Locale,
+): AlternateURLs => {
+  const locales = Object.keys(DICTIONARIES) as Locale[];
+
+  const languages: AlternateURLs["languages"] = locales.reduce<
+    Record<Locale | "x-default", string>
+  >(
+    (languages, language) => {
+      languages[language] =
+        `${process.env.BASE_URL}/${language}${pathWithoutLang}`;
+
+      return languages;
+    },
+    {
+      "x-default": `${process.env.BASE_URL}/en${pathWithoutLang}`,
+      en: "",
+      fr: "",
+    },
+  );
+
+  return {
+    canonical: `${process.env.BASE_URL}/${lang}${pathWithoutLang}`,
+    languages,
+  };
 };

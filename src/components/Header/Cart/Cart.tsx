@@ -145,9 +145,7 @@ export const Cart: FC<IProps> = (props) => {
               />
               <SummaryItem
                 metric={dictionary.cart.total}
-                value={`${cart.cost.totalAmount.amount}${" "}${
-                  cart.cost.totalAmount.currencyCode
-                }`}
+                value={`${cart.cost.totalAmount.amount}${" "}${cart.cost.totalAmount.currencyCode}`}
               />
             </div>
           ) : null}
@@ -156,6 +154,7 @@ export const Cart: FC<IProps> = (props) => {
             disabled={checkoutDisabled}
             element='link'
             href={!checkoutDisabled ? cart.checkoutUrl : ""}
+            hrefLang={lang}
           >
             {dictionary.cart.checkout}
           </Button>

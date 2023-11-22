@@ -14,7 +14,10 @@ import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { getProducts } from "@lib/shopify";
-import { getSupportedLanguageCodeFromLocale } from "@lib/utils";
+import {
+  generateAlternates,
+  getSupportedLanguageCodeFromLocale,
+} from "@lib/utils";
 
 import {
   getCategoryFromCategoryUrlSegment,
@@ -33,6 +36,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: getMetadataTitle(category, metadata),
     description: getMetadataDescription(category, metadata),
+    alternates: generateAlternates(`/${PAGES.shop.url}/${category}`, lang),
     twitter: {
       card: "summary",
       title: getMetadataTitle(category, metadata),
@@ -109,6 +113,7 @@ const CategoryPage: FC<IProps> = async (props) => {
       <FilterSelector
         className={clsx("fixed left-0 top-[72px] z-10 md:top-[96px]", "w-full")}
         filters={filters}
+        lang={lang}
         selectedFilterIndex={selectedFilterIndex}
       />
       <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>
@@ -137,6 +142,7 @@ const CategoryPage: FC<IProps> = async (props) => {
                     product.images.length > 0 ? product.images[0].url : ""
                   }
                   index={idx}
+                  lang={lang}
                   light={product.customMetafields.darkFeaturedImage || false}
                   price={product.priceRange.minVariantPrice.amount}
                   title={product.title}

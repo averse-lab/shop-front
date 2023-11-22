@@ -3,6 +3,8 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
+import { Locale } from "@lib/i18n/types";
+
 import s from "./_internal/FilterSelector.module.scss";
 import { Filter } from "./_internal/FilterSelector.types";
 
@@ -10,10 +12,11 @@ interface IProps {
   filters: Filter[];
   selectedFilterIndex: number;
   className?: string;
+  lang: Locale;
 }
 
 export const FilterSelector: FC<IProps> = (props) => {
-  const { filters, selectedFilterIndex, className } = props;
+  const { filters, selectedFilterIndex, className, lang } = props;
 
   return (
     <div
@@ -35,6 +38,7 @@ export const FilterSelector: FC<IProps> = (props) => {
             idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
           )}
           href={url}
+          hrefLang={lang}
           key={url}
         >
           {display}

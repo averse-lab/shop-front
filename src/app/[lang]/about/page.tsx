@@ -8,6 +8,8 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { PAGES } from "@lib/routing/constants";
+import { generateAlternates } from "@lib/utils";
 
 import { ABOUT_VIDEO } from "./_internal/AboutPage.constants";
 
@@ -21,6 +23,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: metadata.title,
     description: metadata.description,
+    alternates: generateAlternates(`/${PAGES.about.url}`, lang),
     twitter: {
       card: "summary",
       title: metadata.title,

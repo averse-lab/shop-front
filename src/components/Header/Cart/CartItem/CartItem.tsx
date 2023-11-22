@@ -31,6 +31,7 @@ export const CartItem: FC<IProps> = (props) => {
     <div className={clsx(className, "flex items-center gap-3")}>
       <Link
         href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+        hrefLang={lang}
       >
         <Image
           alt={`${product.title} photography`}
@@ -48,6 +49,7 @@ export const CartItem: FC<IProps> = (props) => {
           <Link
             className={clsx("uppercase")}
             href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+            hrefLang={lang}
           >
             {product.title}
           </Link>
