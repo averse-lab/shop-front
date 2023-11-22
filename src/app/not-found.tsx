@@ -1,69 +1,56 @@
 import { FC } from "react";
 
 import { clsx } from "clsx";
-import Link from "next/link";
 
 import { ABOUT_VIDEO } from "@averse/app/[lang]/about/_internal/AboutPage.constants";
 
+import { BaseLayout } from "@components/BaseLayout/BaseLayout";
+import { Button } from "@components/Button/Button";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
-import { DMSans } from "@lib/fonts";
-import { CATEGORIES, PAGES } from "@lib/routing/constants";
+import { getDictionary } from "@lib/i18n/utils";
 
 const NotFound: FC = async () => {
   const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
 
+  const dictionary = await getDictionary("en");
+
   return (
-    <html>
-      <body
-        className={clsx(
-          DMSans.variable,
-          "min-h-screen",
-          "flex flex-col",
-          "font-sans",
-        )}
-      >
-        <main>
-          <div className={clsx("min-h-screen px-6 py-4", "bg-black")}>
-            <div
-              className={clsx(
-                "m-auto mt-[72px] md:mt-[96px]",
-                "lg:max-w-[550px]",
-                "flex flex-col items-center justify-center",
-                "text-center text-white",
-              )}
-            >
-              <h1
-                className={clsx(
-                  "text-4xl font-bold uppercase  underline-offset-8",
-                  "mb-12 text-white",
-                )}
-              >
-                PAGE_NOT_FOUND
-              </h1>
-              <VideoPlayer
-                className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
-                heightRatio={heightRatio}
-                playbackId={playbackId}
-                widthRatio={widthRatio}
-              />
-              <button
-                className={clsx(
-                  "px-4 py-2",
-                  "text-white",
-                  "bg-black",
-                  "border border-white",
-                )}
-              >
-                <Link href={`/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}>
-                  GO_BACK_HOME
-                </Link>
-              </button>
-            </div>
+    <>
+      <BaseLayout dictionary={dictionary} lang='en'>
+        <HeaderContextInitializer whiteIcons />
+        <div
+          className={clsx(
+            "min-h-screen px-6 py-4",
+            "flex flex-col",
+            "bg-black",
+          )}
+        >
+          <div
+            className={clsx(
+              "m-auto mt-[72px] md:mt-[96px]",
+              "lg:max-w-[550px]",
+              "flex flex-1 flex-col items-center justify-center",
+              "text-center text-white",
+            )}
+          >
+            <h1 className={clsx("text-4xl font-bold uppercase", "mb-12")}>
+              {dictionary.notFound.notFound}
+            </h1>
+            <VideoPlayer
+              className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
+              heightRatio={heightRatio}
+              playbackId={playbackId}
+              widthRatio={widthRatio}
+            />
+            <Button className='border border-white' element='link' href='/'>
+              {dictionary.notFound.goBackHome}
+            </Button>
           </div>
-        </main>
-      </body>
-    </html>
+        </div>
+      </BaseLayout>
+    </>
   );
 };
 

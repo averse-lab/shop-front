@@ -84,5 +84,9 @@
     "openCartAriaLabel": "Ouvrir la pop-up du panier",
     "closeBurgerMenuAriaLabel": "Fermer la pop-up du menu de navigation",
     "closeCartAriaLabel": "Fermer la pop-up du panier"
+  },
+  "notFound": {
+    "notFound": "PAGE NOT FOUND",
+    "goBackHome": "GO_BACK_HOME"
   }
 }

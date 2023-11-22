@@ -84,5 +84,9 @@
     "openCartAriaLabel": "Open the cart pop-up",
     "closeBurgerMenuAriaLabel": "Close the navigation menu pop-up",
     "closeCartAriaLabel": "Close the cart pop-up"
+  },
+  "notFound": {
+    "notFound": "PAGE NOT FOUND",
+    "goBackHome": "GO_BACK_HOME"
   }
 }

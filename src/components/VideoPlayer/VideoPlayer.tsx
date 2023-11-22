@@ -12,7 +12,7 @@ interface IProps {
   heightRatio: number;
 }
 
-export const VideoPlayer: FC<IProps> = async (props) => {
+export const VideoPlayer: FC<IProps> = (props) => {
   const { className, playbackId, widthRatio, heightRatio } = props;
 
   return (
