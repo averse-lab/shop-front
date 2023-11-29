@@ -87,6 +87,7 @@ const HomePage: FC<IProps> = async (props) => {
         />
         <Button
           ariaLabel={enterWebsiteAriaLabel}
+          color='black'
           element='link'
           href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
           hrefLang={lang}

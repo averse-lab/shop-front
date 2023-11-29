@@ -122,6 +122,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
       </div>
       <Button
         className={clsx("w-full")}
+        color='black'
         disabled={!uniqueSize && selectedIndex === undefined}
         element='button'
         loading={isPending}

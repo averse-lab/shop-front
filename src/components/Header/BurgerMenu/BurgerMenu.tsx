@@ -10,6 +10,8 @@ import {
 import { clsx } from "clsx";
 import Link from "next/link";
 
+import { Button } from "@components/Button/Button";
+
 import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
@@ -54,24 +56,24 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   return (
     <>
-      <button
+      <Button
         aria-label={openBurgerMenuAriaLabel}
-        className={clsx(
-          className,
-          s["burger-menu__burger"],
-          "p-1",
-          "rounded transition-all duration-200",
-        )}
+        className={clsx(className, s["burger-menu__burger"])}
+        color='white'
+        element='button'
+        mini
         onClick={openMenu}
+        transparent
       >
         <Bars3Icon
           className={clsx(
+            s["burger-menu__burger-icon"],
             "h-6 w-6",
-            "transition-all duration-200 ease-out lg:hover:stroke-[1.75]",
+            "!transition-all !duration-200 !ease-out",
             whiteIcons && "text-white",
           )}
         />
-      </button>
+      </Button>
       <div
         className={clsx(
           s["burger-menu__menu"],

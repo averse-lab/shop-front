@@ -3,6 +3,8 @@ import { FC, MouseEventHandler, useContext } from "react";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 
+import { Button } from "@components/Button/Button";
+
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import s from "./_internal/CartButton.module.scss";
@@ -20,25 +22,25 @@ export const CartButton: FC<IProps> = (props) => {
   const { whiteIcons } = useContext(HeaderContext) || {};
 
   return (
-    <button
-      aria-label={ariaLabel}
-      className={clsx(
-        className,
-        s["cart-btn__btn"],
-        "relative",
-        "p-1",
-        "rounded transition-all duration-200",
-      )}
-      onClick={onClick}
-    >
-      <ShoppingBagIcon
-        className={clsx(
-          "h-6 w-6",
-          "scale-90 cursor-pointer transition-all duration-200 ease-out lg:hover:stroke-[1.75]",
-          whiteIcons && "text-white",
-        )}
-      />
-
+    <div className={clsx(className, "relative")}>
+      <Button
+        aria-label={ariaLabel}
+        className={clsx(s["cart-btn__btn"], "p-[6px]")}
+        color='white'
+        element='button'
+        mini
+        onClick={onClick || (() => {})}
+        transparent
+      >
+        <ShoppingBagIcon
+          className={clsx(
+            s["cart-btn__icon"],
+            "h-5 w-5",
+            "!transition-all !duration-200 !ease-out",
+            whiteIcons && "text-white",
+          )}
+        />
+      </Button>
       <div
         className={clsx(
           s["cart-btn__hint"],
@@ -47,10 +49,10 @@ export const CartButton: FC<IProps> = (props) => {
           quantity !== undefined && quantity > 0 && "scale-100",
         )}
       >
-        <p className={clsx("text-semibold")} style={{ fontSize: "8px" }}>
+        <p className={clsx("font-semibold")} style={{ fontSize: "8px" }}>
           {quantity}
         </p>
       </div>
-    </button>
+    </div>
   );
 };

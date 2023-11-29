@@ -46,6 +46,7 @@ const NotFound: FC = async () => {
             />
             <Button
               className='border border-white'
+              color='black'
               element='link'
               href='/'
               hrefLang={"en"}
