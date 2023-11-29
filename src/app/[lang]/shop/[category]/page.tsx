@@ -109,14 +109,14 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer whiteBackground />
+      <HeaderContextInitializer />
       <FilterSelector
-        className={clsx("fixed left-0 top-[72px] z-10 md:top-[96px]", "w-full")}
+        className={clsx("fixed top-[100px] z-10 md:top-[124px]", "w-full")}
         filters={filters}
         lang={lang}
         selectedFilterIndex={selectedFilterIndex}
       />
-      <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>
+      <div className={clsx("mt-[72px] md:mt-[96px]", "flex flex-col")}>
         <div
           className={clsx(
             "z-0",

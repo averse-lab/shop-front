@@ -58,6 +58,7 @@ export const Button: FC<IProps> = (props) => {
     mini ? "rounded" : "rounded-sm",
     color === "black" ? s["button--black"] : s["button--white"],
     disabled && "disabled cursor-not-allowed",
+    transparent && mini ? "shadow" : "shadow-md",
     color === "black" ? "text-white" : "text-black",
     "text-center font-medium uppercase",
   );
