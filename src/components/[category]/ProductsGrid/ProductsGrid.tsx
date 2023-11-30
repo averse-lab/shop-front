@@ -86,8 +86,8 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <div ref={ref}></div>
               <FilterSelector
                 className={clsx(
-                  "fixed bottom-2 left-0 right-0 z-10 m-auto",
-                  "transition-all duration-200 ease-out",
+                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[120px]",
+                  "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-100",
                   inView
                     ? "translate-y-3 opacity-0"
                     : "-translate-y-3 opacity-100",
