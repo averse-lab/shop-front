@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Ref } from "react";
 
 import { clsx } from "clsx";
 import Image from "next/image";
@@ -18,6 +18,7 @@ interface IProps {
   index: number;
   light: boolean;
   lang: Locale;
+  reference: Ref<HTMLAnchorElement>;
 }
 
 export const ProductPreview: FC<IProps> = (props) => {
@@ -31,6 +32,7 @@ export const ProductPreview: FC<IProps> = (props) => {
     currency,
     index,
     light,
+    reference,
   } = props;
 
   return (
@@ -45,6 +47,7 @@ export const ProductPreview: FC<IProps> = (props) => {
       )}
       href={href}
       hrefLang={lang}
+      ref={reference}
     >
       <Image
         alt={`photography of ${title}`}
