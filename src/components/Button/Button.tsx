@@ -10,6 +10,7 @@ import { Spinner } from "@components/icons/Spinner/Spinner";
 import { Locale } from "@lib/i18n/types";
 
 import s from "./_internal/Button.module.scss";
+import { ButtonColor } from "./_internal/Button.types";
 
 type ICommonProps = {
   className?: string;
@@ -17,6 +18,8 @@ type ICommonProps = {
   loading?: boolean;
   transparent?: boolean;
   ariaLabel?: string;
+  color: ButtonColor;
+  mini?: boolean;
 };
 
 type IButtonProps = {
@@ -41,17 +44,23 @@ export const Button: FC<IProps> = (props) => {
     transparent,
     element,
     ariaLabel,
+    color,
+    mini,
   } = props;
 
   const commonClassName = clsx(
     className,
     s["button"],
     transparent && s["button--transparent"],
-    "px-6 py-3 ",
+    mini && s["button--mini"],
+    mini ? "p-1" : "px-6 py-3",
     "flex items-center justify-center gap-4",
-    "rounded-sm",
+    mini ? "rounded" : "rounded-sm",
+    color === "black" ? s["button--black"] : s["button--white"],
     disabled && "disabled cursor-not-allowed",
-    "text-center font-medium uppercase text-white",
+    transparent && mini ? "shadow" : "shadow-md",
+    color === "black" ? "text-white" : "text-black",
+    "text-center font-medium uppercase",
   );
 
   if (element === "button") {
@@ -64,7 +73,13 @@ export const Button: FC<IProps> = (props) => {
         disabled={disabled}
         onClick={onClick}
       >
-        {loading ? <Spinner className={clsx("h-6 w-6")} /> : children}
+        {loading ? (
+          <Spinner className={clsx("h-6 w-6")} />
+        ) : typeof children === "string" ? (
+          <span>{children}</span>
+        ) : (
+          children
+        )}
       </button>
     );
   } else {

@@ -23,9 +23,10 @@ export const FilterSelector: FC<IProps> = (props) => {
       className={clsx(
         className,
         s["filters-selector"],
-        "p-4",
+        "w-fit",
+        "px-6 py-4",
         "gap-6",
-        "border-b border-neutral-200 bg-white shadow",
+        "rounded-lg shadow-sm",
       )}
     >
       {filters.map(({ display, url }, idx) => (
@@ -35,7 +36,7 @@ export const FilterSelector: FC<IProps> = (props) => {
             "transition-all duration-200 ease-out",
             "whitespace-nowrap lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
             idx === selectedFilterIndex && "scale-[1.025] font-medium",
-            idx === selectedFilterIndex ? "text-black" : "text-neutral-600",
+            idx === selectedFilterIndex ? "text-black" : "text-neutral-800",
           )}
           href={url}
           hrefLang={lang}

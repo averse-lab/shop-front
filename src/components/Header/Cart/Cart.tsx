@@ -151,6 +151,7 @@ export const Cart: FC<IProps> = (props) => {
           ) : null}
           <Button
             className={clsx("w-full")}
+            color='black'
             disabled={checkoutDisabled}
             element='link'
             href={!checkoutDisabled ? cart.checkoutUrl : ""}

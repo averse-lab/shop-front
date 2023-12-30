@@ -4,11 +4,8 @@ import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
-import { FilterSelector } from "@components/[category]/FilterSelector/FilterSelector";
-import { ProductPreview } from "@components/[category]/ProductPreview/ProductPreview";
+import { ProductsGrid } from "@components/[category]/ProductsGrid/ProductsGrid";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { Observer } from "@components/Observer/Observer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
@@ -93,91 +90,93 @@ const CategoryPage: FC<IProps> = async (props) => {
     sortKey: "PRICE",
   });
 
-  const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(
-    ({ url, i18nKey }) => ({
-      url,
-      display: dictionary.categories[i18nKey],
-    }),
-  );
-
-  const selectedFilterIndex = filters.reduce(
-    (selectedFilterIndex, filter, idx) => {
-      return filter.url === categoryUrlSegment ? idx : selectedFilterIndex;
-    },
-    0,
-  );
-
   return (
     <>
-      <HeaderContextInitializer whiteBackground />
-      <FilterSelector
-        className={clsx("fixed left-0 top-[72px] z-10 md:top-[96px]", "w-full")}
-        filters={filters}
+      <HeaderContextInitializer />
+      <ProductsGrid
+        categoryUrlSegment={categoryUrlSegment}
+        className={clsx("relative z-0", "mt-[72px] md:mt-[96px]")}
+        dictionary={dictionary}
         lang={lang}
-        selectedFilterIndex={selectedFilterIndex}
+        products={products}
       />
-      <div className={clsx("mt-[128px] md:mt-[152px]", "flex flex-col")}>
-        <div
-          className={clsx(
-            "z-0",
-            "grid auto-rows-[1fr] grid-cols-2 gap-px lg:grid-cols-4",
-          )}
-        >
-          {products.map((product, idx) =>
-            !product.customMetafields.hideOnWebsite ? (
-              <Observer
-                className={clsx(
-                  "lg:[&:nth-child(3n+4)>a]:delay-400 outline outline-1 outline-neutral-500 lg:[&:nth-child(3n+2)>a]:delay-200 lg:[&:nth-child(3n+3)>a]:delay-300 [&>a]:even:delay-100",
-                )}
-                inViewClassName={clsx("[&>a]:opacity-100")}
-                key={product.id}
-                options={{ triggerOnce: true, threshold: 0.5 }}
-                outOfViewClassName={clsx("[&>a]:opacity-0")}
-              >
-                <ProductPreview
-                  className={clsx("transition-all duration-200 ease-out")}
-                  currency={product.priceRange.maxVariantPrice.currencyCode}
-                  href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                  imageUrl={
-                    product.images.length > 0 ? product.images[0].url : ""
-                  }
-                  index={idx}
-                  lang={lang}
-                  light={product.customMetafields.darkFeaturedImage || false}
-                  price={product.priceRange.minVariantPrice.amount}
-                  title={product.title}
-                />
-              </Observer>
-            ) : null,
-          )}
-          {/*{getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(*/}
-          {/*  (animation, idx) => {*/}
-          {/*    return (*/}
-          {/*      <Observer*/}
-          {/*        className={clsx(*/}
-          {/*          `animation-${idx}`,*/}
-          {/*          "transition-all duration-200 ease-out",*/}
-          {/*          `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,*/}
-          {/*        )}*/}
-          {/*        inViewClassName={clsx("opacity-100")}*/}
-          {/*        key={v4()}*/}
-          {/*        options={{ triggerOnce: true, threshold: 0.5 }}*/}
-          {/*        outOfViewClassName={clsx("opacity-0")}*/}
-          {/*      >*/}
-          {/*        <Animation*/}
-          {/*          gridDesktopIndex={animation.gridDesktopIndex}*/}
-          {/*          gridIndex={animation.gridIndex}*/}
-          {/*          index={idx}*/}
-          {/*          playbackId={animation.playbackId}*/}
-          {/*        />*/}
-          {/*      </Observer>*/}
-          {/*    );*/}
-          {/*  },*/}
-          {/*)}*/}
-        </div>
-      </div>
     </>
   );
 };
 
 export default CategoryPage;
+
+// ANIMATIONS IMPLEM
+
+{
+  /*{getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(*/
+}
+{
+  /*  (animation, idx) => {*/
+}
+{
+  /*    return (*/
+}
+{
+  /*      <Observer*/
+}
+{
+  /*        className={clsx(*/
+}
+{
+  /*          `animation-${idx}`,*/
+}
+{
+  /*          "transition-all duration-200 ease-out",*/
+}
+{
+  /*          `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,*/
+}
+{
+  /*        )}*/
+}
+{
+  /*        inViewClassName={clsx("opacity-100")}*/
+}
+{
+  /*        key={v4()}*/
+}
+{
+  /*        options={{ triggerOnce: true, threshold: 0.5 }}*/
+}
+{
+  /*        outOfViewClassName={clsx("opacity-0")}*/
+}
+{
+  /*      >*/
+}
+{
+  /*        <Animation*/
+}
+{
+  /*          gridDesktopIndex={animation.gridDesktopIndex}*/
+}
+{
+  /*          gridIndex={animation.gridIndex}*/
+}
+{
+  /*          index={idx}*/
+}
+{
+  /*          playbackId={animation.playbackId}*/
+}
+{
+  /*        />*/
+}
+{
+  /*      </Observer>*/
+}
+{
+  /*    );*/
+}
+{
+  /*  },*/
+}
+{
+  /*)}*/
+}

@@ -21,6 +21,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
       className={clsx(className, "h-full w-full", "object-cover object-center")}
       controls={false}
       loop
+      placeholder=''
       playbackId={playbackId}
       playsInline
       streamType='on-demand'

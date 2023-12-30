@@ -8,18 +8,13 @@
   justify-content: center;
   bottom: 80%;
   left: 80%;
+  transition: transform 0.2s ease-out;
 }
 
 .cart-btn__btn {
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 0 0 rgba($color: white, $alpha: 0.1);
-  background-color: rgba($color: white, $alpha: 0.1);
-}
-
-@media (min-width: 1024px) {
-  .cart-btn__btn {
-    &:hover {
-      box-shadow: 0 0 0 1px rgba($color: white, $alpha: 0.1);
+  &:hover {
+    .cart-btn__icon {
+      stroke-width: 1.75;
     }
   }
 }

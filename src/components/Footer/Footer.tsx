@@ -56,6 +56,7 @@ export const Footer: FC<IProps> = (props) => {
         <Link
           aria-label={averseInstaAriaLabel}
           href='https://instagram.com/averseparis'
+          target='_blank'
         >
           <Instagram
             className={clsx(
@@ -70,6 +71,7 @@ export const Footer: FC<IProps> = (props) => {
           <Link
             aria-label={weAreStudio99AriaLabel}
             href='https://instagram.com/wearestudio99'
+            target='_blank'
           >
             <WeAreStudio99
               className={clsx(
