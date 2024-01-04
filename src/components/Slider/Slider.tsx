@@ -6,16 +6,13 @@ import {
   PropsWithChildren,
   cloneElement,
   isValidElement,
-  useCallback,
   useEffect,
   useState,
 } from "react";
 
 import { clsx } from "clsx";
-import useEmblaCarousel, {
-  EmblaCarouselType,
-  EmblaOptionsType,
-} from "embla-carousel-react";
+import { EmblaOptionsType } from "embla-carousel";
+import useEmblaCarousel from "embla-carousel-react";
 
 import s from "./_internal/Slider.module.scss";
 
@@ -30,13 +27,21 @@ export const Slider: FC<IProps> = (props) => {
   const [ref, emblaApi] = useEmblaCarousel(options);
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
 
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setActiveSlideIndex(emblaApi.selectedScrollSnap());
-  }, []);
-
   useEffect(() => {
-    if (emblaApi) emblaApi.on("select", onSelect);
-  }, [emblaApi, onSelect]);
+    if (emblaApi === undefined) {
+      return;
+    }
+
+    const onSelect = () => {
+      setActiveSlideIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", onSelect);
+
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
 
   const slidesCount = Children.count(children);
 

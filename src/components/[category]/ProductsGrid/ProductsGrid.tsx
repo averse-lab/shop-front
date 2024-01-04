@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useRef, useState } from "react";
 
 import clsx from "clsx";
 import { InView } from "react-intersection-observer";
@@ -24,6 +24,11 @@ export type IProps = {
 export const ProductsGrid: FC<IProps> = (props) => {
   const { products, lang, className, dictionary, categoryUrlSegment } = props;
 
+  const [initAnimationsOver, setInitAnimationsOver] = useState(false);
+
+  const productsInViewAtInit = useRef(0);
+  const productsVisible = useRef(0);
+
   const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(
     ({ url, i18nKey }) => ({
       url,
@@ -38,6 +43,20 @@ export const ProductsGrid: FC<IProps> = (props) => {
     0,
   );
 
+  const onAnimationEnd = () => {
+    if (initAnimationsOver) {
+      return;
+    }
+
+    productsVisible.current += 1;
+
+    if (productsInViewAtInit.current !== productsVisible.current) {
+      return;
+    }
+
+    setInitAnimationsOver(true);
+  };
+
   return (
     <>
       <div className={clsx("min-h-[calc(100vh+1px)]")}>
@@ -50,31 +69,21 @@ export const ProductsGrid: FC<IProps> = (props) => {
           {products.map(
             (product, idx) =>
               !product.customMetafields.hideOnWebsite && (
-                <InView key={product.id} threshold={0.25} triggerOnce>
-                  {({ inView, ref }) => (
-                    <ProductPreview
-                      className={clsx(
-                        "even:delay-100",
-                        "lg:[&:nth-child(4n+2)]:delay-100 lg:[&:nth-child(4n+3)]:delay-200 lg:[&:nth-child(4n+4)]:delay-300",
-                        "outline outline-1 outline-neutral-500 transition-all duration-200 ease-out",
-                        inView ? "opacity-100" : "opacity-0",
-                      )}
-                      currency={product.priceRange.maxVariantPrice.currencyCode}
-                      href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                      imageUrl={
-                        product.images.length > 0 ? product.images[0].url : ""
-                      }
-                      index={idx}
-                      lang={lang}
-                      light={
-                        product.customMetafields.darkFeaturedImage || false
-                      }
-                      price={product.priceRange.minVariantPrice.amount}
-                      reference={ref}
-                      title={product.title}
-                    />
-                  )}
-                </InView>
+                <ProductPreview
+                  currency={product.priceRange.maxVariantPrice.currencyCode}
+                  href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+                  imageUrl={
+                    product.images.length > 0 ? product.images[0].url : ""
+                  }
+                  index={idx}
+                  key={product.id}
+                  lang={lang}
+                  light={product.customMetafields.darkFeaturedImage || false}
+                  onAnimationEnd={onAnimationEnd}
+                  price={product.priceRange.minVariantPrice.amount}
+                  productsInViewAtInit={productsInViewAtInit}
+                  title={product.title}
+                />
               ),
           )}
         </div>
@@ -86,11 +95,15 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <div ref={ref}></div>
               <FilterSelector
                 className={clsx(
-                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[120px]",
-                  "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-100",
-                  inView
-                    ? "translate-y-3 opacity-0"
-                    : "-translate-y-3 opacity-100",
+                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[112px]",
+                  "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
+                  initAnimationsOver &&
+                    "lg:animate-filterSelectorDesktopAppearing",
+                  initAnimationsOver
+                    ? inView
+                      ? "translate-y-3 opacity-0"
+                      : "-translate-y-3 opacity-100"
+                    : "opacity-0",
                 )}
                 filters={filters}
                 lang={lang}

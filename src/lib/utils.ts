@@ -1,6 +1,5 @@
 import { FC, PropsWithChildren, createElement } from "react";
 
-import muxBlurHash from "@mux/blurhash";
 import { MetadataRoute } from "next";
 import { AlternateURLs } from "next/dist/lib/metadata/types/alternative-urls-types";
 
@@ -39,13 +38,6 @@ export const combineProviders = (
       return createElement(curr, null, acc);
     }, children);
   };
-};
-
-export const getBlurHash = async (playbackId: string) => {
-  const { blurHash, blurHashBase64, sourceWidth, sourceHeight } =
-    await muxBlurHash(playbackId);
-
-  return { blurHash, blurHashBase64, sourceWidth, sourceHeight };
 };
 
 export const generateStaticPagesSitemapItems = (
