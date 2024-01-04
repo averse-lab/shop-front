@@ -114,7 +114,11 @@ export const BurgerMenu: FC<IProps> = (props) => {
         >
           {nav.map((link) => (
             <div
-              className={clsx(s["burger-menu__link"], "relative")}
+              className={clsx(
+                s["burger-menu__link"],
+                "relative",
+                "transition-all lg:hover:translate-x-1",
+              )}
               key={link.display}
             >
               <Link
