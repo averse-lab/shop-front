@@ -23,7 +23,7 @@ export const FilterSelector: FC<IProps> = (props) => {
       className={clsx(
         className,
         s["filters-selector"],
-        "w-fit",
+        "w-min",
         "px-6 py-4",
         "gap-6",
         "rounded-lg shadow-sm",
