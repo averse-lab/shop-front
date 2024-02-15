@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import clsx from "clsx";
 import Script from "next/script";
@@ -47,6 +48,7 @@ export const BaseLayout: FC<IProps> = (props) => {
         )}
       >
         <SpeedInsights />
+        <Analytics />
         <AppProvider>
           <Header dictionary={dictionary} lang={lang} />
           <main className={clsx("flex grow flex-col", "bg-white")}>
