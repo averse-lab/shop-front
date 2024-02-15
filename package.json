@@ -16,6 +16,7 @@
     "@mux/blurhash": "0.1.2",
     "@mux/mux-video-react": "0.8.2",
     "@studio-freight/lenis": "1.0.33",
+    "@vercel/speed-insights": "^1.0.10",
     "autoprefixer": "10.4.16",
     "clsx": "2.1.0",
     "embla-carousel-react": "8.0.0-rc18",
