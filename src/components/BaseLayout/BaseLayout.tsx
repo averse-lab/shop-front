@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 
 import clsx from "clsx";
+import Script from "next/script";
 
 import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header/Header";
@@ -26,6 +27,14 @@ export const BaseLayout: FC<IProps> = (props) => {
 
   return (
     <html lang={lang}>
+      {process.env.NODE_ENV === "production" && (
+        <Script
+          async
+          data-website-id='6a54afd6-bd05-486d-a7b1-7b8e196ba978'
+          src='https://eu.umami.is/script.js'
+          strategy='afterInteractive'
+        />
+      )}
       <body
         className={clsx(
           DMSans.variable,
