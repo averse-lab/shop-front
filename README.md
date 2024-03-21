@@ -1,40 +1,45 @@
 # Averse - Shop Front
 
-This README outlines the necessary steps to get the **shop-front** development environment up and running. Please follow
-the instructions carefully to ensure compatibility across different work environments.
+Welcome to the **shop-front** development environment setup guide. This document provides comprehensive instructions to facilitate a smooth and consistent setup across various development environments.
 
-## Node.js
+### Node.js
 
-To synchronize Node.js versions across different environments, we recommend
-using [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm). Once installed, you can set the project's Node.js
-version with the following command:
+We use [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) to ensure a consistent Node.js version. Install NVM and set the Node.js version for this project with :
 
 ```bash
-nvm install
+$ nvm install
 ```
 
-## Yarn
+### Pnpm
 
-Yarn is the package manager of choice for this project. After ensuring you are using Node.js 18 _(lts/hydrogen)_,
-activate `corepack` to use Yarn by running:
+Pnpm is the package manager of choice for this project. Make sure you are using at least Node.js 14 _(lts/fermium)_ and then activate it through `corepack` :
 
 ```bash
-corepack enable
+$ corepack enable pnpm
 ```
 
-## Visual Studio Code
-
-Uniformity in the TypeScript version used across different development setups is crucial. For VSCode users, ensure that
-you [use the workspace version of TypeScript](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-the-workspace-version-of-typescript)
-rather than the built-in version provided by VSCode.
-
-### Optional: Optimized Editor Configuration
-
-For an enhanced development experience with project-specific editor settings, copy the `.vscode.sample` folder to your
-workspace configuration folder `.vscode`:
+To ensure consistent behaviour across all development environments, they should all use the same version of pnpm. That's why an explicit pnpm version is specified in the [package.json](). Check if your pnpm version is matching the one under the `packageManager` property :
 
 ```bash
-cp -R .vscode.sample .vscode
+$ pnpm -v
+```
+
+If it is not the case, install the corresponding version :
+
+```bash
+$ corepack install
+```
+
+### Visual Studio Code
+
+Consistency in TypeScript versions is crucial. For VSCode users, ensure that you [use the workspace version of TypeScript](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-the-workspace-version-of-typescript) and not the built-in version provided by VSCode.
+
+### Optional: Optimized VSCode Configuration
+
+For an enhanced development experience with project-specific editor settings, duplicate `.vscode.sample` as `.vscode` :
+
+```bash
+$ cp -R .vscode.sample .vscode
 ```
 
 ## Getting Started
@@ -42,34 +47,46 @@ cp -R .vscode.sample .vscode
 Ensure that you follow the sections below in sequence to set up your development environment without issues.
 Documentation is provided to guide you through the major setup steps.
 
-### Setup Environment Variables
+### Environment Configuration
 
-Begin by creating a `.env.local` file for your environment variables. Use the `.env.local.example` as a template:
+Initiate by setting up environment variables. Duplicate `.env.local.sample` as `.env.local`:
 
 ```bash
-cp .env.local.sample .env.local
+$ cp .env.local.sample .env.local
 ```
 
-Replace the placeholders in the newly created file with your actual values.
+Amend `.env.local` with your specific configurations.
 
-### Install Dependencies
+### Dependency Installation
 
-To install the project dependencies, run:
+Install necessary project dependencies :
 
 ```bash
-yarn install
+$ pnpm install
 ```
 
-## Running the App
+### Dependency Addition & Update (Optional)
 
-To start the application in watch mode during development:
+To precisely keep track of the dependencies of this application, each dependency should be added with a specific version number.:
 
 ```bash
-yarn run dev
+$ pnpm add <pkg> -E
 ```
 
-For running the application in production mode:
+Also, for easier dependency updating, you should use the pnpm interactive mode :
 
 ```bash
-yarn run start
+$ pnpm up -i -L
+```
+
+## Running the Application
+
+Execute the app in various modes using :
+
+```bash
+# Development mode
+$ pnpm dev
+
+# Production mode
+$ pnpm start
 ```
