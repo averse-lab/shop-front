@@ -16,7 +16,6 @@ interface IProps {
   title: string;
   price: string;
   currency: string;
-  index: number;
   light: boolean;
   lang: Locale;
   onAnimationEnd: (e: AnimationEvent) => void;
@@ -32,7 +31,6 @@ export const ProductPreview: FC<IProps> = (props) => {
     title,
     price,
     currency,
-    index,
     light,
     onAnimationEnd,
     productsInViewAtInit,
@@ -104,7 +102,7 @@ export const ProductPreview: FC<IProps> = (props) => {
             "object-cover object-center",
           )}
           fill
-          priority={index < 6}
+          priority={inViewAtInit}
           sizes='(min-width: 1024px) 25vw, 50vw'
           src={imageUrl}
         />

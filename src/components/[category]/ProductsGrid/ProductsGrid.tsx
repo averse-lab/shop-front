@@ -67,7 +67,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
           )}
         >
           {products.map(
-            (product, idx) =>
+            (product) =>
               !product.customMetafields.hideOnWebsite && (
                 <ProductPreview
                   currency={product.priceRange.maxVariantPrice.currencyCode}
@@ -75,7 +75,6 @@ export const ProductsGrid: FC<IProps> = (props) => {
                   imageUrl={
                     product.images.length > 0 ? product.images[0].url : ""
                   }
-                  index={idx}
                   key={product.id}
                   lang={lang}
                   light={product.customMetafields.darkFeaturedImage || false}
