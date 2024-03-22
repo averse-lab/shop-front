@@ -8,6 +8,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { muxBlurHash } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -64,9 +65,13 @@ const AboutPage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
+  const { playbackId } = ABOUT_VIDEO;
 
   const dictionary = await getDictionary(lang);
+
+  const { blurHashBase64: videoPlaceholder } = await muxBlurHash(
+    ABOUT_VIDEO.playbackId,
+  );
 
   return (
     <>
@@ -83,10 +88,9 @@ const AboutPage: FC<IProps> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
-            heightRatio={heightRatio}
+            placeholder={videoPlaceholder}
             playbackId={playbackId}
-            widthRatio={widthRatio}
+            style={{ marginBottom: "48px", width: "300px", height: "300px" }}
           />
           <p>{dictionary.about.paragraph1}</p>
           <p className={clsx("mb-4")}>{dictionary.about.paragraph2}</p>

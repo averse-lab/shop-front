@@ -37,7 +37,7 @@ export const CartButton: FC<IProps> = (props) => {
             s["cart-btn__icon"],
             "h-5 w-5",
             "!transition-all !duration-200 !ease-out",
-            whiteIcons && "text-white",
+            whiteIcons === false ? "text-black/95" : "text-white/95",
           )}
         />
       </Button>

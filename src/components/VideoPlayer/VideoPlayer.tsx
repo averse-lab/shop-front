@@ -2,30 +2,36 @@
 
 import { FC } from "react";
 
-import MuxVideo from "@mux/mux-video-react";
+import MuxPlayer from "@mux/mux-player-react/lazy";
 import { clsx } from "clsx";
+
+import s from "./_internal/VideoPlayer.module.scss";
 
 interface IProps {
   className?: string;
   playbackId: string;
-  widthRatio: number;
-  heightRatio: number;
+  placeholder?: string;
+  style?: React.CSSProperties;
 }
 
 export const VideoPlayer: FC<IProps> = (props) => {
-  const { className, playbackId, widthRatio, heightRatio } = props;
+  const { className, playbackId, placeholder, style } = props;
 
   return (
-    <MuxVideo
+    <MuxPlayer
       autoPlay='muted'
-      className={clsx(className, "h-full w-full", "object-cover object-center")}
-      controls={false}
+      className={clsx(className, s["player"])}
       loop
-      placeholder=''
+      minResolution='1080p'
+      placeholder={placeholder}
       playbackId={playbackId}
       playsInline
       streamType='on-demand'
-      style={{ aspectRatio: `${widthRatio} / ${heightRatio}` }}
+      style={{
+        ...style,
+        objectFit: "cover",
+        objectPosition: "center",
+      }}
     />
   );
 };

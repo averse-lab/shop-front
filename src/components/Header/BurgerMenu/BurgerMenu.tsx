@@ -70,7 +70,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
             s["burger-menu__burger-icon"],
             "h-6 w-6",
             "!transition-all !duration-200 !ease-out",
-            whiteIcons && "text-white",
+            whiteIcons === false ? "text-black/95" : "text-white/95",
           )}
         />
       </Button>
@@ -92,7 +92,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
             s["burger-menu__close-btn"],
             "p-2 lg:p-1",
             "self-end",
-            "rounded-full transition-all duration-200 ease-out",
+            "rounded transition-all duration-200 ease-out",
             whiteIcons
               ? "bg-neutral-100 text-black"
               : "bg-neutral-900 text-white",
