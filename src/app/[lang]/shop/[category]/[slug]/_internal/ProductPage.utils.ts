@@ -16,14 +16,3 @@ export const isProductWithSingleAdditionalVideo = (
     product.customMetafields.additionalVideosLayout !== null
   );
 };
-
-export const isProductWithMultipleAdditionalVideos = (
-  product: Product,
-): product is ProductWithMultipleAdditionalVideos => {
-  return (
-    product.customMetafields.secondAdditionalVideoID !== null &&
-    product.customMetafields.secondAdditionalVideoWidthRatio !== null &&
-    product.customMetafields.secondAdditionalVideoHeightRatio !== null &&
-    product.customMetafields.secondAdditionalVideoDescription !== null
-  );
-};

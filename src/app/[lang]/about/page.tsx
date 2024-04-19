@@ -8,6 +8,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { getPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -68,6 +69,11 @@ const AboutPage: FC<IProps> = async (props) => {
 
   const dictionary = await getDictionary(lang);
 
+  const videoPlaceholder = await getPlaceholder({
+    playbackId,
+    width: 64,
+  });
+
   return (
     <>
       <HeaderContextInitializer hideLogo whiteIcons />
@@ -83,10 +89,13 @@ const AboutPage: FC<IProps> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
-            heightRatio={heightRatio}
+            className={clsx(
+              "mb-12",
+              "max-w-[80%] md:max-w-[250px]",
+              "aspect-square",
+            )}
+            placeholder={videoPlaceholder}
             playbackId={playbackId}
-            widthRatio={widthRatio}
           />
           <p>{dictionary.about.paragraph1}</p>
           <p className={clsx("mb-4")}>{dictionary.about.paragraph2}</p>

@@ -9,6 +9,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { getPlaceholder } from "@lib/mux/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -68,9 +69,14 @@ const HomePage: FC<IProps> = async (props) => {
   const dictionary = await getDictionary(lang);
   const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
 
+  const videoPlaceholder = await getPlaceholder({
+    playbackId: HOME_VIDEO.playbackId,
+    width: 512,
+  });
+
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer whiteIcons />
       <div
         className={clsx(
           "relative z-0",
@@ -81,9 +87,8 @@ const HomePage: FC<IProps> = async (props) => {
       >
         <VideoPlayer
           className={clsx("absolute -z-10", "h-full w-full")}
-          heightRatio={HOME_VIDEO.heightRatio}
+          placeholder={videoPlaceholder}
           playbackId={HOME_VIDEO.playbackId}
-          widthRatio={HOME_VIDEO.widthRatio}
         />
         <Button
           ariaLabel={enterWebsiteAriaLabel}

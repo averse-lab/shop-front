@@ -1,0 +1,16 @@
+.video-player {
+  filter: blur(20px);
+
+  &--unblurred {
+    animation: unblur 0.1s ease-out forwards;
+  }
+}
+
+@keyframes unblur {
+  0% {
+    filter: blur(20px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}

@@ -5,7 +5,6 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { MultipleAdditionalVideos } from "@components/[slug]/MultipleAdditionalVideos/MultipleAdditionalVideos";
 import { ProductInteractive } from "@components/[slug]/ProductInteractive/ProductInteractive";
 import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo/SingleAdditionalVideo";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
@@ -21,10 +20,7 @@ import {
 } from "@lib/utils";
 
 import s from "./_internal/ProductPage.module.scss";
-import {
-  isProductWithMultipleAdditionalVideos,
-  isProductWithSingleAdditionalVideo,
-} from "./_internal/ProductPage.utils";
+import { isProductWithSingleAdditionalVideo } from "./_internal/ProductPage.utils";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;
@@ -155,53 +151,17 @@ const ProductPage: FC<IProps> = async (props) => {
           </div>
         </div>
       </div>
-      {isProductWithSingleAdditionalVideo(product) ? (
-        isProductWithMultipleAdditionalVideos(product) ? (
-          <MultipleAdditionalVideos
-            firstVideoDescription={
-              product.customMetafields.firstAdditionalVideoDescription
-            }
-            firstVideoHeightRatio={
-              product.customMetafields.firstAdditionalVideoHeightRatio
-            }
-            firstVideoPlaybackId={
-              product.customMetafields.firstAdditionalVideoID
-            }
-            firstVideoWidthRatio={
-              product.customMetafields.firstAdditionalVideoWidthRatio
-            }
-            inversedLayout={
-              product.customMetafields.additionalVideosLayout === "inversed"
-            }
-            secondVideoDescription={
-              product.customMetafields.secondAdditionalVideoDescription
-            }
-            secondVideoHeightRatio={
-              product.customMetafields.secondAdditionalVideoHeightRatio
-            }
-            secondVideoPlaybackId={
-              product.customMetafields.secondAdditionalVideoID
-            }
-            secondVideoWidthRatio={
-              product.customMetafields.secondAdditionalVideoWidthRatio
-            }
-          />
-        ) : (
-          <SingleAdditionalVideo
-            description={
-              product.customMetafields.firstAdditionalVideoDescription
-            }
-            heightRatio={
-              product.customMetafields.firstAdditionalVideoHeightRatio
-            }
-            inversedLayout={
-              product.customMetafields.additionalVideosLayout === "inversed"
-            }
-            playbackId={product.customMetafields.firstAdditionalVideoID}
-            widthRatio={product.customMetafields.firstAdditionalVideoWidthRatio}
-          />
-        )
-      ) : null}
+      {isProductWithSingleAdditionalVideo(product) && (
+        <SingleAdditionalVideo
+          description={product.customMetafields.firstAdditionalVideoDescription}
+          heightRatio={product.customMetafields.firstAdditionalVideoHeightRatio}
+          inversedLayout={
+            product.customMetafields.additionalVideosLayout === "inversed"
+          }
+          playbackId={product.customMetafields.firstAdditionalVideoID}
+          widthRatio={product.customMetafields.firstAdditionalVideoWidthRatio}
+        />
+      )}
     </>
   );
 };

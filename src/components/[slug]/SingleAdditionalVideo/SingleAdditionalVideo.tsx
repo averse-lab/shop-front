@@ -6,6 +6,8 @@ import { Observer } from "@components/Observer/Observer";
 import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
+import { getPlaceholder } from "@lib/mux/utils";
+
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
@@ -16,9 +18,14 @@ type IProps = {
   inversedLayout: boolean;
 };
 
-export const SingleAdditionalVideo: FC<IProps> = (props) => {
+export const SingleAdditionalVideo: FC<IProps> = async (props) => {
   const { playbackId, widthRatio, heightRatio, description, inversedLayout } =
     props;
+
+  const videoPlaceholder = await getPlaceholder({
+    playbackId,
+    width: 64,
+  });
 
   return (
     <AdditionalVideosObserver
@@ -34,10 +41,10 @@ export const SingleAdditionalVideo: FC<IProps> = (props) => {
         className={clsx(
           "shrink-0",
           "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[750px]",
+          "aspect-square",
         )}
-        heightRatio={heightRatio}
+        placeholder={videoPlaceholder}
         playbackId={playbackId}
-        widthRatio={widthRatio}
       />
       <Observer
         className={clsx(

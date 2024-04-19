@@ -10,11 +10,15 @@ import { HeaderContextInitializer } from "@components/HeaderContextInitializer/H
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { getDictionary } from "@lib/i18n/utils";
+import { getPlaceholder } from "@lib/mux/utils";
 
 const NotFound: FC = async () => {
-  const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
-
   const dictionary = await getDictionary("en");
+
+  const videoPlaceholder = await getPlaceholder({
+    playbackId: ABOUT_VIDEO.playbackId,
+    width: 64,
+  });
 
   return (
     <>
@@ -39,10 +43,13 @@ const NotFound: FC = async () => {
               {dictionary.notFound.notFound}
             </h1>
             <VideoPlayer
-              className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]")}
-              heightRatio={heightRatio}
-              playbackId={playbackId}
-              widthRatio={widthRatio}
+              className={clsx(
+                "mb-12",
+                "max-w-[80%] md:max-w-[250px]",
+                "aspect-square",
+              )}
+              placeholder={videoPlaceholder}
+              playbackId={ABOUT_VIDEO.playbackId}
             />
             <Button
               className='border border-white'

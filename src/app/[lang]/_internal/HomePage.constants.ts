@@ -2,6 +2,6 @@ import { MuxVideoSource } from "@lib/types";
 
 export const HOME_VIDEO: MuxVideoSource = {
   playbackId: "NyIWzslBMOwfsQBPm9e1rrdksCf4g6YnDeV9uvN8Ryo",
-  widthRatio: 16,
-  heightRatio: 9,
+  widthRatio: 64,
+  heightRatio: 45,
 };
