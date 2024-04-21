@@ -5,6 +5,8 @@ import { FC, useRef, useState } from "react";
 import clsx from "clsx";
 import { InView } from "react-intersection-observer";
 
+import { ProductWithPlaceholder } from "@averse/app/[lang]/shop/[category]/_internal/CategoryPage.types";
+
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
@@ -14,7 +16,7 @@ import { FilterSelector } from "../FilterSelector/FilterSelector";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
 
 export type IProps = {
-  products: Product[];
+  products: ProductWithPlaceholder[];
   lang: Locale;
   className?: string;
   dictionary: Dictionary;
@@ -80,6 +82,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
                   lang={lang}
                   light={product.customMetafields.darkFeaturedImage || false}
                   onAnimationEnd={onAnimationEnd}
+                  placeholder={product.placeholder}
                   price={product.priceRange.minVariantPrice.amount}
                   productsInViewAtInit={productsInViewAtInit}
                   title={product.title}

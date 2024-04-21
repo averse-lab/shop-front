@@ -13,6 +13,7 @@ interface IProps {
   className?: string;
   href: string;
   imageUrl: string;
+  placeholder: string;
   title: string;
   price: string;
   currency: string;
@@ -36,6 +37,7 @@ export const ProductPreview: FC<IProps> = (props) => {
     light,
     onAnimationEnd,
     productsInViewAtInit,
+    placeholder,
   } = props;
 
   const [inView, setInView] = useState(false);
@@ -98,13 +100,14 @@ export const ProductPreview: FC<IProps> = (props) => {
       >
         <Image
           alt={`photography of ${title}`}
+          blurDataURL={placeholder}
           className={clsx(
             s["product-preview__image"],
             "-z-10",
             "object-cover object-center",
           )}
           fill
-          priority={index < 6}
+          placeholder='blur'
           sizes='(min-width: 1024px) 25vw, 50vw'
           src={imageUrl}
         />
