@@ -1,9 +1,6 @@
 import { Product } from "@lib/shopify/types";
 
-import {
-  ProductWithMultipleAdditionalVideos,
-  ProductWithSingleAdditionalVideo,
-} from "./ProductPage.types";
+import { ProductWithSingleAdditionalVideo } from "./ProductPage.types";
 
 export const isProductWithSingleAdditionalVideo = (
   product: Product,

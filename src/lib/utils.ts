@@ -114,3 +114,7 @@ export const generateAlternates = (
     languages,
   };
 };
+
+export const formatPrice = (price: string, currency: string): string => {
+  return `${Number(price).toFixed()} ${currency}`;
+};

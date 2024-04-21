@@ -4,25 +4,22 @@ import { clsx } from "clsx";
 
 import { Observer } from "@components/Observer/Observer";
 import { RichTextRenderer } from "@components/RichTextRenderer/RichTextRenderer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
-import { getPlaceholder } from "@lib/mux/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 
 import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
 
 type IProps = {
   playbackId: string;
-  widthRatio: number;
-  heightRatio: number;
   description: string;
   inversedLayout: boolean;
 };
 
 export const SingleAdditionalVideo: FC<IProps> = async (props) => {
-  const { playbackId, widthRatio, heightRatio, description, inversedLayout } =
-    props;
+  const { playbackId, description, inversedLayout } = props;
 
-  const videoPlaceholder = await getPlaceholder({
+  const videoPlaceholder = await getMuxPlaceholder({
     playbackId,
     width: 64,
   });

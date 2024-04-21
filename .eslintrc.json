@@ -16,32 +16,31 @@
           "index"
         ],
         "pathGroups": [
-          
-            {
-              "pattern": "{react,react-dom/**}",
-              "group": "external",
-              "position": "before"
-            },
-            {
-              "pattern": "@averse/**",
-              "group": "external",
-              "position": "after"
-            },
-            {
-              "pattern": "@components/**",
-              "group": "external",
-              "position": "after"
-            },
-            {
-              "pattern": "@lib/**",
-              "group": "external",
-              "position": "after"
-            },
-            {
-              "pattern": "@styles/**",
-              "group": "external",
-              "position": "after"
-            }
+          {
+            "pattern": "{react,react-dom/**}",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@averse/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@components/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@lib/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@styles/**",
+            "group": "external",
+            "position": "after"
+          }
         ],
         "distinctGroup": true,
         "pathGroupsExcludedImportTypes": ["react"],

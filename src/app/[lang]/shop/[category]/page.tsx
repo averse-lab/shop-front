@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ProductsGrid } from "@components/[category]/ProductsGrid/ProductsGrid";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";

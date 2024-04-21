@@ -19,6 +19,7 @@ const config: Config = {
         "productPreviewAppearing 200ms ease-out forwards",
       filterSelectorDesktopAppearing:
         "filterSelectorDesktopAppearing 200ms ease-out forwards",
+      unblur: "unblur 100ms ease-out forwards",
     },
     keyframes: {
       productPreviewAppearing: {
@@ -37,6 +38,14 @@ const config: Config = {
         "100%": {
           opacity: "1",
           transform: "translateY(0)",
+        },
+      },
+      unblur: {
+        "0%": {
+          filter: "blur(20px)",
+        },
+        "100%": {
+          filter: "blur(0)",
         },
       },
     },

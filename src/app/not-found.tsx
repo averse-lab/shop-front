@@ -6,16 +6,16 @@ import { ABOUT_VIDEO } from "@averse/app/[lang]/about/_internal/AboutPage.consta
 
 import { BaseLayout } from "@components/BaseLayout/BaseLayout";
 import { Button } from "@components/Button/Button";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { getDictionary } from "@lib/i18n/utils";
-import { getPlaceholder } from "@lib/mux/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 
 const NotFound: FC = async () => {
   const dictionary = await getDictionary("en");
 
-  const videoPlaceholder = await getPlaceholder({
+  const videoPlaceholder = await getMuxPlaceholder({
     playbackId: ABOUT_VIDEO.playbackId,
     width: 64,
   });

@@ -3,12 +3,12 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { getPlaceholder } from "@lib/mux/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -65,11 +65,11 @@ const AboutPage: FC<IProps> = async (props) => {
   const { params } = props;
   const { lang } = params;
 
-  const { playbackId, heightRatio, widthRatio } = ABOUT_VIDEO;
+  const { playbackId } = ABOUT_VIDEO;
 
   const dictionary = await getDictionary(lang);
 
-  const videoPlaceholder = await getPlaceholder({
+  const videoPlaceholder = await getMuxPlaceholder({
     playbackId,
     width: 64,
   });

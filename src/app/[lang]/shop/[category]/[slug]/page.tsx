@@ -2,16 +2,20 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 import { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { ProductInteractive } from "@components/[slug]/ProductInteractive/ProductInteractive";
-import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo/SingleAdditionalVideo";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { Slider } from "@components/Slider/Slider";
+import { HOME_VIDEO } from "@averse/app/[lang]/_internal/HomePage.constants";
+
+import { ProductInteractive } from "@components/[slug]/ProductInteractive";
+import { ProductSlide } from "@components/[slug]/ProductSlide";
+import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { Slider } from "@components/Slider";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { getProduct } from "@lib/shopify";
 import {
@@ -19,7 +23,6 @@ import {
   getSupportedLanguageCodeFromLocale,
 } from "@lib/utils";
 
-import s from "./_internal/ProductPage.module.scss";
 import { isProductWithSingleAdditionalVideo } from "./_internal/ProductPage.utils";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
@@ -82,62 +85,58 @@ const ProductPage: FC<IProps> = async (props) => {
   const { params } = props;
   const { slug, lang } = params;
 
-  const product = await getProduct(
-    slug,
-    getSupportedLanguageCodeFromLocale(lang),
-  );
+  const languageCode = getSupportedLanguageCodeFromLocale(lang);
+  const product = await getProduct(slug, languageCode);
+
   const dictionary = await getDictionary(lang);
 
-  if (product === undefined) {
+  if (!product) {
     notFound();
   }
+
+  const { playbackId } = HOME_VIDEO;
+
+  const placeholder = await getMuxPlaceholder({ playbackId, width: 64 });
 
   return (
     <>
       <HeaderContextInitializer />
       <div className={clsx("flex flex-col lg:flex-row")}>
-        <div className={clsx("lg:basis-1/2")}>
-          <Slider
-            className={clsx(s["product-page__slider"])}
-            options={{
-              loop: true,
-              breakpoints: {
-                "(min-width: 1024px)": {
-                  active: false,
-                },
+        <Slider
+          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col")}
+          options={{
+            loop: true,
+            breakpoints: {
+              "(min-width: 1024px)": {
+                active: false,
               },
-            }}
-          >
-            {product.images.map((image, idx) => (
-              <div
-                className={clsx("grid auto-rows-fr grid-cols-1")}
-                key={image.url}
-              >
-                <div
-                  className={clsx("relative", "aspect-square overflow-hidden")}
-                >
-                  <Image
-                    alt={image.altText}
-                    className={clsx("aspect-square object-cover object-center")}
-                    fill
-                    priority={idx <= 2}
-                    sizes='(min-width: 1024px) 50vw, 100vw'
-                    src={image.url}
-                  />
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
+            },
+          }}
+        >
+          <VideoPlayer
+            className={clsx("aspect-square")}
+            placeholder={placeholder}
+            playbackId={playbackId}
+          />
+          {product.images.map((image) => (
+            <ProductSlide
+              imgAlt={image.altText}
+              imgSrc={image.url}
+              key={image.url}
+            />
+          ))}
+        </Slider>
         <div
           className={clsx(
             "lg:sticky lg:top-0",
             "px-6 py-4 lg:h-screen",
-            "lg:flex lg:basis-1/2 lg:flex-col lg:items-center lg:justify-center",
+            "flex lg:basis-1/2 lg:flex-col lg:items-center lg:justify-center",
           )}
         >
-          <div className={clsx("lg:w-2/3 lg:max-w-[450px]")}>
-            <h1 className={clsx("text-lg uppercase")}>{product.title}</h1>
+          <div className={clsx("lg:w-[450px]")}>
+            <h1 className={clsx("text-lg uppercase", "mb-6")}>
+              {product.title}
+            </h1>
             <ProductInteractive
               dictionary={dictionary}
               minVariantPrice={product.priceRange.minVariantPrice}
@@ -145,7 +144,7 @@ const ProductPage: FC<IProps> = async (props) => {
               variants={product.variants}
             />
             <div
-              className={clsx(s["product-page__description"], "mt-6")}
+              className={clsx("mt-6", "[&_p:not(:last-child)]:mb-2")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
           </div>
@@ -154,12 +153,10 @@ const ProductPage: FC<IProps> = async (props) => {
       {isProductWithSingleAdditionalVideo(product) && (
         <SingleAdditionalVideo
           description={product.customMetafields.firstAdditionalVideoDescription}
-          heightRatio={product.customMetafields.firstAdditionalVideoHeightRatio}
           inversedLayout={
             product.customMetafields.additionalVideosLayout === "inversed"
           }
           playbackId={product.customMetafields.firstAdditionalVideoID}
-          widthRatio={product.customMetafields.firstAdditionalVideoWidthRatio}
         />
       )}
     </>

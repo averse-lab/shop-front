@@ -1,6 +1,6 @@
 "server-only";
 
-import sharp from "sharp";
+import { getPlaceholder } from "@lib/server-utils";
 
 const getMuxThumbnail = async (playbackId: string): Promise<ArrayBuffer> => {
   const url = `https://image.mux.com/${playbackId}/thumbnail.png?time=0`;
@@ -23,19 +23,15 @@ type GetPlaceholderParams = {
   width: number;
 };
 
-export const getPlaceholder: (
+export const getMuxPlaceholder: (
   params: GetPlaceholderParams,
 ) => Promise<string> = async (params) => {
   const { playbackId, width } = params;
 
   const arrayBufferThumbnail = await getMuxThumbnail(playbackId);
 
-  const image = await sharp(arrayBufferThumbnail)
-    .resize({ width, fit: "inside" })
-    .webp({
-      quality: 40,
-    })
-    .toBuffer();
-
-  return `data:image/webp;base64,${image.toString("base64")}`;
+  return await getPlaceholder({
+    arrayBufferSource: arrayBufferThumbnail,
+    width,
+  });
 };

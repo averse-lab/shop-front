@@ -17,23 +17,3 @@ export type ProductWithSingleAdditionalVideo = Omit<
     ProductWithSingleAdditionalVideoProperties
   >;
 };
-
-type ProductWithMultipleAdditionalVideosProperties =
-  | "secondAdditionalVideoID"
-  | "secondAdditionalVideoWidthRatio"
-  | "secondAdditionalVideoHeightRatio"
-  | "secondAdditionalVideoDescription";
-
-export type ProductWithMultipleAdditionalVideos = Omit<
-  Product,
-  "customMetafields"
-> & {
-  customMetafields: Pick<
-    ProductWithSingleAdditionalVideo["customMetafields"],
-    ProductWithSingleAdditionalVideoProperties
-  > &
-    NonNullablePick<
-      Product["customMetafields"],
-      ProductWithMultipleAdditionalVideosProperties
-    >;
-};

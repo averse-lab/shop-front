@@ -5,8 +5,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { clsx } from "clsx";
 
-import s from "./_internal/VideoPlayer.module.scss";
-
 const MuxVideo = lazy(() => import("@mux/mux-video-react"));
 
 interface IProps {
@@ -65,10 +63,9 @@ export const VideoPlayer: FC<IProps> = (props) => {
       <MuxVideo
         autoPlay='muted'
         className={clsx(
-          s["video-player"],
-          canPlay && s["video-player--unblurred"],
           "h-full w-full",
-          "object-cover object-center",
+          "object-cover object-center blur-[20px]",
+          canPlay && "animate-unblur",
         )}
         controls={false}
         loop

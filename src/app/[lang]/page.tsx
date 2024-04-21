@@ -4,12 +4,12 @@ import { clsx } from "clsx";
 import { Metadata } from "next";
 
 import { Button } from "@components/Button/Button";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
-import { getPlaceholder } from "@lib/mux/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -69,7 +69,7 @@ const HomePage: FC<IProps> = async (props) => {
   const dictionary = await getDictionary(lang);
   const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
 
-  const videoPlaceholder = await getPlaceholder({
+  const videoPlaceholder = await getMuxPlaceholder({
     playbackId: HOME_VIDEO.playbackId,
     width: 512,
   });

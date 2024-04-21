@@ -2,9 +2,9 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
-import { getPlaceholder } from "@lib/mux/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 
 import { getCustomGridPositionStyle } from "./_internal/Animation.utils";
 
@@ -18,7 +18,7 @@ type IProps = {
 export const Animation: FC<IProps> = async (props) => {
   const { playbackId, gridIndex, gridDesktopIndex, index } = props;
 
-  const videoPlaceholder = await getPlaceholder({
+  const videoPlaceholder = await getMuxPlaceholder({
     playbackId,
     width: 64,
   });
