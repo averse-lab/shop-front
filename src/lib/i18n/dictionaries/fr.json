@@ -43,6 +43,7 @@
   },
   "product": {
     "size": "Taille",
+    "origin": "Designé à Paris, fabriqué en France",
     "sizeGuide": "Guide des tailles",
     "addToCart": "Ajouter au panier",
     "madeToOrder": "Cet article est fabriqué sur commande.",
@@ -63,10 +64,10 @@
     "title": "À propos",
     "paragraph1": "Averse est un atelier de joaillerie. Les produits sont designés à Paris, et fabriqués en France, à partir de métaux et de pierres précieuses.",
     "paragraph2": "Chaque pièce, conçue par Matthieu Braccini a une histoire, basée sur son univers.",
-    "paragraph3": "Toutes ses créations artistiques, des sculptures aux illustrations et aux dessins, tournent autour d’un thème central : la tapisserie complexe de la santé mentale et le spectre profond des émotions humaines. À travers son travail, il explore habilement le réseau complexe des émotions et comment nous pouvons métaphoriquement décrire la profondeur de ces sentiments.",
-    "paragraph4": "Les bijoux d'Averse, sont un concentré, un aperçu de cette exploration.",
-    "paragraph5": "",
-    "paragraph6": "Quand l’averse tombe, soudainement, On ne voit alors pas plus loin qu’à quelques mètres. On se retrouve isolé, dans ce moment à passer en solitaire. Mais une pluie si intense n’est que temporaire, les nuages se délestent de leurs larmes, et rétablissant le calme.",
+    "paragraph3": "Toutes ses créations artistiques, des sculptures aux illustrations et aux dessins, tournent autour d’un thème central : la tapisserie complexe et le spectre profond des émotions humaines. À travers son travail, il explore habilement le réseau complexe des émotions et comment nous pouvons métaphoriquement décrire la profondeur de ces sentiments.",
+    "paragraph4": "Les compositions florales dans ces créations sont généralement utilisé comme un parallèle pour illustrer les émotions. elles sont en opositions avec les formes mathématiques, régulières, symétriques, une composante essentiel du monde dans lequel nous vivons.",
+    "paragraph5": "Les bijoux d'Averse, sont un concentré, un aperçu de cette exploration, en connexion avec son univers créatif. On y retrouve l'aspect mathématique, inerte, altéré par le temps, en opposition a l'aspect floral, synonyme de pensée, de sentiments, de vie.",
+    "paragraph7": "Quand l’averse tombe, soudainement, On ne voit alors pas plus loin qu’à quelques mètres. On se retrouve isolé, dans ce moment à passer en solitaire. Mais une pluie si intense n’est que temporaire, les nuages se délestent de leurs larmes, et rétablissant le calme.",
     "quote": "Personne ne verra vos larmes sous l'averse.",
     "metadata": {
       "title": "À propos | Averse",
