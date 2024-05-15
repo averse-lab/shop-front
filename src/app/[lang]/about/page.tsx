@@ -109,6 +109,18 @@ const AboutPage: FC<IProps> = async (props) => {
             playbackId={CRYING_GIRL_VIDEO.playbackId}
             widthRatio={CRYING_GIRL_VIDEO.widthRatio}
           />
+          <p
+            className={clsx(
+              "mb-4 flex h-[500px] w-full flex-col gap-10 text-[#454545]",
+            )}
+            style={{
+              writingMode: "vertical-rl",
+              textOrientation: "mixed",
+            }}
+          >
+            <span>{dictionary.about.paragraph7}</span>
+            <span>{dictionary.about.quote}</span>
+          </p>
         </div>
       </div>
     </>
