@@ -1,4 +1,4 @@
-import "@averse/app/globals.css";
+import "@averse/app/globals.scss";
 
 import { FC, PropsWithChildren } from "react";
 
