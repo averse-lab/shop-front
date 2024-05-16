@@ -52,7 +52,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
       <Backdrop activate={open} />
       <Button
         aria-label={openBurgerMenuAriaLabel}
-        className={clsx(className, s["burger-menu__burger"], "animate-appear")}
+        className={clsx(className, s["burger-menu__burger"])}
         iconColor={menuBtnIcnColor}
         onClick={openMenu}
         size='icon'

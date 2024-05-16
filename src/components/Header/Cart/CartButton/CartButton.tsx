@@ -19,7 +19,7 @@ export const CartButton: FC<IProps> = (props) => {
   const { cartBtnColor, cartBtnIcnColor } = use(HeaderContext);
 
   return cartBtnColor && cartBtnIcnColor ? (
-    <div className={clsx(className, "relative", "animate-appear")}>
+    <div className={clsx(className, "relative")}>
       <Button
         aria-label={ariaLabel}
         iconColor={cartBtnIcnColor}
