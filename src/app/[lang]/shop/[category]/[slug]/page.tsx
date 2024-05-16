@@ -104,7 +104,7 @@ const ProductPage: FC<IProps> = async (props) => {
       />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <Slider
-          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col")}
+          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col", "lg:bg-black")}
           options={{
             loop: true,
             breakpoints: {
