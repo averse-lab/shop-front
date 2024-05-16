@@ -6,10 +6,8 @@ export const isProductWithSingleAdditionalVideo = (
   product: Product,
 ): product is ProductWithSingleAdditionalVideo => {
   return (
-    product.customMetafields.firstAdditionalVideoID !== null &&
-    product.customMetafields.firstAdditionalVideoWidthRatio !== null &&
-    product.customMetafields.firstAdditionalVideoHeightRatio !== null &&
-    product.customMetafields.firstAdditionalVideoDescription !== null &&
-    product.customMetafields.additionalVideosLayout !== null
+    product.customMetafields.additionalVideosLayout !== null &&
+    product.customMetafields.additionalDescriptionVideoId !== null &&
+    product.customMetafields.additionalDescription !== null
   );
 };

@@ -78,15 +78,10 @@ export type ProductCustomMetafields = {
   hideOnWebsite: boolean | null;
   shippingDelays: string | null;
   darkFeaturedImage: boolean | null;
+  macroVideoId: string | null;
   additionalVideosLayout: "standard" | "inversed" | null;
-  firstAdditionalVideoID: string | null;
-  firstAdditionalVideoDescription: string | null;
-  firstAdditionalVideoWidthRatio: number | null;
-  firstAdditionalVideoHeightRatio: number | null;
-  secondAdditionalVideoID: string | null;
-  secondAdditionalVideoDescription: string | null;
-  secondAdditionalVideoWidthRatio: number | null;
-  secondAdditionalVideoHeightRatio: number | null;
+  additionalDescriptionVideoId: string | null;
+  additionalDescription: string | null;
 };
 
 export type ProductOption = {
@@ -147,33 +142,18 @@ export type ShopifyProductCustomMetafields = {
   darkFeaturedImage: {
     value: string;
   } | null;
+  macroVideoId: {
+    value: string;
+  } | null;
   additionalVideosLayout: {
     value:
       | "player to the right / description to the left"
       | "player to the left / description to the right";
   } | null;
-  firstAdditionalVideoID: {
+  additionalDescriptionVideoId: {
     value: string;
   } | null;
-  firstAdditionalVideoDescription: {
-    value: string;
-  } | null;
-  firstAdditionalVideoWidthRatio: {
-    value: string;
-  } | null;
-  firstAdditionalVideoHeightRatio: {
-    value: string;
-  } | null;
-  secondAdditionalVideoID: {
-    value: string;
-  } | null;
-  secondAdditionalVideoDescription: {
-    value: string;
-  } | null;
-  secondAdditionalVideoWidthRatio: {
-    value: string;
-  } | null;
-  secondAdditionalVideoHeightRatio: {
+  additionalDescription: {
     value: string;
   } | null;
 };

@@ -18,64 +18,22 @@ const productFragment = gql`
     shippingDelays: metafield(namespace: "custom", key: "shipping_delays") {
       value
     }
-    darkFeaturedImage: metafield(
+    darkFeaturedImage: metafield(namespace: "custom", key: "dark_featured_image") {
+      value
+    }
+    macroVideoId: metafield(namespace: "custom", key: "mux_macro_video_id") {
+      value
+    }
+    additionalVideosLayout: metafield(namespace: "custom", key: "additional_mux_videos_layout") {
+      value
+    }
+    additionalDescriptionVideoId: metafield(
       namespace: "custom"
-      key: "dark_featured_image"
+      key: "mux_additional_description_video_id"
     ) {
       value
     }
-    additionalVideosLayout: metafield(
-      namespace: "custom"
-      key: "additional_mux_videos_layout"
-    ) {
-      value
-    }
-    firstAdditionalVideoID: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_id_1"
-    ) {
-      value
-    }
-    firstAdditionalVideoDescription: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_description_1"
-    ) {
-      value
-    }
-    firstAdditionalVideoWidthRatio: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_width_ratio_1"
-    ) {
-      value
-    }
-    firstAdditionalVideoHeightRatio: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_height_ratio_1"
-    ) {
-      value
-    }
-    secondAdditionalVideoID: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_id_2"
-    ) {
-      value
-    }
-    secondAdditionalVideoDescription: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_description_2"
-    ) {
-      value
-    }
-    secondAdditionalVideoWidthRatio: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_width_ratio_2"
-    ) {
-      value
-    }
-    secondAdditionalVideoHeightRatio: metafield(
-      namespace: "custom"
-      key: "additional_mux_video_height_ratio_2"
-    ) {
+    additionalDescription: metafield(namespace: "custom", key: "additional_description") {
       value
     }
     options {
