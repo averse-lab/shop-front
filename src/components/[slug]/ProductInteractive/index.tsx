@@ -7,7 +7,6 @@ import { clsx } from "clsx";
 
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
-import { Spinner } from "@components/icons/Spinner/Spinner";
 import { Button } from "@components/ui/button";
 
 import { Dictionary } from "@lib/i18n/types";
