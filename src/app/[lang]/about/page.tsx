@@ -76,10 +76,16 @@ const AboutPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer hideLogo whiteIcons />
-      <div
-        className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}
-      >
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='white'
+        headerBgColor='transparent'
+        logoVisible={false}
+        menuBgColor='white'
+        menuBtnColor='white'
+        menuBtnIcnColor='white'
+      />
+      <div className={clsx("min-h-dvh px-6 py-4", "flex flex-col", "bg-black")}>
         <div
           className={clsx(
             "m-auto mt-[72px] md:mt-[96px]",
@@ -89,11 +95,7 @@ const AboutPage: FC<IProps> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx(
-              "mb-12",
-              "max-w-[80%] md:max-w-[250px]",
-              "aspect-square",
-            )}
+            className={clsx("mb-12", "max-w-[80%] md:max-w-[250px]", "aspect-square")}
             placeholder={videoPlaceholder}
             playbackId={playbackId}
           />
@@ -101,9 +103,7 @@ const AboutPage: FC<IProps> = async (props) => {
           <p className={clsx("mb-4")}>{dictionary.about.paragraph2}</p>
           <p className={clsx("mb-4")}>{dictionary.about.paragraph3}</p>
           <p className={clsx("mb-12")}>{dictionary.about.paragraph4}</p>
-          {lang === "en" ? (
-            <p className={clsx("mb-4")}>{dictionary.about.paragraph5}</p>
-          ) : null}
+          {lang === "en" ? <p className={clsx("mb-4")}>{dictionary.about.paragraph5}</p> : null}
           <p className={clsx("mb-4")}>{dictionary.about.paragraph6}</p>
           <p className={clsx("mb-12 text-2xl")}>[&emsp;]</p>
           <p>{dictionary.about.quote}</p>

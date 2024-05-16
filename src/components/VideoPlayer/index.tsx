@@ -31,11 +31,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
       xmlns='http://www.w3.org/2000/svg'
       xmlnsXlink='http://www.w3.org/1999/xlink'
     >
-      <filter
-        colorInterpolationFilters='sRGB'
-        filterUnits='userSpaceOnUse'
-        id='blur'
-      >
+      <filter colorInterpolationFilters='sRGB' filterUnits='userSpaceOnUse' id='blur'>
         <feGaussianBlur edgeMode='duplicate' stdDeviation='20 20' />
         <feComponentTransfer>
           <feFuncA tableValues='1 1' type='discrete' />
@@ -60,6 +56,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
         backgroundImage: `url('data:image/svg+xml;charset=utf-8,${encodeURIComponent(renderToStaticMarkup(backgroundImageSVG))}')`,
       }}
     >
+      {/* @ts-ignore */}
       <MuxVideo
         autoPlay='muted'
         className={clsx(

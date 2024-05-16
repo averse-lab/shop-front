@@ -1,12 +1,14 @@
 "use client";
 
-import { FC, useContext, useState, useTransition } from "react";
+import { FC, use, useState, useTransition } from "react";
 
+import { RiLoader5Line } from "@remixicon/react";
 import { clsx } from "clsx";
 
-import { Button } from "@components/Button/Button";
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
+import { Spinner } from "@components/icons/Spinner/Spinner";
+import { Button } from "@components/ui/button";
 
 import { Dictionary } from "@lib/i18n/types";
 import { Product, ProductVariant } from "@lib/shopify/types";
@@ -30,7 +32,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [isPending, startTransition] = useTransition();
-  const { setCart, setIsCartOpen } = useContext(CartContext) || {};
+  const { setCart, setCartOpen } = use(CartContext) || {};
 
   const options = variants.map<DropdownOption>((variant) => ({
     value: variant.id,
@@ -40,9 +42,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   const uniqueSize = checkIsUniqueSize(variants);
   const amount =
-    selectedIndex !== undefined
-      ? variants[selectedIndex].price.amount
-      : minVariantPrice.amount;
+    selectedIndex !== undefined ? variants[selectedIndex].price.amount : minVariantPrice.amount;
   const currency =
     selectedIndex !== undefined
       ? variants[selectedIndex].price.currencyCode
@@ -62,11 +62,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
           return;
         }
 
-        if (setIsCartOpen === undefined || setCart === undefined) {
+        if (!setCartOpen || !setCart) {
           return;
         }
 
-        setIsCartOpen(true);
+        setCartOpen(true);
         setCart(cart);
       });
     } else {
@@ -82,11 +82,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
           return;
         }
 
-        if (setIsCartOpen === undefined || setCart === undefined) {
+        if (!setCartOpen || !setCart) {
           return;
         }
 
-        setIsCartOpen(true);
+        setCartOpen(true);
         setCart(cart);
       });
     }
@@ -109,7 +109,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
           />
         )}
       </div>
-      <Button
+      {/* <Button
         className={clsx("w-full")}
         color='black'
         disabled={!uniqueSize && selectedIndex === undefined}
@@ -118,6 +118,20 @@ export const ProductInteractive: FC<IProps> = (props) => {
         onClick={addToCart}
       >
         {dictionary.product.addToCart}
+      </Button> */}
+      <Button
+        className={clsx("w-full", "gap-2")}
+        disabled={!uniqueSize && selectedIndex === undefined}
+        onClick={addToCart}
+      >
+        {isPending ? (
+          <>
+            {dictionary.product.addingToCart}
+            <RiLoader5Line className={clsx("animate-spin")} />
+          </>
+        ) : (
+          dictionary.product.addToCart
+        )}
       </Button>
       {selectedIndex !== undefined ? (
         <AvailabilityIndicator

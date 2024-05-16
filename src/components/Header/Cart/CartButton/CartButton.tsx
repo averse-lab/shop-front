@@ -1,58 +1,50 @@
-import { FC, MouseEventHandler, useContext } from "react";
+import { FC, MouseEventHandler, use } from "react";
 
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { RiShoppingBag3Line } from "@remixicon/react";
 import { clsx } from "clsx";
 
-import { Button } from "@components/Button/Button";
+import { Button } from "@components/ui/button";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
-
-import s from "./_internal/CartButton.module.scss";
-
 interface IProps {
   className?: string;
   quantity?: number;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   ariaLabel: string;
 }
 
 export const CartButton: FC<IProps> = (props) => {
   const { className, quantity, onClick, ariaLabel } = props;
 
-  const { whiteIcons } = useContext(HeaderContext) || {};
+  const { cartBtnColor, cartBtnIcnColor } = use(HeaderContext);
 
-  return (
-    <div className={clsx(className, "relative")}>
+  return cartBtnColor && cartBtnIcnColor ? (
+    <div className={clsx(className, "relative", "animate-appear")}>
       <Button
         aria-label={ariaLabel}
-        className={clsx(s["cart-btn__btn"], "p-[6px]")}
-        color='white'
-        element='button'
-        mini
-        onClick={onClick || (() => {})}
-        transparent
+        iconColor={cartBtnIcnColor}
+        onClick={onClick}
+        size='icon'
+        variant={cartBtnColor === "white" ? "secondary-icon" : "default-icon"}
       >
-        <ShoppingBagIcon
-          className={clsx(
-            s["cart-btn__icon"],
-            "h-5 w-5",
-            "!transition-all !duration-200 !ease-out",
-            whiteIcons && "text-white",
-          )}
-        />
+        <RiShoppingBag3Line className={clsx("transition-all")} size={20} />
       </Button>
-      <div
+      {/* <div
         className={clsx(
-          s["cart-btn__hint"],
-          "scale-0 transition-all duration-200 ease-out",
-          whiteIcons ? "bg-white text-black" : "bg-black text-white",
-          quantity !== undefined && quantity > 0 && "scale-100",
+          "absolute bottom-[calc(100%-9px)] left-[calc(100%-9px)]",
+          "h-5 w-5",
+          "rounded-full",
+          "flex items-center justify-center",
+          "overflow-hidden border border-border/20  transition-all duration-200 ease-out",
+          "bg-white text-secondary-foreground/60",
+          // : "bg-primary/20 text-primary-foreground/60",
+          quantity !== undefined && quantity > 0 ? "scale-100" : "scale-0",
         )}
       >
         <p className={clsx("font-semibold")} style={{ fontSize: "8px" }}>
           {quantity}
         </p>
-      </div>
+      </div> */}
     </div>
-  );
+  ) : null;
 };

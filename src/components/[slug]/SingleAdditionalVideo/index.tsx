@@ -8,8 +8,6 @@ import { VideoPlayer } from "@components/VideoPlayer";
 
 import { getMuxPlaceholder } from "@lib/mux/utils";
 
-import { AdditionalVideosObserver } from "../AdditionalVideosObserver/AdditionalVideosObserver";
-
 type IProps = {
   playbackId: string;
   description: string;
@@ -25,19 +23,19 @@ export const SingleAdditionalVideo: FC<IProps> = async (props) => {
   });
 
   return (
-    <AdditionalVideosObserver
+    <div
       className={clsx(
-        "px-6 py-8 lg:min-h-screen lg:px-12",
-        "flex flex-col items-center gap-4 lg:justify-center lg:gap-24",
-        inversedLayout ? "lg:flex-row-reverse" : "lg:flex-row",
+        "px-6 py-8 lg:min-h-dvh lg:px-12",
+        "flex flex-col items-center gap-8 lg:justify-center lg:gap-24",
+        inversedLayout ? "md:flex-row-reverse" : "md:flex-row",
         "bg-black",
-        "text-white",
+        "text-primary-foreground",
       )}
     >
       <VideoPlayer
         className={clsx(
           "shrink-0",
-          "md:w-[50%] md:max-w-[400px] lg:max-w-[650px] 2xl:max-w-[750px]",
+          "md:w-1/2 md:max-w-[400px] lg:max-w-[550px] 2xl:max-w-[750px]",
           "aspect-square",
         )}
         placeholder={videoPlaceholder}
@@ -45,7 +43,7 @@ export const SingleAdditionalVideo: FC<IProps> = async (props) => {
       />
       <Observer
         className={clsx(
-          "lg:max-w-[550px] 2xl:max-w-[750px]",
+          "md:w-1/2 md:max-w-[400px] lg:max-w-[550px] 2xl:max-w-[750px]",
           "transition-all duration-200 ease-out",
         )}
         inViewClassName='opacity-1 translate-y-0 lg:translate-x-0'
@@ -57,6 +55,6 @@ export const SingleAdditionalVideo: FC<IProps> = async (props) => {
       >
         <RichTextRenderer richText={description} />
       </Observer>
-    </AdditionalVideosObserver>
+    </div>
   );
 };

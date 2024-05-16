@@ -1,13 +1,15 @@
 "use client";
 
-import { FC, useContext, useEffect, useRef } from "react";
+import { FC, use, useEffect, useRef } from "react";
 
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { RiCloseLine } from "@remixicon/react";
 import { clsx } from "clsx";
+import Link from "next/link";
 
-import { Button } from "@components/Button/Button";
+import { Backdrop } from "@components/Backdrop";
+import { Button } from "@components/ui/button";
 
-import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
+import { useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 
 import { CartContext } from "@contexts/CartContext/CartContext";
@@ -28,12 +30,11 @@ export const Cart: FC<IProps> = (props) => {
   const { dictionary, lang, className } = props;
   const { openCartAriaLabel, closeBurgerMenuAriaLabel } = dictionary.header;
 
-  const { setCart, cart, isCartOpen, setIsCartOpen } =
-    useContext(CartContext) || {};
+  const { setCart, cart, cartOpen, setCartOpen } = use(CartContext);
   const cartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (setCart === undefined) {
+    if (!setCart) {
       return;
     }
 
@@ -43,28 +44,28 @@ export const Cart: FC<IProps> = (props) => {
   }, [setCart]);
 
   const openCart = () => {
-    if (setIsCartOpen === undefined) {
+    if (!setCartOpen) {
       return;
     }
 
-    setIsCartOpen(true);
+    setCartOpen(true);
   };
 
   const closeCart = () => {
-    if (setIsCartOpen === undefined) {
+    if (!setCartOpen) {
       return;
     }
 
-    setIsCartOpen(false);
+    setCartOpen(false);
   };
 
   const checkoutDisabled = cart === undefined || cart.totalQuantity === 0;
 
-  useBodyScrollLocker(isCartOpen || false);
-  useClickOutsideDetector(cartRef.current, closeCart, isCartOpen || false);
+  useClickOutsideDetector(cartRef.current, closeCart, cartOpen);
 
   return (
     <>
+      <Backdrop activate={cartOpen} />
       <CartButton
         ariaLabel={openCartAriaLabel}
         className={clsx(className, s["cart__trigger"])}
@@ -74,39 +75,30 @@ export const Cart: FC<IProps> = (props) => {
       <div
         className={clsx(
           s["cart__modal"],
-          isCartOpen && s["cart__modal--open"],
-          cart !== undefined && "gap-6",
+          cartOpen && s["cart__modal--open"],
           "fixed right-0 top-0 z-20 md:right-2 md:top-2",
-          "h-[100dvh] w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
-          "flex flex-col justify-between",
-          "bg-white md:rounded md:border md:border-neutral-100 md:shadow-md",
+          "h-dvh w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:w-[450px] md:p-6",
+          "flex flex-col justify-between gap-6",
+          "bg-secondary/20 backdrop-blur md:rounded md:border md:border-border/20 md:shadow-lg",
+          "after:content-[' '] after:absolute after:inset-0 after:-z-10 after:h-full after:w-full after:bg-secondary/25",
         )}
         ref={cartRef}
       >
         <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
-          <button
+          <Button
             aria-label={closeBurgerMenuAriaLabel}
-            className={clsx(
-              s["cart__close-btn"],
-              "p-2 lg:p-1",
-              "shrink-0 self-start",
-              "rounded-full bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
-            )}
+            className={clsx("absolute left-6 top-6")}
             onClick={closeCart}
+            size='icon'
+            variant={"secondary-icon"}
           >
-            <XMarkIcon
-              className={clsx(
-                "h-6 w-6",
-                "transition-all duration-200 ease-out",
-              )}
-            />
-          </button>
-          {cart !== undefined &&
-          cart.totalQuantity !== 0 &&
-          setCart !== undefined ? (
+            <RiCloseLine size={20} />
+          </Button>
+          {cart !== undefined && cart.totalQuantity !== 0 && setCart !== undefined ? (
             <div
               className={clsx(
                 s["cart__items-wrapper"],
+                "mt-14",
                 "flex flex-1 flex-col gap-4",
                 "overflow-y-scroll",
               )}
@@ -123,7 +115,7 @@ export const Cart: FC<IProps> = (props) => {
             </div>
           ) : (
             <div className={clsx("flex flex-1 items-center justify-center")}>
-              <p className={clsx('md:py-16", "text-neutral-600')}>
+              <p className={clsx("md:py-40", "md:mt-4", "text-secondary-foreground")}>
                 {dictionary.cart.empty}
               </p>
             </div>
@@ -132,15 +124,9 @@ export const Cart: FC<IProps> = (props) => {
         <div className={clsx("flex flex-col gap-6")}>
           {cart !== undefined ? (
             <div className={clsx("flex flex-col gap-4")}>
-              {/*<SummaryItem*/}
-              {/*  metric={dictionary.cart.taxes}*/}
-              {/*  value={`${cart.cost.totalTaxAmount.amount}${" "}${*/}
-              {/*    cart.cost.totalTaxAmount.currencyCode*/}
-              {/*  }`}*/}
-              {/*/>*/}
               <SummaryItem
-                className={clsx(s["cart__shipping-summary"])}
                 metric={dictionary.cart.shipping}
+                shipping
                 value={dictionary.cart.shippingHint}
               />
               <SummaryItem
@@ -149,15 +135,8 @@ export const Cart: FC<IProps> = (props) => {
               />
             </div>
           ) : null}
-          <Button
-            className={clsx("w-full")}
-            color='black'
-            disabled={checkoutDisabled}
-            element='link'
-            href={!checkoutDisabled ? cart.checkoutUrl : ""}
-            hrefLang={lang}
-          >
-            {dictionary.cart.checkout}
+          <Button asChild className={clsx("w-full")} disabled={checkoutDisabled}>
+            <Link href={cart?.checkoutUrl ?? ""}>{dictionary.cart.checkout}</Link>
           </Button>
         </div>
       </div>

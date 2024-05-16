@@ -21,7 +21,7 @@ export const ProductSlide: FC<Props> = async (props) => {
   });
 
   return (
-    <div className={clsx("relative", "aspect-square")}>
+    <div className={clsx("relative", "aspect-square border-b border-border/20 last:border-b-0")}>
       <Image
         alt={imgAlt}
         blurDataURL={placeholder}

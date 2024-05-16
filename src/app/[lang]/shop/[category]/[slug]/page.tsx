@@ -4,8 +4,6 @@ import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { HOME_VIDEO } from "@averse/app/[lang]/_internal/HomePage.constants";
-
 import { ProductInteractive } from "@components/[slug]/ProductInteractive";
 import { ProductSlide } from "@components/[slug]/ProductSlide";
 import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo";
@@ -18,10 +16,7 @@ import { getDictionary } from "@lib/i18n/utils";
 import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { getProduct } from "@lib/shopify";
-import {
-  generateAlternates,
-  getSupportedLanguageCodeFromLocale,
-} from "@lib/utils";
+import { generateAlternates, getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import { isProductWithSingleAdditionalVideo } from "./_internal/ProductPage.utils";
 
@@ -41,10 +36,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
   return {
     title: seo.title || `${title} | Averse`,
     description: seo.description || description,
-    alternates: generateAlternates(
-      `/${PAGES.shop.url}/${productType}/${slug}`,
-      lang,
-    ),
+    alternates: generateAlternates(`/${PAGES.shop.url}/${productType}/${slug}`, lang),
     twitter: {
       card: "summary",
       title: seo.title || `${title} | Averse`,
@@ -94,16 +86,25 @@ const ProductPage: FC<IProps> = async (props) => {
     notFound();
   }
 
-  const { playbackId } = HOME_VIDEO;
-
-  const placeholder = await getMuxPlaceholder({ playbackId, width: 64 });
+  const macroPlaybackId = product.customMetafields.macroVideoId;
+  const placeholder = macroPlaybackId
+    ? await getMuxPlaceholder({ playbackId: macroPlaybackId, width: 64 })
+    : null;
 
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='black'
+        headerBgColor='transparent'
+        logoVisible
+        menuBgColor='white'
+        menuBtnColor='white'
+        menuBtnIcnColor='white'
+      />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <Slider
-          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col")}
+          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col", "bg-black")}
           options={{
             loop: true,
             breakpoints: {
@@ -113,17 +114,16 @@ const ProductPage: FC<IProps> = async (props) => {
             },
           }}
         >
-          <VideoPlayer
-            className={clsx("aspect-square")}
-            placeholder={placeholder}
-            playbackId={playbackId}
-          />
-          {product.images.map((image) => (
-            <ProductSlide
-              imgAlt={image.altText}
-              imgSrc={image.url}
-              key={image.url}
+          {placeholder && macroPlaybackId && (
+            <VideoPlayer
+              className={clsx("aspect-square border-b border-border/20")}
+              placeholder={placeholder}
+              playbackId={macroPlaybackId}
             />
+          )}
+
+          {product.images.map((image) => (
+            <ProductSlide imgAlt={image.altText} imgSrc={image.url} key={image.url} />
           ))}
         </Slider>
         <div
@@ -133,10 +133,8 @@ const ProductPage: FC<IProps> = async (props) => {
             "flex lg:basis-1/2 lg:flex-col lg:items-center lg:justify-center",
           )}
         >
-          <div className={clsx("lg:w-[450px]")}>
-            <h1 className={clsx("text-lg uppercase", "mb-6")}>
-              {product.title}
-            </h1>
+          <div className={clsx("w-full lg:w-[450px]")}>
+            <h1 className={clsx("text-lg uppercase", "mb-6")}>{product.title}</h1>
             <ProductInteractive
               dictionary={dictionary}
               minVariantPrice={product.priceRange.minVariantPrice}
@@ -152,11 +150,9 @@ const ProductPage: FC<IProps> = async (props) => {
       </div>
       {isProductWithSingleAdditionalVideo(product) && (
         <SingleAdditionalVideo
-          description={product.customMetafields.firstAdditionalVideoDescription}
-          inversedLayout={
-            product.customMetafields.additionalVideosLayout === "inversed"
-          }
-          playbackId={product.customMetafields.firstAdditionalVideoID}
+          description={product.customMetafields.additionalDescription}
+          inversedLayout={product.customMetafields.additionalVideosLayout === "inversed"}
+          playbackId={product.customMetafields.additionalDescriptionVideoId}
         />
       )}
     </>

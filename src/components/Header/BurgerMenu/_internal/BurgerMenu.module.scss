@@ -20,42 +20,12 @@
 @media (min-width: 1024px) {
   .burger-menu__burger {
     &:hover {
-      .burger-menu__burger-icon {
-        stroke-width: 1.75;
-      }
-
       & + .burger-menu__menu {
         transform: translate(-100%);
       }
 
       & + .burger-menu__menu--open {
         transform: translate(0);
-      }
-    }
-  }
-
-  .burger-menu__close-btn {
-    &:hover {
-      svg {
-        @apply stroke-[1.75];
-      }
-    }
-  }
-
-  .burger-menu__link {
-    .burger-menu__link-icon {
-      opacity: 0;
-      transform: translateX(-4px);
-      transition:
-        opacity 0.2s ease-out,
-        transform 0.2s ease-out;
-      left: calc(100% + 10px);
-    }
-
-    &:hover {
-      .burger-menu__link-icon {
-        opacity: 1;
-        transform: translateX(0);
       }
     }
   }

@@ -22,21 +22,21 @@ export const FilterSelector: FC<IProps> = (props) => {
     <div
       className={clsx(
         className,
-        s["filters-selector"],
         "w-min",
         "px-6 py-4",
-        "gap-6",
-        "rounded-lg shadow-sm",
+        "grid grid-cols-[1fr_min-content_1fr] gap-6",
+        "rounded-lg border border-border/10 bg-primary/30 shadow-sm backdrop-blur",
       )}
     >
       {filters.map(({ display, url }, idx) => (
         <Link
           className={clsx(
-            s["filters-selector__link"],
             "transition-all duration-200 ease-out",
-            "whitespace-nowrap lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
+            "whitespace-nowrap first:justify-end last:justify-start lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-primary-foreground/80 [&:nth-of-type(2)]:justify-center",
             idx === selectedFilterIndex && "scale-[1.025] font-medium",
-            idx === selectedFilterIndex ? "text-black" : "text-neutral-800",
+            idx === selectedFilterIndex
+              ? "text-primary-foreground/80"
+              : "text-primary-foreground/60",
           )}
           href={url}
           hrefLang={lang}

@@ -5,8 +5,6 @@ import { FC, useRef, useState } from "react";
 import clsx from "clsx";
 import { InView } from "react-intersection-observer";
 
-import { ProductWithPlaceholder } from "@averse/app/[lang]/shop/[category]/_internal/CategoryPage.types";
-
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
@@ -16,7 +14,7 @@ import { FilterSelector } from "../FilterSelector/FilterSelector";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
 
 export type IProps = {
-  products: ProductWithPlaceholder[];
+  products: Product[];
   lang: Locale;
   className?: string;
   dictionary: Dictionary;
@@ -31,19 +29,14 @@ export const ProductsGrid: FC<IProps> = (props) => {
   const productsInViewAtInit = useRef(0);
   const productsVisible = useRef(0);
 
-  const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(
-    ({ url, i18nKey }) => ({
-      url,
-      display: dictionary.categories[i18nKey],
-    }),
-  );
+  const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(({ url, i18nKey }) => ({
+    url,
+    display: dictionary.categories[i18nKey],
+  }));
 
-  const selectedFilterIndex = filters.reduce(
-    (selectedFilterIndex, filter, idx) => {
-      return filter.url === categoryUrlSegment ? idx : selectedFilterIndex;
-    },
-    0,
-  );
+  const selectedFilterIndex = filters.reduce((selectedFilterIndex, filter, idx) => {
+    return filter.url === categoryUrlSegment ? idx : selectedFilterIndex;
+  }, 0);
 
   const onAnimationEnd = () => {
     if (initAnimationsOver) {
@@ -61,7 +54,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className={clsx("min-h-[calc(100vh+1px)]")}>
+      <div className={clsx("min-h-dvh")}>
         <div
           className={clsx(
             className,
@@ -74,15 +67,12 @@ export const ProductsGrid: FC<IProps> = (props) => {
                 <ProductPreview
                   currency={product.priceRange.maxVariantPrice.currencyCode}
                   href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                  imageUrl={
-                    product.images.length > 0 ? product.images[0].url : ""
-                  }
+                  imageUrl={product.images.length > 0 ? product.images[0].url : ""}
                   index={idx}
                   key={product.id}
                   lang={lang}
                   light={product.customMetafields.darkFeaturedImage || false}
                   onAnimationEnd={onAnimationEnd}
-                  placeholder={product.placeholder}
                   price={product.priceRange.minVariantPrice.amount}
                   productsInViewAtInit={productsInViewAtInit}
                   title={product.title}
@@ -100,8 +90,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
                 className={clsx(
                   "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[112px]",
                   "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
-                  initAnimationsOver &&
-                    "lg:animate-filterSelectorDesktopAppearing",
+                  initAnimationsOver && "lg:animate-filter-selector-desktop-appearing",
                   initAnimationsOver
                     ? inView
                       ? "translate-y-3 opacity-0"

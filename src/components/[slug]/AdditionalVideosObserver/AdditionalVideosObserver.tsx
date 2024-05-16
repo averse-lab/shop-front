@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, PropsWithChildren, useContext } from "react";
+import { FC, PropsWithChildren, use } from "react";
 
 import { clsx } from "clsx";
 import { useInView } from "react-intersection-observer";
@@ -16,8 +16,11 @@ type IProps = {
 export const AdditionalVideosObserver: FC<IProps> = (props) => {
   const { children, className } = props;
 
-  const { logoRef, setWhiteIcons, setHideLogo } =
-    useContext(HeaderContext) || {};
+  const {
+    logoRef,
+    // setUIColor,
+    setLogoVisible,
+  } = use(HeaderContext);
 
   // TO IMPROVE
   const { ref } = useInView({
@@ -25,9 +28,9 @@ export const AdditionalVideosObserver: FC<IProps> = (props) => {
     onChange: (inView, entry) => {
       if (
         !inView ||
-        setWhiteIcons === undefined ||
-        setHideLogo === undefined ||
-        logoRef === undefined ||
+        // !setUIColor ||
+        !setLogoVisible ||
+        !logoRef ||
         logoRef.current === null
       ) {
         return;
@@ -38,11 +41,11 @@ export const AdditionalVideosObserver: FC<IProps> = (props) => {
       const logoHeight = logoBoundingClientRect.height;
 
       if (entry.intersectionRect.top < logoTop + logoHeight / 2) {
-        setWhiteIcons(true);
-        setHideLogo(true);
+        // setUIColor("white");
+        setLogoVisible(false);
       } else {
-        setWhiteIcons(false);
-        setHideLogo(false);
+        // setUIColor("black");
+        setLogoVisible(true);
       }
     },
   });

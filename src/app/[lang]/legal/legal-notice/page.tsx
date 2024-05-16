@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import clsx from "clsx";
+
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 
 import { Locale } from "@lib/i18n/types";
@@ -27,27 +29,18 @@ const LegalNoticePage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer whiteBackground />
-      <div
-        className={"mt-[72px] flex w-full flex-col md:mt-[96px] md:flex-row "}
-      >
-        <div
-          className={"mb-5 mt-10 flex justify-center md:min-h-screen md:w-1/2"}
-        >
-          <h1
-            className={
-              "max-w-xs text-4xl font-bold uppercase text-black underline md:fixed"
-            }
-          >
-            {dictionary.pages.legalNotice}
-          </h1>
-        </div>
-        <div className={"flex justify-center md:w-1/2"}>
-          <div
-            className={"mb-5 flex-grow px-10"}
-            dangerouslySetInnerHTML={{ __html: legal.body }}
-          />
-        </div>
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='black'
+        headerBgColor='white'
+        logoVisible
+        menuBgColor='black'
+        menuBtnColor='white'
+        menuBtnIcnColor='black'
+      />
+      <div className={clsx("mt-[72px] md:mt-[96px]", "px-6 py-8 lg:px-12", "flex flex-col gap-4")}>
+        <h1 className={clsx("text-4xl font-bold uppercase")}>{dictionary.pages.legalNotice}</h1>
+        <div dangerouslySetInnerHTML={{ __html: legal.body }} />
       </div>
     </>
   );

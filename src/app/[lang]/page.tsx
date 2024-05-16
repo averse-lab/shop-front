@@ -2,9 +2,10 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 import { Metadata } from "next";
+import Link from "next/link";
 
-import { Button } from "@components/Button/Button";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { Button } from "@components/ui/button";
 import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
@@ -76,7 +77,15 @@ const HomePage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer whiteIcons />
+      <HeaderContextInitializer
+        cartBtnColor='black'
+        cartBtnIcnColor='white'
+        headerBgColor='transparent'
+        logoVisible
+        menuBgColor='black'
+        menuBtnColor='black'
+        menuBtnIcnColor='white'
+      />
       <div
         className={clsx(
           "relative z-0",
@@ -90,15 +99,10 @@ const HomePage: FC<IProps> = async (props) => {
           placeholder={videoPlaceholder}
           playbackId={HOME_VIDEO.playbackId}
         />
-        <Button
-          ariaLabel={enterWebsiteAriaLabel}
-          color='black'
-          element='link'
-          href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
-          hrefLang={lang}
-          transparent
-        >
-          {enterWebsite}
+        <Button asChild>
+          <Link href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}>
+            {enterWebsite}
+          </Link>
         </Button>
       </div>
     </>

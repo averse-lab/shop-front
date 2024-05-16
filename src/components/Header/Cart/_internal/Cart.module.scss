@@ -7,13 +7,6 @@
   transform: translate(0);
 }
 
-.cart__shipping-summary {
-  p:last-child {
-    @apply text-sm;
-    @apply text-neutral-600;
-  }
-}
-
 .cart__items-wrapper {
   &::-webkit-scrollbar {
     background: transparent;
@@ -29,23 +22,12 @@
   scrollbar-color: rgb(115, 115, 115);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .cart__modal {
     transform: translate(calc(100% + 8px));
   }
-
   .cart__modal--open {
     transform: translate(0);
-  }
-}
-
-@media (min-width: 1024px) {
-  .cart__close-btn {
-    &:hover {
-      svg {
-        @apply stroke-[1.75];
-      }
-    }
   }
 
   .cart__trigger {

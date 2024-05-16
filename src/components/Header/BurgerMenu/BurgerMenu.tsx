@@ -1,18 +1,15 @@
 "use client";
 
-import { FC, useContext, useRef, useState } from "react";
+import { FC, use, useRef, useState } from "react";
 
-import {
-  ArrowUpRightIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { RiArrowRightUpLine, RiCloseLine, RiMenuLine } from "@remixicon/react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { Button } from "@components/Button/Button";
+import { Backdrop } from "@components/Backdrop";
+import { Button } from "@components/ui/button";
 
-import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
+import { useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
@@ -29,12 +26,11 @@ type IProps = {
 
 export const BurgerMenu: FC<IProps> = (props) => {
   const { className, dictionary, lang } = props;
-  const { openBurgerMenuAriaLabel, closeBurgerMenuAriaLabel } =
-    dictionary.header;
+  const { openBurgerMenuAriaLabel, closeBurgerMenuAriaLabel } = dictionary.header;
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { whiteIcons } = useContext(HeaderContext) || {};
+  const { menuBtnColor, menuBtnIcnColor, menuBgColor } = use(HeaderContext);
 
   const openMenu = () => {
     setOpen(true);
@@ -44,68 +40,49 @@ export const BurgerMenu: FC<IProps> = (props) => {
     setOpen(false);
   };
 
-  useBodyScrollLocker(open);
   useClickOutsideDetector(menuRef.current, closeMenu, open);
 
-  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
-    ({ url, i18nKey }) => ({
-      href: `/${lang}/${url}`,
-      display: dictionary.pages[i18nKey],
-    }),
-  );
+  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(({ url, i18nKey }) => ({
+    href: `/${lang}/${url}`,
+    display: dictionary.pages[i18nKey],
+  }));
 
-  return (
+  return menuBtnColor && menuBtnIcnColor ? (
     <>
+      <Backdrop activate={open} />
       <Button
         aria-label={openBurgerMenuAriaLabel}
-        className={clsx(className, s["burger-menu__burger"])}
-        color='white'
-        element='button'
-        mini
+        className={clsx(className, s["burger-menu__burger"], "animate-appear")}
+        iconColor={menuBtnIcnColor}
         onClick={openMenu}
-        transparent
+        size='icon'
+        variant={menuBtnColor === "white" ? "secondary-icon" : "default-icon"}
       >
-        <Bars3Icon
-          className={clsx(
-            s["burger-menu__burger-icon"],
-            "h-6 w-6",
-            "!transition-all !duration-200 !ease-out",
-            whiteIcons && "text-white",
-          )}
-        />
+        <RiMenuLine className={clsx("transition-all")} size={20} />
       </Button>
       <div
         className={clsx(
           s["burger-menu__menu"],
           open && s["burger-menu__menu--open"],
           "fixed left-0 top-0 z-20 md:left-2 md:top-2",
+          "h-dvh w-screen p-6 md:h-auto md:w-auto",
           "flex flex-col",
-          "h-[100dvh] w-screen p-6 md:h-auto md:w-auto",
-          "uppercase  md:rounded md:shadow-md",
-          whiteIcons ? "bg-white text-black" : "bg-black text-white",
+          "uppercase text-primary-foreground backdrop-blur md:rounded md:border md:shadow-lg",
+          menuBgColor === "white"
+            ? "bg-secondary/20 md:border-border/20"
+            : "bg-primary/85 md:border-border/10",
         )}
         ref={menuRef}
       >
-        <button
+        <Button
           aria-label={closeBurgerMenuAriaLabel}
-          className={clsx(
-            s["burger-menu__close-btn"],
-            "p-2 lg:p-1",
-            "self-end",
-            "rounded-full transition-all duration-200 ease-out",
-            whiteIcons
-              ? "bg-neutral-100 text-black"
-              : "bg-neutral-900 text-white",
-            whiteIcons
-              ? "lg:bg-neutral-100/0 lg:hover:bg-neutral-100/100"
-              : "lg:bg-neutral-900/0 lg:hover:bg-neutral-900/100",
-          )}
+          className={clsx("absolute right-6 top-6")}
           onClick={closeMenu}
+          size='icon'
+          variant='secondary-icon'
         >
-          <XMarkIcon
-            className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
-          />
-        </button>
+          <RiCloseLine size={20} />
+        </Button>
         <div
           className={clsx(
             "flex flex-1 flex-col items-center justify-center gap-6 md:gap-4",
@@ -114,34 +91,33 @@ export const BurgerMenu: FC<IProps> = (props) => {
         >
           {nav.map((link) => (
             <div
-              className={clsx(
-                s["burger-menu__link"],
-                "relative",
-                "transition-all lg:hover:translate-x-1",
-              )}
+              className={clsx("relative", "transition-all lg:hover:translate-x-1")}
               key={link.display}
             >
               <Link
-                className={clsx("relative", "text-xl md:text-base")}
+                className={clsx(
+                  "relative",
+                  "text-xl md:text-base",
+                  "[&:hover+svg]:translate-x-0 [&:hover+svg]:opacity-100",
+                )}
                 href={link.href}
                 hrefLang={lang}
                 onClick={closeMenu}
               >
                 {link.display}
               </Link>
-              <ArrowUpRightIcon
+              <RiArrowRightUpLine
                 className={clsx(
-                  s["burger-menu__link-icon"],
                   "hidden lg:block",
-                  "absolute bottom-0 top-0 m-auto",
-                  "h-4 w-4",
-                  "stroke-2",
+                  "absolute bottom-0 left-[calc(100%+10px)] top-0 m-auto",
+                  "-translate-x-1 opacity-0 transition-all",
                 )}
+                size={20}
               />
             </div>
           ))}
         </div>
       </div>
     </>
-  );
+  ) : null;
 };

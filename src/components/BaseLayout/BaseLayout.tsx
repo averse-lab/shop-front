@@ -6,7 +6,7 @@ import clsx from "clsx";
 import Script from "next/script";
 
 import { Footer } from "@components/Footer/Footer";
-import { Header } from "@components/Header/Header";
+import { Header } from "@components/Header";
 
 import { DMSans } from "@lib/fonts";
 import { Dictionary, Locale } from "@lib/i18n/types";
@@ -22,10 +22,7 @@ type IProps = {
 
 export const BaseLayout: FC<IProps> = (props) => {
   const { lang, dictionary, children } = props;
-  const AppProvider = combineProviders([
-    CartContextProvider,
-    HeaderContextProvider,
-  ]);
+  const AppProvider = combineProviders([CartContextProvider, HeaderContextProvider]);
 
   return (
     <html lang={lang}>
@@ -41,9 +38,9 @@ export const BaseLayout: FC<IProps> = (props) => {
         className={clsx(
           DMSans.variable,
           "mb-[220px] lg:mb-[204px]",
-          "min-h-screen",
+          "min-h-dvh",
           "flex flex-col",
-          "bg-black shadow-md",
+          "bg-black",
           "font-sans",
         )}
       >
@@ -51,9 +48,7 @@ export const BaseLayout: FC<IProps> = (props) => {
         <Analytics />
         <AppProvider>
           <Header dictionary={dictionary} lang={lang} />
-          <main className={clsx("flex grow flex-col", "bg-white")}>
-            {children}
-          </main>
+          <main className={clsx("flex grow flex-col", "bg-white")}>{children}</main>
           <Footer dictionary={dictionary} lang={lang} />
         </AppProvider>
       </body>
