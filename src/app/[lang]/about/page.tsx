@@ -106,6 +106,7 @@ const AboutPage: FC<IProps> = async (props) => {
         >
           <VideoPlayer
             className={clsx("mb-12 w-full", `aspect-[4/3]`)}
+            minResolution='720p'
             placeholder={aboutVideoPlaceholder}
             playbackId={ABOUT_VIDEO.playbackId}
           />
@@ -113,6 +114,7 @@ const AboutPage: FC<IProps> = async (props) => {
           <p className={clsx("mb-4 w-full")}>[&emsp;]</p>
           <VideoPlayer
             className={clsx("mb-12 w-full", `aspect-[4/5]`)}
+            minResolution='720p'
             placeholder={irrationalCubeVideoPlaceholder}
             playbackId={IRRATIONAL_CUBE_VIDEO.playbackId}
           />
@@ -123,6 +125,7 @@ const AboutPage: FC<IProps> = async (props) => {
           <p className={clsx("mb-4 w-full")}>[&emsp;]</p>
           <VideoPlayer
             className={clsx("mb-12 w-full", `aspect-[347/450]`)}
+            minResolution='720p'
             placeholder={cryingGirlVideoPlaceholder}
             playbackId={CRYING_GIRL_VIDEO.playbackId}
           />

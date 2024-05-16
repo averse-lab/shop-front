@@ -117,6 +117,7 @@ const ProductPage: FC<IProps> = async (props) => {
           {placeholder && macroPlaybackId && (
             <VideoPlayer
               className={clsx("aspect-square border-b border-border/20")}
+              minResolution='1080p'
               placeholder={placeholder}
               playbackId={macroPlaybackId}
             />

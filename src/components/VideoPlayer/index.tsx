@@ -3,6 +3,7 @@
 import { FC, lazy, useState } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
+import { MinResolutionValue } from "@mux/playback-core";
 import { clsx } from "clsx";
 
 const MuxVideo = lazy(() => import("@mux/mux-video-react"));
@@ -11,10 +12,11 @@ interface IProps {
   className?: string;
   playbackId: string;
   placeholder: string;
+  minResolution?: MinResolutionValue;
 }
 
 export const VideoPlayer: FC<IProps> = (props) => {
-  const { className, playbackId, placeholder } = props;
+  const { className, playbackId, placeholder, minResolution } = props;
 
   const [canPlay, setCanPlay] = useState(false);
 
@@ -66,6 +68,7 @@ export const VideoPlayer: FC<IProps> = (props) => {
         )}
         controls={false}
         loop
+        minResolution={minResolution}
         onCanPlay={unblurVideoPlayer}
         playbackId={playbackId}
         playsInline

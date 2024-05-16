@@ -40,8 +40,6 @@ const buttonVariants = cva(
           "px-6 py-3",
           "after:shadow after:backdrop-blur hover:after:scale-[1.025]",
         ],
-        // sm: "h-8 rounded-md px-3 text-xs",
-        // lg: "h-10 rounded-md px-8",
         icon: ["h-8 w-8", "after:shadow-sm after:backdrop-blur-sm hover:after:scale-[1.05]"],
       },
       iconColor: {

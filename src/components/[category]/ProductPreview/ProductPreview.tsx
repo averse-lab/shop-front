@@ -100,6 +100,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           alt={`photography of ${title}`}
           className={clsx(s["product-preview__image"], "-z-10", "object-cover object-center")}
           fill
+          quality={100}
           sizes='(min-width: 1024px) 25vw, 50vw'
           src={imageUrl}
         />

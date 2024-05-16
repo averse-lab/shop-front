@@ -28,6 +28,7 @@ export const ProductSlide: FC<Props> = async (props) => {
         className={clsx("h-full w-full object-cover object-center")}
         fill
         placeholder='blur'
+        quality={100}
         sizes='(min-width: 1024px) 50vw, 100vw'
         src={imgSrc}
       />
