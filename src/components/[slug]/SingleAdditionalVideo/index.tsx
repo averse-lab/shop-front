@@ -38,6 +38,7 @@ export const SingleAdditionalVideo: FC<IProps> = async (props) => {
           "md:w-1/2 md:max-w-[400px] lg:max-w-[550px] 2xl:max-w-[750px]",
           "aspect-square",
         )}
+        minResolution='1080p'
         placeholder={videoPlaceholder}
         playbackId={playbackId}
       />

@@ -96,6 +96,7 @@ const HomePage: FC<IProps> = async (props) => {
       >
         <VideoPlayer
           className={clsx("absolute -z-10", "h-full w-full")}
+          minResolution='1440p'
           placeholder={videoPlaceholder}
           playbackId={HOME_VIDEO.playbackId}
         />
