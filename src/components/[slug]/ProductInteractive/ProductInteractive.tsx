@@ -2,10 +2,9 @@
 
 import { FC, useContext, useState, useTransition } from "react";
 
-// import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 
-// import Link from "next/link";
 import { Button } from "@components/Button/Button";
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
@@ -109,16 +108,17 @@ export const ProductInteractive: FC<IProps> = (props) => {
           />
         )}
 
-        {/* {!uniqueSize ? (
-          <Link
+        {!uniqueSize ? (
+          <a
             className={clsx("flex items-center gap-2")}
-            href={"#"}
+            href={"/manual/en/manual.pdf"}
+            rel='noopener noreferrer'
             target='_blank'
           >
             {dictionary.product.sizeGuide}
             <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
-          </Link>
-        ) : null} */}
+          </a>
+        ) : null}
       </div>
       <Button
         className={clsx("w-full")}
@@ -130,29 +130,32 @@ export const ProductInteractive: FC<IProps> = (props) => {
       >
         {dictionary.product.addToCart}
       </Button>
-      {selectedIndex !== undefined ? (
-        <div className={clsx("mt-5", "flex items-center gap-4")}>
-          <div
-            className={clsx(
-              "h-3 w-3",
-              "flex-shrink-0",
-              "rounded-full",
-              variants[selectedIndex].currentlyNotInStock
-                ? "bg-neutral-400"
-                : "bg-green-600",
-            )}
-          ></div>
-          <p className={clsx("italic")}>
-            {variants[selectedIndex].currentlyNotInStock
-              ? `${dictionary.product.madeToOrder} ${
-                  shippingDelays
-                    ? `${dictionary.product.notInStockCustom} ${shippingDelays}`
-                    : dictionary.product.notInStock
-                }`
-              : dictionary.product.inStock}
-          </p>
-        </div>
-      ) : null}
+      <div className={clsx("mt-5", "flex items-center gap-4")}>
+        <p>{dictionary.product.origin}</p>
+        {selectedIndex !== undefined ? (
+          <>
+            <div
+              className={clsx(
+                "h-3 w-3",
+                "flex-shrink-0",
+                "rounded-full",
+                variants[selectedIndex].currentlyNotInStock
+                  ? "bg-neutral-400"
+                  : "bg-green-600",
+              )}
+            ></div>
+            <p className={clsx("italic")}>
+              {variants[selectedIndex].currentlyNotInStock
+                ? `${dictionary.product.madeToOrder} ${
+                    shippingDelays
+                      ? `${dictionary.product.notInStockCustom} ${shippingDelays}`
+                      : dictionary.product.notInStock
+                  }`
+                : dictionary.product.inStock}
+            </p>
+          </>
+        ) : null}
+      </div>
     </>
   );
 };
