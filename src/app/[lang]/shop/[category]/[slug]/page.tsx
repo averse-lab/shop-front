@@ -104,7 +104,7 @@ const ProductPage: FC<IProps> = async (props) => {
       />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <Slider
-          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col", "bg-black")}
+          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col")}
           options={{
             loop: true,
             breakpoints: {
@@ -116,7 +116,7 @@ const ProductPage: FC<IProps> = async (props) => {
         >
           {placeholder && macroPlaybackId && (
             <VideoPlayer
-              className={clsx("aspect-square border-b border-border/20")}
+              className={clsx("aspect-square lg:border-b lg:border-border/20")}
               minResolution='1080p'
               placeholder={placeholder}
               playbackId={macroPlaybackId}

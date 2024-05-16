@@ -69,7 +69,7 @@ export const Slider: FC<IProps> = (props) => {
       <div
         className={clsx(
           "lg:hidden",
-          "h-[2px]",
+          "h-[3px]",
           "-translate-x-full bg-black transition-all duration-200 ease-out",
         )}
         style={{
