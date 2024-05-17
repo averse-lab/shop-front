@@ -42,27 +42,37 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   useClickOutsideDetector(menuRef.current, closeMenu, open);
 
+  const contextInit = menuBgColor && menuBtnColor && menuBtnIcnColor;
+
   const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(({ url, i18nKey }) => ({
     href: `/${lang}/${url}`,
     display: dictionary.pages[i18nKey],
   }));
 
-  return menuBtnColor && menuBtnIcnColor ? (
+  return (
     <>
       <Backdrop activate={open} />
       <Button
         aria-label={openBurgerMenuAriaLabel}
         className={clsx(
           className,
-          "[&:hover+div]:-translate-x-[calc(100%-8px)]",
+          "transition-all delay-75 [&:hover+div]:translate-x-[calc(100%-8px)]",
           open && "[&:hover+div]:!translate-x-2",
+          contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
         )}
-        iconColor={menuBtnIcnColor}
         onClick={openMenu}
         size='icon'
         variant={menuBtnColor === "white" ? "secondary-icon" : "default-icon"}
       >
-        <RiMenuLine className={clsx("transition-all")} size={20} />
+        <RiMenuLine
+          className={clsx(
+            "transition-all delay-0",
+            menuBtnIcnColor === "white"
+              ? "text-primary-foreground/80"
+              : "text-secondary-foreground/80",
+          )}
+          size={20}
+        />
       </Button>
       <div
         className={clsx(
@@ -122,5 +132,5 @@ export const BurgerMenu: FC<IProps> = (props) => {
         </div>
       </div>
     </>
-  ) : null;
+  );
 };

@@ -26,13 +26,15 @@ export const Logo: FC<IProps> = (props) => {
     setLogoRef(logoRef);
   }, [setLogoRef]);
 
-  return logoVisible !== undefined ? (
+  const contextInit = logoVisible !== undefined;
+
+  return (
     <div
       className={clsx(
         className,
         "relative",
-        "overflow-hidden rounded-sm transition-all duration-500 ease-out",
-        logoVisible ? "opacity-100" : "opacity-0",
+        "overflow-hidden rounded-sm transition-all delay-75 duration-500 ease-out",
+        contextInit && logoVisible ? "opacity-100" : "opacity-0",
       )}
       ref={logoRef}
     >
@@ -54,5 +56,5 @@ export const Logo: FC<IProps> = (props) => {
         className={clsx("absolute left-0 top-0 z-0", "h-full w-full", "bg-white/10 backdrop-blur")}
       ></div>
     </div>
-  ) : null;
+  );
 };
