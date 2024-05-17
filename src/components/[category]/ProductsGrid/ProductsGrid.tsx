@@ -9,6 +9,7 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
 
+import { ProductGridObserver } from "./ProductGridObserver";
 import { Filter } from "../FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "../FilterSelector/FilterSelector";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
@@ -54,32 +55,32 @@ export const ProductsGrid: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className={clsx("min-h-dvh")}>
-        <div
-          className={clsx(
-            className,
-            "grid auto-rows-[1fr] grid-cols-2 items-start gap-px lg:grid-cols-4",
-          )}
-        >
-          {products.map(
-            (product, idx) =>
-              !product.customMetafields.hideOnWebsite && (
-                <ProductPreview
-                  currency={product.priceRange.maxVariantPrice.currencyCode}
-                  href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                  imageUrl={product.images.length > 0 ? product.images[0].url : ""}
-                  index={idx}
-                  key={product.id}
-                  lang={lang}
-                  light={product.customMetafields.darkFeaturedImage || false}
-                  onAnimationEnd={onAnimationEnd}
-                  price={product.priceRange.minVariantPrice.amount}
-                  productsInViewAtInit={productsInViewAtInit}
-                  title={product.title}
-                />
-              ),
-          )}
-        </div>
+      <ProductGridObserver />
+      <div
+        className={clsx(
+          className,
+          "min-h-dvh",
+          "grid auto-rows-[1fr] grid-cols-2 items-start gap-px lg:grid-cols-4",
+        )}
+      >
+        {products.map(
+          (product, idx) =>
+            !product.customMetafields.hideOnWebsite && (
+              <ProductPreview
+                currency={product.priceRange.maxVariantPrice.currencyCode}
+                href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+                imageUrl={product.images.length > 0 ? product.images[0].url : ""}
+                index={idx}
+                key={product.id}
+                lang={lang}
+                light={product.customMetafields.darkFeaturedImage || false}
+                onAnimationEnd={onAnimationEnd}
+                price={product.priceRange.minVariantPrice.amount}
+                productsInViewAtInit={productsInViewAtInit}
+                title={product.title}
+              />
+            ),
+        )}
       </div>
       <InView initialInView>
         {({ inView, ref }) => {

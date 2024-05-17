@@ -31,7 +31,7 @@ export const Logo: FC<IProps> = (props) => {
       className={clsx(
         className,
         "relative",
-        "overflow-hidden rounded-sm transition-all duration-200 ease-out",
+        "overflow-hidden rounded-sm transition-all duration-500 ease-out",
         logoVisible ? "opacity-100" : "opacity-0",
       )}
       ref={logoRef}

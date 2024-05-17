@@ -1,13 +1,36 @@
 "use client";
 
-import { FC, PropsWithChildren, use } from "react";
+import { FC, PropsWithChildren, RefObject, use, useEffect, useRef } from "react";
 
 import { clsx } from "clsx";
-import { useInView } from "react-intersection-observer";
+
+import { StateSetter } from "@lib/types";
+import { throttle } from "@lib/utils";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
-import { OBSERVER_THRESHOLDS } from "./_internal/AdditionalVideosObserver.constants";
+const getHeaderIconsColorUpdater = (
+  logoMiddleX: number | undefined,
+  setCartBtnIcnColor: StateSetter<"black" | "white" | undefined>,
+  setLogoVisible: StateSetter<boolean | undefined>,
+  additionalInformationsRef: RefObject<HTMLDivElement>,
+) =>
+  throttle(() => {
+    if (logoMiddleX === undefined || !additionalInformationsRef.current) {
+      return;
+    }
+
+    const additionalInformationsBoundingRect =
+      additionalInformationsRef.current.getBoundingClientRect();
+
+    if (additionalInformationsBoundingRect.top < logoMiddleX) {
+      setCartBtnIcnColor("white");
+      setLogoVisible(false);
+    } else {
+      setCartBtnIcnColor("black");
+      setLogoVisible(true);
+    }
+  }, 200);
 
 type IProps = {
   className?: string;
@@ -16,42 +39,33 @@ type IProps = {
 export const AdditionalVideosObserver: FC<IProps> = (props) => {
   const { children, className } = props;
 
-  const {
-    logoRef,
-    // setUIColor,
-    setLogoVisible,
-  } = use(HeaderContext);
+  const { logoRef, setLogoVisible, setCartBtnIcnColor } = use(HeaderContext);
 
-  // TO IMPROVE
-  const { ref } = useInView({
-    threshold: OBSERVER_THRESHOLDS,
-    onChange: (inView, entry) => {
-      if (
-        !inView ||
-        // !setUIColor ||
-        !setLogoVisible ||
-        !logoRef ||
-        logoRef.current === null
-      ) {
-        return;
-      }
+  const additionalInformationsRef = useRef<HTMLDivElement>(null);
 
-      const logoBoundingClientRect = logoRef.current.getBoundingClientRect();
-      const logoTop = logoBoundingClientRect.top;
-      const logoHeight = logoBoundingClientRect.height;
+  useEffect(() => {
+    if (!logoRef || !logoRef.current || !setCartBtnIcnColor || !setLogoVisible) {
+      return;
+    }
+    const logoBoundingRect = logoRef.current.getBoundingClientRect();
+    const logoMiddleX = logoBoundingRect.top + logoBoundingRect.height / 2;
 
-      if (entry.intersectionRect.top < logoTop + logoHeight / 2) {
-        // setUIColor("white");
-        setLogoVisible(false);
-      } else {
-        // setUIColor("black");
-        setLogoVisible(true);
-      }
-    },
-  });
+    const headerIconsColorUpdater = getHeaderIconsColorUpdater(
+      logoMiddleX,
+      setCartBtnIcnColor,
+      setLogoVisible,
+      additionalInformationsRef,
+    );
+
+    document.addEventListener("scroll", headerIconsColorUpdater);
+
+    return () => {
+      document.removeEventListener("scroll", headerIconsColorUpdater);
+    };
+  }, [logoRef, setCartBtnIcnColor, setLogoVisible]);
 
   return (
-    <div className={clsx(className)} ref={ref}>
+    <div className={clsx(className)} ref={additionalInformationsRef}>
       {children}
     </div>
   );
