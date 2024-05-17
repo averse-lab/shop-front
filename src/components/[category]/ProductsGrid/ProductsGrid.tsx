@@ -59,8 +59,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
       <div
         className={clsx(
           className,
-          "min-h-dvh",
-          "grid auto-rows-[1fr] grid-cols-2 items-start gap-px lg:grid-cols-4",
+          "grid auto-rows-min grid-cols-2 items-start gap-px lg:grid-cols-4",
         )}
       >
         {products.map(

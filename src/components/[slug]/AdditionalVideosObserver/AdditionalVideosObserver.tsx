@@ -16,7 +16,11 @@ const getHeaderIconsColorUpdater = (
   additionalInformationsRef: RefObject<HTMLDivElement>,
 ) =>
   throttle(() => {
-    if (logoMiddleX === undefined || !additionalInformationsRef.current) {
+    if (
+      logoMiddleX === undefined ||
+      !additionalInformationsRef.current ||
+      !window.matchMedia("(min-width: 1024px)").matches
+    ) {
       return;
     }
 

@@ -96,7 +96,8 @@ const ProductPage: FC<IProps> = async (props) => {
     <>
       <HeaderContextInitializer
         cartBtnColor='white'
-        cartBtnIcnColor='black'
+        cartBtnIcnColor='white'
+        desktopCartBtnIcnColor='black'
         headerBgColor='transparent'
         logoVisible
         menuBgColor='white'

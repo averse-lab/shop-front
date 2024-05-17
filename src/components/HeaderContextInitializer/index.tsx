@@ -17,7 +17,10 @@ type IProps = Pick<
   | "menuBgColor"
   | "cartBtnColor"
   | "cartBtnIcnColor"
->;
+> & {
+  desktopMenuBtnIcnColor?: HeaderContextValue["menuBtnIcnColor"];
+  desktopCartBtnIcnColor?: HeaderContextValue["cartBtnIcnColor"];
+};
 
 export const HeaderContextInitializer: FC<IProps> = (props) => {
   const {
@@ -28,6 +31,8 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     menuBgColor,
     cartBtnColor,
     cartBtnIcnColor,
+    desktopMenuBtnIcnColor,
+    desktopCartBtnIcnColor,
   } = props;
   const {
     setLogoVisible,
@@ -55,13 +60,25 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     setLogoVisible(logoVisible ?? HEADER_CONTEXT_INIT.logoVisible);
     setHeaderBgColor(headerBgColor ?? HEADER_CONTEXT_INIT.headerBgColor);
     setMenuBtnColor(menuBtnColor ?? HEADER_CONTEXT_INIT.menuBtnColor);
-    setMenuBtnIcnColor(menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor);
     setCartBtnColor(cartBtnColor ?? HEADER_CONTEXT_INIT.cartBtnColor);
-    setCartBtnIcnColor(cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor);
     setMenuBgColor(menuBgColor ?? HEADER_CONTEXT_INIT.menuBgColor);
+
+    if (window.matchMedia("(min-width: 1024px)").matches) {
+      setMenuBtnIcnColor(
+        desktopMenuBtnIcnColor ?? menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor,
+      );
+      setCartBtnIcnColor(
+        desktopCartBtnIcnColor ?? cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor,
+      );
+    } else {
+      setMenuBtnIcnColor(menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor);
+      setCartBtnIcnColor(cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor);
+    }
   }, [
     cartBtnColor,
     cartBtnIcnColor,
+    desktopCartBtnIcnColor,
+    desktopMenuBtnIcnColor,
     headerBgColor,
     logoVisible,
     menuBgColor,
