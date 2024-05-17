@@ -80,7 +80,6 @@ export const Cart: FC<IProps> = (props) => {
           "h-dvh w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:w-[450px] md:p-6",
           "flex flex-col justify-between gap-6",
           "bg-secondary/20 backdrop-blur md:rounded md:border md:border-border/20 md:shadow-lg",
-          "after:content-[' '] after:absolute after:inset-0 after:-z-10 after:h-full after:w-full after:bg-secondary/25",
         )}
         ref={cartRef}
       >
