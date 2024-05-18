@@ -173,6 +173,7 @@ export type ShopifyProduct = {
   };
   variants: Connection<ProductVariant>;
   featuredImage: Image | null;
+  productImage: { reference: { image: Image } } | null;
   images: Connection<Image>;
   seo: SEO;
   tags: string[];
