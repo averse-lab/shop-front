@@ -9,7 +9,7 @@ import { Button } from "@components/Button/Button";
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
 
-import { Dictionary } from "@lib/i18n/types";
+import { Dictionary, Locale } from "@lib/i18n/types";
 import { Product, ProductVariant } from "@lib/shopify/types";
 
 import { CartContext } from "@contexts/CartContext/CartContext";
@@ -22,10 +22,11 @@ type IProps = {
   minVariantPrice: Product["priceRange"]["minVariantPrice"];
   dictionary: Dictionary;
   shippingDelays: string | null;
+  lang: Locale;
 };
 
 export const ProductInteractive: FC<IProps> = (props) => {
-  const { variants, minVariantPrice, dictionary, shippingDelays } = props;
+  const { variants, minVariantPrice, dictionary, shippingDelays, lang } = props;
 
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [isPending, startTransition] = useTransition();
@@ -111,7 +112,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
         {!uniqueSize ? (
           <a
             className={clsx("flex items-center gap-2")}
-            href={"/manual/en/manual.pdf"}
+            href={`/manual/${lang}/manual.pdf`}
             rel='noopener noreferrer'
             target='_blank'
           >
