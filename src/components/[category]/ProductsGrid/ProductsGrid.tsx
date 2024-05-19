@@ -68,7 +68,9 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <ProductPreview
                 currency={product.priceRange.maxVariantPrice.currencyCode}
                 href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                imageUrl={product.images.length > 0 ? product.images[0].url : ""}
+                imageUrl={
+                   product.productImage?.reference.image.url || product.featuredImage?.url || ""
+                }
                 index={idx}
                 key={product.id}
                 lang={lang}
