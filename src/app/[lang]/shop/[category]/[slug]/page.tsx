@@ -31,7 +31,7 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
     return {};
   }
 
-  const { featuredImage, title, seo, description, productType } = product;
+  const { productImage, featuredImage, title, seo, description, productType } = product;
 
   return {
     title: seo.title || `${title} | Averse`,
@@ -41,28 +41,42 @@ export async function generateMetadata(props: IProps): Promise<Metadata> {
       card: "summary",
       title: seo.title || `${title} | Averse`,
       description: seo.description || description,
-      images: featuredImage
+      images: productImage
         ? {
-            url: featuredImage.url,
-            alt: featuredImage.altText,
-            height: featuredImage.height,
-            width: featuredImage.width,
+            url: productImage.reference.image.url,
+            alt: productImage.reference.image.altText,
+            height: productImage.reference.image.height,
+            width: productImage.reference.image.width,
           }
-        : undefined,
+        : featuredImage
+          ? {
+              url: featuredImage.url,
+              alt: featuredImage.altText,
+              height: featuredImage.height,
+              width: featuredImage.width,
+            }
+          : undefined,
     },
     openGraph: {
       type: "website",
       title: seo.title || `${title} | Averse`,
       description: seo.description || description,
       url: `${lang}/${PAGES.shop.url}/${productType}/${slug}`,
-      images: featuredImage
+      images: productImage
         ? {
-            url: featuredImage.url,
-            alt: featuredImage.altText,
-            height: featuredImage.height,
-            width: featuredImage.width,
+            url: productImage.reference.image.url,
+            alt: productImage.reference.image.altText,
+            height: productImage.reference.image.height,
+            width: productImage.reference.image.width,
           }
-        : undefined,
+        : featuredImage
+          ? {
+              url: featuredImage.url,
+              alt: featuredImage.altText,
+              height: featuredImage.height,
+              width: featuredImage.width,
+            }
+          : undefined,
     },
   };
 }
@@ -85,6 +99,8 @@ const ProductPage: FC<IProps> = async (props) => {
   if (!product) {
     notFound();
   }
+
+  console.log(product);
 
   const macroPlaybackId = product.customMetafields.macroVideoId;
   const placeholder = macroPlaybackId

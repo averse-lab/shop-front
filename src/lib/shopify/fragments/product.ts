@@ -12,6 +12,18 @@ const productFragment = gql`
     title
     description
     descriptionHtml
+    productImage: metafield(namespace: "custom", key: "product_image") {
+      reference {
+        ... on MediaImage {
+          image {
+            url
+            altText
+            width
+            height
+          }
+        }
+      }
+    }
     hideOnWebsite: metafield(namespace: "custom", key: "hide_on_website") {
       value
     }
