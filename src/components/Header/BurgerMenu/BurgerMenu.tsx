@@ -42,32 +42,45 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   useClickOutsideDetector(menuRef.current, closeMenu, open);
 
+  const contextInit = menuBgColor && menuBtnColor && menuBtnIcnColor;
+
   const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(({ url, i18nKey }) => ({
     href: `/${lang}/${url}`,
     display: dictionary.pages[i18nKey],
   }));
 
-  return menuBtnColor && menuBtnIcnColor ? (
+  return (
     <>
       <Backdrop activate={open} />
       <Button
         aria-label={openBurgerMenuAriaLabel}
-        className={clsx(className, s["burger-menu__burger"])}
-        iconColor={menuBtnIcnColor}
+        className={clsx(
+          className,
+          "transition-all delay-75 [&:hover+div]:translate-x-[calc(100%-8px)]",
+          open && "[&:hover+div]:!translate-x-2",
+          contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
+        )}
         onClick={openMenu}
         size='icon'
         variant={menuBtnColor === "white" ? "secondary-icon" : "default-icon"}
       >
-        <RiMenuLine className={clsx("transition-all")} size={20} />
+        <RiMenuLine
+          className={clsx(
+            "transition-all delay-0",
+            menuBtnIcnColor === "white"
+              ? "text-primary-foreground/80"
+              : "text-secondary-foreground/80",
+          )}
+          size={20}
+        />
       </Button>
       <div
         className={clsx(
-          s["burger-menu__menu"],
-          open && s["burger-menu__menu--open"],
-          "fixed left-0 top-0 z-20 md:left-2 md:top-2",
+          "fixed left-0 top-0 z-20 md:top-2",
           "h-dvh w-screen p-6 md:h-auto md:w-auto",
           "flex flex-col",
-          "uppercase text-primary-foreground backdrop-blur md:rounded md:border md:shadow-lg",
+          "-translate-x-full uppercase text-primary-foreground backdrop-blur transition-all md:rounded md:border md:shadow-lg",
+          open && "translate-x-2",
           menuBgColor === "white"
             ? "bg-secondary/20 md:border-border/20"
             : "bg-primary/85 md:border-border/10",
@@ -119,5 +132,5 @@ export const BurgerMenu: FC<IProps> = (props) => {
         </div>
       </div>
     </>
-  ) : null;
+  );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, MouseEventHandler, use } from "react";
 
 import { RiShoppingBag3Line } from "@remixicon/react";
@@ -18,33 +20,51 @@ export const CartButton: FC<IProps> = (props) => {
 
   const { cartBtnColor, cartBtnIcnColor } = use(HeaderContext);
 
-  return cartBtnColor && cartBtnIcnColor ? (
-    <div className={clsx(className, "relative")}>
+  const contextInit = cartBtnColor && cartBtnIcnColor;
+
+  return (
+    <div
+      className={clsx(
+        className,
+        "relative",
+        "transition-all delay-75",
+        contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
+      )}
+    >
       <Button
         aria-label={ariaLabel}
-        iconColor={cartBtnIcnColor}
         onClick={onClick}
         size='icon'
         variant={cartBtnColor === "white" ? "secondary-icon" : "default-icon"}
       >
-        <RiShoppingBag3Line className={clsx("transition-all")} size={20} />
+        <RiShoppingBag3Line
+          className={clsx(
+            "transition-all",
+            cartBtnIcnColor === "white"
+              ? "text-primary-foreground/80"
+              : "text-secondary-foreground/80",
+          )}
+          size={20}
+        />
       </Button>
-      {/* <div
+      <div
         className={clsx(
-          "absolute bottom-[calc(100%-9px)] left-[calc(100%-9px)]",
+          "absolute -right-[10px] -top-[10px]",
           "h-5 w-5",
           "rounded-full",
           "flex items-center justify-center",
-          "overflow-hidden border border-border/20  transition-all duration-200 ease-out",
-          "bg-white text-secondary-foreground/60",
-          // : "bg-primary/20 text-primary-foreground/60",
+          "overflow-hidden border backdrop-blur-sm transition-all",
+          cartBtnColor === "white"
+            ? "border-border/20 bg-secondary/20 "
+            : "border-border/10 bg-primary/75",
+          cartBtnIcnColor === "white" ? "text-primary-foreground" : "text-secondary-foreground",
           quantity !== undefined && quantity > 0 ? "scale-100" : "scale-0",
         )}
       >
-        <p className={clsx("font-semibold")} style={{ fontSize: "8px" }}>
+        <p className={clsx("transition-all", "font-bold")} style={{ fontSize: "8px" }}>
           {quantity}
         </p>
-      </div> */}
+      </div>
     </div>
-  ) : null;
+  );
 };

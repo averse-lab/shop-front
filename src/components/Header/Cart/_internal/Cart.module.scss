@@ -1,12 +1,3 @@
-.cart__modal {
-  transition: 0.2s transform ease-out;
-  transform: translate(100%);
-}
-
-.cart__modal--open {
-  transform: translate(0);
-}
-
 .cart__items-wrapper {
   &::-webkit-scrollbar {
     background: transparent;
@@ -20,25 +11,4 @@
 
   scrollbar-width: thin;
   scrollbar-color: rgb(115, 115, 115);
-}
-
-@media (min-width: 1024px) {
-  .cart__modal {
-    transform: translate(calc(100% + 8px));
-  }
-  .cart__modal--open {
-    transform: translate(0);
-  }
-
-  .cart__trigger {
-    &:hover {
-      & + .cart__modal {
-        transform: translate(100%);
-      }
-
-      & + .cart__modal--open {
-        transform: translate(0);
-      }
-    }
-  }
 }
