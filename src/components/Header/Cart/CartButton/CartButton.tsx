@@ -8,6 +8,7 @@ import { clsx } from "clsx";
 import { Button } from "@components/ui/button";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
+
 interface IProps {
   className?: string;
   quantity?: number;

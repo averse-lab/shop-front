@@ -33,6 +33,8 @@ const PrivacyPolicyPage: FC<IProps> = async (props) => {
         cartBtnColor='white'
         cartBtnIcnColor='black'
         headerBgColor='white'
+        langBtnColor='black'
+        langBtnIcnColor='black'
         logoVisible
         menuBgColor='black'
         menuBtnColor='white'

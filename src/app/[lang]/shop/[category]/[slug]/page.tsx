@@ -115,6 +115,8 @@ const ProductPage: FC<IProps> = async (props) => {
         cartBtnIcnColor='white'
         desktopCartBtnIcnColor='black'
         headerBgColor='transparent'
+        langBtnColor='white'
+        langBtnIcnColor='white'
         logoVisible
         menuBgColor='white'
         menuBtnColor='white'

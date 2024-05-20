@@ -33,6 +33,8 @@ const TermsOfSalePage: FC<IProps> = async (props) => {
         cartBtnColor='white'
         cartBtnIcnColor='black'
         headerBgColor='white'
+        langBtnColor='white'
+        langBtnIcnColor='black'
         logoVisible
         menuBgColor='black'
         menuBtnColor='white'

@@ -19,6 +19,10 @@ type ContextValue = {
   setCartBtnColor: StateSetter<"black" | "white" | undefined> | undefined;
   cartBtnIcnColor: "black" | "white" | undefined;
   setCartBtnIcnColor: StateSetter<"black" | "white" | undefined> | undefined;
+  langBtnColor: "black" | "white" | undefined;
+  setLangBtnColor: StateSetter<"black" | "white" | undefined> | undefined;
+  langBtnIcnColor: "black" | "white" | undefined;
+  setLangBtnIcnColor: StateSetter<"black" | "white" | undefined> | undefined;
   logoRef: RefObject<HTMLDivElement> | undefined;
   setLogoRef: StateSetter<RefObject<HTMLDivElement> | undefined> | undefined;
   logoVisible: boolean | undefined;
@@ -38,6 +42,10 @@ const init: ContextValue = {
   setCartBtnColor: undefined,
   cartBtnIcnColor: undefined,
   setCartBtnIcnColor: undefined,
+  langBtnColor: undefined,
+  setLangBtnColor: undefined,
+  langBtnIcnColor: undefined,
+  setLangBtnIcnColor: undefined,
   logoRef: undefined,
   setLogoRef: undefined,
   logoVisible: undefined,
@@ -60,6 +68,11 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
   const [cartBtnIcnColor, setCartBtnIcnColor] = useState<ContextValue["menuBgColor"]>(
     init.cartBtnIcnColor,
   );
+  const [langBtnColor, setLangBtnColor] = useState<ContextValue["langBtnColor"]>(init.langBtnColor);
+  const [langBtnIcnColor, setLangBtnIcnColor] = useState<ContextValue["langBtnIcnColor"]>(
+    init.langBtnIcnColor,
+  );
+
   const [logoRef, setLogoRef] = useState<ContextValue["logoRef"]>(init.logoRef);
   const [logoVisible, setLogoVisible] = useState<ContextValue["logoVisible"]>(init.logoVisible);
   const [headerBgColor, setHeaderBgColor] = useState<ContextValue["headerBgColor"]>(
@@ -77,6 +90,10 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
     setCartBtnColor,
     cartBtnIcnColor,
     setCartBtnIcnColor,
+    langBtnColor,
+    setLangBtnColor,
+    langBtnIcnColor,
+    setLangBtnIcnColor,
     logoRef,
     setLogoRef,
     logoVisible,

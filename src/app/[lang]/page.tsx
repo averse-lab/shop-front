@@ -81,6 +81,8 @@ const HomePage: FC<IProps> = async (props) => {
         cartBtnColor='black'
         cartBtnIcnColor='white'
         headerBgColor='transparent'
+        langBtnColor='black'
+        langBtnIcnColor='white'
         logoVisible
         menuBgColor='black'
         menuBtnColor='black'

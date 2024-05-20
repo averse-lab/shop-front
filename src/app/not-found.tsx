@@ -28,6 +28,8 @@ const NotFound: FC = async () => {
           cartBtnColor='white'
           cartBtnIcnColor='white'
           headerBgColor='transparent'
+          langBtnColor='white'
+          langBtnIcnColor='white'
           logoVisible={false}
           menuBgColor='white'
           menuBtnColor='white'

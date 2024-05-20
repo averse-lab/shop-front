@@ -13,6 +13,7 @@ const getHeaderIconsColorUpdater = (
   logoMiddleX: number | undefined,
   setMenuBtnIcnColor: StateSetter<"black" | "white" | undefined>,
   setCartBtnIcnColor: StateSetter<"black" | "white" | undefined>,
+  setLangBtnIcnColor: StateSetter<"black" | "white" | undefined>,
 ) =>
   throttle(() => {
     if (logoMiddleX === undefined) {
@@ -22,19 +23,29 @@ const getHeaderIconsColorUpdater = (
     if (window.scrollY > logoMiddleX) {
       setMenuBtnIcnColor("white");
       setCartBtnIcnColor("white");
+      setLangBtnIcnColor("white");
     } else {
       setMenuBtnIcnColor("black");
       setCartBtnIcnColor("black");
+      setLangBtnIcnColor("black");
     }
   }, 200);
 
 export const ProductGridObserver: FC<IProps> = () => {
-  const { logoRef, setMenuBtnIcnColor, setCartBtnIcnColor } = use(HeaderContext);
+  const { logoRef, setMenuBtnIcnColor, setCartBtnIcnColor, setLangBtnIcnColor } =
+    use(HeaderContext);
 
   useEffect(() => {
-    if (!logoRef || !logoRef.current || !setMenuBtnIcnColor || !setCartBtnIcnColor) {
+    if (
+      !logoRef ||
+      !logoRef.current ||
+      !setMenuBtnIcnColor ||
+      !setCartBtnIcnColor ||
+      !setLangBtnIcnColor
+    ) {
       return;
     }
+
     const logoBoundingRect = logoRef.current.getBoundingClientRect();
     const logoMiddleX = logoBoundingRect.top + logoBoundingRect.height / 2;
 
@@ -42,6 +53,7 @@ export const ProductGridObserver: FC<IProps> = () => {
       logoMiddleX,
       setMenuBtnIcnColor,
       setCartBtnIcnColor,
+      setLangBtnIcnColor,
     );
 
     document.addEventListener("scroll", headerIconsColorUpdater);
@@ -49,7 +61,7 @@ export const ProductGridObserver: FC<IProps> = () => {
     return () => {
       document.removeEventListener("scroll", headerIconsColorUpdater);
     };
-  }, [logoRef, setCartBtnIcnColor, setMenuBtnIcnColor]);
+  }, [logoRef, setCartBtnIcnColor, setLangBtnIcnColor, setMenuBtnIcnColor]);
 
   return null;
 };

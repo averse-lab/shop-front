@@ -5,6 +5,8 @@ import { FC, use } from "react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
+import { Cart } from "@components/Header/Cart/Cart";
+import { LangMenu } from "@components/Header/LangMenu/LangMenu";
 import { Logo } from "@components/icons/Logo/Logo";
 
 import { useSmoothScroll } from "@lib/hooks";
@@ -13,7 +15,6 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
-import { Cart } from "./Cart/Cart";
 
 interface IProps {
   dictionary: Dictionary;
@@ -45,7 +46,10 @@ export const Header: FC<IProps> = (props) => {
       >
         <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
-      <Cart className={clsx("justify-self-end")} dictionary={dictionary} lang={lang} />
+      <div className={clsx("flex flex-row items-center justify-end gap-2 md:gap-4")}>
+        <LangMenu className={clsx("justify-self-end")} dictionary={dictionary} lang={lang} />
+        <Cart className={clsx("justify-self-end")} dictionary={dictionary} lang={lang} />
+      </div>
     </header>
   );
 };

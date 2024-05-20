@@ -17,6 +17,8 @@ type IProps = Pick<
   | "menuBgColor"
   | "cartBtnColor"
   | "cartBtnIcnColor"
+  | "langBtnColor"
+  | "langBtnIcnColor"
 > & {
   desktopMenuBtnIcnColor?: HeaderContextValue["menuBtnIcnColor"];
   desktopCartBtnIcnColor?: HeaderContextValue["cartBtnIcnColor"];
@@ -31,6 +33,8 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     menuBgColor,
     cartBtnColor,
     cartBtnIcnColor,
+    langBtnColor,
+    langBtnIcnColor,
     desktopMenuBtnIcnColor,
     desktopCartBtnIcnColor,
   } = props;
@@ -42,6 +46,8 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     setMenuBtnIcnColor,
     setCartBtnColor,
     setCartBtnIcnColor,
+    setLangBtnColor,
+    setLangBtnIcnColor,
   } = use(HeaderContext);
 
   useEffect(() => {
@@ -52,7 +58,9 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
       !setMenuBtnColor ||
       !setMenuBtnIcnColor ||
       !setCartBtnColor ||
-      !setCartBtnIcnColor
+      !setCartBtnIcnColor ||
+      !setLangBtnColor ||
+      !setLangBtnIcnColor
     ) {
       return;
     }
@@ -62,6 +70,7 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     setMenuBtnColor(menuBtnColor ?? HEADER_CONTEXT_INIT.menuBtnColor);
     setCartBtnColor(cartBtnColor ?? HEADER_CONTEXT_INIT.cartBtnColor);
     setMenuBgColor(menuBgColor ?? HEADER_CONTEXT_INIT.menuBgColor);
+    setLangBtnColor(langBtnColor ?? HEADER_CONTEXT_INIT.langBtnColor);
 
     if (window.matchMedia("(min-width: 1024px)").matches) {
       setMenuBtnIcnColor(
@@ -70,9 +79,11 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
       setCartBtnIcnColor(
         desktopCartBtnIcnColor ?? cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor,
       );
+      setLangBtnIcnColor(langBtnIcnColor ?? HEADER_CONTEXT_INIT.langBtnIcnColor);
     } else {
       setMenuBtnIcnColor(menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor);
       setCartBtnIcnColor(cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor);
+      setLangBtnIcnColor(langBtnIcnColor ?? HEADER_CONTEXT_INIT.langBtnIcnColor);
     }
   }, [
     cartBtnColor,
@@ -91,6 +102,10 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     setMenuBgColor,
     setMenuBtnColor,
     setMenuBtnIcnColor,
+    setLangBtnColor,
+    setLangBtnIcnColor,
+    langBtnColor,
+    langBtnIcnColor,
   ]);
 
   return <></>;
