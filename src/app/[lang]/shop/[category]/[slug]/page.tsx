@@ -4,6 +4,7 @@ import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { AdditionalVideosObserver } from "@components/[slug]/AdditionalVideosObserver/AdditionalVideosObserver";
 import { ProductInteractive } from "@components/[slug]/ProductInteractive";
 import { ProductSlide } from "@components/[slug]/ProductSlide";
 import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo";
@@ -111,7 +112,8 @@ const ProductPage: FC<IProps> = async (props) => {
     <>
       <HeaderContextInitializer
         cartBtnColor='white'
-        cartBtnIcnColor='black'
+        cartBtnIcnColor='white'
+        desktopCartBtnIcnColor='black'
         headerBgColor='transparent'
         logoVisible
         menuBgColor='white'
@@ -120,7 +122,7 @@ const ProductPage: FC<IProps> = async (props) => {
       />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <Slider
-          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col", "bg-black")}
+          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col", "lg:bg-black")}
           options={{
             loop: true,
             breakpoints: {
@@ -132,7 +134,7 @@ const ProductPage: FC<IProps> = async (props) => {
         >
           {placeholder && macroPlaybackId && (
             <VideoPlayer
-              className={clsx("border-border/20 aspect-square border-b")}
+              className={clsx("aspect-square lg:border-b lg:border-border/20")}
               minResolution='1080p'
               placeholder={placeholder}
               playbackId={macroPlaybackId}
@@ -166,11 +168,22 @@ const ProductPage: FC<IProps> = async (props) => {
         </div>
       </div>
       {isProductWithSingleAdditionalVideo(product) && (
-        <SingleAdditionalVideo
-          description={product.customMetafields.additionalDescription}
-          inversedLayout={product.customMetafields.additionalVideosLayout === "inversed"}
-          playbackId={product.customMetafields.additionalDescriptionVideoId}
-        />
+        <AdditionalVideosObserver
+          className={clsx(
+            "px-6 py-8 lg:min-h-dvh lg:px-12",
+            "flex flex-col items-center gap-8 lg:justify-center lg:gap-24",
+            product.customMetafields.additionalVideosLayout === "inversed"
+              ? "md:flex-row-reverse"
+              : "md:flex-row",
+            "bg-black",
+            "text-primary-foreground",
+          )}
+        >
+          <SingleAdditionalVideo
+            description={product.customMetafields.additionalDescription}
+            playbackId={product.customMetafields.additionalDescriptionVideoId}
+          />
+        </AdditionalVideosObserver>
       )}
     </>
   );
