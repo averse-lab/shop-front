@@ -14,9 +14,9 @@ export const Backdrop: FC<Props> = (props) => {
       className={clsx(
         "fixed left-0 top-0 z-10",
         "h-dvh w-screen",
-        "transition-all delay-150 duration-300",
+        "transition-all delay-150 duration-500 ease-in-out",
         activate ? "bg-primary/40 md:bg-primary/20" : "pointer-events-none bg-primary/0",
       )}
-    ></div>
+    />
   );
 };
