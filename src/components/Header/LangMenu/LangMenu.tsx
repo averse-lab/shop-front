@@ -1,8 +1,18 @@
-import { FC } from "react";
+"use client";
 
-import clsx from "clsx";
+import { FC, useState } from "react";
+
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
 import { LangButton } from "@components/Header/LangMenu/LangButton/LangButton";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@components/ui/dropdown-menu";
 
 import { Dictionary, Locale } from "@lib/i18n/types";
 
@@ -12,15 +22,28 @@ interface IProps {
   dictionary: Dictionary;
 }
 
+type Checked = DropdownMenuCheckboxItemProps["checked"];
+
 export const LangMenu: FC<IProps> = (props) => {
   const { dictionary, lang, className } = props;
-  const { openCartAriaLabel, closeBurgerMenuAriaLabel } = dictionary.header;
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // const toggleMenu = () => {
+  //   setMenuOpen(true);
+  // };
 
   return (
-    <LangButton
-      ariaLabel='Change language'
-      className={clsx(className, "[&:hover+div]:translate-x-[calc(100%-8px)]")}
-      onClick={() => {}}
-    />
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <LangButton ariaLabel='Language' onClick={() => {}} />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='w-56'>
+        <DropdownMenuLabel>Language</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuCheckboxItem>Français</DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem>English</DropdownMenuCheckboxItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
