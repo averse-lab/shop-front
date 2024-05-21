@@ -56,8 +56,8 @@ export const BurgerMenu: FC<IProps> = (props) => {
         aria-label={openBurgerMenuAriaLabel}
         className={clsx(
           className,
-          "transition-all delay-75 [&:hover+div]:translate-x-[calc(100%-8px)]",
-          open && "[&:hover+div]:!translate-x-2",
+          "transition-all delay-75 lg:[&:hover+div]:-translate-x-[calc(100%-8px)]",
+          open && "lg:[&:hover+div]:!translate-x-2",
           contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
         )}
         onClick={openMenu}
@@ -79,8 +79,8 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "fixed left-0 top-0 z-20 md:top-2",
           "h-dvh w-screen p-6 md:h-auto md:w-auto",
           "flex flex-col",
-          "-translate-x-full uppercase text-primary-foreground backdrop-blur transition-all md:rounded md:border md:shadow-lg",
-          open && "translate-x-2",
+          "uppercase text-primary-foreground backdrop-blur transition-all md:rounded md:border md:shadow-lg",
+          open ? "translate-x-2" : "-translate-x-full",
           menuBgColor === "white"
             ? "bg-secondary/20 md:border-border/20"
             : "bg-primary/85 md:border-border/10",
@@ -111,7 +111,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
                 className={clsx(
                   "relative",
                   "text-xl md:text-base",
-                  "[&:hover+svg]:translate-x-0 [&:hover+svg]:opacity-100",
+                  "lg:[&:hover+svg]:translate-x-0 lg:[&:hover+svg]:opacity-100",
                 )}
                 href={link.href}
                 hrefLang={lang}
