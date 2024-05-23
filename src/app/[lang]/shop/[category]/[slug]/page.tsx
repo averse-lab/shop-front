@@ -164,7 +164,7 @@ const ProductPage: FC<IProps> = async (props) => {
               className={clsx("mt-6", "[&_p:not(:last-child)]:mb-2")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
-            <div className={clsx("flex h-full w-full justify-center")}>
+            <div className={clsx("hidden h-full w-full justify-center md:flex")}>
               <div className={clsx("flex flex-col items-center justify-center gap-2")}>
                 <span className={clsx("font-bold uppercase")}>
                   {dictionary.product.moreDetails}
