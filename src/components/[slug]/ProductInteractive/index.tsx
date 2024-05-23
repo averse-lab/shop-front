@@ -96,7 +96,12 @@ export const ProductInteractive: FC<IProps> = (props) => {
   return (
     <>
       <p className={clsx("font-light")}>{formatPrice(amount, currency)}</p>
-      <div className={clsx("mb-7", "flex items-center justify-between gap-4")}>
+      <div
+        className={clsx(
+          "mb-7",
+          "flex flex-col gap-4 md:flex-row md:items-center md:justify-between",
+        )}
+      >
         {uniqueSize ? (
           <p className='font-medium'>{dictionary.product.uniqueSize}</p>
         ) : (
