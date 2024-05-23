@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { AdditionalVideosObserver } from "@components/[slug]/AdditionalVideosObserver/AdditionalVideosObserver";
+import { MoreDetails } from "@components/[slug]/MoreDetails/MoreDetails";
 import { ProductInteractive } from "@components/[slug]/ProductInteractive";
 import { ProductSlide } from "@components/[slug]/ProductSlide";
 import { SingleAdditionalVideo } from "@components/[slug]/SingleAdditionalVideo";
@@ -166,6 +167,7 @@ const ProductPage: FC<IProps> = async (props) => {
             />
           </div>
         </div>
+        <MoreDetails className={clsx("fixed bottom-2 left-0 right-0 z-10 m-auto")} lang={lang} />
       </div>
       {isProductWithSingleAdditionalVideo(product) && (
         <AdditionalVideosObserver
