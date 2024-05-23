@@ -16,7 +16,6 @@ import { LinkDetail } from "@lib/routing/types";
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import { MAIN_NAV } from "./_internal/BurgerMenu.constants";
-import s from "./_internal/BurgerMenu.module.scss";
 
 type IProps = {
   className?: string;
@@ -80,7 +79,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "h-dvh w-screen p-6 md:h-auto md:w-auto",
           "flex flex-col",
           "uppercase text-primary-foreground backdrop-blur transition-all md:rounded md:border md:shadow-lg",
-          open ? "translate-x-2" : "-translate-x-full",
+          open ? "md:translate-x-2" : "-translate-x-full",
           menuBgColor === "white"
             ? "bg-secondary/20 md:border-border/20"
             : "bg-primary/85 md:border-border/10",
