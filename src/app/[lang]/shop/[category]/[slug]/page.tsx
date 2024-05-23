@@ -157,6 +157,7 @@ const ProductPage: FC<IProps> = async (props) => {
             <h1 className={clsx("text-lg uppercase", "mb-6")}>{product.title}</h1>
             <ProductInteractive
               dictionary={dictionary}
+              lang={lang}
               minVariantPrice={product.priceRange.minVariantPrice}
               shippingDelays={product.customMetafields.shippingDelays}
               variants={product.variants}

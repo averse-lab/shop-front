@@ -2,15 +2,15 @@
 
 import { FC, use, useState, useTransition } from "react";
 
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { RiLoader5Line } from "@remixicon/react";
 import { clsx } from "clsx";
 
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
-import { Spinner } from "@components/icons/Spinner/Spinner";
 import { Button } from "@components/ui/button";
 
-import { Dictionary } from "@lib/i18n/types";
+import { Dictionary, Locale } from "@lib/i18n/types";
 import { Product, ProductVariant } from "@lib/shopify/types";
 import { formatPrice } from "@lib/utils";
 
@@ -25,10 +25,11 @@ type IProps = {
   minVariantPrice: Product["priceRange"]["minVariantPrice"];
   dictionary: Dictionary;
   shippingDelays: string | null;
+  lang: Locale;
 };
 
 export const ProductInteractive: FC<IProps> = (props) => {
-  const { variants, minVariantPrice, dictionary, shippingDelays } = props;
+  const { variants, minVariantPrice, dictionary, shippingDelays, lang } = props;
 
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [isPending, startTransition] = useTransition();
@@ -108,17 +109,18 @@ export const ProductInteractive: FC<IProps> = (props) => {
             selectedIndex={selectedIndex}
           />
         )}
+        {!uniqueSize ? (
+          <a
+            className={clsx("flex items-center gap-2")}
+            href={`/manual/${lang}/manual.pdf`}
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            {dictionary.product.sizeGuide}
+            <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
+          </a>
+        ) : null}
       </div>
-      {/* <Button
-        className={clsx("w-full")}
-        color='black'
-        disabled={!uniqueSize && selectedIndex === undefined}
-        element='button'
-        loading={isPending}
-        onClick={addToCart}
-      >
-        {dictionary.product.addToCart}
-      </Button> */}
       <Button
         className={clsx("w-full", "gap-2")}
         disabled={!uniqueSize && selectedIndex === undefined}
