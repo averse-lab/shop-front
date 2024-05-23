@@ -23,6 +23,10 @@ type ContextValue = {
   setLogoRef: StateSetter<RefObject<HTMLDivElement> | undefined> | undefined;
   logoVisible: boolean | undefined;
   setLogoVisible: StateSetter<boolean | undefined> | undefined;
+  moreDetailsBtnRef: RefObject<HTMLDivElement> | undefined;
+  setMoreDetailsBtnRef: StateSetter<RefObject<HTMLDivElement> | undefined> | undefined;
+  moreDetailsBtnVisible: boolean | undefined;
+  setMoreDetailsBtnVisible: StateSetter<boolean | undefined> | undefined;
   headerBgColor: "white" | "transparent" | undefined;
   setHeaderBgColor: StateSetter<"white" | "transparent" | undefined> | undefined;
 };
@@ -42,6 +46,10 @@ const init: ContextValue = {
   setLogoRef: undefined,
   logoVisible: undefined,
   setLogoVisible: undefined,
+  moreDetailsBtnRef: undefined,
+  setMoreDetailsBtnRef: undefined,
+  moreDetailsBtnVisible: undefined,
+  setMoreDetailsBtnVisible: undefined,
   headerBgColor: undefined,
   setHeaderBgColor: undefined,
 };
@@ -62,6 +70,12 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
   );
   const [logoRef, setLogoRef] = useState<ContextValue["logoRef"]>(init.logoRef);
   const [logoVisible, setLogoVisible] = useState<ContextValue["logoVisible"]>(init.logoVisible);
+  const [moreDetailsBtnRef, setMoreDetailsBtnRef] = useState<ContextValue["moreDetailsBtnRef"]>(
+    init.moreDetailsBtnRef,
+  );
+  const [moreDetailsBtnVisible, setMoreDetailsBtnVisible] = useState<
+    ContextValue["moreDetailsBtnVisible"]
+  >(init.moreDetailsBtnVisible);
   const [headerBgColor, setHeaderBgColor] = useState<ContextValue["headerBgColor"]>(
     init.headerBgColor,
   );
@@ -81,6 +95,10 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
     setLogoRef,
     logoVisible,
     setLogoVisible,
+    moreDetailsBtnRef,
+    setMoreDetailsBtnRef,
+    moreDetailsBtnVisible,
+    setMoreDetailsBtnVisible,
     headerBgColor,
     setHeaderBgColor,
   };

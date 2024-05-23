@@ -37,6 +37,7 @@ const LegalNoticePage: FC<IProps> = async (props) => {
         menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='black'
+        moreDetailsBtnVisible={false}
       />
       <div className={clsx("mt-[72px] md:mt-[96px]", "px-6 py-8 lg:px-12", "flex flex-col gap-4")}>
         <h1 className={clsx("text-4xl font-bold uppercase")}>{dictionary.pages.legalNotice}</h1>

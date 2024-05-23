@@ -9,10 +9,10 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
 
-import { ProductGridObserver } from "./ProductGridObserver";
-import { Filter } from "../FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "../FilterSelector/FilterSelector";
+import { Filter } from "../FilterSelector/_internal/FilterSelector.types";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
+import { ProductGridObserver } from "./ProductGridObserver";
 
 export type IProps = {
   products: Product[];
@@ -69,7 +69,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
                 currency={product.priceRange.maxVariantPrice.currencyCode}
                 href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
                 imageUrl={
-                   product.productImage?.reference.image.url || product.featuredImage?.url || ""
+                  product.productImage?.reference.image.url || product.featuredImage?.url || ""
                 }
                 index={idx}
                 key={product.id}

@@ -32,6 +32,7 @@ const NotFound: FC = async () => {
           menuBgColor='white'
           menuBtnColor='white'
           menuBtnIcnColor='white'
+          moreDetailsBtnVisible={false}
         />
         <div
           className={clsx(

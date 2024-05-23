@@ -11,6 +11,7 @@ import {
 type IProps = Pick<
   HeaderContextValue,
   | "logoVisible"
+  | "moreDetailsBtnVisible"
   | "headerBgColor"
   | "menuBtnColor"
   | "menuBtnIcnColor"
@@ -25,6 +26,7 @@ type IProps = Pick<
 export const HeaderContextInitializer: FC<IProps> = (props) => {
   const {
     logoVisible,
+    moreDetailsBtnVisible,
     headerBgColor,
     menuBtnColor,
     menuBtnIcnColor,
@@ -35,6 +37,7 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     desktopCartBtnIcnColor,
   } = props;
   const {
+    setMoreDetailsBtnVisible,
     setLogoVisible,
     setHeaderBgColor,
     setMenuBgColor,
@@ -47,6 +50,7 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
   useEffect(() => {
     if (
       !setLogoVisible ||
+      !setMoreDetailsBtnVisible ||
       !setHeaderBgColor ||
       !setMenuBgColor ||
       !setMenuBtnColor ||
@@ -58,6 +62,7 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     }
 
     setLogoVisible(logoVisible ?? HEADER_CONTEXT_INIT.logoVisible);
+    setMoreDetailsBtnVisible(moreDetailsBtnVisible ?? HEADER_CONTEXT_INIT.moreDetailsBtnVisible);
     setHeaderBgColor(headerBgColor ?? HEADER_CONTEXT_INIT.headerBgColor);
     setMenuBtnColor(menuBtnColor ?? HEADER_CONTEXT_INIT.menuBtnColor);
     setCartBtnColor(cartBtnColor ?? HEADER_CONTEXT_INIT.cartBtnColor);
@@ -84,6 +89,7 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     menuBgColor,
     menuBtnColor,
     menuBtnIcnColor,
+    moreDetailsBtnVisible,
     setCartBtnColor,
     setCartBtnIcnColor,
     setHeaderBgColor,
@@ -91,6 +97,7 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     setMenuBgColor,
     setMenuBtnColor,
     setMenuBtnIcnColor,
+    setMoreDetailsBtnVisible,
   ]);
 
   return <></>;

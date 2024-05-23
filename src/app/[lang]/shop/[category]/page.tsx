@@ -10,7 +10,6 @@ import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
-import { getPlaceholder } from "@lib/server-utils";
 import { getProducts } from "@lib/shopify";
 import { generateAlternates, getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
@@ -98,6 +97,7 @@ const CategoryPage: FC<Props> = async (props) => {
         menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='black'
+        moreDetailsBtnVisible={false}
       />
       <ProductsGrid
         categoryUrlSegment={categoryUrlSegment}

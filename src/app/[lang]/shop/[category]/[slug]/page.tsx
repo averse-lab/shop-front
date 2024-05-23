@@ -102,8 +102,6 @@ const ProductPage: FC<IProps> = async (props) => {
     notFound();
   }
 
-  console.log(product);
-
   const macroPlaybackId = product.customMetafields.macroVideoId;
   const placeholder = macroPlaybackId
     ? await getMuxPlaceholder({ playbackId: macroPlaybackId, width: 64 })
@@ -120,6 +118,7 @@ const ProductPage: FC<IProps> = async (props) => {
         menuBgColor='white'
         menuBtnColor='white'
         menuBtnIcnColor='white'
+        moreDetailsBtnVisible
       />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <Slider

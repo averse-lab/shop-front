@@ -85,6 +85,7 @@ const HomePage: FC<IProps> = async (props) => {
         menuBgColor='black'
         menuBtnColor='black'
         menuBtnIcnColor='white'
+        moreDetailsBtnVisible={false}
       />
       <div
         className={clsx(

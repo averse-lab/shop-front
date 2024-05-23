@@ -94,6 +94,7 @@ const AboutPage: FC<IProps> = async (props) => {
         menuBgColor='white'
         menuBtnColor='white'
         menuBtnIcnColor='white'
+        moreDetailsBtnVisible={false}
       />
       <div className={clsx("min-h-dvh px-6 py-4", "flex flex-col", "bg-black")}>
         <div
