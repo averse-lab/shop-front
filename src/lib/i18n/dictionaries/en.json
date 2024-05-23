@@ -51,7 +51,8 @@
     "notInStock": "Please refer to the general terms and conditions of sale for production and delivery time.",
     "notInStockCustom": "Delivery time may vary between",
     "inStock": "This item is in stock",
-    "uniqueSize": "Unique size"
+    "uniqueSize": "Unique size",
+    "moreDetails": "More details"
   },
   "cart": {
     "taxes": "Taxes",
