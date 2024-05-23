@@ -5,14 +5,15 @@ import { FC, useRef, useState } from "react";
 import clsx from "clsx";
 import { InView } from "react-intersection-observer";
 
+import { Filter } from "@components/[category]/FilterSelector/_internal/FilterSelector.types";
+import { ProductGridObserver } from "@components/[category]/ProductsGrid/ProductGridObserver";
+
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
 
 import { FilterSelector } from "../FilterSelector/FilterSelector";
-import { Filter } from "../FilterSelector/_internal/FilterSelector.types";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
-import { ProductGridObserver } from "./ProductGridObserver";
 
 export type IProps = {
   products: Product[];
