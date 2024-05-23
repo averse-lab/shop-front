@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { RiArrowDownLine } from "@remixicon/react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -101,8 +102,6 @@ const ProductPage: FC<IProps> = async (props) => {
     notFound();
   }
 
-  console.log(product);
-
   const macroPlaybackId = product.customMetafields.macroVideoId;
   const placeholder = macroPlaybackId
     ? await getMuxPlaceholder({ playbackId: macroPlaybackId, width: 64 })
@@ -165,6 +164,12 @@ const ProductPage: FC<IProps> = async (props) => {
               className={clsx("mt-6", "[&_p:not(:last-child)]:mb-2")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
+            <div className={clsx("flex w-full justify-center")}>
+              <div className={clsx("flex flex-col items-center justify-center gap-2")}>
+                More details
+                <RiArrowDownLine />
+              </div>
+            </div>
           </div>
         </div>
       </div>
