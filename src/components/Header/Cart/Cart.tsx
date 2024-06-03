@@ -81,7 +81,7 @@ export const Cart: FC<IProps> = (props) => {
           "fixed right-0 top-0 z-20 md:top-2",
           "h-dvh w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:w-[450px] md:p-6",
           "flex flex-col justify-between gap-6",
-          "bg-secondary/20 backdrop-blur transition-all duration-500 ease-in-out md:rounded md:border md:border-border/20 md:shadow-lg",
+          "bg-secondary/40 backdrop-blur transition-all duration-500 ease-in-out md:rounded md:border md:border-border/20 md:shadow-lg",
           cartOpen ? "opacity-100 md:-translate-x-2" : "translate-x-full opacity-0",
         )}
         ref={cartRef}
@@ -128,12 +128,13 @@ export const Cart: FC<IProps> = (props) => {
             <div className={clsx("flex flex-col gap-4")}>
               <SummaryItem
                 metric={dictionary.cart.shipping}
-                shipping
                 value={dictionary.cart.shippingHint}
+                variant='shipping'
               />
               <SummaryItem
                 metric={dictionary.cart.total}
                 value={`${cart.cost.totalAmount.amount}${" "}${cart.cost.totalAmount.currencyCode}`}
+                variant='total'
               />
             </div>
           ) : null}

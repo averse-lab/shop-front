@@ -3,17 +3,16 @@
 import { FC, useTransition } from "react";
 
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { RiAddLine, RiSubtractLine } from "@remixicon/react";
 import { clsx } from "clsx";
 
 import { Spinner } from "@components/icons/Spinner/Spinner";
+import { Button } from "@components/ui/button";
 
 import { Cart } from "@lib/shopify/types";
 import { StateSetter } from "@lib/types";
 
-import {
-  removeItem,
-  updateItemQuantity,
-} from "./_internal/QuantitySelector.actions";
+import { removeItem, updateItemQuantity } from "./_internal/QuantitySelector.actions";
 
 type IProps = {
   quantity: number;
@@ -68,34 +67,28 @@ export const QuantitySelector: FC<IProps> = (props) => {
   };
 
   return (
-    <div
-      className={clsx(
-        "min-h-[30px] px-2 py-1",
-        "flex items-center gap-3",
-        "rounded-sm border border-neutral-300",
-      )}
-    >
-      <MinusSmallIcon
-        className={clsx(
-          "h-4 w-4",
-          "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
-        )}
+    <div className={clsx("min-h-[30px]", "flex items-center gap-3")}>
+      <Button
+        className={clsx("[&:hover>svg]:text-primary-foreground/80")}
         onClick={removeQuantity}
-      />
+        size='icon'
+        variant='default-icon'
+      >
+        <RiSubtractLine className={clsx("transition-all", "text-primary-foreground/60")} />
+      </Button>
       {isPending ? (
         <Spinner className={clsx("h-4 w-4")} />
       ) : (
-        <p className={clsx("text-center text-sm", "min-w-[16px]")}>
-          {quantity}
-        </p>
+        <p className={clsx("text-center text-sm", "min-w-[16px]")}>{quantity}</p>
       )}
-      <PlusSmallIcon
-        className={clsx(
-          "h-4 w-4",
-          "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
-        )}
+      <Button
+        className={clsx("[&:hover>svg]:text-primary-foreground/80")}
         onClick={addQuantity}
-      />
+        size='icon'
+        variant='default-icon'
+      >
+        <RiAddLine className={clsx("transition-all", "text-primary-foreground/60")} />
+      </Button>
     </div>
   );
 };

@@ -52,19 +52,19 @@ export const CartItem: FC<IProps> = (props) => {
           </Link>
           <div className={clsx("flex items-center")}>
             {uniqueSize ? (
-              <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
+              <p className={clsx("text-sm font-light uppercase text-secondary-foreground/55")}>
                 {dictionary.product.uniqueSize}
               </p>
             ) : (
               selectedOptions.map((option) => (
                 <p
-                  className={clsx("text-sm font-light uppercase text-neutral-600")}
+                  className={clsx("text-sm font-light uppercase text-secondary-foreground/55")}
                   key={option.value}
                 >{`${option.value}`}</p>
               ))
             )}
           </div>
-          <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
+          <p className={clsx("text-sm font-light uppercase text-secondary-foreground")}>
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
           </p>
         </div>
