@@ -2,11 +2,7 @@ import "server-only";
 
 import { DocumentNode, print } from "graphql";
 
-import {
-  HIDDEN_PRODUCT_TAG,
-  SHOPIFY_GRAPHQL_API_ENDPOINT,
-  TAGS,
-} from "./constants";
+import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from "./constants";
 import {
   addToCartMutation,
   createCartMutation,
@@ -64,9 +60,7 @@ const domain = `https://${process.env.SHOPIFY_STORE_DOMAIN!}`;
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
 const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
-type ExtractVariables<T> = T extends { variables: object }
-  ? T["variables"]
-  : never;
+type ExtractVariables<T> = T extends { variables: object } ? T["variables"] : never;
 
 export async function shopifyFetch<T>({
   cache = "force-cache",
@@ -141,9 +135,7 @@ const reshapeCart = (cart: ShopifyCart): Cart => {
   };
 };
 
-const reshapeCollection = (
-  collection: ShopifyCollection,
-): Collection | undefined => {
+const reshapeCollection = (collection: ShopifyCollection): Collection | undefined => {
   if (!collection) {
     return undefined;
   }
@@ -190,14 +182,9 @@ const reshapeCustomMetafields = (
     shippingDelays,
     darkFeaturedImage,
     additionalVideosLayout,
-    firstAdditionalVideoID,
-    firstAdditionalVideoDescription,
-    firstAdditionalVideoWidthRatio,
-    firstAdditionalVideoHeightRatio,
-    secondAdditionalVideoID,
-    secondAdditionalVideoDescription,
-    secondAdditionalVideoWidthRatio,
-    secondAdditionalVideoHeightRatio,
+    macroVideoId,
+    additionalDescriptionVideoId,
+    additionalDescription,
   } = shopifyProductCustomMetafields;
 
   return {
@@ -218,44 +205,18 @@ const reshapeCustomMetafields = (
             ? false
             : null
         : null,
+    macroVideoId: macroVideoId !== null ? macroVideoId.value : null,
     additionalVideosLayout:
       additionalVideosLayout !== null
-        ? additionalVideosLayout.value ===
-          "player to the left / description to the right"
+        ? additionalVideosLayout.value === "player to the left / description to the right"
           ? "standard"
-          : additionalVideosLayout.value ===
-              "player to the right / description to the left"
+          : additionalVideosLayout.value === "player to the right / description to the left"
             ? "inversed"
             : null
         : null,
-    firstAdditionalVideoID:
-      firstAdditionalVideoID !== null ? firstAdditionalVideoID.value : null,
-    firstAdditionalVideoDescription:
-      firstAdditionalVideoDescription !== null
-        ? firstAdditionalVideoDescription.value
-        : null,
-    firstAdditionalVideoWidthRatio:
-      firstAdditionalVideoWidthRatio !== null
-        ? Number(firstAdditionalVideoWidthRatio.value)
-        : null,
-    firstAdditionalVideoHeightRatio:
-      firstAdditionalVideoHeightRatio !== null
-        ? Number(firstAdditionalVideoHeightRatio.value)
-        : null,
-    secondAdditionalVideoID:
-      secondAdditionalVideoID !== null ? secondAdditionalVideoID.value : null,
-    secondAdditionalVideoDescription:
-      secondAdditionalVideoDescription !== null
-        ? secondAdditionalVideoDescription.value
-        : null,
-    secondAdditionalVideoWidthRatio:
-      secondAdditionalVideoWidthRatio !== null
-        ? Number(secondAdditionalVideoWidthRatio.value)
-        : null,
-    secondAdditionalVideoHeightRatio:
-      secondAdditionalVideoHeightRatio !== null
-        ? Number(secondAdditionalVideoHeightRatio.value)
-        : null,
+    additionalDescriptionVideoId:
+      additionalDescriptionVideoId !== null ? additionalDescriptionVideoId.value : null,
+    additionalDescription: additionalDescription !== null ? additionalDescription.value : null,
   };
 };
 
@@ -263,10 +224,7 @@ const reshapeProduct = (
   product: ShopifyProduct,
   filterHiddenProducts: boolean = true,
 ): Product | undefined => {
-  if (
-    !product ||
-    (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))
-  ) {
+  if (!product || (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))) {
     return undefined;
   }
 
@@ -275,15 +233,10 @@ const reshapeProduct = (
     variants,
     shippingDelays,
     darkFeaturedImage,
+    macroVideoId,
     additionalVideosLayout,
-    firstAdditionalVideoID,
-    firstAdditionalVideoDescription,
-    firstAdditionalVideoHeightRatio,
-    firstAdditionalVideoWidthRatio,
-    secondAdditionalVideoID,
-    secondAdditionalVideoDescription,
-    secondAdditionalVideoWidthRatio,
-    secondAdditionalVideoHeightRatio,
+    additionalDescription,
+    additionalDescriptionVideoId,
     hideOnWebsite,
     ...rest
   } = product;
@@ -292,15 +245,10 @@ const reshapeProduct = (
     hideOnWebsite,
     shippingDelays,
     darkFeaturedImage,
+    macroVideoId,
     additionalVideosLayout,
-    firstAdditionalVideoID,
-    firstAdditionalVideoDescription,
-    firstAdditionalVideoHeightRatio,
-    firstAdditionalVideoWidthRatio,
-    secondAdditionalVideoID,
-    secondAdditionalVideoDescription,
-    secondAdditionalVideoWidthRatio,
-    secondAdditionalVideoHeightRatio,
+    additionalDescriptionVideoId,
+    additionalDescription,
   };
 
   return {
@@ -352,10 +300,7 @@ export async function addToCart(
   return reshapeCart(res.body.data.cartLinesAdd.cart);
 }
 
-export async function removeFromCart(
-  cartId: string,
-  lineIds: string[],
-): Promise<Cart> {
+export async function removeFromCart(cartId: string, lineIds: string[]): Promise<Cart> {
   const res = await shopifyFetch<ShopifyRemoveFromCartOperation>({
     query: removeFromCartMutation,
     variables: {
@@ -399,9 +344,7 @@ export async function getCart(cartId: string): Promise<Cart | undefined> {
   return reshapeCart(res.body.data.cart);
 }
 
-export async function getCollection(
-  handle: string,
-): Promise<Collection | undefined> {
+export async function getCollection(handle: string): Promise<Collection | undefined> {
   const res = await shopifyFetch<ShopifyCollectionOperation>({
     query: getCollectionQuery,
     tags: [TAGS.collections],
@@ -436,9 +379,7 @@ export async function getCollectionProducts({
     return [];
   }
 
-  return reshapeProducts(
-    removeEdgesAndNodes(res.body.data.collection.products),
-  );
+  return reshapeProducts(removeEdgesAndNodes(res.body.data.collection.products));
 }
 
 export async function getCollections(): Promise<Collection[]> {
@@ -479,10 +420,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
-      path: item.url
-        .replace(domain, "")
-        .replace("/collections", "/search")
-        .replace("/pages", ""),
+      path: item.url.replace(domain, "").replace("/collections", "/search").replace("/pages", ""),
     })) || []
   );
 }
@@ -521,14 +459,13 @@ export async function getProduct(
       handle,
       lang,
     },
+    cache: "no-store",
   });
 
   return reshapeProduct(res.body.data.product, false);
 }
 
-export async function getProductRecommendations(
-  productId: string,
-): Promise<Product[]> {
+export async function getProductRecommendations(productId: string): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: getProductRecommendationsQuery,
     tags: [TAGS.products],
@@ -568,11 +505,7 @@ export async function getProducts({
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
 }
 
-export async function getPrivacyPolicy({
-  lang,
-}: {
-  lang: SupportedLanguageCode;
-}): Promise<Policy> {
+export async function getPrivacyPolicy({ lang }: { lang: SupportedLanguageCode }): Promise<Policy> {
   const res = await shopifyFetch<ShopifyPolicyOperation<"privacyPolicy">>({
     query: getPolicyQuery("privacyPolicy"),
     variables: {

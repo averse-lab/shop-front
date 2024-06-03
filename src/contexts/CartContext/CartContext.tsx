@@ -5,31 +5,34 @@ import { FC, PropsWithChildren, createContext, useState } from "react";
 import { Cart } from "@lib/shopify/types";
 import { StateSetter } from "@lib/types";
 
-type CartContextValue = {
+type ContextValue = {
   cart: Cart | undefined;
-  setCart: StateSetter<Cart | undefined>;
-  isCartOpen: boolean;
-  setIsCartOpen: StateSetter<boolean>;
+  setCart: StateSetter<Cart | undefined> | undefined;
+  cartOpen: boolean;
+  setCartOpen: StateSetter<boolean> | undefined;
 };
 
-export const CartContext = createContext<CartContextValue | undefined>(
-  undefined,
-);
+const init: ContextValue = {
+  cart: undefined,
+  setCart: undefined,
+  cartOpen: false,
+  setCartOpen: undefined,
+};
+
+export const CartContext = createContext<ContextValue>(init);
 
 export const CartContextProvider: FC<PropsWithChildren> = (props) => {
   const { children } = props;
 
-  const [cart, setCart] = useState<Cart>();
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cart, setCart] = useState<ContextValue["cart"]>(init.cart);
+  const [cartOpen, setCartOpen] = useState<ContextValue["cartOpen"]>(init.cartOpen);
 
-  const contextValue: CartContextValue = {
+  const contextValue: ContextValue = {
     cart,
     setCart,
-    isCartOpen,
-    setIsCartOpen,
+    cartOpen,
+    setCartOpen,
   };
 
-  return (
-    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
-  );
+  return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;
 };

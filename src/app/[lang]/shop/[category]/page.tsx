@@ -5,16 +5,13 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ProductsGrid } from "@components/[category]/ProductsGrid/ProductsGrid";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { getProducts } from "@lib/shopify";
-import {
-  generateAlternates,
-  getSupportedLanguageCodeFromLocale,
-} from "@lib/utils";
+import { generateAlternates, getSupportedLanguageCodeFromLocale } from "@lib/utils";
 
 import {
   getCategoryFromCategoryUrlSegment,
@@ -23,7 +20,7 @@ import {
   getMetadataTwitterDescription,
 } from "./_internal/CategoryPage.utils";
 
-export async function generateMetadata(props: IProps): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const { params } = props;
   const { lang, category } = params;
 
@@ -67,11 +64,11 @@ type Params = {
   lang: Locale;
 };
 
-type IProps = {
+type Props = {
   params: Params;
 };
 
-const CategoryPage: FC<IProps> = async (props) => {
+const CategoryPage: FC<Props> = async (props) => {
   const { category: categoryUrlSegment, lang } = props.params;
 
   const dictionary = await getDictionary(lang);
@@ -92,7 +89,15 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='black'
+        headerBgColor='transparent'
+        logoVisible
+        menuBgColor='black'
+        menuBtnColor='white'
+        menuBtnIcnColor='black'
+      />
       <ProductsGrid
         categoryUrlSegment={categoryUrlSegment}
         className={clsx("relative z-0", "mt-[72px] md:mt-[96px]")}

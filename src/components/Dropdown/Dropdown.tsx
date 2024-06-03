@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC } from "react";
 
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { RiArrowDownSLine, RiArrowDropDownLine } from "@remixicon/react";
 import { clsx } from "clsx";
 
 import s from "./_internal/Dropdown.module.scss";
@@ -17,8 +17,7 @@ type IProps = {
 };
 
 export const Dropdown: FC<IProps> = (props) => {
-  const { className, name, options, placeholder, selectedIndex, onChange } =
-    props;
+  const { className, name, options, placeholder, selectedIndex, onChange } = props;
 
   const currentValue = getCurrentValue({ placeholder, selectedIndex });
 
@@ -50,12 +49,9 @@ export const Dropdown: FC<IProps> = (props) => {
           </option>
         ))}
       </select>
-      <ChevronDownIcon
-        className={clsx(
-          "absolute bottom-0 right-1 top-0 m-auto",
-          "h-4 w-4",
-          "pointer-events-none",
-        )}
+      <RiArrowDownSLine
+        className={clsx("absolute bottom-0 right-1 top-0 m-auto", "pointer-events-none")}
+        scale={20}
       />
     </div>
   );

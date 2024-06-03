@@ -30,4 +30,5 @@ export const PUBLIC_PATHS: string[] = [
   "/images",
   "/robots.txt",
   "/sitemap.xml",
+  "/UI",
 ];

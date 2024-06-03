@@ -13,7 +13,7 @@ function getLocale(request: NextRequest): string | undefined {
 
   const locales = I18N_CONFIG.locales;
 
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales as unknown as string[],
   );
 

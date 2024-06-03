@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useContext, useEffect, useRef } from "react";
+import { FC, use, useEffect, useRef } from "react";
 
 import { clsx } from "clsx";
 
@@ -16,7 +16,7 @@ export const Logo: FC<IProps> = (props) => {
   const { className } = props;
 
   const logoRef = useRef<HTMLDivElement>(null);
-  const { setLogoRef, hideLogo } = useContext(HeaderContext) || {};
+  const { setLogoRef, logoVisible } = use(HeaderContext);
 
   useEffect(() => {
     if (setLogoRef === undefined) {
@@ -26,13 +26,15 @@ export const Logo: FC<IProps> = (props) => {
     setLogoRef(logoRef);
   }, [setLogoRef]);
 
+  const contextInit = logoVisible !== undefined;
+
   return (
     <div
       className={clsx(
         className,
         "relative",
-        "overflow-hidden rounded-sm transition-all duration-200 ease-out",
-        hideLogo === false ? "opacity-100" : "opacity-0",
+        "overflow-hidden rounded-sm transition-all delay-75 duration-500 ease-out",
+        contextInit && logoVisible ? "opacity-100" : "opacity-0",
       )}
       ref={logoRef}
     >
@@ -51,11 +53,7 @@ export const Logo: FC<IProps> = (props) => {
         />
       </svg>
       <div
-        className={clsx(
-          s["logo__blur"],
-          "absolute left-0 top-0 z-0",
-          "h-full w-full",
-        )}
+        className={clsx("absolute left-0 top-0 z-0", "h-full w-full", "bg-white/10 backdrop-blur")}
       ></div>
     </div>
   );

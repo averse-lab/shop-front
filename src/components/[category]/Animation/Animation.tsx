@@ -2,7 +2,9 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { VideoPlayer } from "@components/VideoPlayer";
+
+import { getMuxPlaceholder } from "@lib/mux/utils";
 
 import { getCustomGridPositionStyle } from "./_internal/Animation.utils";
 
@@ -13,8 +15,13 @@ type IProps = {
   gridDesktopIndex: number | undefined;
 };
 
-export const Animation: FC<IProps> = (props) => {
+export const Animation: FC<IProps> = async (props) => {
   const { playbackId, gridIndex, gridDesktopIndex, index } = props;
+
+  const videoPlaceholder = await getMuxPlaceholder({
+    playbackId,
+    width: 64,
+  });
 
   return (
     <>
@@ -24,11 +31,10 @@ export const Animation: FC<IProps> = (props) => {
       <VideoPlayer
         className={clsx(
           "h-full w-full",
-          "outline outline-1 outline-neutral-500",
+          "aspect-square outline outline-1 outline-neutral-500",
         )}
-        heightRatio={1}
+        placeholder={videoPlaceholder}
         playbackId={playbackId}
-        widthRatio={1}
       />
     </>
   );

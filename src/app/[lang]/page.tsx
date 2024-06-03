@@ -2,13 +2,15 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 import { Metadata } from "next";
+import Link from "next/link";
 
-import { Button } from "@components/Button/Button";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { Button } from "@components/ui/button";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -68,9 +70,22 @@ const HomePage: FC<IProps> = async (props) => {
   const dictionary = await getDictionary(lang);
   const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
 
+  const videoPlaceholder = await getMuxPlaceholder({
+    playbackId: HOME_VIDEO.playbackId,
+    width: 512,
+  });
+
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer
+        cartBtnColor='black'
+        cartBtnIcnColor='white'
+        headerBgColor='transparent'
+        logoVisible
+        menuBgColor='black'
+        menuBtnColor='black'
+        menuBtnIcnColor='white'
+      />
       <div
         className={clsx(
           "relative z-0",
@@ -81,19 +96,14 @@ const HomePage: FC<IProps> = async (props) => {
       >
         <VideoPlayer
           className={clsx("absolute -z-10", "h-full w-full")}
-          heightRatio={HOME_VIDEO.heightRatio}
+          minResolution='1440p'
+          placeholder={videoPlaceholder}
           playbackId={HOME_VIDEO.playbackId}
-          widthRatio={HOME_VIDEO.widthRatio}
         />
-        <Button
-          ariaLabel={enterWebsiteAriaLabel}
-          color='black'
-          element='link'
-          href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
-          hrefLang={lang}
-          transparent
-        >
-          {enterWebsite}
+        <Button asChild>
+          <Link href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}>
+            {enterWebsite}
+          </Link>
         </Button>
       </div>
     </>

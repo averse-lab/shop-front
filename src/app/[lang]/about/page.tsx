@@ -3,11 +3,12 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -70,12 +71,31 @@ const AboutPage: FC<IProps> = async (props) => {
 
   const dictionary = await getDictionary(lang);
 
+  const aboutVideoPlaceholder = await getMuxPlaceholder({
+    playbackId: ABOUT_VIDEO.playbackId,
+    width: 64,
+  });
+  const irrationalCubeVideoPlaceholder = await getMuxPlaceholder({
+    playbackId: IRRATIONAL_CUBE_VIDEO.playbackId,
+    width: 64,
+  });
+  const cryingGirlVideoPlaceholder = await getMuxPlaceholder({
+    playbackId: CRYING_GIRL_VIDEO.playbackId,
+    width: 64,
+  });
+
   return (
     <>
-      <HeaderContextInitializer hideLogo whiteIcons />
-      <div
-        className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}
-      >
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='white'
+        headerBgColor='transparent'
+        logoVisible={false}
+        menuBgColor='white'
+        menuBtnColor='white'
+        menuBtnIcnColor='white'
+      />
+      <div className={clsx("min-h-dvh px-6 py-4", "flex flex-col", "bg-black")}>
         <div
           className={clsx(
             "m-auto mt-[72px] md:mt-[96px]",
@@ -85,18 +105,18 @@ const AboutPage: FC<IProps> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-12", "max-w-[90%] md:max-w-[400px]")}
-            heightRatio={ABOUT_VIDEO.heightRatio}
+            className={clsx("mb-12 w-full", `aspect-[4/3]`)}
+            minResolution='720p'
+            placeholder={aboutVideoPlaceholder}
             playbackId={ABOUT_VIDEO.playbackId}
-            widthRatio={ABOUT_VIDEO.widthRatio}
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph1}</p>
           <p className={clsx("mb-4 w-full")}>[&emsp;]</p>
           <VideoPlayer
-            className={clsx("mb-12 w-full")}
-            heightRatio={IRRATIONAL_CUBE_VIDEO.heightRatio}
+            className={clsx("mb-12 w-full", `aspect-[4/5]`)}
+            minResolution='720p'
+            placeholder={irrationalCubeVideoPlaceholder}
             playbackId={IRRATIONAL_CUBE_VIDEO.playbackId}
-            widthRatio={IRRATIONAL_CUBE_VIDEO.widthRatio}
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph2}</p>
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph3}</p>
@@ -104,15 +124,13 @@ const AboutPage: FC<IProps> = async (props) => {
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph5}</p>
           <p className={clsx("mb-4 w-full")}>[&emsp;]</p>
           <VideoPlayer
-            className={clsx("mb-12 w-full")}
-            heightRatio={CRYING_GIRL_VIDEO.heightRatio}
+            className={clsx("mb-12 w-full", `aspect-[347/450]`)}
+            minResolution='720p'
+            placeholder={cryingGirlVideoPlaceholder}
             playbackId={CRYING_GIRL_VIDEO.playbackId}
-            widthRatio={CRYING_GIRL_VIDEO.widthRatio}
           />
           <p
-            className={clsx(
-              "mb-4 flex h-[500px] w-full flex-col gap-10 text-[#454545]",
-            )}
+            className={clsx("mb-4 flex h-[500px] w-full flex-col gap-10 text-[#454545]")}
             style={{
               writingMode: "vertical-rl",
               textOrientation: "mixed",

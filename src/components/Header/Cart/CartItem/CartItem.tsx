@@ -24,8 +24,7 @@ export const CartItem: FC<IProps> = (props) => {
   const { merchandise, cost, quantity } = item;
   const { product, selectedOptions } = merchandise;
 
-  const uniqueSize =
-    selectedOptions.length === 1 && selectedOptions[0].name === "Title";
+  const uniqueSize = selectedOptions.length === 1 && selectedOptions[0].name === "Title";
 
   return (
     <div className={clsx(className, "flex items-center gap-3")}>
@@ -35,11 +34,9 @@ export const CartItem: FC<IProps> = (props) => {
       >
         <Image
           alt={`${product.title} photography`}
-          className={clsx(
-            "h-[120px] w-[120px]",
-            "rounded object-cover object-center",
-          )}
+          className={clsx("h-[120px] w-[120px]", "rounded object-cover object-center")}
           height={120}
+          quality={30}
           src={product.featuredImage !== null ? product.featuredImage.url : ""}
           width={120}
         />
@@ -55,25 +52,19 @@ export const CartItem: FC<IProps> = (props) => {
           </Link>
           <div className={clsx("flex items-center")}>
             {uniqueSize ? (
-              <p
-                className={clsx(
-                  "text-sm font-light uppercase text-neutral-600",
-                )}
-              >
+              <p className={clsx("text-sm font-light uppercase text-secondary-foreground/55")}>
                 {dictionary.product.uniqueSize}
               </p>
             ) : (
               selectedOptions.map((option) => (
                 <p
-                  className={clsx(
-                    "text-sm font-light uppercase text-neutral-600",
-                  )}
+                  className={clsx("text-sm font-light uppercase text-secondary-foreground/55")}
                   key={option.value}
                 >{`${option.value}`}</p>
               ))
             )}
           </div>
-          <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
+          <p className={clsx("text-sm font-light uppercase text-secondary-foreground")}>
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
           </p>
         </div>
