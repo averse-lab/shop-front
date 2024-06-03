@@ -152,7 +152,7 @@ const ProductPage: FC<IProps> = async (props) => {
           )}
         >
           <div className={clsx("w-full lg:w-[450px]")}>
-            <h1 className={clsx("text-lg uppercase", "mb-6")}>{product.title}</h1>
+            <h1 className={clsx("text-lg uppercase", "mb-1")}>{product.title}</h1>
             <ProductInteractive
               dictionary={dictionary}
               lang={lang}
@@ -161,17 +161,16 @@ const ProductPage: FC<IProps> = async (props) => {
               variants={product.variants}
             />
             <div
-              className={clsx("mt-6", "[&_p:not(:last-child)]:mb-2")}
+              className={clsx("mt-8", "[&_p:not(:last-child)]:mb-2")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
-            <div className={clsx("hidden h-full w-full justify-center md:flex")}>
-              <div className={clsx("flex flex-col items-center justify-center gap-2")}>
-                <span className={clsx("font-bold uppercase")}>
-                  {dictionary.product.moreDetails}
-                </span>
-                <RiArrowDownLine />
-              </div>
-            </div>
+
+            <p className={clsx("hidden items-center justify-center gap-4 md:flex", "h-full")}>
+              <span className={clsx("font-medium uppercase")}>
+                {dictionary.product.moreDetails}
+              </span>
+              <RiArrowDownLine className={clsx("animate-bounce")} size={20} />
+            </p>
           </div>
         </div>
       </div>
@@ -186,6 +185,7 @@ const ProductPage: FC<IProps> = async (props) => {
             "bg-black",
             "text-primary-foreground",
           )}
+          id='more-details-section'
         >
           <SingleAdditionalVideo
             description={product.customMetafields.additionalDescription}

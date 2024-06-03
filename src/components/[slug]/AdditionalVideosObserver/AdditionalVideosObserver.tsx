@@ -38,10 +38,11 @@ const getHeaderIconsColorUpdater = (
 
 type IProps = {
   className?: string;
+  id?: string;
 } & PropsWithChildren;
 
 export const AdditionalVideosObserver: FC<IProps> = (props) => {
-  const { children, className } = props;
+  const { children, className, id } = props;
 
   const { logoRef, setLogoVisible, setCartBtnIcnColor } = use(HeaderContext);
 
@@ -69,7 +70,7 @@ export const AdditionalVideosObserver: FC<IProps> = (props) => {
   }, [logoRef, setCartBtnIcnColor, setLogoVisible]);
 
   return (
-    <div className={clsx(className)} ref={additionalInformationsRef}>
+    <div className={clsx(className)} id={id} ref={additionalInformationsRef}>
       {children}
     </div>
   );

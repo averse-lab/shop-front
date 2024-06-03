@@ -2,7 +2,6 @@
 
 import { FC, useTransition } from "react";
 
-import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import { RiAddLine, RiSubtractLine } from "@remixicon/react";
 import { clsx } from "clsx";
 

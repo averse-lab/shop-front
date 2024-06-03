@@ -2,8 +2,7 @@
 
 import { FC, use, useState, useTransition } from "react";
 
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import { RiLoader5Line } from "@remixicon/react";
+import { RiExternalLinkLine, RiLoader5Line } from "@remixicon/react";
 import { clsx } from "clsx";
 
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
@@ -95,11 +94,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   return (
     <>
-      <p className={clsx("font-light")}>{formatPrice(amount, currency)}</p>
+      <p className={clsx("font-light", "mb-4")}>{formatPrice(amount, currency)}</p>
       <div
         className={clsx(
-          "mb-7",
-          "flex flex-col gap-4 md:flex-row md:items-center md:justify-between",
+          "mb-8",
+          "flex flex-col gap-6 md:flex-row md:items-center md:justify-between",
         )}
       >
         {uniqueSize ? (
@@ -122,7 +121,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
             target='_blank'
           >
             {dictionary.product.sizeGuide}
-            <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
+            <RiExternalLinkLine size={20} />
           </a>
         ) : null}
       </div>
