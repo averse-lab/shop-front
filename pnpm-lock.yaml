@@ -39,8 +39,8 @@ dependencies:
     specifier: ^8.2.0
     version: 8.2.0
   embla-carousel-react:
-    specifier: 8.0.0-rc18
-    version: 8.0.0-rc18(react@18.2.0)
+    specifier: 8.2.0
+    version: 8.2.0(react@18.2.0)
   eslint:
     specifier: 8.56.0
     version: 8.56.0
@@ -1192,26 +1192,22 @@ packages:
     resolution: {integrity: sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==}
     dev: false
 
-  /embla-carousel-react@8.0.0-rc18(react@18.2.0):
-    resolution: {integrity: sha512-sif+zkOnQIJzZJJQdtE/kDBrlxNt7Vm6zI8i17qT6QYv3dnazPVf4EEfXQ2CZdh7J3UPwnIMS3Q55E1a8uxJ/g==}
+  /embla-carousel-react@8.2.0(react@18.2.0):
+    resolution: {integrity: sha512-dWqbmaEBQjeAcy/EKrcAX37beVr0ubXuHPuLZkx27z58V1FIvRbbMb4/c3cLZx0PAv/ofngX2QFrwUB+62SPnw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.1 || ^18.0.0
     dependencies:
-      embla-carousel: 8.0.0-rc18
-      embla-carousel-reactive-utils: 8.0.0-rc18(embla-carousel@8.0.0-rc18)
+      embla-carousel: 8.2.0
+      embla-carousel-reactive-utils: 8.2.0(embla-carousel@8.2.0)
       react: 18.2.0
     dev: false
 
-  /embla-carousel-reactive-utils@8.0.0-rc18(embla-carousel@8.0.0-rc18):
-    resolution: {integrity: sha512-VOFfvhkICz4GKXb/huMTspYVR8mx8C4uDf0Kp+jA9iZNUA4lmlfxxYUr++SwIy1xABycpqML/9hP2tV6Nn0AEQ==}
+  /embla-carousel-reactive-utils@8.2.0(embla-carousel@8.2.0):
+    resolution: {integrity: sha512-ZdaPNgMydkPBiDRUv+wRIz3hpZJ3LKrTyz+XWi286qlwPyZFJDjbzPBiXnC3czF9N/nsabSc7LTRvGauUzwKEg==}
     peerDependencies:
-      embla-carousel: 8.0.0-rc18
+      embla-carousel: 8.2.0
     dependencies:
-      embla-carousel: 8.0.0-rc18
-    dev: false
-
-  /embla-carousel@8.0.0-rc18:
-    resolution: {integrity: sha512-MtiatQCt+R/lEKl2D4TyAx2Ba4/gfosQIY+Y/ooZu1yahxTbFLyhGW8aodn0GW2WZ6jO3Qpfx7VuqCPdRV5moQ==}
+      embla-carousel: 8.2.0
     dev: false
 
   /embla-carousel@8.2.0:

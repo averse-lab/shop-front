@@ -22,7 +22,7 @@
     "autoprefixer": "10.4.16",
     "clsx": "2.1.0",
     "embla-carousel": "^8.2.0",
-    "embla-carousel-react": "8.0.0-rc18",
+    "embla-carousel-react": "8.2.0",
     "eslint": "8.56.0",
     "graphql": "16.8.1",
     "negotiator": "^0.6.3",
