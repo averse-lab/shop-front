@@ -1,5 +1,5 @@
 import { match as matchLocale } from "@formatjs/intl-localematcher";
-import { get } from '@vercel/edge-config';
+import { get } from "@vercel/edge-config";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
   const origin = nextReq.origin;
   const locale = getLocale(request);
 
-	const isInMaintenanceMode = await get('isInMaintenanceMode')
+  const isInMaintenanceMode = await get("isInMaintenanceMode");
 
   const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce(
     (pathnameIsPublicPath, publicPath) => {
@@ -44,8 +44,8 @@ export async function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}`),
   );
 
-	if (isInMaintenanceMode) {
-    request.nextUrl.pathname = `/${locale}/${PAGES.maintenance}`;
+  if (isInMaintenanceMode) {
+    request.nextUrl.pathname = `/${locale}/${PAGES.maintenance.url}`;
 
     return NextResponse.rewrite(request.nextUrl);
   }
