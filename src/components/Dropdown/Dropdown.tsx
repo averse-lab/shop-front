@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC } from "react";
 
-import { RiArrowDownSLine, RiArrowDropDownLine } from "@remixicon/react";
+import { RiArrowDownSLine } from "@remixicon/react";
 import { clsx } from "clsx";
 
 import s from "./_internal/Dropdown.module.scss";
