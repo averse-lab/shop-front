@@ -6,7 +6,8 @@
     "termsOfService": "Conditions d'utilisation",
     "termsOfSale": "Conditions générales de vente",
     "privacyPolicy": "Politique de Confidentialité",
-    "legalNotice": "Mentions légales"
+    "legalNotice": "Mentions légales",
+    "maintenance": "Maintenance"
   },
   "categories": {
     "rings": "Bagues",
@@ -89,5 +90,9 @@
   "notFound": {
     "notFound": "PAGE NOT FOUND",
     "goBackHome": "GO_BACK_HOME"
+  },
+  "maintenance": {
+    "title": "Nous revenons bientôt",
+    "message": "Votre site est actuellement en maintenance et sera de retour en ligne le 5 septembre."
   }
 }

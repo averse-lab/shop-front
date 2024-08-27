@@ -8,7 +8,8 @@ export type PageKey =
   | "about"
   | "termsOfSale"
   | "privacyPolicy"
-  | "legalNotice";
+  | "legalNotice"
+	| "maintenance";
 
 export type PageValue = {
   i18nKey: keyof Dictionary["pages"];

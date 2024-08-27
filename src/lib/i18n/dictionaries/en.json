@@ -6,7 +6,8 @@
     "termsOfService": "Terms of Service",
     "termsOfSale": "Terms of Sale",
     "privacyPolicy": "Privacy Policy",
-    "legalNotice": "Legal Notice"
+    "legalNotice": "Legal Notice",
+    "maintenance": "Maintenance"
   },
   "categories": {
     "rings": "Rings",
@@ -90,5 +91,9 @@
   "notFound": {
     "notFound": "PAGE NOT FOUND",
     "goBackHome": "GO_BACK_HOME"
+  },
+  "maintenance": {
+    "title": "We'll be back soon",
+    "message": "Our site is currently undergoing maintenance and will be back online on September 5th."
   }
 }

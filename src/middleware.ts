@@ -1,4 +1,5 @@
 import { match as matchLocale } from "@formatjs/intl-localematcher";
+import { get } from '@vercel/edge-config';
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
@@ -20,11 +21,13 @@ function getLocale(request: NextRequest): string | undefined {
   return matchLocale(languages, locales, "en");
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const nextReq = request.nextUrl;
   const pathname = nextReq.pathname;
   const origin = nextReq.origin;
   const locale = getLocale(request);
+
+	const isInMaintenanceMode = await get('isInMaintenanceMode')
 
   const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce(
     (pathnameIsPublicPath, publicPath) => {
@@ -40,6 +43,12 @@ export function middleware(request: NextRequest) {
   const pathnameIsMissingLocale = I18N_LOCALES.every(
     (locale) => !pathname.startsWith(`/${locale}`),
   );
+
+	if (isInMaintenanceMode) {
+    request.nextUrl.pathname = `/${locale}/${PAGES.maintenance}`;
+
+    return NextResponse.rewrite(request.nextUrl);
+  }
 
   if (pathnameIsMissingLocale && !pathnameIsPublicPath) {
     return NextResponse.redirect(new URL(`/${locale}`, origin));
