@@ -35,10 +35,7 @@ export const CartItem: FC<IProps> = (props) => {
       >
         <Image
           alt={`${product.title} photography`}
-          className={clsx(
-            "h-[120px] w-[120px]",
-            "rounded object-cover object-center",
-          )}
+          className={clsx("h-[120px] w-[120px]", "object-cover object-center")}
           height={120}
           src={product.featuredImage !== null ? product.featuredImage.url : ""}
           width={120}

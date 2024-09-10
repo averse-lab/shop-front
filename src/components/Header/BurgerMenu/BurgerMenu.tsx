@@ -81,7 +81,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "fixed left-0 top-0 z-20 md:left-2 md:top-2",
           "flex flex-col",
           "h-[100dvh] w-screen p-6 md:h-auto md:w-auto",
-          "uppercase  md:rounded md:shadow-md",
+          "uppercase md:shadow-md",
           whiteIcons ? "bg-white text-black" : "bg-black text-white",
         )}
         ref={menuRef}
@@ -92,7 +92,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
             s["burger-menu__close-btn"],
             "p-2 lg:p-1",
             "self-end",
-            "rounded-full transition-all duration-200 ease-out",
+            "transition-all duration-200 ease-out",
             whiteIcons
               ? "bg-neutral-100 text-black"
               : "bg-neutral-900 text-white",

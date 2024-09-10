@@ -72,7 +72,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
       className={clsx(
         "min-h-[30px] px-2 py-1",
         "flex items-center gap-3",
-        "rounded-sm border border-neutral-300",
+        "border border-neutral-300",
       )}
     >
       <MinusSmallIcon
