@@ -79,7 +79,7 @@ export const Cart: FC<IProps> = (props) => {
           "fixed right-0 top-0 z-20 md:right-2 md:top-2",
           "h-[100dvh] w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
           "flex flex-col justify-between",
-          "bg-white md:rounded md:border md:border-neutral-100 md:shadow-md",
+          "bg-white md:border md:border-neutral-100 md:shadow-md",
         )}
         ref={cartRef}
       >
@@ -90,7 +90,7 @@ export const Cart: FC<IProps> = (props) => {
               s["cart__close-btn"],
               "p-2 lg:p-1",
               "shrink-0 self-start",
-              "rounded-full bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
+              "bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
             )}
             onClick={closeCart}
           >

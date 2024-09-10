@@ -55,7 +55,6 @@ export const Button: FC<IProps> = (props) => {
     mini && s["button--mini"],
     mini ? "p-1" : "px-6 py-3",
     "flex items-center justify-center gap-4",
-    mini ? "rounded" : "rounded-sm",
     color === "black" ? s["button--black"] : s["button--white"],
     disabled && "disabled cursor-not-allowed",
     transparent && mini ? "shadow" : "shadow-md",
