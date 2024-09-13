@@ -27,6 +27,7 @@ export const FilterSelector: FC<IProps> = (props) => {
         "px-6 py-4",
         "gap-6",
         "shadow-sm",
+        "border-b border-black",
       )}
     >
       {filters.map(({ display, url }, idx) => (
