@@ -89,7 +89,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           "relative ",
           "p-4",
           "flex flex-col justify-end",
-          "aspect-square overflow-hidden opacity-0 outline outline-1 outline-neutral-500",
+          "aspect-square overflow-hidden opacity-0",
           inView && "animate-productPreviewAppearing",
         )}
         href={href}
@@ -119,7 +119,7 @@ export const ProductPreview: FC<IProps> = (props) => {
         </p>
         <p
           className={clsx(
-            "text-sm font-light",
+            "font-serif text-base font-light",
             light ? "text-neutral-400" : "text-neutral-600",
           )}
         >

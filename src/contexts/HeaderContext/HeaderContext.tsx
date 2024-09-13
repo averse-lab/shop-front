@@ -17,8 +17,8 @@ export type HeaderContextValue = {
   setLogoRef: StateSetter<RefObject<HTMLDivElement> | undefined>;
   hideLogo: boolean | undefined;
   setHideLogo: StateSetter<boolean | undefined>;
-  whiteBackground: boolean | undefined;
-  setWhiteBackground: StateSetter<boolean | undefined>;
+  blackBackground: boolean | undefined;
+  setBlackBackground: StateSetter<boolean | undefined>;
 };
 
 export const HeaderContext = createContext<HeaderContextValue | undefined>(
@@ -31,7 +31,7 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
   const [whiteIcons, setWhiteIcons] = useState<boolean>();
   const [logoRef, setLogoRef] = useState<RefObject<HTMLDivElement>>();
   const [hideLogo, setHideLogo] = useState<boolean>();
-  const [whiteBackground, setWhiteBackground] = useState<boolean>();
+  const [blackBackground, setBlackBackground] = useState<boolean>();
 
   const contextValue: HeaderContextValue = {
     whiteIcons,
@@ -40,8 +40,8 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
     setLogoRef,
     hideLogo,
     setHideLogo,
-    whiteBackground,
-    setWhiteBackground,
+    blackBackground,
+    setBlackBackground,
   };
 
   return (

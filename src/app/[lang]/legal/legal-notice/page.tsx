@@ -27,7 +27,7 @@ const LegalNoticePage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer whiteBackground />
+      <HeaderContextInitializer blackBackground />
       <div
         className={"mt-[72px] flex w-full flex-col md:mt-[96px] md:flex-row "}
       >

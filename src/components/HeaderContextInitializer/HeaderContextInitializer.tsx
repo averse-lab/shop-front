@@ -8,35 +8,34 @@ import {
 } from "@contexts/HeaderContext/HeaderContext";
 
 type IProps = {} & Partial<
-  Pick<HeaderContextValue, "hideLogo" | "whiteIcons" | "whiteBackground">
+  Pick<HeaderContextValue, "hideLogo" | "whiteIcons" | "blackBackground">
 >;
 
 export const HeaderContextInitializer: FC<IProps> = (props) => {
-  const { hideLogo, whiteIcons, whiteBackground } = props;
-  const { setHideLogo, setWhiteIcons, setWhiteBackground } =
+  const { hideLogo, whiteIcons, blackBackground } = props;
+  const { setHideLogo, setWhiteIcons, setBlackBackground } =
     useContext(HeaderContext) || {};
 
   useEffect(() => {
     if (
       setHideLogo === undefined ||
       setWhiteIcons === undefined ||
-      setWhiteBackground === undefined
+      setBlackBackground === undefined
     ) {
       return;
     }
 
     setHideLogo(hideLogo || false);
     setWhiteIcons(whiteIcons || false);
-    setWhiteBackground(whiteBackground || false);
+    setBlackBackground(blackBackground || false);
   }, [
     hideLogo,
     setHideLogo,
-
-    setWhiteBackground,
+    setBlackBackground,
     setWhiteIcons,
-
-    whiteBackground,
+    blackBackground,
     whiteIcons,
   ]);
+
   return <></>;
 };

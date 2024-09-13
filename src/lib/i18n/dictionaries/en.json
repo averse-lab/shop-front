@@ -3,6 +3,8 @@
     "home": "Home",
     "shop": "Shop",
     "about": "About",
+    "process": "Process",
+    "materials": "Materials",
     "termsOfService": "Terms of Service",
     "termsOfSale": "Terms of Sale",
     "privacyPolicy": "Privacy Policy",
@@ -15,8 +17,9 @@
     "allProducts": "All Products"
   },
   "home": {
-    "enterWebsite": "Enter_website",
+    "enterWebsite": "explore",
     "enterWebsiteAriaLabel": "Enter website",
+    "slogan": "handcrafted french jewelry",
     "metadata": {
       "title": "Averse - Artisan jewellery",
       "description": "Jewelry atelier - Design by Matthieu Braccini and made in France. Averse draws its inspiration from the exploration of the spectrum of human emotions",
@@ -61,6 +64,35 @@
     "checkout": "Checkout",
     "empty": "Your cart is empty"
   },
+  "materials": {
+    "title": "materials // stones",
+    "title1": "[materials]",
+    "paragraph1": "At Averse, we work with two primary metals: gold and silver. While each material can stand alone in its brilliance, one of our signature strengths lies in the combination of these two precious elements, creating unique and striking contrasts in our designs.",
+    "paragraph2": "Our materials are ethically sourced through SAAMP, a renowned supplier known for its commitment to transparency and sustainability. SAAMP guarantees the traceability of the gold and silver we use, ensuring that every piece adheres to the highest ethical standards.",
+    "title2": "[stones]",
+    "paragraph3": "As for the stones, we incorporate five distinctive variants into our creations: black diamonds or black spinels, champagne diamonds, white diamonds, and rubies. Each stone is sourced from trusted French suppliers who provide us with ethical traceability, ensuring that the origin of every gemstone aligns with our values of responsibility and craftsmanship.",
+    "metadata": {
+      "title": "Materials && Stones | Averse",
+      "description": "Discover the materials and stones used in Averse jewelry.",
+      "twitterDescription": "Discover the materials and stones used in Averse jewelry."
+    }
+  },
+  "process": {
+    "title": "process",
+    "paragraph1": "All our jewelry is crafted entirely in France, ensuring the highest quality and craftsmanship.",
+    "title1": "[design]",
+    "paragraph2": "Each piece begins as a concept, sketched and designed by Matthieu Braccini. I start with an idea on paper, refining it until every detail is clear. The design then comes to life in 3D, where I sculpt each element and carefully position every stone.",
+    "title2": "[casting]",
+    "paragraph3": "Once the design is finalized, it's sent to our casting partner in Paris. We work with a French entity known for its ethical sourcing of silver and gold to supply these materials. Using precise machinery, they first create a wax model from the 3D design, which is then cast with precision, capturing every intricate detail",
+    "title3": "[assembly and finishing]",
+    "paragraph4": "The raw cast is then sent to our artisan, where the real artistry begins. We meticulously clean and refine the cast, engraving and enhancing every detail. Through a combination of manual techniques [such as sandblasting, hammering, and millin] we create unique textures and effects. The silver is treated through oxidation, a process that took us years to perfect.We then carefully set each stone, ensuring its perfect placement within the design. Finally, we finish the piece the right way, whether that means polishing to a high shine or embracing a richly oxidized finish.",
+    "quote": "Your creation is now ready to wear.",
+    "metadata": {
+      "title": "Process | Averse",
+      "description": "Discover the process of creating Averse jewelry, from design to creation.",
+      "twitterDescription": "Discover the process of creating Averse jewelry, from design to creation."
+    }
+  },
   "about": {
     "title": "About",
     "paragraph1": "Averse is a jewelry workshop. The products are designed in Paris and made in France, using precious metals and stones.",
@@ -68,7 +100,7 @@
     "paragraph3": "All his artistic creations, from sculptures to illustrations and drawings, revolve around a central theme: the intricate tapestry and deep spectrum of human emotions. Through his work, he skillfully explores the complex network of emotions and how we can metaphorically describe the depth of these feelings.",
     "paragraph4": "The floral compositions in these creations are generally used as a parallel to illustrate emotions. They contrast with the mathematical shapes, regular, symmetric, an essential component of the world in which we live.",
     "paragraph5": "\"Une averse\" is a downpour, a sudden, and unexpected heavy fall of rain.",
-    "paragraph5": "Averse jewelry is a concentrate, a glimpse of this exploration, in connection with his creative universe. The mathematical aspect, inert and altered by time, is found in opposition to the floral aspect, synonymous with thought, feelings, and life.",
+    "paragraph6": "Averse jewelry is a concentrate, a glimpse of this exploration, in connection with his creative universe. The mathematical aspect, inert and altered by time, is found in opposition to the floral aspect, synonymous with thought, feelings, and life.",
     "paragraph7": "Quand l’averse tombe, soudainement, On ne voit alors pas plus loin qu’à quelques mètres. On se retrouve isolé, dans ce moment à passer en solitaire. Mais une pluie si intense n’est que temporaire, les nuages se délestent de leurs larmes, et rétablissant le calme.",
     "quote": "Personne ne verra vos larmes sous l'averse.",
     "metadata": {

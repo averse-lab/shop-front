@@ -1,0 +1,113 @@
+import { FC } from "react";
+
+import { clsx } from "clsx";
+import { Metadata } from "next";
+import Image from "next/image";
+
+import { ABOUT_VIDEO } from "@averse/app/[lang]/about/_internal/AboutPage.constants";
+
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+
+import { Locale } from "@lib/i18n/types";
+import { getDictionary } from "@lib/i18n/utils";
+import { PAGES } from "@lib/routing/constants";
+import { generateAlternates } from "@lib/utils";
+
+export async function generateMetadata(props: IProps): Promise<Metadata> {
+  const { params } = props;
+  const { lang } = params;
+
+  const dictionary = await getDictionary(lang);
+  const { metadata } = dictionary.materials;
+
+  return {
+    title: metadata.title,
+    description: metadata.description,
+    alternates: generateAlternates(`/${PAGES.materials.url}`, lang),
+    twitter: {
+      card: "summary",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      images: {
+        url: "/images/open-graph/twitter-cards.webp",
+        alt: lang === "en" ? "Averse logo" : "Logo Averse",
+        type: "image/webp",
+        height: 1024,
+        width: 1024,
+      },
+    },
+    openGraph: {
+      type: "website",
+      title: metadata.title,
+      description: metadata.twitterDescription,
+      url: `/`,
+      images: {
+        url: "/images/open-graph/facebook-og.webp",
+        alt: "Averse logo",
+        type: "image/webp",
+        height: 1024,
+        width: 1955,
+      },
+    },
+  };
+}
+
+type Params = {
+  lang: Locale;
+};
+
+type IProps = {
+  params: Params;
+};
+
+const MaterialsPage: FC<IProps> = async (props) => {
+  const { params } = props;
+  const { lang } = params;
+
+  const { materials } = await getDictionary(lang);
+
+  return (
+    <>
+      <HeaderContextInitializer hideLogo whiteIcons />
+      <div
+        className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}
+      >
+        <div
+          className={clsx(
+            "m-auto mt-[72px] md:mt-[96px]",
+            "lg:max-w-[550px]",
+            "flex flex-1 flex-col items-center justify-center",
+            "text-left text-white",
+          )}
+        >
+          <VideoPlayer
+            className={clsx("mb-6", "max-w-[90%] md:max-w-[400px]")}
+            heightRatio={ABOUT_VIDEO.heightRatio}
+            playbackId={ABOUT_VIDEO.playbackId}
+            widthRatio={ABOUT_VIDEO.widthRatio}
+          />
+          <h1 className={clsx("mb-6", "uppercase", "text-xl", "text-gray-400")}>
+            [{materials.title}]
+          </h1>
+          <Image
+            alt={materials.title}
+            className='mb-6 w-full'
+            height={100}
+            src={"/images/process/process.png"}
+            width={100}
+          />
+          <div>
+            <h2 className={clsx("font-bold uppercase")}>{materials.title1}</h2>
+            <p className={clsx("mb-6 w-full")}>{materials.paragraph1}</p>
+            <p className={clsx("mb-6 w-full")}>{materials.paragraph2}</p>
+            <h2 className={clsx("font-bold uppercase")}>{materials.title2}</h2>
+            <p className={clsx("mb-6 w-full")}>{materials.paragraph3}</p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default MaterialsPage;

@@ -6,10 +6,12 @@ export type PageKey =
   | "home"
   | "shop"
   | "about"
+  | "process"
+  | "materials"
   | "termsOfSale"
   | "privacyPolicy"
   | "legalNotice"
-	| "maintenance";
+  | "maintenance";
 
 export type PageValue = {
   i18nKey: keyof Dictionary["pages"];

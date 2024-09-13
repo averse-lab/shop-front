@@ -1,7 +1,16 @@
-import { DM_Sans } from "next/font/google";
+import { Abhaya_Libre, Inter as RsmsInter } from "next/font/google";
 
-export const DMSans = DM_Sans({
+const AbhayaLibre = Abhaya_Libre({
+  weight: "500",
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dms",
+  variable: "--font-abhaya",
 });
+
+const Inter = RsmsInter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+export { AbhayaLibre, Inter };

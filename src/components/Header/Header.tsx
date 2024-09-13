@@ -24,7 +24,7 @@ export const Header: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
   const { averseHomeAriaLabel } = dictionary.header;
 
-  const { whiteBackground } = useContext(HeaderContext) || {};
+  const { blackBackground } = useContext(HeaderContext) || {};
   useSmoothScroll();
 
   return (
@@ -33,9 +33,7 @@ export const Header: FC<IProps> = (props) => {
         "fixed z-20",
         "w-full px-6 py-4",
         "grid grid-cols-3 items-center",
-        whiteBackground
-          ? "border-b border-neutral-200 bg-white"
-          : "bg-transparent",
+        blackBackground ? "bg-black" : "bg-transparent",
       )}
     >
       <BurgerMenu

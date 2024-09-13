@@ -63,7 +63,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
         <div
           className={clsx(
             className,
-            "grid auto-rows-[1fr] grid-cols-2 items-start gap-px lg:grid-cols-4",
+            "grid auto-rows-[1fr] grid-cols-2 items-start md:gap-4 md:px-36 lg:grid-cols-4",
           )}
         >
           {products.map(
@@ -95,8 +95,8 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <div ref={ref}></div>
               <FilterSelector
                 className={clsx(
-                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[112px]",
-                  "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
+                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-0 lg:top-[96px] lg:m-0 lg:h-14 lg:w-screen",
+                  "bg-white transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
                   initAnimationsOver &&
                     "lg:animate-filterSelectorDesktopAppearing",
                   initAnimationsOver

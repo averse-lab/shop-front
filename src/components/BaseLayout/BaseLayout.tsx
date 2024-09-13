@@ -8,7 +8,7 @@ import Script from "next/script";
 import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header/Header";
 
-import { DMSans } from "@lib/fonts";
+import { AbhayaLibre, Inter } from "@lib/fonts";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { combineProviders } from "@lib/utils";
 
@@ -39,7 +39,8 @@ export const BaseLayout: FC<IProps> = (props) => {
       )}
       <body
         className={clsx(
-          DMSans.variable,
+          AbhayaLibre.variable,
+          Inter.variable,
           "mb-[220px] lg:mb-[204px]",
           "min-h-screen",
           "flex flex-col",

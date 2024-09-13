@@ -114,15 +114,24 @@ const ProductPage: FC<IProps> = async (props) => {
           >
             {product.images.map((image, idx) => (
               <div
-                className={clsx("grid auto-rows-fr grid-cols-1")}
+                className={clsx(
+                  "grid auto-rows-fr grid-cols-1 md:flex md:items-center md:justify-center md:first:pt-[96px] ",
+                )}
                 key={image.url}
               >
                 <div
-                  className={clsx("relative", "aspect-square overflow-hidden")}
+                  className={clsx(
+                    "relative",
+                    "aspect-square overflow-hidden",
+                    "md:w-3/4",
+                  )}
                 >
                   <Image
                     alt={image.altText}
-                    className={clsx("aspect-square object-cover object-center")}
+                    className={clsx(
+                      "aspect-square object-cover object-center",
+                      "md:odd:pb-9",
+                    )}
                     fill
                     priority={idx <= 2}
                     sizes='(min-width: 1024px) 50vw, 100vw'

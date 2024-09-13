@@ -92,10 +92,10 @@ const CategoryPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer blackBackground={true} whiteIcons={true} />
       <ProductsGrid
         categoryUrlSegment={categoryUrlSegment}
-        className={clsx("relative z-0", "mt-[72px] md:mt-[96px]")}
+        className={clsx("relative z-0", "mt-[72px] md:mb-[62px] md:mt-[215px]")}
         dictionary={dictionary}
         lang={lang}
         products={products}

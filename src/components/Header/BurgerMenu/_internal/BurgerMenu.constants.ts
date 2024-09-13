@@ -7,4 +7,6 @@ export const MAIN_NAV: Record<MainNavKey, PageValue> = {
   home: PAGES.home,
   shop: PAGES.shop,
   about: PAGES.about,
+  process: PAGES.process,
+  materials: PAGES.materials,
 };

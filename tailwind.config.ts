@@ -11,7 +11,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-dms)"],
+        sans: ["var(--font-inter)"],
+        serif: ["var(--font-abhaya)"],
       },
     },
     animation: {

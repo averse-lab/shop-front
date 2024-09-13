@@ -3,6 +3,8 @@
     "home": "Accueil",
     "shop": "Boutique",
     "about": "À propos",
+    "process": "Processus",
+    "materials": "Matériaux",
     "termsOfService": "Conditions d'utilisation",
     "termsOfSale": "Conditions générales de vente",
     "privacyPolicy": "Politique de Confidentialité",
@@ -15,8 +17,9 @@
     "allProducts": "Tous les produits"
   },
   "home": {
-    "enterWebsite": "Enter_website",
+    "enterWebsite": "explorez",
     "enterWebsiteAriaLabel": "Entrer sur le site",
+    "slogan": "Bijoux artisanaux français",
     "metadata": {
       "title": "Averse - Bijoux artisanaux",
       "description": "Atelier de joaillerie - Design par Matthieu Braccini et fabrication en France. Averse puise son inspiration dans l'exploration du spectre des émotions.",
@@ -60,6 +63,35 @@
     "total": "Total",
     "checkout": "Payer",
     "empty": "Votre panier est vide"
+  },
+  "process": {
+    "title": "processus",
+    "paragraph1": "Tous nos bijoux sont entièrement fabriqués en France, garantissant la plus haute qualité et un savoir-faire artisanal exceptionnel.",
+    "title1": "[conception]",
+    "paragraph2": "Chaque pièce commence par un concept, esquissé et conçu par Matthieu Braccini. Je pars d'une idée sur papier, la peaufinant jusqu'à ce que chaque détail soit clair. Le design prend ensuite vie en 3D, où je sculpte chaque élément et positionne soigneusement chaque pierre.",
+    "title2": "[fonte]",
+    "paragraph3": "Une fois le design finalisé, il est envoyé à notre partenaire de fonte à Paris. Nous collaborons avec une entité française réputée pour son approvisionnement éthique en argent et en or pour fournir ces matériaux. À l'aide de machines précises, ils créent d'abord un modèle en cire à partir du design 3D, qui est ensuite coulé avec précision, capturant chaque détail minutieux.",
+    "title3": "[assemblage et finition]",
+    "paragraph4": "La pièce brute est ensuite envoyée à notre artisan, où commence le véritable travail artistique. Nous nettoyons et raffinons méticuleusement la fonte, en gravant et en améliorant chaque détail. Grâce à une combinaison de techniques manuelles [telles que le sablage, le martelage et le fraisage], nous créons des textures et des effets uniques. L'argent est traité par oxydation, un processus que nous avons mis des années à perfectionner. Nous sertissons ensuite soigneusement chaque pierre, assurant son placement parfait dans le design. Enfin, nous finissons la pièce de la bonne manière, que cela signifie polir pour obtenir une brillance éclatante ou adopter une finition richement oxydée.",
+    "quote": "Votre création est maintenant prête à être portée.",
+    "metadata": {
+      "title": "Processus | Averse",
+      "description": "Découvrez le processus de création des bijoux Averse, de la conception à la création.",
+      "twitterDescription": "Découvrez le processus de création des bijoux Averse, de la conception à la création."
+    }
+  },
+  "materials": {
+    "title": "matériaux // pierres",
+    "title1": "[matériaux]",
+    "paragraph1": "Chez Averse, nous travaillons principalement avec deux métaux : l'or et l'argent. Bien que chaque matériau puisse briller par lui-même, l'une de nos forces réside dans la combinaison de ces deux éléments précieux, créant des contrastes uniques et saisissants dans nos créations.",
+    "paragraph2": "Nos matériaux sont sourcés de manière éthique par l'intermédiaire de SAAMP, un fournisseur renommé pour son engagement en faveur de la transparence et de la durabilité. SAAMP garantit la traçabilité de l'or et de l'argent que nous utilisons, assurant que chaque pièce respecte les normes éthiques les plus strictes.",
+    "title2": "[pierres]",
+    "paragraph3": "Quant aux pierres, nous intégrons cinq variantes distinctes dans nos créations : diamants noirs ou spinelles noirs, diamants champagne, diamants blancs et rubis. Chaque pierre est sourcée auprès de fournisseurs français de confiance qui nous garantissent une traçabilité éthique, veillant à ce que l'origine de chaque gemme soit conforme à nos valeurs de responsabilité et d'artisanat.",
+    "metadata": {
+      "title": "Matériaux && Pierres | Averse",
+      "description": "Découvrez les matériaux et pierres utilisés dans les bijoux Averse.",
+      "twitterDescription": "Découvrez les matériaux et pierres utilisés dans les bijoux Averse."
+    }
   },
   "about": {
     "title": "À propos",
