@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 import { Button } from "@components/Button/Button";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
+import { FullLogo } from "@components/Home/FullLogo/FullLogo";
 import { ShopItem } from "@components/Home/ShopItem/ShopItem";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
@@ -87,8 +88,9 @@ const HomePage: FC<IProps> = async (props) => {
           playbackId={HOME_VIDEO.playbackId}
           widthRatio={HOME_VIDEO.widthRatio}
         />
-        <div className={clsx("absolute bottom-1/4")}>
-          <h2 className='mb-4 text-lg uppercase leading-4 tracking-wider text-white'>
+        <div className={clsx("absolute bottom-1/4 flex flex-col items-center")}>
+          <FullLogo />
+          <h2 className='mb-8 mt-16 text-lg uppercase leading-4 tracking-wider text-white'>
             {slogan}
           </h2>
           <Button
@@ -104,38 +106,56 @@ const HomePage: FC<IProps> = async (props) => {
           </Button>
         </div>
       </section>
-      <section className={clsx("h-full w-full bg-black px-36 py-20")}>
-        <div className={clsx("grid auto-rows-[1fr] grid-cols-3 gap-4")}>
+      <section
+        className={clsx("h-full w-full bg-black px-6 py-10 md:px-36 md:py-20")}
+      >
+        <div
+          className={clsx(
+            "grid auto-rows-[1fr] grid-cols-2 gap-4 md:mb-20 md:grid-cols-3",
+          )}
+        >
           <ShopItem
             description='discover the collection'
-            imagePath='/images/process/process.png'
+            imagePath='/images/shop/shop.jpg'
             linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
             title='Shop'
           />
           <ShopItem
             description='and the artist behind'
-            imagePath='/images/process/process.png'
-            linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+            imagePath='/images/about/about.jpg'
+            linkPath={`/${lang}/${PAGES.about.url}`}
             title='about the project'
           />
           <ShopItem
             description='all you have to know about'
-            imagePath='/images/process/process.png'
-            linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+            imagePath='/images/materials/materials.jpg'
+            linkPath={`/${lang}/${PAGES.materials.url}`}
             title='materials /// stones'
           />
           <ShopItem
             description='how is it made and where'
-            imagePath='/images/process/process.png'
-            linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+            imagePath='/images/process/process.jpg'
+            linkPath={`/${lang}/${PAGES.process.url}`}
             title='process'
           />
           <ShopItem
             description='personalized orders are the more exciting ones'
-            imagePath='/images/process/process.png'
-            linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+            imagePath='/images/contact/contact.jpg'
+            linkPath={`/${lang}/${PAGES.shop.url}`}
             title='contact us'
           />
+        </div>
+        <div className={clsx("text-right font-light text-gray-500")}>
+          {/* <p>
+            “IN THE SHARP, CALCULATED PRECISION OF MATHEMATICAL SHAPES LIES THE
+            POTENTIAL FOR COLD, GRADUAL DECAY, WHILE WITHIN THE UNCONTROLLED,
+            ETERNAL BLOOM OF FLOWERS, EMOTIONS FIND THEIR UNYIELDING, WARM
+            ESSENCE.
+          </p>
+          <p className={clsx("mt-4")}>
+            I’LL NEVER CHOOSE BETWEEN THESE TWO MAGNIFICENT UNIVERSES.”
+          </p>
+					< */}
         </div>
       </section>
     </>

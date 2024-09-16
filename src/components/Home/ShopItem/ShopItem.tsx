@@ -16,21 +16,30 @@ export const ShopItem: FC<IProps> = (props) => {
 
   return (
     <div className='flex w-full flex-col'>
-      <Image
-        alt={"shop"}
-        className='mb-3 w-full'
-        height={100}
-        src={imagePath}
-        width={100}
-      />
-      <h4 className={clsx("font-bold uppercase text-white")}>[{title}]</h4>
-      <Link
-        className={clsx(
-          "font-light uppercase text-gray-400 lg:underline-offset-8 lg:hover:scale-[1.025] lg:hover:font-medium",
-        )}
-        href={linkPath}
-      >
-        {description}
+      <Link href={linkPath}>
+        <Image
+          alt={title}
+          className='mb-3 w-full'
+          height={100}
+          quality={100}
+          sizes='(min-width: 1024px) 100px, 50px'
+          src={imagePath}
+          width={100}
+        />
+        <h4
+          className={clsx(
+            "text-base font-bold uppercase text-white md:text-lg",
+          )}
+        >
+          [{title}]
+        </h4>
+        <p
+          className={clsx(
+            "text-sm font-light uppercase text-gray-400 lg:underline-offset-8",
+          )}
+        >
+          {description}
+        </p>
       </Link>
     </div>
   );
