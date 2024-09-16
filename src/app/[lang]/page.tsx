@@ -76,7 +76,7 @@ const HomePage: FC<IProps> = async (props) => {
       <section
         className={clsx(
           "relative z-0",
-          "h-screen",
+          "h-[90vh]",
           "flex flex-col items-center justify-end",
           "text-center",
           "relative",
@@ -107,7 +107,7 @@ const HomePage: FC<IProps> = async (props) => {
         </div>
       </section>
       <section
-        className={clsx("h-full w-full bg-black px-6 py-10 md:px-36 md:py-20")}
+        className={clsx("h-full w-full bg-black px-6 py-10 md:px-36 md:py-12")}
       >
         <div
           className={clsx(
