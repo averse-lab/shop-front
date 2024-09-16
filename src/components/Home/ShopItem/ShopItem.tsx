@@ -28,14 +28,14 @@ export const ShopItem: FC<IProps> = (props) => {
         />
         <h4
           className={clsx(
-            "text-base font-bold uppercase text-white md:text-lg",
+            "text-base font-bold uppercase text-white md:text-sm",
           )}
         >
-          [{title}]
+          [ {title} ]
         </h4>
         <p
           className={clsx(
-            "text-sm font-light uppercase text-gray-400 lg:underline-offset-8",
+            "text-base font-light uppercase text-gray-400 md:text-sm lg:underline-offset-8",
           )}
         >
           {description}
