@@ -99,7 +99,7 @@ const CategoryPage: FC<IProps> = async (props) => {
       />
       <ProductsGrid
         categoryUrlSegment={categoryUrlSegment}
-        className={clsx("relative z-0", "mt-[72px] md:mb-[62px] md:mt-[215px]")}
+        className={clsx("relative z-0", "mt-[72px] md:mb-[62px] md:mt-[200px]")}
         dictionary={dictionary}
         lang={lang}
         products={products}
@@ -109,78 +109,3 @@ const CategoryPage: FC<IProps> = async (props) => {
 };
 
 export default CategoryPage;
-
-// ANIMATIONS IMPLEM
-
-{
-  /*{getAnimationsFromCategoryUrlSegment(categoryUrlSegment).map(*/
-}
-{
-  /*  (animation, idx) => {*/
-}
-{
-  /*    return (*/
-}
-{
-  /*      <Observer*/
-}
-{
-  /*        className={clsx(*/
-}
-{
-  /*          `animation-${idx}`,*/
-}
-{
-  /*          "transition-all duration-200 ease-out",*/
-}
-{
-  /*          `lg:[&:nth-child(3n+4)]:delay-400 even:delay-100 lg:[&:nth-child(3n+2)]:delay-200 lg:[&:nth-child(3n+3)]:delay-300`,*/
-}
-{
-  /*        )}*/
-}
-{
-  /*        inViewClassName={clsx("opacity-100")}*/
-}
-{
-  /*        key={v4()}*/
-}
-{
-  /*        options={{ triggerOnce: true, threshold: 0.5 }}*/
-}
-{
-  /*        outOfViewClassName={clsx("opacity-0")}*/
-}
-{
-  /*      >*/
-}
-{
-  /*        <Animation*/
-}
-{
-  /*          gridDesktopIndex={animation.gridDesktopIndex}*/
-}
-{
-  /*          gridIndex={animation.gridIndex}*/
-}
-{
-  /*          index={idx}*/
-}
-{
-  /*          playbackId={animation.playbackId}*/
-}
-{
-  /*        />*/
-}
-{
-  /*      </Observer>*/
-}
-{
-  /*    );*/
-}
-{
-  /*  },*/
-}
-{
-  /*)}*/
-}
