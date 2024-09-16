@@ -3,6 +3,8 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
+import { CONTACT_VIDEO } from "@averse/app/[lang]/contact/_internal/ContactPage.constants";
+
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
@@ -10,8 +12,6 @@ import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
-
-import { CONTACT_VIDEO } from "./_internal/AboutPage.constants";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;
