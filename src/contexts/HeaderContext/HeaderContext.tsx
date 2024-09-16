@@ -10,6 +10,8 @@ import {
 
 import { StateSetter } from "@lib/types";
 
+type LogoType = "plain" | "typographic";
+
 export type HeaderContextValue = {
   whiteIcons: boolean | undefined;
   setWhiteIcons: StateSetter<boolean | undefined>;
@@ -19,6 +21,8 @@ export type HeaderContextValue = {
   setHideLogo: StateSetter<boolean | undefined>;
   blackBackground: boolean | undefined;
   setBlackBackground: StateSetter<boolean | undefined>;
+  logoType: LogoType;
+  setLogoType: StateSetter<LogoType>;
 };
 
 export const HeaderContext = createContext<HeaderContextValue | undefined>(
@@ -32,6 +36,7 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
   const [logoRef, setLogoRef] = useState<RefObject<HTMLDivElement>>();
   const [hideLogo, setHideLogo] = useState<boolean>();
   const [blackBackground, setBlackBackground] = useState<boolean>();
+  const [logoType, setLogoType] = useState<LogoType>("plain");
 
   const contextValue: HeaderContextValue = {
     whiteIcons,
@@ -42,6 +47,8 @@ export const HeaderContextProvider: FC<PropsWithChildren> = (props) => {
     setHideLogo,
     blackBackground,
     setBlackBackground,
+    logoType,
+    setLogoType,
   };
 
   return (
