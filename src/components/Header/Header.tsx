@@ -7,7 +7,6 @@ import Link from "next/link";
 
 import { Logo } from "@components/icons/Logo/Logo";
 
-import { useSmoothScroll } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
@@ -25,7 +24,6 @@ export const Header: FC<IProps> = (props) => {
   const { averseHomeAriaLabel } = dictionary.header;
 
   const { blackBackground } = useContext(HeaderContext) || {};
-  useSmoothScroll();
 
   return (
     <header
