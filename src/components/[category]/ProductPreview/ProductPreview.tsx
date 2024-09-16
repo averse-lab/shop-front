@@ -112,6 +112,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           className={clsx(
             s["product-preview__name"],
             "uppercase",
+            "text-sm",
             light ? "text-white" : "text-black",
           )}
         >
@@ -119,7 +120,7 @@ export const ProductPreview: FC<IProps> = (props) => {
         </p>
         <p
           className={clsx(
-            "font-serif text-base font-light",
+            "font-serif text-sm font-light",
             light ? "text-neutral-400" : "text-neutral-600",
           )}
         >
