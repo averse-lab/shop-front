@@ -63,7 +63,7 @@ export const Logo: FC<IProps> = (props) => {
         </>
       ) : (
         <svg
-          className={clsx("relative z-10", "h-full w-full")}
+          className={clsx("relative z-10", "h-full w-9")}
           viewBox='0 0 20.94 19.86'
           xmlns='http://www.w3.org/2000/svg'
         >
