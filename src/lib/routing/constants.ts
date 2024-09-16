@@ -13,6 +13,7 @@ export const PAGES: Record<PageKey, PageValue> = {
     i18nKey: "privacyPolicy",
     url: "legal/privacy-policy",
   },
+  contact: { i18nKey: "contact", url: "contact" },
 };
 
 export const CATEGORIES: Record<CategoryKey, CategoryValue> = {

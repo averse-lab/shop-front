@@ -11,7 +11,8 @@ export type PageKey =
   | "termsOfSale"
   | "privacyPolicy"
   | "legalNotice"
-  | "maintenance";
+  | "maintenance"
+  | "contact";
 
 export type PageValue = {
   i18nKey: keyof Dictionary["pages"];

@@ -9,7 +9,8 @@
     "termsOfSale": "Conditions générales de vente",
     "privacyPolicy": "Politique de Confidentialité",
     "legalNotice": "Mentions légales",
-    "maintenance": "Maintenance"
+    "maintenance": "Maintenance",
+    "contact": "Contact"
   },
   "categories": {
     "rings": "Bagues",
@@ -63,6 +64,17 @@
     "total": "Total",
     "checkout": "Payer",
     "empty": "Votre panier est vide"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "title2": "Vous avez une idée ?",
+    "paragraph1": "Que vous imaginiez une création personnalisée ou que vous ayez besoin de plus d'informations, nous sommes là pour vous aider. Nous pouvons également personnaliser votre pièce en changeant les pierres ou les matériaux de n'importe quelle bague.",
+    "paragraph2": "N'hésitez pas à nous contacter par e-mail à contact@averseparis.com, ou en nous envoyant un message direct sur Instagram.",
+    "metadata": {
+      "title": "Contactez-nous | Averse",
+      "description": "Contactez Averse pour toute question ou demande de personnalisation de bijoux.",
+      "twitterDescription": "Contactez Averse pour toute question ou demande de personnalisation de bijoux."
+    }
   },
   "process": {
     "title": "processus",

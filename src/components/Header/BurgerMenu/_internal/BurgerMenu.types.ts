@@ -3,5 +3,5 @@ import { PickStringLiteralUnion } from "@lib/types";
 
 export type MainNavKey = PickStringLiteralUnion<
   PageKey,
-  "about" | "home" | "shop" | "process" | "materials"
+  "about" | "home" | "shop" | "process" | "materials" | "contact"
 >;

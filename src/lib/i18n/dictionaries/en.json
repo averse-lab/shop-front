@@ -9,7 +9,8 @@
     "termsOfSale": "Terms of Sale",
     "privacyPolicy": "Privacy Policy",
     "legalNotice": "Legal Notice",
-    "maintenance": "Maintenance"
+    "maintenance": "Maintenance",
+    "contact": "Contact"
   },
   "categories": {
     "rings": "Rings",
@@ -24,6 +25,17 @@
       "title": "Averse - Artisan jewellery",
       "description": "Jewelry atelier - Design by Matthieu Braccini and made in France. Averse draws its inspiration from the exploration of the spectrum of human emotions",
       "twitterDescription": "Jewelry atelier - Design by Matthieu Braccini and made in France."
+    }
+  },
+  "contact": {
+    "title": "contact us",
+    "title2": "Have an idea?",
+    "paragraph1": "Whether you're envisioning a personalized creation or need more information, we're here to help. We can also customize your piece by changing the stones or materials of any ring.",
+    "paragraph2": "Feel free to reach out via email at contact@averseparis.com, or by sending us a direct message on Instagram.",
+    "metadata": {
+      "title": "Contact Us | Averse",
+      "description": "Contact Averse for personalized creations or more information.",
+      "twitterDescription": "Contact Averse for personalized creations or more information."
     }
   },
   "shop": {

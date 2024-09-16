@@ -9,4 +9,5 @@ export const MAIN_NAV: Record<MainNavKey, PageValue> = {
   about: PAGES.about,
   process: PAGES.process,
   materials: PAGES.materials,
+  contact: PAGES.contact,
 };
