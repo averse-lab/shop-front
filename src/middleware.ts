@@ -44,7 +44,11 @@ export async function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}`),
   );
 
-  if (isInMaintenanceMode && process.env.NODE_ENV === "production") {
+  if (
+    isInMaintenanceMode &&
+    (process.env.VERCEL_ENV === "production" ||
+      process.env.NODE_ENV === "production")
+  ) {
     request.nextUrl.pathname = `/${locale}/${PAGES.maintenance.url}`;
 
     return NextResponse.rewrite(request.nextUrl);
