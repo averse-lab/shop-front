@@ -122,7 +122,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
               key={link.display}
             >
               <Link
-                className={clsx("relative", "text-xl md:text-base")}
+                className={clsx("relative", "font-serif text-xl")}
                 href={link.href}
                 hrefLang={lang}
                 onClick={closeMenu}
