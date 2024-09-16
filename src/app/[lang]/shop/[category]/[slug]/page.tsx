@@ -115,7 +115,7 @@ const ProductPage: FC<IProps> = async (props) => {
             {product.images.map((image, idx) => (
               <div
                 className={clsx(
-                  "grid auto-rows-fr grid-cols-1 md:flex md:items-center md:justify-center md:first:pt-[96px] ",
+                  "grid auto-rows-fr grid-cols-1 md:flex md:items-center md:justify-end md:first:pt-[96px] ",
                 )}
                 key={image.url}
               >
@@ -130,7 +130,7 @@ const ProductPage: FC<IProps> = async (props) => {
                     alt={image.altText}
                     className={clsx(
                       "aspect-square object-cover object-center",
-                      "md:odd:pb-9",
+                      "md:odd:pb-7",
                     )}
                     fill
                     priority={idx <= 2}

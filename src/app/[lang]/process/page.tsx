@@ -1,11 +1,8 @@
 import { FC } from "react";
 
-import { clsx } from "clsx";
 import { Metadata } from "next";
-import Image from "next/image";
 
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { MiscPageTemplate } from "@components/MiscPage/MiscPageTemplate";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
@@ -68,48 +65,49 @@ const ProcessPage: FC<IProps> = async (props) => {
   const { process } = await getDictionary(lang);
 
   return (
-    <>
-      <HeaderContextInitializer hideLogo whiteIcons />
-      <div
-        className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}
-      >
-        <div
-          className={clsx(
-            "m-auto mt-[72px] md:mt-[96px]",
-            "lg:max-w-[370px]",
-            "flex flex-1 flex-col items-center justify-center",
-            "text-left text-white",
-          )}
-        >
-          <VideoPlayer
-            className={clsx("mb-6", "max-w-[90%] md:max-w-44")}
-            heightRatio={PROCESS_VIDEO.heightRatio}
-            playbackId={PROCESS_VIDEO.playbackId}
-            widthRatio={PROCESS_VIDEO.widthRatio}
-          />
-          <h1 className={clsx("mb-6", "uppercase", "text-xl", "text-gray-400")}>
-            [{process.title}]
-          </h1>
-          <Image
-            alt={process.title1}
-            className='mb-6 w-full max-w-44'
-            height={100}
-            src={"/images/process/process.jpg"}
-            width={100}
-          />
-          <div>
-            <p className={clsx("mb-6 w-full")}>{process.paragraph1}</p>
-            <h2 className={clsx("font-bold uppercase")}>{process.title1}</h2>
-            <p className={clsx("mb-6 w-full")}>{process.paragraph2}</p>
-            <h2 className={clsx("font-bold uppercase")}>{process.title2}</h2>
-            <p className={clsx("mb-6 w-full")}>{process.paragraph3}</p>
-            <h2 className={clsx("font-bold uppercase")}>{process.title3}</h2>
-            <p className={clsx("mb-6 w-full")}>{process.paragraph4}</p>
-            <p className={clsx("font-bold uppercase")}>{process.quote}</p>
-          </div>
-        </div>
-      </div>
-    </>
+    <MiscPageTemplate
+      image={{
+        src: "/images/process/process.jpg",
+        alt: process.title,
+      }}
+      textBlocks={[
+        { type: "title", text: process.title1 },
+        {
+          type: "paragraph",
+          text: process.paragraph1,
+        },
+        {
+          type: "title",
+          text: process.title2,
+        },
+        {
+          type: "paragraph",
+          text: process.paragraph2,
+        },
+        {
+          type: "title",
+          text: process.title3,
+        },
+        {
+          type: "paragraph",
+          text: process.paragraph3,
+        },
+        {
+          type: "paragraph",
+          text: process.paragraph4,
+        },
+        {
+          type: "quote",
+          text: process.quote,
+        },
+      ]}
+      title={process.title}
+      video={{
+        playbackId: PROCESS_VIDEO.playbackId,
+        widthRatio: PROCESS_VIDEO.widthRatio,
+        heightRatio: PROCESS_VIDEO.heightRatio,
+      }}
+    />
   );
 };
 

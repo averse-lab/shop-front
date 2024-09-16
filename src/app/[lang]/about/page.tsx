@@ -82,6 +82,7 @@ const AboutPage: FC<IProps> = async (props) => {
             "lg:max-w-[550px]",
             "flex flex-1 flex-col items-center justify-center",
             "text-left text-white",
+            "max-w-96",
           )}
         >
           <VideoPlayer
