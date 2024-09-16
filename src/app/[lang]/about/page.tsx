@@ -85,7 +85,7 @@ const AboutPage: FC<IProps> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-12", "max-w-[90%] md:max-w-[400px]")}
+            className={clsx("mb-12", "max-w-[90%] md:max-w-44")}
             heightRatio={ABOUT_VIDEO.heightRatio}
             playbackId={ABOUT_VIDEO.playbackId}
             widthRatio={ABOUT_VIDEO.widthRatio}

@@ -81,7 +81,7 @@ const ContactPage: FC<IProps> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-6", "max-w-[90%] md:max-w-[400px]")}
+            className={clsx("mb-6", "max-w-[90%] md:max-w-44")}
             heightRatio={CONTACT_VIDEO.heightRatio}
             playbackId={CONTACT_VIDEO.playbackId}
             widthRatio={CONTACT_VIDEO.widthRatio}
