@@ -112,7 +112,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           className={clsx(
             s["product-preview__name"],
             "uppercase",
-            "text-sm",
+            "text-sm lg:text-base",
             light ? "text-white" : "text-black",
           )}
         >
@@ -120,8 +120,8 @@ export const ProductPreview: FC<IProps> = (props) => {
         </p>
         <p
           className={clsx(
-            "font-serif text-sm font-light",
-            light ? "text-neutral-400" : "text-neutral-600",
+            "font-serif text-sm font-light lg:text-base",
+            light ? "text-neutral-400" : "text-black",
           )}
         >
           {Number(price).toFixed()} {currency}
