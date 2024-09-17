@@ -164,7 +164,8 @@ const ProductPage: FC<IProps> = async (props) => {
             <p className='mt-6'>
               {dictionary.product.madeToOrder}{" "}
               {dictionary.product.notInStockCustom}{" "}
-              {product.customMetafields.shippingDelays}.
+              {product.customMetafields.shippingDelays}{" "}
+              {dictionary.product.notInStockCustomDays}
             </p>
           </div>
         </div>

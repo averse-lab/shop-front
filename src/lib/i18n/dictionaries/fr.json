@@ -51,9 +51,10 @@
     "origin": "Designé à Paris, fabriqué en France",
     "sizeGuide": "Guide des tailles",
     "addToCart": "Ajouter au panier",
-    "madeToOrder": "Cet article est fabriqué sur commande.",
+    "madeToOrder": "Veuillez noter que tous les produits sont fabriqués sur commande.",
     "notInStock": "Veuillez vous référer aux conditions générales de vente pour les délais de production et de livraison",
-    "notInStockCustom": "Le temps de livraison pourra varier entre",
+    "notInStockCustom": "Veuillez prévoir environ",
+    "notInStockCustomDays": "semaines pour la production en fonction de la demande actuelle.",
     "inStock": "Cet article est en stock",
     "uniqueSize": "Taille unique"
   },

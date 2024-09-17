@@ -62,9 +62,10 @@
     "origin": "Designed in Paris, Made in France",
     "sizeGuide": "Size guide",
     "addToCart": "Add to cart",
-    "madeToOrder": "This item is made to order.",
+    "madeToOrder": "Note that all products are made to order.",
     "notInStock": "Please refer to the general terms and conditions of sale for production and delivery time.",
-    "notInStockCustom": "Delivery time may vary between",
+    "notInStockCustom": "Please allow approximately",
+    "notInStockCustomDays": "weeks for production depending on current demand.",
     "inStock": "This item is in stock",
     "uniqueSize": "Unique size"
   },
