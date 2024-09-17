@@ -155,13 +155,17 @@ const ProductPage: FC<IProps> = async (props) => {
               dictionary={dictionary}
               lang={lang}
               minVariantPrice={product.priceRange.minVariantPrice}
-              shippingDelays={product.customMetafields.shippingDelays}
               variants={product.variants}
             />
             <div
               className={clsx(s["product-page__description"], "mt-6")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
+            <p className='mt-6'>
+              {dictionary.product.madeToOrder}{" "}
+              {dictionary.product.notInStockCustom}{" "}
+              {product.customMetafields.shippingDelays}.
+            </p>
           </div>
         </div>
       </div>

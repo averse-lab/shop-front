@@ -21,12 +21,11 @@ type IProps = {
   variants: ProductVariant[];
   minVariantPrice: Product["priceRange"]["minVariantPrice"];
   dictionary: Dictionary;
-  shippingDelays: string | null;
   lang: Locale;
 };
 
 export const ProductInteractive: FC<IProps> = (props) => {
-  const { variants, minVariantPrice, dictionary, shippingDelays, lang } = props;
+  const { variants, minVariantPrice, dictionary, lang } = props;
 
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [isPending, startTransition] = useTransition();
@@ -133,28 +132,6 @@ export const ProductInteractive: FC<IProps> = (props) => {
       </Button>
       <div className={clsx("mt-5", "flex items-center gap-4")}>
         <p>{dictionary.product.origin}</p>
-        {selectedIndex !== undefined ? (
-          <>
-            <div
-              className={clsx(
-                "h-3 w-3",
-                "flex-shrink-0",
-                variants[selectedIndex].currentlyNotInStock
-                  ? "bg-neutral-400"
-                  : "bg-green-600",
-              )}
-            ></div>
-            <p className={clsx("italic")}>
-              {variants[selectedIndex].currentlyNotInStock
-                ? `${dictionary.product.madeToOrder} ${
-                    shippingDelays
-                      ? `${dictionary.product.notInStockCustom} ${shippingDelays}`
-                      : dictionary.product.notInStock
-                  }`
-                : dictionary.product.inStock}
-            </p>
-          </>
-        ) : null}
       </div>
     </>
   );
