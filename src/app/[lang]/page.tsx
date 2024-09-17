@@ -107,11 +107,13 @@ const HomePage: FC<IProps> = async (props) => {
         </div>
       </section>
       <section
-        className={clsx("h-full w-full bg-black px-6 py-10 md:px-36 md:py-12")}
+        className={clsx(
+          "flex h-full w-full flex-col items-center bg-black px-6 py-10 md:px-36 md:py-12",
+        )}
       >
         <div
           className={clsx(
-            "grid auto-rows-[1fr] grid-cols-2 gap-4 md:mb-20 md:grid-cols-3",
+            "grid grid-cols-2 place-items-center gap-4 md:mb-20 md:grid-cols-3 md:gap-5",
           )}
         >
           <ShopItem

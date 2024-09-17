@@ -15,8 +15,8 @@ export const ShopItem: FC<IProps> = (props) => {
   const { linkPath, imagePath, title, description } = props;
 
   return (
-    <div className='flex w-full max-w-96 flex-col'>
-      <Link href={linkPath}>
+    <Link href={linkPath}>
+      <div className='flex w-full max-w-96 flex-col'>
         <Image
           alt={title}
           className='mb-3 w-full'
@@ -40,7 +40,7 @@ export const ShopItem: FC<IProps> = (props) => {
         >
           {description}
         </p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
