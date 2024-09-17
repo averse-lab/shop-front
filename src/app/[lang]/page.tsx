@@ -143,7 +143,7 @@ const HomePage: FC<IProps> = async (props) => {
           <ShopItem
             description='personalized orders are the more exciting ones'
             imagePath='/images/contact/contact.jpg'
-            linkPath={`/${lang}/${PAGES.shop.url}`}
+            linkPath={`/${lang}/${PAGES.contact.url}`}
             title='contact us'
           />
         </div>
