@@ -15,32 +15,31 @@ export const ShopItem: FC<IProps> = (props) => {
   const { linkPath, imagePath, title, description } = props;
 
   return (
-    <Link href={linkPath}>
-      <div className='flex w-full max-w-96 flex-col'>
+    <Link className={clsx("flex flex-col")} href={linkPath}>
+      <div className={clsx("relative aspect-square overflow-hidden")}>
         <Image
           alt={title}
-          className='mb-3 w-full'
-          height={100}
+          className={clsx("object-cover object-center")}
+          fill
           quality={100}
           sizes='(min-width: 1024px) 370px, (min-width: 768px) 300px, 200px'
           src={imagePath}
-          width={100}
         />
-        <h4
-          className={clsx(
-            "text-base font-bold uppercase text-white md:text-sm",
-          )}
-        >
-          [ {title} ]
-        </h4>
-        <p
-          className={clsx(
-            "text-base font-light uppercase text-gray-400 md:text-sm lg:underline-offset-8",
-          )}
-        >
-          {description}
-        </p>
       </div>
+      <h4
+        className={clsx(
+          "mt-4 text-base font-bold uppercase text-white md:text-sm",
+        )}
+      >
+        [ {title} ]
+      </h4>
+      <p
+        className={clsx(
+          "mt-1 text-base font-light uppercase text-gray-400 md:text-sm lg:underline-offset-8",
+        )}
+      >
+        {description}
+      </p>
     </Link>
   );
 };

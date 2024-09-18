@@ -21,6 +21,10 @@
     "enterWebsite": "explorez",
     "enterWebsiteAriaLabel": "Entrer sur le site",
     "slogan": "Bijoux artisanaux français",
+    "quote": {
+      "paragraph1": "'Dans la précision aiguisée et calculée des formes mathématiques réside le potentiel d'une lente et froide dégradation, tandis qu'au cœur de l'épanouissement incontrôlé et éternel des fleurs, les émotions trouvent leur essence chaleureuse et inébranlable",
+      "paragraph2": "Je ne choisirai jamais entre ces deux univers magnifiques.'"
+    },
     "metadata": {
       "title": "Averse - Bijoux artisanaux",
       "description": "Atelier de joaillerie - Design par Matthieu Braccini et fabrication en France. Averse puise son inspiration dans l'exploration du spectre des émotions.",

@@ -68,7 +68,8 @@ const HomePage: FC<IProps> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
-  const { enterWebsite, enterWebsiteAriaLabel, slogan } = dictionary.home;
+  const { enterWebsite, enterWebsiteAriaLabel, slogan, quote } =
+    dictionary.home;
 
   return (
     <>
@@ -108,12 +109,12 @@ const HomePage: FC<IProps> = async (props) => {
       </section>
       <section
         className={clsx(
-          "flex h-full w-full flex-col items-center bg-black px-6 py-10 md:px-36 md:py-12",
+          "flex h-full w-full grow flex-col items-center bg-black",
         )}
       >
         <div
           className={clsx(
-            "grid grid-cols-2 place-items-center gap-4 md:mb-20 md:grid-cols-3 md:gap-5",
+            "my-7 grid auto-rows-[1fr] grid-cols-2 items-start gap-5 px-7 md:my-14 md:px-36 lg:grid-cols-4",
           )}
         >
           <ShopItem
@@ -146,18 +147,14 @@ const HomePage: FC<IProps> = async (props) => {
             linkPath={`/${lang}/${PAGES.contact.url}`}
             title='contact us'
           />
-        </div>
-        <div className={clsx("text-right font-light text-gray-500")}>
-          {/* <p>
-            “IN THE SHARP, CALCULATED PRECISION OF MATHEMATICAL SHAPES LIES THE
-            POTENTIAL FOR COLD, GRADUAL DECAY, WHILE WITHIN THE UNCONTROLLED,
-            ETERNAL BLOOM OF FLOWERS, EMOTIONS FIND THEIR UNYIELDING, WARM
-            ESSENCE.
-          </p>
-          <p className={clsx("mt-4")}>
-            I’LL NEVER CHOOSE BETWEEN THESE TWO MAGNIFICENT UNIVERSES.”
-          </p>
-					< */}
+          <div
+            className={clsx(
+              "col-span-2 pt-10 text-right font-light text-gray-500 md:col-start-3 md:row-start-3 md:pt-12",
+            )}
+          >
+            <p>{quote.paragraph1}</p>
+            <p className={clsx("mt-4")}>{quote.paragraph2}</p>
+          </div>
         </div>
       </section>
     </>
