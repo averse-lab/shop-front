@@ -86,7 +86,7 @@ export const ProductPreview: FC<IProps> = (props) => {
         className={clsx(
           className,
           s["product-preview"],
-          "relative ",
+          "relative",
           "p-4",
           "flex flex-col justify-end",
           "aspect-square overflow-hidden opacity-0",
