@@ -38,7 +38,7 @@ export const MiscPageTemplate: FC<Props> = (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-6", "max-w-[90%] md:max-w-44")}
+            className={clsx("mb-6", "max-w-36 md:max-w-44")}
             heightRatio={video.heightRatio}
             playbackId={video.playbackId}
             widthRatio={video.widthRatio}
@@ -51,11 +51,12 @@ export const MiscPageTemplate: FC<Props> = (props) => {
               alt={image.alt}
               className='mb-6 w-full'
               height={100}
+              quality={100}
               src={image.src}
               width={100}
             />
           )}
-          <div>
+          <div className={clsx("text-sm md:text-base")}>
             {textBlocks.map((block, idx) => {
               if (block.type === "title") {
                 return (
