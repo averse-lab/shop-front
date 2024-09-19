@@ -114,7 +114,7 @@ const HomePage: FC<IProps> = async (props) => {
       >
         <div
           className={clsx(
-            "my-7 grid auto-rows-[1fr] grid-cols-2 items-start gap-5 px-7 md:my-14 md:px-36 lg:grid-cols-4",
+            "my-7 grid auto-rows-[1fr] grid-cols-2 items-start gap-5 px-7 md:my-14 md:px-52 lg:grid-cols-4",
           )}
         >
           <ShopItem
