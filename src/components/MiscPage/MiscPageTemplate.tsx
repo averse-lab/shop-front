@@ -31,7 +31,7 @@ export const MiscPageTemplate: FC<Props> = (props) => {
       >
         <div
           className={clsx(
-            "m-auto mt-[72px] md:mt-[96px]",
+            "m-auto mt-[72px] md:mt-20",
             "flex flex-1 flex-col items-center",
             "text-left text-white",
             "max-w-96",
