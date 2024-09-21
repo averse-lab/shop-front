@@ -150,7 +150,7 @@ export const Cart: FC<IProps> = (props) => {
             </div>
           ) : null}
           <Button
-            className={clsx("w-full")}
+            className={clsx("w-full", "font-black")}
             color='black'
             disabled={checkoutDisabled}
             element='link'

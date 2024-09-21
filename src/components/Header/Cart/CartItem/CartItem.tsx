@@ -44,7 +44,7 @@ export const CartItem: FC<IProps> = (props) => {
       <div className={clsx("flex flex-col items-start gap-3", "h-full p-1")}>
         <div className={clsx("flex flex-col")}>
           <Link
-            className={clsx("uppercase")}
+            className={clsx("font-bold uppercase")}
             href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
             hrefLang={lang}
           >
@@ -54,7 +54,7 @@ export const CartItem: FC<IProps> = (props) => {
             {uniqueSize ? (
               <p
                 className={clsx(
-                  "text-sm font-light uppercase text-neutral-600",
+                  "font-serif text-sm font-light uppercase text-neutral-600",
                 )}
               >
                 {dictionary.product.uniqueSize}
@@ -63,14 +63,18 @@ export const CartItem: FC<IProps> = (props) => {
               selectedOptions.map((option) => (
                 <p
                   className={clsx(
-                    "text-sm font-light uppercase text-neutral-600",
+                    "font-serif text-sm font-light uppercase text-neutral-600",
                   )}
                   key={option.value}
                 >{`${option.value}`}</p>
               ))
             )}
           </div>
-          <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
+          <p
+            className={clsx(
+              "font-serif text-sm font-light uppercase text-neutral-600",
+            )}
+          >
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
           </p>
         </div>

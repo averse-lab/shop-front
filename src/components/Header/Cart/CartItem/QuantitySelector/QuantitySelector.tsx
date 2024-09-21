@@ -2,7 +2,7 @@
 
 import { FC, useTransition } from "react";
 
-import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 
 import { Spinner } from "@components/icons/Spinner/Spinner";
@@ -72,10 +72,10 @@ export const QuantitySelector: FC<IProps> = (props) => {
       className={clsx(
         "min-h-[30px] px-2 py-1",
         "flex items-center gap-3",
-        "border border-neutral-300",
+        "border border-black",
       )}
     >
-      <MinusSmallIcon
+      <MinusIcon
         className={clsx(
           "h-4 w-4",
           "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
@@ -85,11 +85,11 @@ export const QuantitySelector: FC<IProps> = (props) => {
       {isPending ? (
         <Spinner className={clsx("h-4 w-4")} />
       ) : (
-        <p className={clsx("text-center text-sm", "min-w-[16px]")}>
+        <p className={clsx("text-center font-serif text-sm", "min-w-[16px]")}>
           {quantity}
         </p>
       )}
-      <PlusSmallIcon
+      <PlusIcon
         className={clsx(
           "h-4 w-4",
           "cursor-pointer transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",

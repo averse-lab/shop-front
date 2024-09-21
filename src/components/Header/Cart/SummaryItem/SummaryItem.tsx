@@ -19,6 +19,7 @@ export const SummaryItem: FC<IProps> = (props) => {
         className,
         s["amount-summary"],
         "flex items-center justify-between",
+        "font-serif",
       )}
     >
       <p>{metric}</p>
