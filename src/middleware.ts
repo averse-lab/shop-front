@@ -1,5 +1,4 @@
 import { match as matchLocale } from "@formatjs/intl-localematcher";
-import { get } from "@vercel/edge-config";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
@@ -27,7 +26,7 @@ export async function middleware(request: NextRequest) {
   const origin = nextReq.origin;
   const locale = getLocale(request);
 
-  const isInMaintenanceMode = await get("isInMaintenanceMode");
+  const isInMaintenanceMode = process.env.IS_IN_MAINTENANCE === "true";
 
   const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce(
     (pathnameIsPublicPath, publicPath) => {
