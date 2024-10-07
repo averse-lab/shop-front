@@ -27,6 +27,8 @@ export const BaseLayout: FC<IProps> = (props) => {
     HeaderContextProvider,
   ]);
 
+  const isInMaintenanceMode = process.env.IS_IN_MAINTENANCE === "true";
+
   return (
     <html lang={lang}>
       {process.env.NODE_ENV === "production" && (
@@ -50,11 +52,15 @@ export const BaseLayout: FC<IProps> = (props) => {
         <SpeedInsights />
         <Analytics />
         <AppProvider>
-          <Header dictionary={dictionary} lang={lang} />
+          {!isInMaintenanceMode && (
+            <Header dictionary={dictionary} lang={lang} />
+          )}
           <main className={clsx("flex grow flex-col", "bg-white")}>
             {children}
           </main>
-          <Footer dictionary={dictionary} lang={lang} />
+          {!isInMaintenanceMode && (
+            <Footer dictionary={dictionary} lang={lang} />
+          )}
         </AppProvider>
       </body>
     </html>
