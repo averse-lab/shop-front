@@ -2,7 +2,6 @@
 
 import { FC, useContext, useEffect, useRef } from "react";
 
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 
 import { Button } from "@components/Button/Button";
@@ -77,30 +76,37 @@ export const Cart: FC<IProps> = (props) => {
           isCartOpen && s["cart__modal--open"],
           cart !== undefined && "gap-6",
           "fixed right-0 top-0 z-20 md:right-2 md:top-2",
-          "h-[100dvh] w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:p-6",
+          "h-[100dvh] w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:min-h-[350px] md:w-[450px] md:px-10 md:py-16",
           "flex flex-col justify-between",
           "bg-white md:border md:border-neutral-100 md:shadow-md",
         )}
         ref={cartRef}
       >
-        <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
-          <button
-            aria-label={closeBurgerMenuAriaLabel}
-            className={clsx(
-              s["cart__close-btn"],
-              "p-2 lg:p-1",
-              "shrink-0 self-start",
-              "bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
-            )}
-            onClick={closeCart}
+        <button
+          aria-label={closeBurgerMenuAriaLabel}
+          className={clsx(
+            s["cart__close-btn"],
+            "p-2 lg:p-1",
+            "absolute left-5 top-5",
+            "bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
+          )}
+          onClick={closeCart}
+        >
+          <svg
+            className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
+            fill='none'
+            height='21'
+            width='22'
+            xmlns='http://www.w3.org/2000/svg'
           >
-            <XMarkIcon
-              className={clsx(
-                "h-6 w-6",
-                "transition-all duration-200 ease-out",
-              )}
+            <path
+              d='m2.414 1.586 18 18M1.586 19.586l18-18'
+              stroke='#0F0F0F'
+              strokeWidth='4'
             />
-          </button>
+          </svg>
+        </button>
+        <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
           {cart !== undefined &&
           cart.totalQuantity !== 0 &&
           setCart !== undefined ? (

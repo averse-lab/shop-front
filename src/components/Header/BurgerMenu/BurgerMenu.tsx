@@ -2,11 +2,7 @@
 
 import { FC, useContext, useRef, useState } from "react";
 
-import {
-  ArrowUpRightIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowUpRightIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "next/link";
 
@@ -102,9 +98,19 @@ export const BurgerMenu: FC<IProps> = (props) => {
           )}
           onClick={closeMenu}
         >
-          <XMarkIcon
+          <svg
             className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
-          />
+            fill='none'
+            height='21'
+            width='22'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='m2.414 1.586 18 18M1.586 19.586l18-18'
+              stroke='#0F0F0F'
+              stroke-width='4'
+            />
+          </svg>
         </button>
         <div
           className={clsx(
