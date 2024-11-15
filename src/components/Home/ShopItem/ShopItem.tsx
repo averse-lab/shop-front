@@ -6,13 +6,12 @@ import Link from "next/link";
 
 type IProps = {
   title: string;
-  description: string;
   imagePath: string;
   linkPath: string;
 };
 
 export const ShopItem: FC<IProps> = (props) => {
-  const { linkPath, imagePath, title, description } = props;
+  const { linkPath, imagePath, title } = props;
 
   return (
     <Link className={clsx("flex flex-col")} href={linkPath}>
@@ -28,18 +27,11 @@ export const ShopItem: FC<IProps> = (props) => {
       </div>
       <h4
         className={clsx(
-          "mt-4 text-base font-bold uppercase text-white md:text-sm",
+          "mt-1 text-base font-bold uppercase text-white md:text-sm",
         )}
       >
         [ {title} ]
       </h4>
-      <p
-        className={clsx(
-          "mt-1 text-base font-light uppercase text-gray-400 md:text-sm lg:underline-offset-8",
-        )}
-      >
-        {description}
-      </p>
     </Link>
   );
 };

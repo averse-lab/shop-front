@@ -68,12 +68,15 @@ const HomePage: FC<IProps> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
-  const { enterWebsite, enterWebsiteAriaLabel, slogan, quote } =
-    dictionary.home;
+  const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
 
   return (
     <>
-      <HeaderContextInitializer />
+      <HeaderContextInitializer
+        blackBackground
+        logoType='typographic'
+        whiteIcons
+      />
       <section
         className={clsx(
           "relative z-0",
@@ -81,29 +84,31 @@ const HomePage: FC<IProps> = async (props) => {
           "flex flex-col items-center justify-end",
           "text-center",
           "relative",
+          "bg-black",
         )}
       >
         <VideoPlayer
-          className={clsx("absolute -z-10", "h-full w-full")}
+          className={clsx("absolute -z-10", "h-full  w-full md:px-52 md:pt-24")}
           heightRatio={HOME_VIDEO.heightRatio}
           playbackId={HOME_VIDEO.playbackId}
           widthRatio={HOME_VIDEO.widthRatio}
         />
-        <div className={clsx("absolute bottom-1/4 flex flex-col items-center")}>
-          <FullLogo />
-          <h2 className='mb-8 mt-16 text-lg uppercase leading-4 tracking-wider text-white'>
-            {slogan}
-          </h2>
+        <div
+          className={clsx(
+            "absolute bottom-1/4 flex w-52 flex-col items-center",
+          )}
+        >
+          <FullLogo className='w-full' />
           <Button
             ariaLabel={enterWebsiteAriaLabel}
-            className='uppercase'
+            className='w-full uppercase'
             color='black'
             element='link'
             href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
             hrefLang={lang}
             transparent
           >
-            &gt;&gt;{enterWebsite}&lt;&lt;
+            [{enterWebsite}]
           </Button>
         </div>
       </section>
@@ -114,48 +119,43 @@ const HomePage: FC<IProps> = async (props) => {
       >
         <div
           className={clsx(
-            "my-7 grid auto-rows-[1fr] grid-cols-2 items-start gap-5 px-7 md:my-14 md:px-52 lg:grid-cols-4",
+            "my-2.5 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-2.5 gap-y-1 px-7 md:px-52 lg:grid-cols-3",
           )}
         >
           <ShopItem
-            description='discover the collection'
             imagePath='/images/shop/shop.jpg'
             linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
             title='Shop'
           />
           <ShopItem
-            description='and the artist behind'
             imagePath='/images/about/about.jpg'
             linkPath={`/${lang}/${PAGES.about.url}`}
             title='about the project'
           />
           <ShopItem
-            description='all you have to know about'
             imagePath='/images/materials/materials.jpg'
             linkPath={`/${lang}/${PAGES.materials.url}`}
             title='materials /// stones'
           />
           <ShopItem
-            description='how is it made and where'
             imagePath='/images/process/process.jpg'
             linkPath={`/${lang}/${PAGES.process.url}`}
             title='process'
           />
           <ShopItem
-            description='personalized orders are the more exciting ones'
             imagePath='/images/contact/contact.jpg'
             linkPath={`/${lang}/${PAGES.contact.url}`}
             title='contact us'
           />
-          <div
-            className={clsx(
-              "col-span-2 pt-10 text-right font-light text-gray-500 md:col-start-3 md:row-start-3 md:pt-12",
-            )}
-          >
-            <p>{quote.paragraph1}</p>
-            <p className={clsx("mt-4")}>{quote.paragraph2}</p>
-          </div>
         </div>
+        {/* <div
+          className={clsx(
+            "col-span-2 pt-10 text-right font-light text-gray-500 md:col-start-3 md:row-start-3 md:pt-12",
+          )}
+        >
+          <p>{quote.paragraph1}</p>
+          <p className={clsx("mt-4")}>{quote.paragraph2}</p>
+        </div> */}
       </section>
     </>
   );
