@@ -2,7 +2,7 @@
 
 import { FC, useContext, useRef, useState } from "react";
 
-import { ArrowUpRightIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 import Link from "next/link";
 
@@ -58,17 +58,33 @@ export const BurgerMenu: FC<IProps> = (props) => {
         color='white'
         element='button'
         mini
+        noBackground
         onClick={openMenu}
-        transparent
       >
-        <Bars3Icon
+        {/* <Bars3Icon
           className={clsx(
             s["burger-menu__burger-icon"],
             "h-6 w-6",
             "!transition-all !duration-200 !ease-out",
             whiteIcons && "text-white",
           )}
-        />
+        /> */}
+        <svg
+          className={clsx(
+            s["burger-menu__burger-icon"],
+            "h-6 w-6",
+            "!transition-all !duration-200 !ease-out",
+            whiteIcons && "text-white",
+          )}
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M0 2h21.136M0 9.5h21.136M0 17h21.136'
+            stroke='#fff'
+            stroke-width='4'
+          />
+        </svg>
       </Button>
       <div
         className={clsx(

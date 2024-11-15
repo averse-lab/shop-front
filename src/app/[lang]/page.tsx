@@ -72,11 +72,7 @@ const HomePage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer
-        blackBackground
-        logoType='typographic'
-        whiteIcons
-      />
+      <HeaderContextInitializer blackBackground logoType='typographic' whiteIcons />
       <section
         className={clsx(
           "relative z-0",
@@ -88,16 +84,12 @@ const HomePage: FC<IProps> = async (props) => {
         )}
       >
         <VideoPlayer
-          className={clsx("absolute -z-10", "h-full  w-full md:px-52 md:pt-24")}
+          className={clsx("absolute -z-10", "h-full w-full md:px-52 md:pt-24")}
           heightRatio={HOME_VIDEO.heightRatio}
           playbackId={HOME_VIDEO.playbackId}
           widthRatio={HOME_VIDEO.widthRatio}
         />
-        <div
-          className={clsx(
-            "absolute bottom-1/4 flex w-1/4 max-w-80 flex-col items-center",
-          )}
-        >
+        <div className={clsx("absolute bottom-1/4 flex w-1/4 max-w-80 flex-col items-center")}>
           <FullLogo className='mb-10 w-full' />
           <Button
             ariaLabel={enterWebsiteAriaLabel}
@@ -112,11 +104,7 @@ const HomePage: FC<IProps> = async (props) => {
           </Button>
         </div>
       </section>
-      <section
-        className={clsx(
-          "flex h-full w-full grow flex-col items-center bg-black",
-        )}
-      >
+      <section className={clsx("flex h-full w-full grow flex-col items-center bg-black")}>
         <div
           className={clsx(
             "my-2.5 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-2.5 gap-y-1 px-7 md:px-52 lg:grid-cols-3",

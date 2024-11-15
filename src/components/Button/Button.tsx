@@ -21,6 +21,7 @@ type ICommonProps = {
   color: ButtonColor;
   mini?: boolean;
   expandedText?: boolean;
+  noBackground?: boolean;
 };
 
 type IButtonProps = {
@@ -48,6 +49,7 @@ export const Button: FC<IProps> = (props) => {
     color,
     mini,
     expandedText,
+    noBackground,
   } = props;
 
   const commonClassName = clsx(
@@ -63,6 +65,7 @@ export const Button: FC<IProps> = (props) => {
     color === "black" ? "text-white" : "text-black",
     "text-center font-medium uppercase",
     expandedText && "text-base",
+    noBackground && "!bg-transparent",
   );
 
   if (element === "button") {

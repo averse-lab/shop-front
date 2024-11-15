@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler, useContext } from "react";
 
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import { clsx } from "clsx";
+import clsx from "clsx";
 
 import { Button } from "@components/Button/Button";
 
@@ -29,8 +29,8 @@ export const CartButton: FC<IProps> = (props) => {
         color='white'
         element='button'
         mini
+        noBackground
         onClick={onClick || (() => {})}
-        transparent
       >
         <ShoppingBagIcon
           className={clsx(
