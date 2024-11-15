@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 export const useBodyScrollLocker = (locked: boolean) => {
   useEffect(() => {
