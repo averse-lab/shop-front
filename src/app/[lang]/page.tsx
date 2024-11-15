@@ -95,10 +95,10 @@ const HomePage: FC<IProps> = async (props) => {
         />
         <div
           className={clsx(
-            "absolute bottom-1/4 flex w-52 flex-col items-center",
+            "absolute bottom-1/4 flex w-1/4 max-w-80 flex-col items-center",
           )}
         >
-          <FullLogo className='w-full' />
+          <FullLogo className='mb-10 w-full' />
           <Button
             ariaLabel={enterWebsiteAriaLabel}
             className='w-full uppercase'
