@@ -1,26 +1,8 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier",
-    "plugin:import/errors",
-    "plugin:import/typescript"
-  ],
-  "plugins": ["@typescript-eslint"],
-  "settings": {
-    "import/resolver": {
-      "typescript": true
-    }
-  },
+  "extends": "next/core-web-vitals",
   "rules": {
-    "react/jsx-sort-props": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "caughtErrorsIgnorePattern": "^_",
-        "destructuredArrayIgnorePattern": "^_"
-      }
-    ],
+    "react/jsx-sort-props": "warn",
+    "prefer-const": "error",
     "import/order": [
       "error",
       {
