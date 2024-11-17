@@ -11,6 +11,7 @@ import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
+import { getMuxPlaceholder } from "@lib/mux/utils";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
@@ -68,7 +69,12 @@ const HomePage: FC<IProps> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
-  const { enterWebsite, enterWebsiteAriaLabel } = dictionary.home;
+  const { enterWebsite, enterWebsiteAriaLabel, quote } = dictionary.home;
+
+  const videoPlaceholder = await getMuxPlaceholder({
+    playbackId: HOME_VIDEO.playbackId,
+    width: 512,
+  });
 
   return (
     <>
@@ -83,12 +89,14 @@ const HomePage: FC<IProps> = async (props) => {
           "bg-black",
         )}
       >
-        <VideoPlayer
-          className={clsx("absolute -z-10", "h-full w-full md:px-52 md:pt-24")}
-          heightRatio={HOME_VIDEO.heightRatio}
-          playbackId={HOME_VIDEO.playbackId}
-          widthRatio={HOME_VIDEO.widthRatio}
-        />
+        <div className={clsx("absolute -z-10 h-full w-full md:px-52 md:pt-24")}>
+          <VideoPlayer
+            className={clsx("h-full w-full")}
+            minResolution='1440p'
+            placeholder={videoPlaceholder}
+            playbackId={HOME_VIDEO.playbackId}
+          />
+        </div>
         <div className={clsx("absolute bottom-1/4 flex w-1/4 max-w-80 flex-col items-center")}>
           <FullLogo className='mb-10 w-full' />
           <Button
@@ -136,14 +144,14 @@ const HomePage: FC<IProps> = async (props) => {
             title='contact us'
           />
         </div>
-        {/* <div
+        <div
           className={clsx(
-            "col-span-2 pt-10 text-right font-light text-gray-500 md:col-start-3 md:row-start-3 md:pt-12",
+            "mt-52 flex max-w-[80%] flex-col items-end text-right font-light text-gray-500 md:col-start-3 md:row-start-3 md:mx-52 md:mb-3",
           )}
         >
           <p>{quote.paragraph1}</p>
           <p className={clsx("mt-4")}>{quote.paragraph2}</p>
-        </div> */}
+        </div>
       </section>
     </>
   );

@@ -25,8 +25,7 @@ type IProps = {
 
 export const BurgerMenu: FC<IProps> = (props) => {
   const { className, dictionary, lang } = props;
-  const { openBurgerMenuAriaLabel, closeBurgerMenuAriaLabel } =
-    dictionary.header;
+  const { openBurgerMenuAriaLabel, closeBurgerMenuAriaLabel } = dictionary.header;
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -43,12 +42,10 @@ export const BurgerMenu: FC<IProps> = (props) => {
   useBodyScrollLocker(open);
   useClickOutsideDetector(menuRef.current, closeMenu, open);
 
-  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(
-    ({ url, i18nKey }) => ({
-      href: `/${lang}/${url}`,
-      display: dictionary.pages[i18nKey],
-    }),
-  );
+  const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(({ url, i18nKey }) => ({
+    href: `/${lang}/${url}`,
+    display: dictionary.pages[i18nKey],
+  }));
 
   return (
     <>
@@ -79,11 +76,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <path
-            d='M0 2h21.136M0 9.5h21.136M0 17h21.136'
-            stroke='#fff'
-            stroke-width='4'
-          />
+          <path d='M0 2h21.136M0 9.5h21.136M0 17h21.136' stroke='#fff' strokeWidth='4' />
         </svg>
       </Button>
       <div
@@ -105,9 +98,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
             "p-2 lg:p-1",
             "self-end",
             "transition-all duration-200 ease-out",
-            whiteIcons
-              ? "bg-neutral-100 text-black"
-              : "bg-neutral-900 text-white",
+            whiteIcons ? "bg-neutral-100 text-black" : "bg-neutral-900 text-white",
             whiteIcons
               ? "lg:bg-neutral-100/0 lg:hover:bg-neutral-100/100"
               : "lg:bg-neutral-900/0 lg:hover:bg-neutral-900/100",
@@ -121,11 +112,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
             width='22'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <path
-              d='m2.414 1.586 18 18M1.586 19.586l18-18'
-              stroke='#0F0F0F'
-              stroke-width='4'
-            />
+            <path d='m2.414 1.586 18 18M1.586 19.586l18-18' stroke='#0F0F0F' strokeWidth='4' />
           </svg>
         </button>
         <div

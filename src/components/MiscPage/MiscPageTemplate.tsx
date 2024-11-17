@@ -6,6 +6,8 @@ import Image from "next/image";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
 import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
 
+import { getMuxPlaceholder } from "@lib/mux/utils";
+
 type Props = {
   title: string;
   video: {
@@ -20,15 +22,18 @@ type Props = {
   textBlocks: { type: "title" | "paragraph" | "quote"; text: string }[];
 };
 
-export const MiscPageTemplate: FC<Props> = (props) => {
+export const MiscPageTemplate: FC<Props> = async (props) => {
   const { video, title, image, textBlocks } = props;
+
+  const videoPlaceholder = await getMuxPlaceholder({
+    playbackId: video.playbackId,
+    width: 64,
+  });
 
   return (
     <>
       <HeaderContextInitializer hideLogo whiteIcons />
-      <div
-        className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}
-      >
+      <div className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}>
         <div
           className={clsx(
             "m-auto mt-[72px] md:mt-20",
@@ -39,13 +44,10 @@ export const MiscPageTemplate: FC<Props> = (props) => {
         >
           <VideoPlayer
             className={clsx("mb-6", "max-w-36 md:max-w-44")}
-            heightRatio={video.heightRatio}
+            placeholder={videoPlaceholder}
             playbackId={video.playbackId}
-            widthRatio={video.widthRatio}
           />
-          <h1 className={clsx("mb-6", "uppercase", "text-xl", "text-gray-400")}>
-            [ {title} ]
-          </h1>
+          <h1 className={clsx("mb-6", "uppercase", "text-xl", "text-gray-400")}>[ {title} ]</h1>
           {image && (
             <Image
               alt={image.alt}
