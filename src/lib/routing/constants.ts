@@ -30,8 +30,4 @@ export const CATEGORIES: Record<CategoryKey, CategoryValue> = {
   },
 };
 
-export const PUBLIC_PATHS: string[] = [
-  "/images",
-  "/robots.txt",
-  "/sitemap.xml",
-];
+export const PUBLIC_PATHS: string[] = ["/images", "/robots.txt", "/sitemap.xml", "/UI"];

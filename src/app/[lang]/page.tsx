@@ -4,10 +4,10 @@ import { clsx } from "clsx";
 import { Metadata } from "next";
 
 import { Button } from "@components/Button/Button";
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 import { FullLogo } from "@components/Home/FullLogo/FullLogo";
 import { ShopItem } from "@components/Home/ShopItem/ShopItem";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
@@ -78,7 +78,17 @@ const HomePage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer blackBackground logoType='typographic' whiteIcons />
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='white'
+        headerBgColor='black'
+        logoColor='white'
+        logoType='typographic'
+        logoVisible
+        menuBgColor='white'
+        menuBtnColor='white'
+        menuBtnIcnColor='white'
+      />
       <section
         className={clsx(
           "relative z-0",

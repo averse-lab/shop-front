@@ -14,8 +14,6 @@ import { clsx } from "clsx";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 
-import s from "./_internal/Slider.module.scss";
-
 type IProps = {
   className?: string;
   options?: EmblaOptionsType;
@@ -28,7 +26,7 @@ export const Slider: FC<IProps> = (props) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (emblaApi === undefined) {
+    if (!emblaApi) {
       return;
     }
 
@@ -46,19 +44,21 @@ export const Slider: FC<IProps> = (props) => {
   const slidesCount = Children.count(children);
 
   return (
-    <div className='flex flex-col overflow-hidden'>
-      <div className={clsx(className, s["slider"], "embla")} ref={ref}>
-        <div className={`${s["slider__container"]} embla__container`}>
+    <div className={clsx(className, "flex flex-col")}>
+      <div className={clsx("embla", "overflow-hidden")} ref={ref}>
+        <div className={clsx("embla__container", "flex")}>
           {Children.map(children, (child, idx) => {
             if (isValidElement(child)) {
               const props = {
                 className: clsx(
                   child.props.className,
-                  s["slider__slide"],
                   "embla__slide",
+                  "flex-[0_0_100%]",
+                  "min-w-0",
                 ),
                 key: idx,
               };
+
               return cloneElement(child, props);
             }
 
@@ -69,9 +69,8 @@ export const Slider: FC<IProps> = (props) => {
       <div
         className={clsx(
           "lg:hidden",
-          "h-[2px]",
-          "-translate-x-full",
-          "bg-black transition-all duration-200 ease-out",
+          "h-[3px]",
+          "-translate-x-full bg-black transition-all duration-200 ease-out",
         )}
         style={{
           width: `${(1 / slidesCount) * 100}%`,

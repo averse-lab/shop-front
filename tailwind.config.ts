@@ -1,3 +1,5 @@
+import type { Config } from "tailwindcss";
+
 const plugin = require("tailwindcss/plugin");
 
 const config = {
@@ -19,7 +21,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-dms)"],
+        sans: ["var(--font-inter)"],
+        abhaya: ["var(--font-abhaya)"],
       },
       colors: {
         border: "hsl(var(--border))",

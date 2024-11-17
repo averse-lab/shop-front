@@ -90,7 +90,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           "p-4",
           "flex flex-col justify-end",
           "aspect-square overflow-hidden opacity-0",
-          inView && "animate-productPreviewAppearing",
+          inView && "animate-product-preview-appearing",
         )}
         href={href}
         hrefLang={lang}
@@ -98,13 +98,9 @@ export const ProductPreview: FC<IProps> = (props) => {
       >
         <Image
           alt={`photography of ${title}`}
-          className={clsx(
-            s["product-preview__image"],
-            "-z-10",
-            "object-cover object-center",
-          )}
+          className={clsx(s["product-preview__image"], "-z-10", "object-cover object-center")}
           fill
-          priority={index < 6}
+          quality={100}
           sizes='(min-width: 1024px) 25vw, 50vw'
           src={imageUrl}
         />
@@ -112,18 +108,12 @@ export const ProductPreview: FC<IProps> = (props) => {
           className={clsx(
             s["product-preview__name"],
             "uppercase",
-            "text-sm lg:text-base",
             light ? "text-white" : "text-black",
           )}
         >
           {title}
         </p>
-        <p
-          className={clsx(
-            "font-serif text-sm font-light lg:text-base",
-            light ? "text-neutral-400" : "text-black",
-          )}
-        >
+        <p className={clsx("text-sm font-light", light ? "text-neutral-400" : "text-neutral-600")}>
           {Number(price).toFixed()} {currency}
         </p>
       </Link>

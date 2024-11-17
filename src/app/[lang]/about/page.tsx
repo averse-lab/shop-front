@@ -3,8 +3,8 @@ import { FC } from "react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
 import { getDictionary } from "@lib/i18n/utils";
@@ -12,11 +12,7 @@ import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
-import {
-  ABOUT_VIDEO,
-  CRYING_GIRL_VIDEO,
-  IRRATIONAL_CUBE_VIDEO,
-} from "./_internal/AboutPage.constants";
+import { ABOUT_VIDEO, CRYING_GIRL_VIDEO } from "./_internal/AboutPage.constants";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;
@@ -75,10 +71,6 @@ const AboutPage: FC<IProps> = async (props) => {
     playbackId: ABOUT_VIDEO.playbackId,
     width: 64,
   });
-  const irrationalCubeVideoPlaceholder = await getMuxPlaceholder({
-    playbackId: IRRATIONAL_CUBE_VIDEO.playbackId,
-    width: 64,
-  });
   const cryingGirlVideoPlaceholder = await getMuxPlaceholder({
     playbackId: CRYING_GIRL_VIDEO.playbackId,
     width: 64,
@@ -86,7 +78,17 @@ const AboutPage: FC<IProps> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer hideLogo whiteIcons />
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='white'
+        headerBgColor='transparent'
+        logoColor='white'
+        logoType='plain'
+        logoVisible={false}
+        menuBgColor='white'
+        menuBtnColor='white'
+        menuBtnIcnColor='white'
+      />
       <div className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}>
         <div
           className={clsx(

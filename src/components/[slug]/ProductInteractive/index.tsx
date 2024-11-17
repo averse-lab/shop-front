@@ -1,35 +1,38 @@
 "use client";
 
-import { FC, useContext, useState, useTransition } from "react";
+import { FC, use, useState, useTransition } from "react";
 
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { RiExternalLinkLine, RiLoader5Line } from "@remixicon/react";
 import { clsx } from "clsx";
 
-import { Button } from "@components/Button/Button";
+import { checkIsUniqueSize } from "@components/[slug]/ProductInteractive/_internal/ProductInteractive.utils";
+import { addItemAction } from "@components/[slug]/ProductInteractive/_internal/ProductIntercative.actions";
 import { DropdownOption } from "@components/Dropdown/_internal/Dropdown.types";
 import { Dropdown } from "@components/Dropdown/Dropdown";
+import { Button } from "@components/ui/button";
 
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { Product, ProductVariant } from "@lib/shopify/types";
+import { formatPrice } from "@lib/utils";
 
 import { CartContext } from "@contexts/CartContext/CartContext";
 
-import { checkIsUniqueSize } from "./_internal/ProductInteractive.utils";
-import { addItemAction } from "./_internal/ProductIntercative.actions";
+import { AvailabilityIndicator } from "./AvailabilityIndicator";
 
 type IProps = {
   variants: ProductVariant[];
   minVariantPrice: Product["priceRange"]["minVariantPrice"];
   dictionary: Dictionary;
+  shippingDelays: string | null;
   lang: Locale;
 };
 
 export const ProductInteractive: FC<IProps> = (props) => {
-  const { variants, minVariantPrice, dictionary, lang } = props;
+  const { variants, minVariantPrice, dictionary, shippingDelays, lang } = props;
 
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [isPending, startTransition] = useTransition();
-  const { setCart, setIsCartOpen } = useContext(CartContext) || {};
+  const { setCart, setCartOpen } = use(CartContext) || {};
 
   const options = variants.map<DropdownOption>((variant) => ({
     value: variant.id,
@@ -38,6 +41,12 @@ export const ProductInteractive: FC<IProps> = (props) => {
   }));
 
   const uniqueSize = checkIsUniqueSize(variants);
+  const amount =
+    selectedIndex !== undefined ? variants[selectedIndex].price.amount : minVariantPrice.amount;
+  const currency =
+    selectedIndex !== undefined
+      ? variants[selectedIndex].price.currencyCode
+      : minVariantPrice.currencyCode;
 
   const updateSelectedIndex = (newSelectedIndex: number) => {
     setSelectedIndex(newSelectedIndex);
@@ -53,11 +62,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
           return;
         }
 
-        if (setIsCartOpen === undefined || setCart === undefined) {
+        if (!setCartOpen || !setCart) {
           return;
         }
 
-        setIsCartOpen(true);
+        setCartOpen(true);
         setCart(cart);
       });
     } else {
@@ -73,11 +82,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
           return;
         }
 
-        if (setIsCartOpen === undefined || setCart === undefined) {
+        if (!setCartOpen || !setCart) {
           return;
         }
 
-        setIsCartOpen(true);
+        setCartOpen(true);
         setCart(cart);
       });
     }
@@ -85,16 +94,13 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   return (
     <>
-      <p className={clsx("mb-6", "font-light")}>
-        {selectedIndex !== undefined
-          ? `${Number(variants[selectedIndex].price.amount).toFixed()} ${
-              variants[selectedIndex].price.currencyCode
-            }`
-          : `${Number(minVariantPrice.amount).toFixed()} ${
-              minVariantPrice.currencyCode
-            }`}
-      </p>
-      <div className={clsx("mb-7", "flex items-center justify-between gap-4")}>
+      <p className={clsx("font-light", "mb-4")}>{formatPrice(amount, currency)}</p>
+      <div
+        className={clsx(
+          "mb-8",
+          "flex flex-col gap-6 md:flex-row md:items-center md:justify-between",
+        )}
+      >
         {uniqueSize ? (
           <p className='font-medium'>{dictionary.product.uniqueSize}</p>
         ) : (
@@ -107,7 +113,6 @@ export const ProductInteractive: FC<IProps> = (props) => {
             selectedIndex={selectedIndex}
           />
         )}
-
         {!uniqueSize ? (
           <a
             className={clsx("flex items-center gap-2")}
@@ -116,23 +121,31 @@ export const ProductInteractive: FC<IProps> = (props) => {
             target='_blank'
           >
             {dictionary.product.sizeGuide}
-            <ArrowTopRightOnSquareIcon className='h-5 w-5 stroke-[1.75]' />
+            <RiExternalLinkLine size={20} />
           </a>
         ) : null}
       </div>
       <Button
-        className={clsx("w-full")}
-        color='black'
+        className={clsx("w-full", "gap-2")}
         disabled={!uniqueSize && selectedIndex === undefined}
-        element='button'
-        loading={isPending}
         onClick={addToCart}
       >
-        {dictionary.product.addToCart}
+        {isPending ? (
+          <>
+            {/* {dictionary.product.addingToCart} */}
+            <RiLoader5Line className={clsx("animate-spin")} />
+          </>
+        ) : (
+          dictionary.product.addToCart
+        )}
       </Button>
-      <div className={clsx("mt-5", "flex items-center gap-4")}>
-        <p>{dictionary.product.origin}</p>
-      </div>
+      {selectedIndex !== undefined ? (
+        <AvailabilityIndicator
+          dictionary={dictionary}
+          inStock={!variants[selectedIndex].currentlyNotInStock}
+          shippingDelays={shippingDelays}
+        />
+      ) : null}
     </>
   );
 };

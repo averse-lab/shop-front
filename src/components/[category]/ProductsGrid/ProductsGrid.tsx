@@ -9,6 +9,7 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
 
+import { ProductGridObserver } from "./ProductGridObserver";
 import { Filter } from "../FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "../FilterSelector/FilterSelector";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
@@ -29,19 +30,14 @@ export const ProductsGrid: FC<IProps> = (props) => {
   const productsInViewAtInit = useRef(0);
   const productsVisible = useRef(0);
 
-  const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(
-    ({ url, i18nKey }) => ({
-      url,
-      display: dictionary.categories[i18nKey],
-    }),
-  );
+  const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(({ url, i18nKey }) => ({
+    url,
+    display: dictionary.categories[i18nKey],
+  }));
 
-  const selectedFilterIndex = filters.reduce(
-    (selectedFilterIndex, filter, idx) => {
-      return filter.url === categoryUrlSegment ? idx : selectedFilterIndex;
-    },
-    0,
-  );
+  const selectedFilterIndex = filters.reduce((selectedFilterIndex, filter, idx) => {
+    return filter.url === categoryUrlSegment ? idx : selectedFilterIndex;
+  }, 0);
 
   const onAnimationEnd = () => {
     if (initAnimationsOver) {
@@ -59,34 +55,33 @@ export const ProductsGrid: FC<IProps> = (props) => {
 
   return (
     <>
-      <div className={clsx("min-h-[calc(100vh+1px)]")}>
-        <div
-          className={clsx(
-            className,
-            "grid auto-rows-[1fr] grid-cols-2 items-start md:gap-5 md:px-52 lg:grid-cols-4",
-          )}
-        >
-          {products.map(
-            (product, idx) =>
-              !product.customMetafields.hideOnWebsite && (
-                <ProductPreview
-                  currency={product.priceRange.maxVariantPrice.currencyCode}
-                  href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
-                  imageUrl={
-                    product.images.length > 0 ? product.images[0].url : ""
-                  }
-                  index={idx}
-                  key={product.id}
-                  lang={lang}
-                  light={product.customMetafields.darkFeaturedImage || false}
-                  onAnimationEnd={onAnimationEnd}
-                  price={product.priceRange.minVariantPrice.amount}
-                  productsInViewAtInit={productsInViewAtInit}
-                  title={product.title}
-                />
-              ),
-          )}
-        </div>
+      <ProductGridObserver />
+      <div
+        className={clsx(
+          className,
+          "grid auto-rows-[1fr] grid-cols-2 items-start md:gap-5 md:px-52 lg:grid-cols-4",
+        )}
+      >
+        {products.map(
+          (product, idx) =>
+            !product.customMetafields.hideOnWebsite && (
+              <ProductPreview
+                currency={product.priceRange.maxVariantPrice.currencyCode}
+                href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
+                imageUrl={
+                  product.productImage?.reference.image.url || product.featuredImage?.url || ""
+                }
+                index={idx}
+                key={product.id}
+                lang={lang}
+                light={product.customMetafields.darkFeaturedImage || false}
+                onAnimationEnd={onAnimationEnd}
+                price={product.priceRange.minVariantPrice.amount}
+                productsInViewAtInit={productsInViewAtInit}
+                title={product.title}
+              />
+            ),
+        )}
       </div>
       <InView initialInView>
         {({ inView, ref }) => {
@@ -95,10 +90,9 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <div ref={ref}></div>
               <FilterSelector
                 className={clsx(
-                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-0 lg:top-[96px] lg:m-0 lg:h-14 lg:w-screen",
-                  "bg-white transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
-                  initAnimationsOver &&
-                    "lg:animate-filterSelectorDesktopAppearing",
+                  "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[96px] lg:m-0 lg:h-14 lg:w-screen",
+                  "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
+                  initAnimationsOver && "lg:animate-filter-selector-desktop-appearing",
                   initAnimationsOver
                     ? inView
                       ? "translate-y-3 opacity-0"

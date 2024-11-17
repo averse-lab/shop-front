@@ -1,21 +1,21 @@
 "use client";
 
-import { FC, useContext, useRef, useState } from "react";
+import { FC, use, useRef, useState } from "react";
 
-import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import { RiArrowRightUpLine, RiMenuLine } from "@remixicon/react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
-import { Button } from "@components/Button/Button";
+import { Backdrop } from "@components/Backdrop";
+import { Button } from "@components/ui/button";
 
-import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
+import { useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
 
 import { MAIN_NAV } from "./_internal/BurgerMenu.constants";
-import s from "./_internal/BurgerMenu.module.scss";
 
 type IProps = {
   className?: string;
@@ -29,7 +29,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { whiteIcons } = useContext(HeaderContext) || {};
+  const { menuBtnColor, menuBtnIcnColor, menuBgColor } = use(HeaderContext);
 
   const openMenu = () => {
     setOpen(true);
@@ -39,8 +39,9 @@ export const BurgerMenu: FC<IProps> = (props) => {
     setOpen(false);
   };
 
-  useBodyScrollLocker(open);
   useClickOutsideDetector(menuRef.current, closeMenu, open);
+
+  const contextInit = menuBgColor && menuBtnColor && menuBtnIcnColor;
 
   const nav: LinkDetail[] = Object.values(MAIN_NAV).map<LinkDetail>(({ url, i18nKey }) => ({
     href: `/${lang}/${url}`,
@@ -49,61 +50,46 @@ export const BurgerMenu: FC<IProps> = (props) => {
 
   return (
     <>
+      <Backdrop activate={open} />
       <Button
         aria-label={openBurgerMenuAriaLabel}
-        className={clsx(className, s["burger-menu__burger"])}
-        color='white'
-        element='button'
-        mini
-        noBackground
+        className={clsx(
+          className,
+          "transition-all delay-75 lg:[&:hover+div]:-translate-x-[calc(100%-8px)]",
+          open && "lg:[&:hover+div]:!translate-x-2",
+          contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
+        )}
         onClick={openMenu}
+        size='icon'
+        variant={menuBtnColor === "white" ? "secondary-icon" : "default-icon"}
       >
-        {/* <Bars3Icon
+        <RiMenuLine
           className={clsx(
-            s["burger-menu__burger-icon"],
-            "h-6 w-6",
-            "!transition-all !duration-200 !ease-out",
-            whiteIcons && "text-white",
+            "transition-all delay-0",
+            menuBtnIcnColor === "white"
+              ? "text-primary-foreground/80"
+              : "text-secondary-foreground/80",
           )}
-        /> */}
-        <svg
-          className={clsx(
-            s["burger-menu__burger-icon"],
-            "h-6 w-6",
-            "!transition-all !duration-200 !ease-out",
-            whiteIcons && "text-white",
-          )}
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d='M0 2h21.136M0 9.5h21.136M0 17h21.136' stroke='#fff' strokeWidth='4' />
-        </svg>
+          size={20}
+        />
       </Button>
       <div
         className={clsx(
-          s["burger-menu__menu"],
-          open && s["burger-menu__menu--open"],
-          "fixed left-0 top-0 z-20 md:left-2 md:top-2",
+          "fixed left-0 top-0 z-20 md:top-2",
+          "h-dvh w-screen p-6 md:h-auto md:w-auto",
           "flex flex-col",
-          "h-[100dvh] w-screen p-6 md:h-auto md:w-auto",
-          "uppercase md:shadow-md",
-          whiteIcons ? "bg-white text-black" : "bg-black text-white",
+          "uppercase text-primary-foreground backdrop-blur transition-all duration-500 ease-in-out",
+          open ? "translate-x-2 opacity-100" : "-translate-x-full opacity-0",
+          menuBgColor === "white" ? "bg-secondary" : "bg-primary",
         )}
         ref={menuRef}
       >
-        <button
+        <Button
           aria-label={closeBurgerMenuAriaLabel}
-          className={clsx(
-            s["burger-menu__close-btn"],
-            "p-2 lg:p-1",
-            "self-end",
-            "transition-all duration-200 ease-out",
-            whiteIcons ? "bg-neutral-100 text-black" : "bg-neutral-900 text-white",
-            whiteIcons
-              ? "lg:bg-neutral-100/0 lg:hover:bg-neutral-100/100"
-              : "lg:bg-neutral-900/0 lg:hover:bg-neutral-900/100",
-          )}
+          className={clsx("absolute right-6 top-6")}
           onClick={closeMenu}
+          size='icon'
+          variant='secondary-icon'
         >
           <svg
             className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
@@ -114,7 +100,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           >
             <path d='m2.414 1.586 18 18M1.586 19.586l18-18' stroke='#0F0F0F' strokeWidth='4' />
           </svg>
-        </button>
+        </Button>
         <div
           className={clsx(
             "flex flex-1 flex-col items-center justify-center gap-6 md:gap-4",
@@ -123,29 +109,29 @@ export const BurgerMenu: FC<IProps> = (props) => {
         >
           {nav.map((link) => (
             <div
-              className={clsx(
-                s["burger-menu__link"],
-                "relative",
-                "transition-all lg:hover:translate-x-1",
-              )}
+              className={clsx("relative", "transition-all lg:hover:translate-x-1")}
               key={link.display}
             >
               <Link
-                className={clsx("relative", "font-serif text-xl")}
+                className={clsx(
+                  "relative",
+                  "font-serif text-xl md:text-base",
+                  "text-black",
+                  "lg:[&:hover+svg]:translate-x-0 lg:[&:hover+svg]:opacity-100",
+                )}
                 href={link.href}
                 hrefLang={lang}
                 onClick={closeMenu}
               >
                 {link.display}
               </Link>
-              <ArrowUpRightIcon
+              <RiArrowRightUpLine
                 className={clsx(
-                  s["burger-menu__link-icon"],
                   "hidden lg:block",
-                  "absolute bottom-0 top-0 m-auto",
-                  "h-4 w-4",
-                  "stroke-2",
+                  "absolute bottom-0 left-[calc(100%+10px)] top-0 m-auto",
+                  "-translate-x-1 text-black opacity-0 transition-all",
                 )}
+                size={20}
               />
             </div>
           ))}

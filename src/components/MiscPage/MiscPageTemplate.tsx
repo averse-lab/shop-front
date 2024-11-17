@@ -3,8 +3,8 @@ import { FC } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 
-import { HeaderContextInitializer } from "@components/HeaderContextInitializer/HeaderContextInitializer";
-import { VideoPlayer } from "@components/VideoPlayer/VideoPlayer";
+import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
+import { VideoPlayer } from "@components/VideoPlayer";
 
 import { getMuxPlaceholder } from "@lib/mux/utils";
 
@@ -32,22 +32,36 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
 
   return (
     <>
-      <HeaderContextInitializer hideLogo whiteIcons />
+      <HeaderContextInitializer
+        cartBtnColor='white'
+        cartBtnIcnColor='white'
+        headerBgColor='transparent'
+        logoColor='white'
+        logoType='plain'
+        logoVisible={false}
+        menuBgColor='white'
+        menuBtnColor='white'
+        menuBtnIcnColor='white'
+      />
       <div className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}>
         <div
           className={clsx(
-            "m-auto mt-[72px] md:mt-20",
-            "flex flex-1 flex-col items-center",
+            "m-auto mt-[72px] md:mt-[96px]",
+            "lg:max-w-[550px]",
+            "flex flex-1 flex-col items-center justify-center",
             "text-left text-white",
             "max-w-96",
           )}
         >
           <VideoPlayer
-            className={clsx("mb-6", "max-w-36 md:max-w-44")}
+            className={clsx("mb-12 w-full max-w-48", `aspect-[4/3]`)}
+            minResolution='720p'
             placeholder={videoPlaceholder}
             playbackId={video.playbackId}
           />
-          <h1 className={clsx("mb-6", "uppercase", "text-xl", "text-gray-400")}>[ {title} ]</h1>
+          <h1 className={clsx("mb-6 md:mb-20", "uppercase", "text-xl", "text-gray-400")}>
+            [ {title} ]
+          </h1>
           {image && (
             <Image
               alt={image.alt}
@@ -62,19 +76,19 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
             {textBlocks.map((block, idx) => {
               if (block.type === "title") {
                 return (
-                  <h2 className={clsx("font-bold uppercase")} key={idx}>
+                  <h2 className={clsx("font-normal uppercase")} key={idx}>
                     {block.text}
                   </h2>
                 );
               } else if (block.type === "quote") {
                 return (
-                  <p className={"font-bold uppercase"} key={idx}>
+                  <p className={"font-extralight uppercase"} key={idx}>
                     {block.text}
                   </p>
                 );
               } else {
                 return (
-                  <p className={clsx("mb-6 w-full")} key={idx}>
+                  <p className={clsx("mb-6 w-full font-extralight")} key={idx}>
                     {block.text}
                   </p>
                 );
