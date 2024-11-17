@@ -20,15 +20,7 @@ export const FilterSelector: FC<IProps> = (props) => {
 
   return (
     <div
-      className={clsx(
-        className,
-        s["filters-selector"],
-        "w-min",
-        "px-6 py-4",
-        "gap-6",
-        "shadow-sm",
-        "border-b border-black md:border-b-0",
-      )}
+      className={clsx(className, s["filters-selector"], "w-min", "px-6 py-4", "gap-6", "shadow-sm")}
     >
       {filters.map(({ display, url }, idx) => (
         <Link
