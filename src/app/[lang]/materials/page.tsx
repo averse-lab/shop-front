@@ -67,7 +67,7 @@ const MaterialsPage: FC<IProps> = async (props) => {
   return (
     <MiscPageTemplate
       image={{
-        src: "/images/materials/materials.jpg",
+        src: "/images/materials/materials.png",
         alt: materials.title,
       }}
       textBlocks={[

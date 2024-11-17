@@ -68,6 +68,7 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
               className='mb-6 w-full'
               height={100}
               quality={100}
+              sizes='(max-width: 550px) 100vw, (max-width: 1200px) 50vw, 33vw'
               src={image.src}
               width={100}
             />

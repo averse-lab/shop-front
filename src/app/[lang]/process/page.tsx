@@ -67,7 +67,7 @@ const ProcessPage: FC<IProps> = async (props) => {
   return (
     <MiscPageTemplate
       image={{
-        src: "/images/process/process.jpg",
+        src: "/images/process/process.png",
         alt: process.title,
       }}
       textBlocks={[

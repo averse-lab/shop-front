@@ -139,12 +139,12 @@ const HomePage: FC<IProps> = async (props) => {
             title='about the project'
           />
           <ShopItem
-            imagePath='/images/materials/materials.jpg'
+            imagePath='/images/materials/materials.png'
             linkPath={`/${lang}/${PAGES.materials.url}`}
             title='materials /// stones'
           />
           <ShopItem
-            imagePath='/images/process/process.jpg'
+            imagePath='/images/process/process.png'
             linkPath={`/${lang}/${PAGES.process.url}`}
             title='process'
           />
