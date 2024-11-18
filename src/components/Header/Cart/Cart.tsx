@@ -92,7 +92,7 @@ export const Cart: FC<IProps> = (props) => {
               s["cart__close-btn"],
               "p-2 lg:p-1",
               "absolute left-5 top-5",
-              "bg-neutral-100 transition-all duration-200 ease-out lg:bg-transparent lg:hover:bg-neutral-100",
+              "transition-all duration-200 ease-out",
             )}
             onClick={closeCart}
           >
