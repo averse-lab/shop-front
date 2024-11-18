@@ -18,6 +18,7 @@ export const SummaryItem: FC<IProps> = (props) => {
         "flex items-center justify-between",
         "border-b border-primary/35",
         "text-secondary-foreground",
+        "font-abhaya",
       )}
     >
       <p>{metric}</p>
@@ -25,7 +26,7 @@ export const SummaryItem: FC<IProps> = (props) => {
         className={clsx(
           "transition-all",
           variant === "shipping"
-            ? "text-sm text-secondary-foreground/55"
+            ? "text-base text-secondary-foreground/55"
             : variant === "total"
               ? "text-secondary-foreground"
               : "text-secondary-foreground/55",
