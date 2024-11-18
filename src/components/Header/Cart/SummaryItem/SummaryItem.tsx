@@ -16,24 +16,13 @@ export const SummaryItem: FC<IProps> = (props) => {
       className={clsx(
         "pb-2",
         "flex items-center justify-between",
-        "border-b border-primary/35",
-        "text-secondary-foreground",
+        "border-b border-white/35",
+        "text-white",
         "font-abhaya",
       )}
     >
       <p>{metric}</p>
-      <p
-        className={clsx(
-          "transition-all",
-          variant === "shipping"
-            ? "text-base text-secondary-foreground/55"
-            : variant === "total"
-              ? "text-secondary-foreground"
-              : "text-secondary-foreground/55",
-        )}
-      >
-        {value}
-      </p>
+      <p className={clsx("transition-all", "text-base text-white")}>{value}</p>
     </div>
   );
 };

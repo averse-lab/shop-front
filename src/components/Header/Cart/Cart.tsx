@@ -80,7 +80,7 @@ export const Cart: FC<IProps> = (props) => {
           "fixed right-0 top-0 z-20 md:top-2",
           "h-dvh w-screen px-6 pb-4 pt-6 md:h-auto md:max-h-[70vh] md:w-[450px] md:p-6",
           "flex flex-col justify-between gap-6",
-          "bg-white backdrop-blur transition-all duration-500 ease-in-out",
+          "bg-black backdrop-blur transition-all duration-500 ease-in-out",
           cartOpen ? "opacity-100 md:-translate-x-2" : "translate-x-full opacity-0",
         )}
         ref={cartRef}
@@ -103,7 +103,7 @@ export const Cart: FC<IProps> = (props) => {
               width='22'
               xmlns='http://www.w3.org/2000/svg'
             >
-              <path d='m2.414 1.586 18 18M1.586 19.586l18-18' stroke='#0F0F0F' strokeWidth='4' />
+              <path d='m2.414 1.586 18 18M1.586 19.586l18-18' stroke='white' strokeWidth='4' />
             </svg>
           </button>
           {cart !== undefined && cart.totalQuantity !== 0 && setCart !== undefined ? (
@@ -127,9 +127,7 @@ export const Cart: FC<IProps> = (props) => {
             </div>
           ) : (
             <div className={clsx("flex flex-1 items-center justify-center")}>
-              <p className={clsx("md:py-40", "md:mt-4", "text-secondary-foreground")}>
-                {dictionary.cart.empty}
-              </p>
+              <p className={clsx("md:py-40", "md:mt-4", "text-white")}>{dictionary.cart.empty}</p>
             </div>
           )}
         </div>
@@ -148,7 +146,11 @@ export const Cart: FC<IProps> = (props) => {
               />
             </div>
           ) : null}
-          <Button asChild className={clsx("w-full")} disabled={checkoutDisabled}>
+          <Button
+            asChild
+            className={clsx("w-full text-white after:border-white")}
+            disabled={checkoutDisabled}
+          >
             <Link href={cart?.checkoutUrl ?? ""}>{dictionary.cart.checkout}</Link>
           </Button>
         </div>
