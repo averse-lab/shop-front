@@ -107,7 +107,9 @@ const HomePage: FC<IProps> = async (props) => {
             playbackId={HOME_VIDEO.playbackId}
           />
         </div>
-        <div className={clsx("absolute bottom-1/4 flex w-1/4 max-w-80 flex-col items-center")}>
+        <div
+          className={clsx("absolute bottom-1/4 flex w-1/2 max-w-80 flex-col items-center md:w-1/4")}
+        >
           <FullLogo className='mb-10 w-full' />
           <Button
             ariaLabel={enterWebsiteAriaLabel}
