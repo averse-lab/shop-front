@@ -116,9 +116,13 @@ const ProductPage: FC<IProps> = async (props) => {
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />
-      <div className={clsx("flex flex-col lg:flex-row")}>
+      <div className={clsx("lg:container lg:mb-8 lg:mt-24", "flex flex-col lg:flex-row")}>
         <Slider
-          className={clsx("lg:basis-1/2", "md:items-right lg:[&>div>div]:flex-col")}
+          className={clsx(
+            "lg:basis-1/2",
+            "md:items-right lg:[&>div>div]:flex-col",
+            "lg:[&>div>div]:gap-8",
+          )}
           options={{
             loop: true,
             breakpoints: {
