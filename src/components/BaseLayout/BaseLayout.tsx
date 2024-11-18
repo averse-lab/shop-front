@@ -24,6 +24,8 @@ export const BaseLayout: FC<IProps> = (props) => {
   const { lang, dictionary, children } = props;
   const AppProvider = combineProviders([CartContextProvider, HeaderContextProvider]);
 
+  const isInMaintenanceMode = process.env.IS_IN_MAINTENANCE === "true";
+
   return (
     <html lang={lang}>
       {process.env.NODE_ENV === "production" && (
