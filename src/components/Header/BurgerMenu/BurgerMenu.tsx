@@ -2,7 +2,7 @@
 
 import { FC, use, useRef, useState } from "react";
 
-import { RiArrowRightUpLine, RiMenuLine } from "@remixicon/react";
+import { RiArrowRightUpLine } from "@remixicon/react";
 import { clsx } from "clsx";
 import Link from "next/link";
 
@@ -63,15 +63,13 @@ export const BurgerMenu: FC<IProps> = (props) => {
         size='icon'
         variant='flat'
       >
-        <RiMenuLine
-          className={clsx(
-            "transition-all delay-0",
-            menuBtnIcnColor === "white"
-              ? "text-primary-foreground/80"
-              : "text-secondary-foreground/80",
-          )}
-          size={20}
-        />
+        <svg fill='none' height='19' width='22' xmlns='http://www.w3.org/2000/svg'>
+          <path
+            d='M0 2h21.136M0 9.5h21.136M0 17h21.136'
+            stroke={menuBtnIcnColor === "white" ? "white" : "black"}
+            strokeWidth='4'
+          />
+        </svg>
       </Button>
       <div
         className={clsx(
