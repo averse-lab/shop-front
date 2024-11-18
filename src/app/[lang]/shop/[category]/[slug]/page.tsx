@@ -163,7 +163,7 @@ const ProductPage: FC<IProps> = async (props) => {
               variants={product.variants}
             />
             <div
-              className={clsx("mt-8", "[&_p:not(:last-child)]:mb-2", "font-abhaya text-base")}
+              className={clsx("mb-8 mt-8", "[&_p:not(:last-child)]:mb-2", "font-abhaya text-base")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
             <Link

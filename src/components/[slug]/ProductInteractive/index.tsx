@@ -115,7 +115,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
         )}
         {!uniqueSize ? (
           <a
-            className={clsx("flex items-center gap-2")}
+            className={clsx("flex items-center gap-2", "font-abhaya text-sm")}
             href={`/manual/${lang}/manual.pdf`}
             rel='noopener noreferrer'
             target='_blank'
