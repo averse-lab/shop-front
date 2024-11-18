@@ -79,8 +79,8 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "h-dvh w-screen p-6 md:h-auto md:w-auto",
           "flex flex-col",
           "uppercase text-primary-foreground backdrop-blur transition-all duration-500 ease-in-out",
-          open ? "translate-x-2 opacity-100" : "-translate-x-full opacity-0",
-          menuBgColor === "white" ? "bg-secondary" : "border-1 border border-[#747474] bg-primary",
+          open ? "opacity-100 md:translate-x-2" : "-translate-x-full opacity-0",
+          menuBgColor === "white" ? "bg-secondary" : "border-[#747474] bg-primary md:border",
         )}
         ref={menuRef}
       >
