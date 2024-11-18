@@ -61,7 +61,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
         )}
         onClick={openMenu}
         size='icon'
-        variant={menuBtnColor === "white" ? "secondary-icon" : "default-icon"}
+        variant='flat'
       >
         <RiMenuLine
           className={clsx(
@@ -89,7 +89,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           className={clsx("absolute right-6 top-6")}
           onClick={closeMenu}
           size='icon'
-          variant='secondary-icon'
+          variant='flat'
         >
           <svg
             className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}

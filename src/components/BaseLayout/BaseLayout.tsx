@@ -41,7 +41,7 @@ export const BaseLayout: FC<IProps> = (props) => {
           "mb-[220px] lg:mb-[204px]",
           "min-h-screen",
           "flex flex-col",
-          "bg-black shadow-md",
+          "bg-black",
           "font-sans",
         )}
       >
