@@ -153,7 +153,7 @@ const ProductPage: FC<IProps> = async (props) => {
             "flex lg:basis-1/2 lg:flex-col lg:items-center lg:justify-center",
           )}
         >
-          <div className={clsx("w-full lg:w-[450px]")}>
+          <div className={clsx("w-full lg:w-[320px]")}>
             <h1 className={clsx("text-base uppercase", "mb-2")}>{product.title}</h1>
             <ProductInteractive
               dictionary={dictionary}
