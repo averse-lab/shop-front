@@ -49,7 +49,7 @@ export const BaseLayout: FC<IProps> = (props) => {
         <Analytics />
         <AppProvider>
           <Header dictionary={dictionary} lang={lang} />
-          <main className={clsx("flex grow flex-col", "bg-white")}>{children}</main>
+          <main className={clsx("flex grow flex-col", "bg-black")}>{children}</main>
           <Footer dictionary={dictionary} lang={lang} />
         </AppProvider>
       </body>

@@ -104,7 +104,7 @@ const ProductPage: FC<IProps> = async (props) => {
     : null;
 
   return (
-    <>
+    <div className='bg-white'>
       <HeaderContextInitializer
         cartBtnColor='black'
         cartBtnIcnColor='white'
@@ -201,7 +201,7 @@ const ProductPage: FC<IProps> = async (props) => {
           />
         </AdditionalVideosObserver>
       )} */}
-    </>
+    </div>
   );
 };
 

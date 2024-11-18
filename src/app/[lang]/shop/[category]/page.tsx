@@ -88,7 +88,7 @@ const CategoryPage: FC<Props> = async (props) => {
   });
 
   return (
-    <>
+    <div className='bg-white'>
       <HeaderContextInitializer
         cartBtnColor='white'
         cartBtnIcnColor='white'
@@ -107,7 +107,7 @@ const CategoryPage: FC<Props> = async (props) => {
         lang={lang}
         products={products}
       />
-    </>
+    </div>
   );
 };
 

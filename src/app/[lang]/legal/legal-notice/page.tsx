@@ -28,7 +28,7 @@ const LegalNoticePage: FC<IProps> = async (props) => {
   const dictionary = await getDictionary(lang);
 
   return (
-    <>
+    <div className='bg-white'>
       <HeaderContextInitializer
         cartBtnColor='white'
         cartBtnIcnColor='black'
@@ -44,7 +44,7 @@ const LegalNoticePage: FC<IProps> = async (props) => {
         <h1 className={clsx("text-4xl font-bold uppercase")}>{dictionary.pages.legalNotice}</h1>
         <div dangerouslySetInnerHTML={{ __html: legal.body }} />
       </div>
-    </>
+    </div>
   );
 };
 

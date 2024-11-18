@@ -78,7 +78,7 @@ const HomePage: FC<IProps> = async (props) => {
   });
 
   return (
-    <>
+    <div className='bg-black md:mt-[96px]'>
       <HeaderContextInitializer
         cartBtnColor='white'
         cartBtnIcnColor='white'
@@ -93,21 +93,22 @@ const HomePage: FC<IProps> = async (props) => {
       <section
         className={clsx(
           "relative z-0",
-          "h-[90vh]",
           "flex flex-col items-center justify-end",
           "text-center",
           "relative",
           "bg-black",
+          "aspect-video",
+          "md:container",
         )}
       >
-        <div className={clsx("absolute -z-10 h-full w-full md:px-52 md:pt-24")}>
-          <VideoPlayer
-            className={clsx("h-full w-full")}
-            minResolution='1440p'
-            placeholder={videoPlaceholder}
-            playbackId={HOME_VIDEO.playbackId}
-          />
-        </div>
+        {/* <div className={clsx("absolute -z-10 h-full w-full md:container")}> */}
+        <VideoPlayer
+          className={clsx("h-full w-full")}
+          minResolution='1440p'
+          placeholder={videoPlaceholder}
+          playbackId={HOME_VIDEO.playbackId}
+        />
+        {/* </div> */}
         <div
           className={clsx("absolute bottom-1/4 flex w-1/2 max-w-80 flex-col items-center md:w-1/4")}
         >
@@ -122,7 +123,7 @@ const HomePage: FC<IProps> = async (props) => {
       <section className={clsx("flex h-full w-full grow flex-col items-center bg-black")}>
         <div
           className={clsx(
-            "my-3 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-3 gap-y-1 px-7 md:px-52 lg:grid-cols-3",
+            "my-3 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-3 gap-y-1 px-7 md:container lg:grid-cols-3",
           )}
         >
           <ShopItem
@@ -153,14 +154,14 @@ const HomePage: FC<IProps> = async (props) => {
         </div>
         <div
           className={clsx(
-            "mt-52 flex max-w-[80%] flex-col items-end text-right font-light text-gray-500 md:col-start-3 md:row-start-3 md:mx-52 md:mb-3",
+            "mt-52 flex max-w-[80%] flex-col items-end text-right font-light text-gray-500 md:container md:col-start-3 md:row-start-3 md:mb-3",
           )}
         >
           <p>{quote.paragraph1}</p>
           <p className={clsx("mt-4")}>{quote.paragraph2}</p>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
