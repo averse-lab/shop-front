@@ -97,8 +97,9 @@ const HomePage: FC<IProps> = async (props) => {
           "text-center",
           "relative",
           "bg-black",
-          "aspect-video",
+          "md:aspect-video",
           "md:container",
+          "h-[90vh] md:h-auto",
         )}
       >
         {/* <div className={clsx("absolute -z-10 h-full w-full md:container")}> */}
