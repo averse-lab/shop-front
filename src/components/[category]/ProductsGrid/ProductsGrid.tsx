@@ -89,7 +89,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <FilterSelector
                 className={clsx(
                   "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[96px] lg:m-0 lg:w-screen",
-                  "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
+                  "transition-all duration-200 ease-out lg:translate-y-0",
                 )}
                 filters={filters}
                 lang={lang}
