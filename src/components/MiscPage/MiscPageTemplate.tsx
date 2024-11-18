@@ -54,7 +54,7 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
           )}
         >
           <VideoPlayer
-            className={clsx("mb-12 w-48 w-full", `aspect-[4/3]`)}
+            className={clsx("mb-12 w-48", `aspect-[4/3]`)}
             minResolution='720p'
             placeholder={videoPlaceholder}
             playbackId={video.playbackId}

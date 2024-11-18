@@ -97,10 +97,11 @@ const AboutPage: FC<IProps> = async (props) => {
             "flex flex-1 flex-col items-center justify-center",
             "text-left text-white",
             "max-w-96",
+            "font-extralight",
           )}
         >
           <VideoPlayer
-            className={clsx("mb-12 w-48 w-full", `aspect-[4/3]`)}
+            className={clsx("mb-12 w-48", `aspect-[4/3]`)}
             minResolution='720p'
             placeholder={aboutVideoPlaceholder}
             playbackId={ABOUT_VIDEO.playbackId}
