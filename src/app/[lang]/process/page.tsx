@@ -71,10 +71,14 @@ const ProcessPage: FC<IProps> = async (props) => {
         alt: process.title,
       }}
       textBlocks={[
-        { type: "title", text: process.title1 },
         {
           type: "paragraph",
           text: process.paragraph1,
+        },
+        { type: "title", text: process.title1 },
+        {
+          type: "paragraph",
+          text: process.paragraph2,
         },
         {
           type: "title",
@@ -82,15 +86,11 @@ const ProcessPage: FC<IProps> = async (props) => {
         },
         {
           type: "paragraph",
-          text: process.paragraph2,
+          text: process.paragraph3,
         },
         {
           type: "title",
           text: process.title3,
-        },
-        {
-          type: "paragraph",
-          text: process.paragraph3,
         },
         {
           type: "paragraph",

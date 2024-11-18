@@ -107,7 +107,7 @@ const AboutPage: FC<IProps> = async (props) => {
             playbackId={ABOUT_VIDEO.playbackId}
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph1}</p>
-          <p className={clsx("mb-4 w-full")}>[&emsp;]</p>
+          <p className={clsx("mb-4 w-full")}>[ ]</p>
           <VideoPlayer
             className={clsx("mb-12 w-full", `aspect-[347/450]`)}
             minResolution='720p'
@@ -118,7 +118,7 @@ const AboutPage: FC<IProps> = async (props) => {
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph3}</p>
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph4}</p>
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph5}</p>
-          <p className={clsx("mb-4 w-full")}>[&emsp;]</p>
+          <p className={clsx("mb-4 w-full")}>[ ]</p>
         </div>
       </div>
     </>
