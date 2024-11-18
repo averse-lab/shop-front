@@ -106,7 +106,7 @@ const ProductPage: FC<IProps> = async (props) => {
   return (
     <>
       <HeaderContextInitializer
-        cartBtnColor='white'
+        cartBtnColor='black'
         cartBtnIcnColor='white'
         desktopCartBtnIcnColor='black'
         headerBgColor='transparent'
@@ -115,7 +115,7 @@ const ProductPage: FC<IProps> = async (props) => {
         logoVisible
         menuBgColor='white'
         menuBtnColor='white'
-        menuBtnIcnColor='white'
+        menuBtnIcnColor='black'
       />
       <div className={clsx("lg:container lg:mb-8 lg:mt-24", "flex flex-col lg:flex-row")}>
         <Slider

@@ -105,7 +105,7 @@ export const Cart: FC<IProps> = (props) => {
             >
               <path d='m2.414 1.586 18 18M1.586 19.586l18-18' stroke='#0F0F0F' strokeWidth='4' />
             </svg>
-          </button>{" "}
+          </button>
           {cart !== undefined && cart.totalQuantity !== 0 && setCart !== undefined ? (
             <div
               className={clsx(

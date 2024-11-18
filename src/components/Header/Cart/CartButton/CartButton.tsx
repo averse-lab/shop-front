@@ -31,12 +31,7 @@ export const CartButton: FC<IProps> = (props) => {
         contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
       )}
     >
-      <Button
-        aria-label={ariaLabel}
-        onClick={onClick}
-        size='icon'
-        variant={cartBtnColor === "white" ? "secondary-icon" : "default-icon"}
-      >
+      <Button aria-label={ariaLabel} onClick={onClick} size='icon' variant='flat'>
         <RiShoppingBag3Line
           className={clsx(
             "transition-all",
@@ -49,14 +44,13 @@ export const CartButton: FC<IProps> = (props) => {
       </Button>
       <div
         className={clsx(
-          "absolute -right-[10px] -top-[10px]",
+          "absolute -right-[7px] -top-[7px]",
           "h-5 w-5",
           "flex items-center justify-center",
-          "overflow-hidden border backdrop-blur-sm transition-all",
-          cartBtnColor === "white"
-            ? "border-border/20 bg-secondary/20"
-            : "border-border/10 bg-primary/75",
-          cartBtnIcnColor === "white" ? "text-primary-foreground" : "text-secondary-foreground",
+          "overflow-hidden backdrop-blur-sm transition-all",
+          "rounded-full",
+          cartBtnColor === "white" ? "bg-secondary" : "bg-primary",
+          cartBtnIcnColor === "white" ? "text-secondary-foreground" : "text-primary-foreground",
           quantity !== undefined && quantity > 0 ? "scale-100" : "scale-0",
         )}
       >
