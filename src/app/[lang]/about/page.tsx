@@ -93,7 +93,7 @@ const AboutPage: FC<IProps> = async (props) => {
         <div
           className={clsx(
             "m-auto mt-[72px] md:mt-[96px]",
-            "lg:max-w-[550px]",
+            "lg:max-w-[450px]",
             "flex flex-1 flex-col items-center justify-center",
             "text-left text-white",
             "max-w-96",
