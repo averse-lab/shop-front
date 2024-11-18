@@ -94,7 +94,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   return (
     <>
-      <p className={clsx("text-base font-light", "mb-6")}>{formatPrice(amount, currency)}</p>
+      <p className={clsx("text-sm font-light", "mb-6")}>{formatPrice(amount, currency)}</p>
       <div
         className={clsx(
           "mb-8",
