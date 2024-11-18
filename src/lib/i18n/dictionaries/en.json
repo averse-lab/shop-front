@@ -71,7 +71,8 @@
     "notInStockCustom": "Please allow approximately",
     "notInStockCustomDays": "weeks for production depending on current demand.",
     "inStock": "This item is in stock",
-    "uniqueSize": "Unique size"
+    "uniqueSize": "Unique size",
+    "backToShop": ">> Back to shop"
   },
   "cart": {
     "taxes": "Taxes",

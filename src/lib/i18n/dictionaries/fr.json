@@ -60,7 +60,8 @@
     "notInStockCustom": "Veuillez prévoir environ",
     "notInStockCustomDays": "semaines pour la production en fonction de la demande actuelle.",
     "inStock": "Cet article est en stock",
-    "uniqueSize": "Taille unique"
+    "uniqueSize": "Taille unique",
+    "backToShop": ">> Retour à la boutique"
   },
   "cart": {
     "taxes": "Taxes",

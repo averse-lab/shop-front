@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ProductInteractive } from "@components/[slug]/ProductInteractive";
@@ -165,6 +166,12 @@ const ProductPage: FC<IProps> = async (props) => {
               className={clsx("mt-8", "[&_p:not(:last-child)]:mb-2", "font-abhaya text-base")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
+            <Link
+              className='font-abhaya text-base hover:underline'
+              href={`/${lang}/${PAGES.shop.url}/${product.productType}`}
+            >
+              {dictionary.product.backToShop}
+            </Link>
             {/* 
             <p className={clsx("hidden items-center justify-center gap-4 md:flex", "h-full")}>
               <span className={clsx("font-medium uppercase")}>
