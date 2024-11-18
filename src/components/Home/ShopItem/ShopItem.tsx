@@ -25,11 +25,7 @@ export const ShopItem: FC<IProps> = (props) => {
           src={imagePath}
         />
       </div>
-      <h4
-        className={clsx(
-          "mt-1 text-base font-bold uppercase text-white md:text-sm",
-        )}
-      >
+      <h4 className={clsx("mt-1 text-base font-medium uppercase text-white md:text-sm")}>
         [ {title} ]
       </h4>
     </Link>
