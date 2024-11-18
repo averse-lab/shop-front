@@ -132,7 +132,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
       >
         {isPending ? (
           <>
-            {/* {dictionary.product.addingToCart} */}
+            {dictionary.product.addingToCart}
             <RiLoader5Line className={clsx("animate-spin")} />
           </>
         ) : (
