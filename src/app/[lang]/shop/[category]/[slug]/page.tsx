@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import { RiArrowDownLine } from "@remixicon/react";
 import { clsx } from "clsx";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -119,7 +118,7 @@ const ProductPage: FC<IProps> = async (props) => {
       />
       <div className={clsx("flex flex-col lg:flex-row")}>
         <Slider
-          className={clsx("lg:basis-1/2", "lg:[&>div>div]:flex-col", "lg:bg-black")}
+          className={clsx("lg:basis-1/2", "md:items-right lg:[&>div>div]:flex-col")}
           options={{
             loop: true,
             breakpoints: {
@@ -150,7 +149,7 @@ const ProductPage: FC<IProps> = async (props) => {
           )}
         >
           <div className={clsx("w-full lg:w-[450px]")}>
-            <h1 className={clsx("text-lg uppercase", "mb-1")}>{product.title}</h1>
+            <h1 className={clsx("text-base uppercase", "mb-2")}>{product.title}</h1>
             <ProductInteractive
               dictionary={dictionary}
               lang={lang}
@@ -159,16 +158,16 @@ const ProductPage: FC<IProps> = async (props) => {
               variants={product.variants}
             />
             <div
-              className={clsx("mt-8", "[&_p:not(:last-child)]:mb-2")}
+              className={clsx("mt-8", "[&_p:not(:last-child)]:mb-2", "font-abhaya text-base")}
               dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
             />
-
+            {/* 
             <p className={clsx("hidden items-center justify-center gap-4 md:flex", "h-full")}>
               <span className={clsx("font-medium uppercase")}>
-                {/* {dictionary.product.moreDetails} */}
+                {dictionary.product.moreDetails} 
               </span>
               <RiArrowDownLine className={clsx("animate-bounce")} size={20} />
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

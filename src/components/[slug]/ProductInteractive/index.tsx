@@ -94,7 +94,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   return (
     <>
-      <p className={clsx("font-light", "mb-4")}>{formatPrice(amount, currency)}</p>
+      <p className={clsx("text-base font-light", "mb-6")}>{formatPrice(amount, currency)}</p>
       <div
         className={clsx(
           "mb-8",
@@ -142,7 +142,8 @@ export const ProductInteractive: FC<IProps> = (props) => {
       {selectedIndex !== undefined ? (
         <AvailabilityIndicator
           dictionary={dictionary}
-          inStock={!variants[selectedIndex].currentlyNotInStock}
+          // inStock={!variants[selectedIndex].currentlyNotInStock}
+          inStock={true}
           shippingDelays={shippingDelays}
         />
       ) : null}

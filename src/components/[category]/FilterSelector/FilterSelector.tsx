@@ -20,14 +20,21 @@ export const FilterSelector: FC<IProps> = (props) => {
 
   return (
     <div
-      className={clsx(className, s["filters-selector"], "w-min", "px-6 py-4", "gap-6", "shadow-sm")}
+      className={clsx(
+        className,
+        s["filters-selector"],
+        "w-min",
+        "px-6 py-2",
+        "gap-6",
+        "border border-b border-[#D8D8D8]",
+      )}
     >
       {filters.map(({ display, url }, idx) => (
         <Link
           className={clsx(
             s["filters-selector__link"],
             "transition-all duration-200 ease-out",
-            "whitespace-nowrap text-sm lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
+            "whitespace-nowrap text-base lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
             "uppercase",
             idx === selectedFilterIndex && "scale-[1.025] font-medium",
             idx === selectedFilterIndex ? "text-black" : "text-neutral-800",
