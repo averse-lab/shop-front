@@ -116,7 +116,10 @@ export const ProductPreview: FC<IProps> = (props) => {
             {title}
           </p>
           <p
-            className={clsx("text-sm font-light", light ? "text-neutral-400" : "text-neutral-600")}
+            className={clsx(
+              "text-base font-light",
+              light ? "text-neutral-400" : "text-neutral-600",
+            )}
           >
             {Number(price).toFixed()} {currency}
           </p>
