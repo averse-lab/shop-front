@@ -59,7 +59,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
       <div
         className={clsx(
           className,
-          "grid auto-rows-[1fr] grid-cols-2 items-start md:gap-x-2.5 md:px-52 lg:grid-cols-4",
+          "grid grid-cols-2 items-start gap-x-1 md:gap-x-2.5 md:px-52 lg:grid-cols-4",
         )}
       >
         {products.map(
