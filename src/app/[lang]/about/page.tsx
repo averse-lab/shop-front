@@ -85,7 +85,7 @@ const AboutPage: FC<IProps> = async (props) => {
         logoColor='white'
         logoType='plain'
         logoVisible={false}
-        menuBgColor='white'
+        menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />

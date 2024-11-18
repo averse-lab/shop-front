@@ -31,7 +31,7 @@ const NotFound: FC = async () => {
           logoColor='white'
           logoType='typographic'
           logoVisible
-          menuBgColor='white'
+          menuBgColor='black'
           menuBtnColor='white'
           menuBtnIcnColor='white'
         />

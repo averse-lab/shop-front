@@ -113,7 +113,7 @@ const ProductPage: FC<IProps> = async (props) => {
         logoColor='black'
         logoType='plain'
         logoVisible
-        menuBgColor='white'
+        menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='black'
       />

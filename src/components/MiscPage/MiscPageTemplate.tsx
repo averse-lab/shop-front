@@ -39,7 +39,7 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
         logoColor='white'
         logoType='plain'
         logoVisible={false}
-        menuBgColor='white'
+        menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />

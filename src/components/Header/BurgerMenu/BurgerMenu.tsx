@@ -80,7 +80,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           "flex flex-col",
           "uppercase text-primary-foreground backdrop-blur transition-all duration-500 ease-in-out",
           open ? "translate-x-2 opacity-100" : "-translate-x-full opacity-0",
-          menuBgColor === "white" ? "bg-secondary" : "bg-primary",
+          menuBgColor === "white" ? "bg-secondary" : "border-1 border border-[#747474] bg-primary",
         )}
         ref={menuRef}
       >
@@ -98,7 +98,11 @@ export const BurgerMenu: FC<IProps> = (props) => {
             width='22'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <path d='m2.414 1.586 18 18M1.586 19.586l18-18' stroke='#0F0F0F' strokeWidth='4' />
+            <path
+              d='m2.414 1.586 18 18M1.586 19.586l18-18'
+              stroke={menuBgColor === "white" ? "black" : "white"}
+              strokeWidth='4'
+            />
           </svg>
         </Button>
         <div
@@ -116,7 +120,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
                 className={clsx(
                   "relative",
                   "font-serif text-xl md:text-base",
-                  "text-black",
+                  menuBgColor === "white" ? "text-secondary-foreground" : "text-primary-foreground",
                   "lg:[&:hover+svg]:translate-x-0 lg:[&:hover+svg]:opacity-100",
                 )}
                 href={link.href}
@@ -129,7 +133,8 @@ export const BurgerMenu: FC<IProps> = (props) => {
                 className={clsx(
                   "hidden lg:block",
                   "absolute bottom-0 left-[calc(100%+10px)] top-0 m-auto",
-                  "-translate-x-1 text-black opacity-0 transition-all",
+                  "-translate-x-1 opacity-0 transition-all",
+                  menuBgColor === "white" ? "text-secondary-foreground" : "text-primary-foreground",
                 )}
                 size={20}
               />

@@ -96,7 +96,7 @@ const CategoryPage: FC<Props> = async (props) => {
         logoColor='white'
         logoType='typographic'
         logoVisible
-        menuBgColor='white'
+        menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />
