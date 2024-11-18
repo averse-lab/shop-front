@@ -2,11 +2,12 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 import { Metadata } from "next";
+import Link from "next/link";
 
-import { Button } from "@components/Button/Button";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 import { FullLogo } from "@components/Home/FullLogo/FullLogo";
 import { ShopItem } from "@components/Home/ShopItem/ShopItem";
+import { Button } from "@components/ui/button";
 import { VideoPlayer } from "@components/VideoPlayer";
 
 import { Locale } from "@lib/i18n/types";
@@ -111,16 +112,10 @@ const HomePage: FC<IProps> = async (props) => {
           className={clsx("absolute bottom-1/4 flex w-1/2 max-w-80 flex-col items-center md:w-1/4")}
         >
           <FullLogo className='mb-10 w-full' />
-          <Button
-            ariaLabel={enterWebsiteAriaLabel}
-            className='w-full uppercase'
-            color='black'
-            element='link'
-            href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
-            hrefLang={lang}
-            transparent
-          >
-            [{enterWebsite}]
+          <Button asChild className='w-full'>
+            <Link href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}>
+              [ {enterWebsite} ]
+            </Link>
           </Button>
         </div>
       </section>
