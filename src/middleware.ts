@@ -13,7 +13,7 @@ function getLocale(request: NextRequest): string | undefined {
 
   const locales = I18N_CONFIG.locales;
 
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
     locales as unknown as string[],
   );
 
@@ -28,22 +28,22 @@ export async function middleware(request: NextRequest) {
 
   const isInMaintenanceMode = process.env.IS_IN_MAINTENANCE === "true";
 
-  const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce(
-    (pathnameIsPublicPath, publicPath) => {
-      if (pathname.startsWith(publicPath)) {
-        pathnameIsPublicPath = true;
-      }
+  const pathnameIsPublicPath: boolean = PUBLIC_PATHS.reduce((pathnameIsPublicPath, publicPath) => {
+    if (pathname.startsWith(publicPath)) {
+      pathnameIsPublicPath = true;
+    }
 
-      return pathnameIsPublicPath;
-    },
-    false,
-  );
+    return pathnameIsPublicPath;
+  }, false);
 
   const pathnameIsMissingLocale = I18N_LOCALES.every(
     (locale) => !pathname.startsWith(`/${locale}`),
   );
 
-  if (isInMaintenanceMode) {
+  if (
+    isInMaintenanceMode &&
+    (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production")
+  ) {
     request.nextUrl.pathname = `/${locale}/${PAGES.maintenance.url}`;
 
     return NextResponse.rewrite(request.nextUrl);
@@ -57,10 +57,7 @@ export async function middleware(request: NextRequest) {
 
   if (pathname.match(shopRegExp)) {
     return NextResponse.redirect(
-      new URL(
-        `/${locale}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`,
-        origin,
-      ),
+      new URL(`/${locale}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`, origin),
     );
   }
 }

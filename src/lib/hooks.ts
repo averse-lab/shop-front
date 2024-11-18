@@ -1,13 +1,13 @@
 import { useEffect, useReducer } from "react";
 
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 export const useBodyScrollLocker = (locked: boolean) => {
   useEffect(() => {
     if (locked) {
-      document.body.classList.add("scroll-locked");
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.classList.remove("scroll-locked");
+      document.body.classList.remove("overflow-hidden");
     }
   }, [locked]);
 };

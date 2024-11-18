@@ -2,27 +2,27 @@ import { FC } from "react";
 
 import { clsx } from "clsx";
 
-import s from "./_internal/SummaryItem.module.scss";
-
 type IProps = {
-  className?: string;
   metric: string;
   value: string;
+  variant?: "shipping" | "total";
 };
 
 export const SummaryItem: FC<IProps> = (props) => {
-  const { metric, value, className } = props;
+  const { metric, value, variant } = props;
 
   return (
     <div
       className={clsx(
-        className,
-        s["amount-summary"],
+        "pb-2",
         "flex items-center justify-between",
+        "border-b border-white/35",
+        "text-white",
+        "font-abhaya",
       )}
     >
       <p>{metric}</p>
-      <p>{value}</p>
+      <p className={clsx("transition-all", "text-base text-white")}>{value}</p>
     </div>
   );
 };

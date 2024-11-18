@@ -86,45 +86,44 @@ export const ProductPreview: FC<IProps> = (props) => {
         className={clsx(
           className,
           s["product-preview"],
-          "relative ",
-          "p-4",
-          "flex flex-col justify-end",
-          "aspect-square overflow-hidden opacity-0 outline outline-1 outline-neutral-500",
-          inView && "animate-productPreviewAppearing",
+          "flex flex-col",
+          "overflow-hidden opacity-0",
+          inView && "animate-product-preview-appearing",
         )}
         href={href}
         hrefLang={lang}
         ref={ref}
       >
-        <Image
-          alt={`photography of ${title}`}
-          className={clsx(
-            s["product-preview__image"],
-            "-z-10",
-            "object-cover object-center",
-          )}
-          fill
-          priority={index < 6}
-          sizes='(min-width: 1024px) 25vw, 50vw'
-          src={imageUrl}
-        />
-        <p
-          className={clsx(
-            s["product-preview__name"],
-            "uppercase",
-            light ? "text-white" : "text-black",
-          )}
-        >
-          {title}
-        </p>
-        <p
-          className={clsx(
-            "text-sm font-light",
-            light ? "text-neutral-400" : "text-neutral-600",
-          )}
-        >
-          {Number(price).toFixed()} {currency}
-        </p>
+        <div className={clsx("overflow-hidden")}>
+          <Image
+            alt={`photography of ${title}`}
+            className={clsx(s["product-preview__image"], "object-cover object-center")}
+            height={500}
+            quality={100}
+            sizes='(min-width: 1024px) 25vw, 50vw'
+            src={imageUrl}
+            width={500}
+          />
+        </div>
+        <div className='flex flex-row items-center justify-between gap-2'>
+          <p
+            className={clsx(
+              s["product-preview__name"],
+              "text-base uppercase",
+              light ? "text-white" : "text-black",
+            )}
+          >
+            {title}
+          </p>
+          <p
+            className={clsx(
+              "text-base font-light",
+              light ? "text-neutral-400" : "text-neutral-600",
+            )}
+          >
+            {Number(price).toFixed()} {currency}
+          </p>
+        </div>
       </Link>
     </InView>
   );

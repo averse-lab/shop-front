@@ -1,13 +1,12 @@
 "use client";
 
-import { FC, useContext } from "react";
+import { FC, use } from "react";
 
 import { clsx } from "clsx";
 import Link from "next/link";
 
 import { Logo } from "@components/icons/Logo/Logo";
 
-import { useSmoothScroll } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 
 import { HeaderContext } from "@contexts/HeaderContext/HeaderContext";
@@ -24,8 +23,7 @@ export const Header: FC<IProps> = (props) => {
   const { dictionary, lang } = props;
   const { averseHomeAriaLabel } = dictionary.header;
 
-  const { whiteBackground } = useContext(HeaderContext) || {};
-  useSmoothScroll();
+  const { headerBgColor } = use(HeaderContext);
 
   return (
     <header
@@ -33,16 +31,14 @@ export const Header: FC<IProps> = (props) => {
         "fixed z-20",
         "w-full px-6 py-4",
         "grid grid-cols-3 items-center",
-        whiteBackground
+        headerBgColor === "white"
           ? "border-b border-neutral-200 bg-white"
-          : "bg-transparent",
+          : headerBgColor === "black"
+            ? "bg-black"
+            : "bg-transparent",
       )}
     >
-      <BurgerMenu
-        className={clsx("justify-self-start")}
-        dictionary={dictionary}
-        lang={lang}
-      />
+      <BurgerMenu className={clsx("justify-self-start")} dictionary={dictionary} lang={lang} />
       <Link
         aria-label={averseHomeAriaLabel}
         className={clsx("justify-self-center")}
@@ -51,11 +47,7 @@ export const Header: FC<IProps> = (props) => {
       >
         <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
       </Link>
-      <Cart
-        className={clsx("justify-self-end")}
-        dictionary={dictionary}
-        lang={lang}
-      />
+      <Cart className={clsx("justify-self-end")} dictionary={dictionary} lang={lang} />
     </header>
   );
 };

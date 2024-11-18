@@ -19,9 +19,7 @@ export const getLocaleFromString = (string: string): Locale | undefined => {
   }
 };
 
-export const getSupportedLanguageCodeFromLocale = (
-  locale: Locale,
-): SupportedLanguageCode => {
+export const getSupportedLanguageCodeFromLocale = (locale: Locale): SupportedLanguageCode => {
   switch (locale) {
     case "en":
       return "EN";
@@ -30,9 +28,7 @@ export const getSupportedLanguageCodeFromLocale = (
   }
 };
 
-export const combineProviders = (
-  providers: FC<PropsWithChildren>[],
-): FC<PropsWithChildren> => {
+export const combineProviders = (providers: FC<PropsWithChildren>[]): FC<PropsWithChildren> => {
   return ({ children }) => {
     return providers.reduceRight((acc, curr) => {
       return createElement(curr, null, acc);
@@ -40,17 +36,15 @@ export const combineProviders = (
   };
 };
 
-export const generateStaticPagesSitemapItems = (
-  lang: Locale,
-): MetadataRoute.Sitemap[0][] => {
-  const shopCategoriesSitemapItems = Object.values(CATEGORIES).map<
-    MetadataRoute.Sitemap[0]
-  >((category) => ({
-    url: `${process.env.BASE_URL!}/${lang}/shop/${category.url}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
+export const generateStaticPagesSitemapItems = (lang: Locale): MetadataRoute.Sitemap[0][] => {
+  const shopCategoriesSitemapItems = Object.values(CATEGORIES).map<MetadataRoute.Sitemap[0]>(
+    (category) => ({
+      url: `${process.env.BASE_URL!}/${lang}/shop/${category.url}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    }),
+  );
 
   return [
     {
@@ -87,18 +81,14 @@ export const generateStaticPagesSitemapItems = (
   ];
 };
 
-export const generateAlternates = (
-  pathWithoutLang: string,
-  lang: Locale,
-): AlternateURLs => {
+export const generateAlternates = (pathWithoutLang: string, lang: Locale): AlternateURLs => {
   const locales = Object.keys(DICTIONARIES) as Locale[];
 
   const languages: AlternateURLs["languages"] = locales.reduce<
     Record<Locale | "x-default", string>
   >(
     (languages, language) => {
-      languages[language] =
-        `${process.env.BASE_URL}/${language}${pathWithoutLang}`;
+      languages[language] = `${process.env.BASE_URL}/${language}${pathWithoutLang}`;
 
       return languages;
     },
@@ -112,5 +102,46 @@ export const generateAlternates = (
   return {
     canonical: `${process.env.BASE_URL}/${lang}${pathWithoutLang}`,
     languages,
+  };
+};
+
+export const formatPrice = (price: string, currency: string): string => {
+  return `${Number(price).toFixed()} ${currency}`;
+};
+
+export const debounce = <F extends (...args: any[]) => any>(func: F, wait: number) => {
+  let timeout: NodeJS.Timeout | null;
+
+  return (...args: Parameters<F>): ReturnType<F> | void => {
+    const later = () => {
+      if (!timeout) {
+        return;
+      }
+
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(later, wait);
+  };
+};
+
+export const throttle = <F extends (...args: any[]) => any>(func: F, limit: number) => {
+  let inThrottle = false;
+
+  return (...args: Parameters<F>): ReturnType<F> | void => {
+    if (!inThrottle) {
+      func(...args);
+
+      inThrottle = true;
+
+      setTimeout(() => {
+        inThrottle = false;
+      }, limit);
+    }
   };
 };

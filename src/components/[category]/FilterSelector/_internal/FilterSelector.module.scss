@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
   backdrop-filter: blur(6px);
-  background-color: rgba($color: white, $alpha: 0.3);
+  background-color: white;
 }
 
 .filters-selector__link {

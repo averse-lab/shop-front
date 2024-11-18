@@ -24,8 +24,7 @@ export const CartItem: FC<IProps> = (props) => {
   const { merchandise, cost, quantity } = item;
   const { product, selectedOptions } = merchandise;
 
-  const uniqueSize =
-    selectedOptions.length === 1 && selectedOptions[0].name === "Title";
+  const uniqueSize = selectedOptions.length === 1 && selectedOptions[0].name === "Title";
 
   return (
     <div className={clsx(className, "flex items-center gap-3")}>
@@ -44,7 +43,7 @@ export const CartItem: FC<IProps> = (props) => {
       <div className={clsx("flex flex-col items-start gap-3", "h-full p-1")}>
         <div className={clsx("flex flex-col")}>
           <Link
-            className={clsx("uppercase")}
+            className={clsx("font-bold uppercase text-white")}
             href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
             hrefLang={lang}
           >
@@ -52,25 +51,19 @@ export const CartItem: FC<IProps> = (props) => {
           </Link>
           <div className={clsx("flex items-center")}>
             {uniqueSize ? (
-              <p
-                className={clsx(
-                  "text-sm font-light uppercase text-neutral-600",
-                )}
-              >
+              <p className={clsx("font-serif text-sm font-light uppercase text-white")}>
                 {dictionary.product.uniqueSize}
               </p>
             ) : (
               selectedOptions.map((option) => (
                 <p
-                  className={clsx(
-                    "text-sm font-light uppercase text-neutral-600",
-                  )}
+                  className={clsx("font-abhaya text-sm font-light uppercase text-white")}
                   key={option.value}
                 >{`${option.value}`}</p>
               ))
             )}
           </div>
-          <p className={clsx("text-sm font-light uppercase text-neutral-600")}>
+          <p className={clsx("font-abhaya text-sm font-light uppercase text-white")}>
             {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
           </p>
         </div>

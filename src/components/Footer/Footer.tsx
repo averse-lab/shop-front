@@ -11,7 +11,6 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import { FOOTER_NAV } from "./_internal/Footer.constants";
-import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
 
 type IProps = {
   dictionary: Dictionary;
@@ -81,8 +80,6 @@ export const Footer: FC<IProps> = (props) => {
             />
           </Link>
         </div>
-        <div>-</div>
-        <LanguageSelector lang={lang} />
       </div>
     </footer>
   );

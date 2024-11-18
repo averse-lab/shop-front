@@ -6,9 +6,9 @@ import clsx from "clsx";
 import Script from "next/script";
 
 import { Footer } from "@components/Footer/Footer";
-import { Header } from "@components/Header/Header";
+import { Header } from "@components/Header";
 
-import { DMSans } from "@lib/fonts";
+import { AbhayaLibre, Inter } from "@lib/fonts";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { combineProviders } from "@lib/utils";
 
@@ -22,10 +22,7 @@ type IProps = {
 
 export const BaseLayout: FC<IProps> = (props) => {
   const { lang, dictionary, children } = props;
-  const AppProvider = combineProviders([
-    CartContextProvider,
-    HeaderContextProvider,
-  ]);
+  const AppProvider = combineProviders([CartContextProvider, HeaderContextProvider]);
 
   const isInMaintenanceMode = process.env.IS_IN_MAINTENANCE === "true";
 
@@ -41,26 +38,21 @@ export const BaseLayout: FC<IProps> = (props) => {
       )}
       <body
         className={clsx(
-          DMSans.variable,
+          AbhayaLibre.variable,
+          Inter.variable,
           "mb-[220px] lg:mb-[204px]",
           "min-h-screen",
           "flex flex-col",
-          "bg-black shadow-md",
+          "bg-black",
           "font-sans",
         )}
       >
         <SpeedInsights />
         <Analytics />
         <AppProvider>
-          {!isInMaintenanceMode && (
-            <Header dictionary={dictionary} lang={lang} />
-          )}
-          <main className={clsx("flex grow flex-col", "bg-white")}>
-            {children}
-          </main>
-          {!isInMaintenanceMode && (
-            <Footer dictionary={dictionary} lang={lang} />
-          )}
+          <Header dictionary={dictionary} lang={lang} />
+          <main className={clsx("flex grow flex-col", "bg-black")}>{children}</main>
+          <Footer dictionary={dictionary} lang={lang} />
         </AppProvider>
       </body>
     </html>
