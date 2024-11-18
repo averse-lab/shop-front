@@ -88,7 +88,7 @@ const CategoryPage: FC<Props> = async (props) => {
   });
 
   return (
-    <div className='bg-white'>
+    <div className='bg-white md:min-h-screen'>
       <HeaderContextInitializer
         cartBtnColor='white'
         cartBtnIcnColor='white'

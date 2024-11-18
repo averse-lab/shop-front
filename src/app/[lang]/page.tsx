@@ -102,14 +102,12 @@ const HomePage: FC<IProps> = async (props) => {
           "h-[90vh] md:h-auto",
         )}
       >
-        {/* <div className={clsx("absolute -z-10 h-full w-full md:container")}> */}
         <VideoPlayer
           className={clsx("h-full w-full")}
           minResolution='1440p'
           placeholder={videoPlaceholder}
           playbackId={HOME_VIDEO.playbackId}
         />
-        {/* </div> */}
         <div
           className={clsx("absolute bottom-1/4 flex w-1/2 max-w-80 flex-col items-center md:w-1/4")}
         >
