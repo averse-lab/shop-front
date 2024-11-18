@@ -94,15 +94,17 @@ export const ProductPreview: FC<IProps> = (props) => {
         hrefLang={lang}
         ref={ref}
       >
-        <Image
-          alt={`photography of ${title}`}
-          className={clsx(s["product-preview__image"], "object-cover object-center")}
-          height={500}
-          quality={100}
-          sizes='(min-width: 1024px) 25vw, 50vw'
-          src={imageUrl}
-          width={500}
-        />
+        <div className={clsx("overflow-hidden")}>
+          <Image
+            alt={`photography of ${title}`}
+            className={clsx(s["product-preview__image"], "object-cover object-center")}
+            height={500}
+            quality={100}
+            sizes='(min-width: 1024px) 25vw, 50vw'
+            src={imageUrl}
+            width={500}
+          />
+        </div>
         <div className='flex flex-row justify-between gap-2'>
           <p
             className={clsx(
