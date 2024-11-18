@@ -9,7 +9,6 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { CATEGORIES, PAGES } from "@lib/routing/constants";
 import { Product } from "@lib/shopify/types";
 
-import { ProductGridObserver } from "./ProductGridObserver";
 import { Filter } from "../FilterSelector/_internal/FilterSelector.types";
 import { FilterSelector } from "../FilterSelector/FilterSelector";
 import { ProductPreview } from "../ProductPreview/ProductPreview";
@@ -55,7 +54,6 @@ export const ProductsGrid: FC<IProps> = (props) => {
 
   return (
     <>
-      <ProductGridObserver />
       <div
         className={clsx(
           className,
@@ -84,7 +82,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
         )}
       </div>
       <InView initialInView>
-        {({ inView, ref }) => {
+        {({ ref }) => {
           return (
             <>
               <div ref={ref}></div>
@@ -92,12 +90,6 @@ export const ProductsGrid: FC<IProps> = (props) => {
                 className={clsx(
                   "fixed bottom-2 left-0 right-0 z-10 m-auto lg:bottom-auto lg:top-[96px] lg:m-0 lg:w-screen",
                   "transition-all duration-200 ease-out lg:translate-y-0 lg:opacity-0",
-                  initAnimationsOver && "lg:animate-filter-selector-desktop-appearing",
-                  initAnimationsOver
-                    ? inView
-                      ? "translate-y-3 opacity-0"
-                      : "-translate-y-3 opacity-100"
-                    : "opacity-0",
                 )}
                 filters={filters}
                 lang={lang}
