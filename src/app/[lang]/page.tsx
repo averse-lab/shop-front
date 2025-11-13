@@ -70,7 +70,7 @@ const HomePage: FC<IProps> = async (props) => {
   const { lang } = params;
 
   const dictionary = await getDictionary(lang);
-  const { enterWebsite, enterWebsiteAriaLabel, quote } = dictionary.home;
+  const { enterWebsite, quote } = dictionary.home;
 
   const videoPlaceholder = await getMuxPlaceholder({
     playbackId: HOME_VIDEO.playbackId,
@@ -78,7 +78,7 @@ const HomePage: FC<IProps> = async (props) => {
   });
 
   return (
-    <div className='bg-black md:mt-[96px]'>
+    <div className='bg-white md:mt-[96px]'>
       <HeaderContextInitializer
         cartBtnColor='white'
         cartBtnIcnColor='white'
@@ -96,7 +96,7 @@ const HomePage: FC<IProps> = async (props) => {
           "flex flex-col items-center justify-end",
           "text-center",
           "relative",
-          "bg-black",
+          "bg-white",
           "md:aspect-video",
           "md:container",
           "h-[90vh] md:h-auto",
@@ -119,7 +119,7 @@ const HomePage: FC<IProps> = async (props) => {
           </Button>
         </div>
       </section>
-      <section className={clsx("flex h-full w-full grow flex-col items-center bg-black")}>
+      <section className={clsx("flex h-full w-full grow flex-col items-center bg-white")}>
         <div
           className={clsx(
             "my-3 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-3 gap-y-1 px-7 md:container lg:grid-cols-3",
@@ -131,7 +131,7 @@ const HomePage: FC<IProps> = async (props) => {
             title='Shop'
           />
           <ShopItem
-            imagePath='/images/about/about.jpg'
+            imagePath='/images/about/about.png'
             linkPath={`/${lang}/${PAGES.about.url}`}
             title='about the project'
           />
