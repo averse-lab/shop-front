@@ -44,13 +44,13 @@ Documentation is provided to guide you through the major setup steps.
 
 ### Setup Environment Variables
 
-Begin by creating a `.env.local` file for your environment variables. Use the `.env.local.example` as a template:
+Begin by creating a `.env.local` file for your environment variables using the provided template:
 
 ```bash
-cp .env.local.sample .env.local
+cp .env.example .env.local
 ```
 
-Replace the placeholders in the newly created file with your actual values.
+Replace the placeholders in the newly created file with your actual values. Keep the real values out of version control (and deployment previews) by relying on your hosting provider’s secret management instead of committing them.
 
 ### Install Dependencies
 
