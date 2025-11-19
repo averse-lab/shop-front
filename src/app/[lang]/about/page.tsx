@@ -11,7 +11,7 @@ import { getDictionary } from "@lib/i18n/utils";
 import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
-
+import Image from "next/image";
 import { ABOUT_VIDEO, CRYING_GIRL_VIDEO } from "./_internal/AboutPage.constants";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
@@ -108,11 +108,14 @@ const AboutPage: FC<IProps> = async (props) => {
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph1}</p>
           <p className={clsx("mb-4 w-full")}>[ ]</p>
-          <VideoPlayer
-            className={clsx("mb-12 w-full", `aspect-[347/450]`)}
-            minResolution='720p'
-            placeholder={cryingGirlVideoPlaceholder}
-            playbackId={CRYING_GIRL_VIDEO.playbackId}
+          <Image
+            className={clsx("mb-4 h-auto w-full")}
+            sizes='(min-width: 1024px) 450px, 384px'
+            width={347}
+            height={450}
+            quality={100}
+            src='/images/about/about.png'
+            alt='Statues of faces filled with Averse jewels'
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph2}</p>
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph3}</p>
