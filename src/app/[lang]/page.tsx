@@ -100,6 +100,7 @@ const HomePage: FC<IProps> = async (props) => {
           "md:aspect-video",
           "md:container",
           "h-[90vh] md:h-auto",
+          "mt-3",
         )}
       >
         <VideoPlayer
@@ -109,7 +110,9 @@ const HomePage: FC<IProps> = async (props) => {
           playbackId={HOME_VIDEO.playbackId}
         />
         <div
-          className={clsx("absolute bottom-1/4 flex w-1/2 max-w-80 flex-col items-center md:w-1/4")}
+          className={clsx(
+            "absolute bottom-[10%] flex w-1/2 max-w-80 flex-col items-center md:w-1/4",
+          )}
         >
           <FullLogo className='mb-10 w-full' />
           <Button asChild className='w-full'>
