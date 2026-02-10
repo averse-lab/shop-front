@@ -19,7 +19,7 @@ export type PageValue = {
   url: string;
 };
 
-export type CategoryKey = "allProducts" | "rings" | "necklaces";
+export type CategoryKey = "allProducts" | "rings" | "necklaces" | "bracelets";
 
 export interface CategoryValue {
   i18nKey: keyof Dictionary["categories"];

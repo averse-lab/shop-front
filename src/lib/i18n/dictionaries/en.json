@@ -13,9 +13,10 @@
     "contact": "Contact"
   },
   "categories": {
+    "allProducts": "All Products",
     "rings": "Rings",
     "necklaces": "Necklaces",
-    "allProducts": "All Products"
+    "bracelets": "Bracelets"
   },
   "home": {
     "enterWebsite": "explore",

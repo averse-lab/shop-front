@@ -17,16 +17,21 @@ export const PAGES: Record<PageKey, PageValue> = {
 };
 
 export const CATEGORIES: Record<CategoryKey, CategoryValue> = {
-  rings: { i18nKey: "rings", shopifyId: "rings", url: "rings" },
   allProducts: {
     i18nKey: "allProducts",
     shopifyId: "",
     url: "all-products",
   },
+  rings: { i18nKey: "rings", shopifyId: "rings", url: "rings" },
   necklaces: {
     i18nKey: "necklaces",
     shopifyId: "necklaces",
     url: "necklaces",
+  },
+  bracelets: {
+    i18nKey: "bracelets",
+    shopifyId: "bracelets",
+    url: "bracelets",
   },
 };
 

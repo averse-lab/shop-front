@@ -23,16 +23,16 @@ export const FilterSelector: FC<IProps> = (props) => {
       className={clsx(
         className,
         s["filters-selector"],
-        "w-min",
+        "overflow-x-auto",
+        "max-w-full",
         "px-6 py-2",
-        "gap-6",
+        "justify-start gap-6 md:justify-center",
         "border border-b border-[#D8D8D8]",
       )}
     >
       {filters.map(({ display, url }, idx) => (
         <Link
           className={clsx(
-            s["filters-selector__link"],
             "transition-all duration-200 ease-out",
             "whitespace-nowrap text-base lg:hover:scale-[1.025] lg:hover:font-medium lg:hover:text-black",
             "uppercase",
