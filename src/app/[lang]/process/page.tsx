@@ -9,7 +9,7 @@ import { getDictionary } from "@lib/i18n/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
-import { PROCESS_VIDEO } from "./_internal/ProcessPage.constants";
+import { PROCESS_ALT_VIDEO, PROCESS_VIDEO } from "./_internal/ProcessPage.constants";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;
@@ -66,10 +66,6 @@ const ProcessPage: FC<IProps> = async (props) => {
 
   return (
     <MiscPageTemplate
-      image={{
-        src: "/images/process/process.png",
-        alt: process.title,
-      }}
       textBlocks={[
         {
           type: "paragraph",
@@ -106,6 +102,11 @@ const ProcessPage: FC<IProps> = async (props) => {
         playbackId: PROCESS_VIDEO.playbackId,
         widthRatio: PROCESS_VIDEO.widthRatio,
         heightRatio: PROCESS_VIDEO.heightRatio,
+      }}
+      altVideo={{
+        playbackId: PROCESS_ALT_VIDEO.playbackId,
+        widthRatio: PROCESS_ALT_VIDEO.widthRatio,
+        heightRatio: PROCESS_ALT_VIDEO.heightRatio,
       }}
     />
   );

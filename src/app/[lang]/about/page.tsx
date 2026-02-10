@@ -13,7 +13,7 @@ import { getMuxPlaceholder } from "@lib/mux/utils";
 import { PAGES } from "@lib/routing/constants";
 import { generateAlternates } from "@lib/utils";
 
-import { ABOUT_VIDEO, CRYING_GIRL_VIDEO } from "./_internal/AboutPage.constants";
+import { ABOUT_VIDEO, C0007_VIDEO } from "./_internal/AboutPage.constants";
 
 export async function generateMetadata(props: IProps): Promise<Metadata> {
   const { params } = props;
@@ -72,8 +72,8 @@ const AboutPage: FC<IProps> = async (props) => {
     playbackId: ABOUT_VIDEO.playbackId,
     width: 64,
   });
-  const cryingGirlVideoPlaceholder = await getMuxPlaceholder({
-    playbackId: CRYING_GIRL_VIDEO.playbackId,
+  const C0007VideoPlaceholder = await getMuxPlaceholder({
+    playbackId: C0007_VIDEO.playbackId,
     width: 64,
   });
 
@@ -109,14 +109,11 @@ const AboutPage: FC<IProps> = async (props) => {
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph1}</p>
           <p className={clsx("mb-4 w-full")}>[ ]</p>
-          <Image
-            className={clsx("mb-4 h-auto w-full")}
-            sizes='(min-width: 1024px) 450px, 384px'
-            width={347}
-            height={450}
-            quality={100}
-            src='/images/about/about.png'
-            alt='Statues of faces filled with Averse jewels'
+          <VideoPlayer
+            className={clsx("mb-4 h-auto w-full", `aspect-[4/5]`)}
+            minResolution='720p'
+            playbackId={C0007_VIDEO.playbackId}
+            placeholder={C0007VideoPlaceholder}
           />
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph2}</p>
           <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph3}</p>

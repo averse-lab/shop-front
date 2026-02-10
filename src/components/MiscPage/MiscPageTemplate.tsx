@@ -15,6 +15,11 @@ type Props = {
     widthRatio: number;
     heightRatio: number;
   };
+  altVideo?: {
+    playbackId: string;
+    widthRatio: number;
+    heightRatio: number;
+  };
   image?: {
     src: string;
     alt: string;
@@ -23,12 +28,19 @@ type Props = {
 };
 
 export const MiscPageTemplate: FC<Props> = async (props) => {
-  const { video, title, image, textBlocks } = props;
+  const { video, title, image, textBlocks, altVideo } = props;
 
   const videoPlaceholder = await getMuxPlaceholder({
     playbackId: video.playbackId,
     width: 64,
   });
+
+  const altVideoPlaceholder = altVideo
+    ? await getMuxPlaceholder({
+        playbackId: altVideo.playbackId,
+        width: 64,
+      })
+    : undefined;
 
   return (
     <>
@@ -62,6 +74,14 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
           <h1 className={clsx("mb-6 md:mb-20", "uppercase", "text-xl", "text-gray-400")}>
             [ {title} ]
           </h1>
+          {altVideo && altVideoPlaceholder && (
+            <VideoPlayer
+              className={clsx("mb-6 h-auto w-full", `aspect-[4/5]`)}
+              minResolution='720p'
+              placeholder={altVideoPlaceholder}
+              playbackId={altVideo.playbackId}
+            />
+          )}
           {image && (
             <Image
               alt={image.alt}
