@@ -13,9 +13,10 @@
     "contact": "Contact"
   },
   "categories": {
+    "allProducts": "Tous les produits",
     "rings": "Bagues",
     "necklaces": "Colliers",
-    "allProducts": "Tous les produits"
+    "bracelets": "Bracelets"
   },
   "home": {
     "enterWebsite": "explorez",

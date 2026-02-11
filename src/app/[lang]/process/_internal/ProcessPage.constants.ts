@@ -6,4 +6,10 @@ const PROCESS_VIDEO: MuxVideoSource = {
   heightRatio: 1,
 };
 
-export { PROCESS_VIDEO };
+const PROCESS_ALT_VIDEO: MuxVideoSource = {
+  playbackId: "CY293PWAAR102eNEq01Kd0101ET02zGLaLrm1OdzDB02Oc5Y8",
+  widthRatio: 4,
+  heightRatio: 5,
+};
+
+export { PROCESS_VIDEO, PROCESS_ALT_VIDEO };

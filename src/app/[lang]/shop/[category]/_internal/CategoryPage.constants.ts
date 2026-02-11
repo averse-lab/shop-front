@@ -79,4 +79,5 @@ export const ANIMATIONS: Record<CategoryKey, Animation[]> = {
       gridDesktopIndex: undefined,
     },
   ],
+  bracelets: [],
 };

@@ -6,6 +6,12 @@ const ABOUT_VIDEO: MuxVideoSource = {
   heightRatio: 3,
 };
 
+const C0007_VIDEO: MuxVideoSource = {
+  playbackId: "eIDk00WV00d4p021weXkDA2sA8gcYzLp5Xi7YhI0102VF01DA",
+  widthRatio: 4,
+  heightRatio: 5,
+};
+
 const IRRATIONAL_CUBE_VIDEO: MuxVideoSource = {
   playbackId: "VnSqYFPMv7ckRpbLL1D015q6FtO3L1LGJZB6dDQEDQB00",
   widthRatio: 4,
@@ -18,4 +24,4 @@ const CRYING_GIRL_VIDEO: MuxVideoSource = {
   heightRatio: 450,
 };
 
-export { ABOUT_VIDEO, CRYING_GIRL_VIDEO, IRRATIONAL_CUBE_VIDEO };
+export { ABOUT_VIDEO, C0007_VIDEO, CRYING_GIRL_VIDEO, IRRATIONAL_CUBE_VIDEO };
