@@ -15,8 +15,8 @@ importers:
         specifier: ^2.1.5
         version: 2.2.0(react@18.3.1)
       '@mux/mux-video-react':
-        specifier: 0.8.5
-        version: 0.8.5(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.31.4
+        version: 0.31.4(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-icons':
         specifier: 1.3.0
         version: 1.3.0(react@18.3.1)
@@ -82,8 +82,8 @@ importers:
         version: 10.0.0
     devDependencies:
       '@mux/playback-core':
-        specifier: 0.24.0
-        version: 0.24.0
+        specifier: 0.35.4
+        version: 0.35.4
       '@types/negotiator':
         specifier: 0.6.3
         version: 0.6.3
@@ -337,24 +337,21 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@mux/mux-video-react@0.8.5':
-    resolution: {integrity: sha512-DNlX+7cExOGoXdPAHMfuqc1u2RjHgUjO9Y4WoPfOQAFH2QqP7Kjd9t0PpKAARES8tWNuWhxjyw+as1gen4OalQ==}
+  '@mux/mux-video-react@0.31.4':
+    resolution: {integrity: sha512-5UqTf/W0h938luvej1Dgwl/tt/aBDc0M9yV5WhAr8XGCHTD+2SHXD359cjygxsPbid+NShPKVc2AvCsIjoRbTg==}
     peerDependencies:
-      '@types/react': ^17.0.0 || ^18
+      '@types/react': ^17.0.0 || ^17.0.0-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
       '@types/react-dom': '*'
-      react: ^17.0.2 || ^18
-      react-dom: ^17.0.2 || ^18
+      react: ^17.0.2 || ^17.0.0-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
+      react-dom: ^17.0.2 || ^17.0.2-0 || ^18 || ^18.0.0-0 || ^19 || ^19.0.0-0
     peerDependenciesMeta:
       '@types/react':
         optional: true
       '@types/react-dom':
         optional: true
 
-  '@mux/playback-core@0.22.4':
-    resolution: {integrity: sha512-f/jWcYbFRjXjdFRNq3MK79D1YHTqvwcfchRLYukE384P3cb027dru+bSxMKESrfkhAhnWFy7fdq/llawl7SU9g==}
-
-  '@mux/playback-core@0.24.0':
-    resolution: {integrity: sha512-OFBSlBwCvwb8fhOVLXwydbY/HQNMbp/pz9w/gGJxntt7ugup65UNrJlwuYzRs0wILnSmms6Oav4bWkjDKwYHIA==}
+  '@mux/playback-core@0.35.4':
+    resolution: {integrity: sha512-MxetTf+BpobrSWFUdnQSodKdClPbsOcacEug8EqPefv76rxyTQF64l7RTTF1bUdVlvy6ooqsyEKdR2jK+VS5UQ==}
 
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
@@ -1386,11 +1383,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  hls.js@1.4.14:
-    resolution: {integrity: sha512-UppQjyvPVclg+6t2KY/Rv03h0+bA5u6zwqVoz4LAC/L0fgYmIaCD7ZCrwe8WI1Gv01be1XL0QFsRbSdIHV/Wbw==}
-
-  hls.js@1.5.20:
-    resolution: {integrity: sha512-uu0VXUK52JhihhnN/MVVo1lvqNNuhoxkonqgO3IpjvQiGpJBdIXMGkofjQb/j9zvV7a1SW8U9g1FslWx/1HOiQ==}
+  hls.js@1.7.3:
+    resolution: {integrity: sha512-MsPlx6yVW4Qv4C7mEVou4/gk/5cN2dVxOTnrNjPSmyH2f0Ln+/UkG10Ax1PE6OvrmTVPKgQYozTtBaPOuCzq7A==}
 
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
@@ -1704,11 +1698,8 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  mux-embed@4.30.0:
-    resolution: {integrity: sha512-XAgAp4CEvsiZL26GbruzeG1g33OWyrzuskDMavXUxDufTxS0/AxAhwoTTRqEzEJS9vnZa/X9R2GV3xRX1XMp2w==}
-
-  mux-embed@5.2.1:
-    resolution: {integrity: sha512-NukHw91xeEVDBeXVDBpi2BvXNix7gSuvdtyvOph5yR/ROn1hHbTlcYWoKQyCyJX9frsF00UROEul+S8wPzU3aQ==}
+  mux-embed@5.18.1:
+    resolution: {integrity: sha512-ePsHjiEKY+FgrSBiMmaF+LOtTQSSBWv/1zqpREQFN96JE93xlsArT/MEi30yKOE06MgjOlL70YI750molu3y7g==}
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
@@ -2622,9 +2613,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@mux/mux-video-react@0.8.5(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@mux/mux-video-react@0.31.4(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@mux/playback-core': 0.22.4
+      '@mux/playback-core': 0.35.4
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -2632,15 +2623,10 @@ snapshots:
       '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
 
-  '@mux/playback-core@0.22.4':
+  '@mux/playback-core@0.35.4':
     dependencies:
-      hls.js: 1.4.14
-      mux-embed: 4.30.0
-
-  '@mux/playback-core@0.24.0':
-    dependencies:
-      hls.js: 1.5.20
-      mux-embed: 5.2.1
+      hls.js: 1.7.3
+      mux-embed: 5.18.1
 
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
@@ -3792,9 +3778,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hls.js@1.4.14: {}
-
-  hls.js@1.5.20: {}
+  hls.js@1.7.3: {}
 
   iconv-lite@0.6.3:
     dependencies:
@@ -4100,9 +4084,7 @@ snapshots:
 
   ms@2.1.3: {}
 
-  mux-embed@4.30.0: {}
-
-  mux-embed@5.2.1: {}
+  mux-embed@5.18.1: {}
 
   mz@2.7.0:
     dependencies:
