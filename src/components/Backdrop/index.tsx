@@ -1,22 +1,23 @@
 import { FC } from "react";
 
-import clsx from "clsx";
+import { cn } from "@lib/shadcn-ui/utils";
 
 type Props = {
+  className?: string;
   activate: boolean;
 };
 
-export const Backdrop: FC<Props> = (props) => {
-  const { activate } = props;
-
+export const Backdrop: FC<Props> = ({ className, activate }) => {
   return (
     <div
-      className={clsx(
+      className={cn(
         "fixed left-0 top-0 z-10",
         "h-dvh w-screen",
-        "transition-all delay-150 duration-500 ease-in-out",
-        activate ? "bg-primary/40 md:bg-primary/20" : "bg-primary/0 pointer-events-none",
+        "transition-all ease-in-out",
+        activate ? "bg-primary/30" : "pointer-events-none bg-primary/0",
+        className,
       )}
+      style={{ transitionDuration: "350ms" }}
     />
   );
 };

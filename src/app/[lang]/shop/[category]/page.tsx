@@ -102,7 +102,7 @@ const CategoryPage: FC<Props> = async (props) => {
       />
       <ProductsGrid
         categoryUrlSegment={categoryUrlSegment}
-        className={clsx("relative z-0", "mt-[72px] md:mb-[32px] md:mt-[128px] lg:mt-[178px]")}
+        className={clsx("relative z-0", "mt-[68px] md:mb-[32px] md:mt-[112px] lg:mt-[154px]")}
         dictionary={dictionary}
         lang={lang}
         products={products}

@@ -29,7 +29,7 @@ export const Header: FC<IProps> = (props) => {
     <header
       className={clsx(
         "fixed z-20",
-        "w-full px-6 py-4",
+        "w-full px-6 py-2",
         "grid grid-cols-3 items-center",
         headerBgColor === "white"
           ? "border-b border-neutral-200 bg-white"
@@ -45,7 +45,7 @@ export const Header: FC<IProps> = (props) => {
         href={`/${lang}`}
         hrefLang={lang}
       >
-        <Logo className={clsx("h-10 w-10 md:h-16 md:w-16")} />
+        <Logo className={clsx("h-12 w-12 md:h-16 md:w-16")} />
       </Link>
       <Cart className={clsx("justify-self-end")} dictionary={dictionary} lang={lang} />
     </header>

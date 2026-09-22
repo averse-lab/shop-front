@@ -2,7 +2,7 @@
 
 import { FC, MouseEventHandler, use } from "react";
 
-import { RiShoppingBag3Line } from "@remixicon/react";
+import { CubeIcon } from "@radix-ui/react-icons";
 import { clsx } from "clsx";
 
 import { Button } from "@components/ui/button";
@@ -32,14 +32,12 @@ export const CartButton: FC<IProps> = (props) => {
       )}
     >
       <Button aria-label={ariaLabel} onClick={onClick} size='icon' variant='flat'>
-        <RiShoppingBag3Line
+        <CubeIcon
           className={clsx(
+            "size-6",
             "transition-all",
-            cartBtnIcnColor === "white"
-              ? "text-primary-foreground/80"
-              : "text-secondary-foreground/80",
+            cartBtnIcnColor === "white" ? "text-white" : "text-black",
           )}
-          size={20}
         />
       </Button>
       <div

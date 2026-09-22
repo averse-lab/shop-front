@@ -55,67 +55,65 @@ export const MiscPageTemplate: FC<Props> = async (props) => {
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />
-      <div className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}>
-        <div
-          className={clsx(
-            "m-auto mt-[72px] md:mt-[96px]",
-            "lg:max-w-[450px]",
-            "flex flex-1 flex-col items-center justify-center",
-            "text-left text-white",
-            "max-w-96",
-          )}
-        >
+      <div
+        className={clsx(
+          "mx-auto mt-[64px] md:mt-[80px]",
+          "min-h-screen px-6 py-4 md:max-w-[500px]",
+          "flex flex-col items-center justify-center",
+          "bg-black",
+          "text-left text-white",
+        )}
+      >
+        <VideoPlayer
+          className={clsx("mb-12 w-48", `aspect-[4/3]`)}
+          minResolution='720p'
+          placeholder={videoPlaceholder}
+          playbackId={video.playbackId}
+        />
+        <h1 className={clsx("mb-6 md:mb-20", "uppercase", "text-xl", "text-gray-400")}>
+          [ {title} ]
+        </h1>
+        {altVideo && altVideoPlaceholder && (
           <VideoPlayer
-            className={clsx("mb-12 w-48", `aspect-[4/3]`)}
+            className={clsx("mb-6 h-auto w-full", `aspect-[4/5]`)}
             minResolution='720p'
-            placeholder={videoPlaceholder}
-            playbackId={video.playbackId}
+            placeholder={altVideoPlaceholder}
+            playbackId={altVideo.playbackId}
           />
-          <h1 className={clsx("mb-6 md:mb-20", "uppercase", "text-xl", "text-gray-400")}>
-            [ {title} ]
-          </h1>
-          {altVideo && altVideoPlaceholder && (
-            <VideoPlayer
-              className={clsx("mb-6 h-auto w-full", `aspect-[4/5]`)}
-              minResolution='720p'
-              placeholder={altVideoPlaceholder}
-              playbackId={altVideo.playbackId}
-            />
-          )}
-          {image && (
-            <Image
-              alt={image.alt}
-              className='mb-6 w-full'
-              height={100}
-              quality={100}
-              sizes='(max-width: 550px) 100vw, (max-width: 1200px) 50vw, 33vw'
-              src={image.src}
-              width={100}
-            />
-          )}
-          <div className={clsx("text-sm md:text-base")}>
-            {textBlocks.map((block, idx) => {
-              if (block.type === "title") {
-                return (
-                  <h2 className={clsx("font-normal uppercase")} key={idx}>
-                    {block.text}
-                  </h2>
-                );
-              } else if (block.type === "quote") {
-                return (
-                  <p className={"font-extralight uppercase"} key={idx}>
-                    {block.text}
-                  </p>
-                );
-              } else {
-                return (
-                  <p className={clsx("mb-6 w-full font-extralight")} key={idx}>
-                    {block.text}
-                  </p>
-                );
-              }
-            })}
-          </div>
+        )}
+        {image && (
+          <Image
+            alt={image.alt}
+            className='mb-6 w-full'
+            height={100}
+            quality={100}
+            sizes='(max-width: 550px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            src={image.src}
+            width={100}
+          />
+        )}
+        <div className={clsx("text-sm md:text-base")}>
+          {textBlocks.map((block, idx) => {
+            if (block.type === "title") {
+              return (
+                <h2 className={clsx("font-normal uppercase")} key={idx}>
+                  {block.text}
+                </h2>
+              );
+            } else if (block.type === "quote") {
+              return (
+                <p className={"font-extralight uppercase"} key={idx}>
+                  {block.text}
+                </p>
+              );
+            } else {
+              return (
+                <p className={clsx("mb-6 w-full font-extralight")} key={idx}>
+                  {block.text}
+                </p>
+              );
+            }
+          })}
         </div>
       </div>
     </>

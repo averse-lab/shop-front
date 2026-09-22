@@ -40,8 +40,8 @@ const PrivacyPolicyPage: FC<IProps> = async (props) => {
         menuBtnColor='white'
         menuBtnIcnColor='black'
       />
-      <div className={clsx("mt-[72px] md:mt-[96px]", "px-6 py-8 lg:px-12", "flex flex-col gap-4")}>
-        <h1 className={clsx("text-4xl font-bold uppercase")}>{dictionary.pages.privacyPolicy}</h1>
+      <div className={clsx("mt-[64px] md:mt-[80px]", "min-h-screen px-6 py-4")}>
+        <h1 className={clsx("text-xl font-bold uppercase")}>{dictionary.pages.privacyPolicy}</h1>
         <div dangerouslySetInnerHTML={{ __html: legal.body }} />
       </div>
     </div>

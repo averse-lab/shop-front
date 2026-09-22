@@ -1,7 +1,7 @@
 import { Abhaya_Libre, Inter as RsmsInter } from "next/font/google";
 
 const AbhayaLibre = Abhaya_Libre({
-  weight: "500",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-abhaya",

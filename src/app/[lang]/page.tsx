@@ -78,7 +78,7 @@ const HomePage: FC<IProps> = async (props) => {
   });
 
   return (
-    <div className='bg-white md:mt-[96px]'>
+    <>
       <HeaderContextInitializer
         cartBtnColor='white'
         cartBtnIcnColor='white'
@@ -90,80 +90,79 @@ const HomePage: FC<IProps> = async (props) => {
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />
-      <section
-        className={clsx(
-          "relative z-0",
-          "flex flex-col items-center justify-end",
-          "text-center",
-          "relative",
-          "bg-white",
-          "md:aspect-video",
-          "md:container",
-          "h-[90vh] md:h-auto",
-          "mt-3",
-        )}
-      >
-        <VideoPlayer
-          className={clsx("h-full w-full")}
-          minResolution='1440p'
-          placeholder={videoPlaceholder}
-          playbackId={HOME_VIDEO.playbackId}
-        />
-        <div
+      <div className={clsx("mt-[64px] md:mt-[80px]", "bg-white")}>
+        <section
           className={clsx(
-            "absolute bottom-[10%] flex w-1/2 max-w-80 flex-col items-center md:w-1/4",
+            "relative z-0",
+            "mt-3",
+            "container h-[90vh] md:h-auto",
+            "flex flex-col items-center justify-end",
+            "bg-white md:aspect-video",
+            "text-center",
           )}
         >
-          <FullLogo className='mb-10 w-full' />
-          <Button asChild className='w-full'>
-            <Link href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}>
-              [ {enterWebsite} ]
-            </Link>
-          </Button>
-        </div>
-      </section>
-      <section className={clsx("flex h-full w-full grow flex-col items-center bg-white")}>
-        <div
-          className={clsx(
-            "my-3 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-3 gap-y-1 px-7 md:container lg:grid-cols-3",
-          )}
-        >
-          <ShopItem
-            imagePath='/images/shop/shop.jpg'
-            linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
-            title='Shop'
+          <VideoPlayer
+            className={clsx("h-full w-full")}
+            minResolution='1440p'
+            placeholder={videoPlaceholder}
+            playbackId={HOME_VIDEO.playbackId}
           />
-          <ShopItem
-            imagePath='/images/about/about.png'
-            linkPath={`/${lang}/${PAGES.about.url}`}
-            title='about the project'
-          />
-          <ShopItem
-            imagePath='/images/materials/materials.png'
-            linkPath={`/${lang}/${PAGES.materials.url}`}
-            title='materials /// stones'
-          />
-          <ShopItem
-            imagePath='/images/process/process.png'
-            linkPath={`/${lang}/${PAGES.process.url}`}
-            title='process'
-          />
-          <ShopItem
-            imagePath='/images/contact/contact.jpg'
-            linkPath={`/${lang}/${PAGES.contact.url}`}
-            title='contact us'
-          />
-        </div>
-        <div
-          className={clsx(
-            "mt-52 flex max-w-[80%] flex-col items-end text-right font-light text-gray-500 md:container md:col-start-3 md:row-start-3 md:mb-3",
-          )}
-        >
-          <p>{quote.paragraph1}</p>
-          <p className={clsx("mt-4")}>{quote.paragraph2}</p>
-        </div>
-      </section>
-    </div>
+          <div
+            className={clsx(
+              "absolute bottom-[10%] flex w-1/2 max-w-80 flex-col items-center md:w-1/4",
+            )}
+          >
+            <FullLogo className='mb-10 w-full' />
+            <Button asChild className='w-full'>
+              <Link href={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}>
+                [ {enterWebsite} ]
+              </Link>
+            </Button>
+          </div>
+        </section>
+        <section className={clsx("flex h-full w-full grow flex-col items-center bg-white")}>
+          <div
+            className={clsx(
+              "my-3 grid w-full auto-rows-[1fr] grid-cols-2 items-start gap-x-3 gap-y-1 px-7 md:container lg:grid-cols-3",
+            )}
+          >
+            <ShopItem
+              imagePath='/images/shop/shop.jpg'
+              linkPath={`/${lang}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`}
+              title='Shop'
+            />
+            <ShopItem
+              imagePath='/images/about/about.png'
+              linkPath={`/${lang}/${PAGES.about.url}`}
+              title='about the project'
+            />
+            <ShopItem
+              imagePath='/images/materials/materials.png'
+              linkPath={`/${lang}/${PAGES.materials.url}`}
+              title='materials /// stones'
+            />
+            <ShopItem
+              imagePath='/images/process/process.png'
+              linkPath={`/${lang}/${PAGES.process.url}`}
+              title='process'
+            />
+            <ShopItem
+              imagePath='/images/contact/contact.jpg'
+              linkPath={`/${lang}/${PAGES.contact.url}`}
+              title='contact us'
+            />
+          </div>
+          <div
+            className={clsx(
+              "mt-52 flex max-w-[80%] flex-col items-end text-right font-light text-gray-500 md:container md:col-start-3 md:row-start-3 md:mb-3",
+            )}
+          >
+            <p>{quote.paragraph1}</p>
+            <p className={clsx("mt-4")}>{quote.paragraph2}</p>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

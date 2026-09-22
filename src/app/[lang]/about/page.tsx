@@ -90,37 +90,34 @@ const AboutPage: FC<IProps> = async (props) => {
         menuBtnColor='white'
         menuBtnIcnColor='white'
       />
-      <div className={clsx("min-h-screen px-6 py-4", "flex flex-col", "bg-black")}>
-        <div
-          className={clsx(
-            "m-auto mt-[72px] md:mt-[96px]",
-            "lg:max-w-[450px]",
-            "flex flex-1 flex-col items-center justify-center",
-            "text-left text-white",
-            "max-w-96",
-            "font-extralight",
-          )}
-        >
-          <VideoPlayer
-            className={clsx("mb-12 w-48", `aspect-[4/3]`)}
-            minResolution='720p'
-            placeholder={aboutVideoPlaceholder}
-            playbackId={ABOUT_VIDEO.playbackId}
-          />
-          <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph1}</p>
-          <p className={clsx("mb-4 w-full")}>[ ]</p>
-          <VideoPlayer
-            className={clsx("mb-4 h-auto w-full", `aspect-[4/5]`)}
-            minResolution='720p'
-            playbackId={C0007_VIDEO.playbackId}
-            placeholder={C0007VideoPlaceholder}
-          />
-          <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph2}</p>
-          <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph3}</p>
-          <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph4}</p>
-          <p className={clsx("mb-4 w-full")}>{dictionary.about.paragraph5}</p>
-          <p className={clsx("mb-4 w-full")}>[ ]</p>
-        </div>
+      <div
+        className={clsx(
+          "mx-auto mt-[64px] md:mt-[80px]",
+          "min-h-screen px-6 py-4 md:max-w-[500px]",
+          "flex flex-col items-center justify-center gap-4",
+          "bg-black",
+          "text-left font-extralight text-white",
+        )}
+      >
+        <VideoPlayer
+          className={clsx("mb-12 w-48", `aspect-[4/3]`)}
+          minResolution='720p'
+          placeholder={aboutVideoPlaceholder}
+          playbackId={ABOUT_VIDEO.playbackId}
+        />
+        <p className={clsx("w-full")}>{dictionary.about.paragraph1}</p>
+        <p className={clsx("w-full")}>[ ]</p>
+        <VideoPlayer
+          className={clsx("h-auto w-full", `aspect-[4/5]`)}
+          minResolution='720p'
+          placeholder={C0007VideoPlaceholder}
+          playbackId={C0007_VIDEO.playbackId}
+        />
+        <p className={clsx("w-full")}>{dictionary.about.paragraph2}</p>
+        <p className={clsx("w-full")}>{dictionary.about.paragraph3}</p>
+        <p className={clsx("w-full")}>{dictionary.about.paragraph4}</p>
+        <p className={clsx("w-full")}>{dictionary.about.paragraph5}</p>
+        <p className={clsx("w-full")}>[ ]</p>
       </div>
     </>
   );

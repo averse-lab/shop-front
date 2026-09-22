@@ -39,7 +39,7 @@ export const Logo: FC<IProps> = (props) => {
       {logoType === "plain" ? (
         <>
           <svg
-            className={clsx("relative z-10", "h-full w-full")}
+            className={clsx("relative z-10 mx-auto", "h-full w-full")}
             viewBox='0 0 40 40'
             xmlns='http://www.w3.org/2000/svg'
           >
@@ -62,7 +62,7 @@ export const Logo: FC<IProps> = (props) => {
         </>
       ) : (
         <svg
-          className={clsx("relative z-10", "h-full w-9")}
+          className={clsx("relative z-10 mx-auto", "h-full w-8")}
           viewBox='0 0 20.94 19.86'
           xmlns='http://www.w3.org/2000/svg'
         >

@@ -78,7 +78,7 @@ export const QuantitySelector: FC<IProps> = (props) => {
       {isPending ? (
         <Spinner className={clsx("h-4 w-4")} />
       ) : (
-        <p className={clsx("text-center font-serif text-sm text-white", "min-w-[16px]")}>
+        <p className={clsx("text-center font-abhaya text-sm text-white", "min-w-[16px]")}>
           {quantity}
         </p>
       )}

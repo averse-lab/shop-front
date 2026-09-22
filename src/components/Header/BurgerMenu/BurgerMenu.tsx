@@ -2,7 +2,7 @@
 
 import { FC, use, useRef, useState } from "react";
 
-import { RiArrowRightUpLine } from "@remixicon/react";
+import { ArrowTopRightIcon, Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { clsx } from "clsx";
 import Link from "next/link";
 
@@ -55,57 +55,52 @@ export const BurgerMenu: FC<IProps> = (props) => {
         aria-label={openBurgerMenuAriaLabel}
         className={clsx(
           className,
-          "transition-all delay-75 lg:[&:hover+div]:-translate-x-[calc(100%-8px)]",
-          open && "lg:[&:hover+div]:!translate-x-2",
+          "transition-all",
           contextInit ? "scale-100 opacity-100" : "scale-50 opacity-0",
         )}
         onClick={openMenu}
         size='icon'
         variant='flat'
       >
-        <svg fill='none' height='19' width='22' xmlns='http://www.w3.org/2000/svg'>
-          <path
-            d='M0 2h21.136M0 9.5h21.136M0 17h21.136'
-            stroke={menuBtnIcnColor === "white" ? "white" : "black"}
-            strokeWidth='4'
-          />
-        </svg>
+        <HamburgerMenuIcon
+          className={clsx(
+            "size-6",
+            "transition-all",
+            menuBtnIcnColor === "white" ? "text-white" : "text-black",
+          )}
+        />
       </Button>
       <div
         className={clsx(
-          "fixed left-0 top-0 z-20 md:top-2",
-          "h-dvh w-screen p-6 md:h-auto md:w-auto",
+          "fixed left-0 top-0 z-20",
+          "h-dvh w-screen md:w-auto",
           "flex flex-col",
-          "uppercase text-primary-foreground backdrop-blur transition-all duration-500 ease-in-out",
-          open ? "opacity-100 md:translate-x-2" : "-translate-x-full opacity-0",
-          menuBgColor === "white" ? "bg-secondary" : "border-[#747474] bg-primary md:border",
+          "transition-all ease-in-out",
+          "uppercase text-primary-foreground",
+          open ? "translate-x-0 opacity-100" : "-translate-x-full opacity-90",
+          menuBgColor === "white" ? "bg-secondary" : "bg-primary",
         )}
         ref={menuRef}
+        style={{ transitionDuration: "350ms" }}
       >
         <Button
           aria-label={closeBurgerMenuAriaLabel}
-          className={clsx("absolute right-6 top-6")}
+          className={clsx("absolute right-4 top-4")}
           onClick={closeMenu}
           size='icon'
           variant='flat'
         >
-          <svg
-            className={clsx("h-6 w-6", "transition-all duration-200 ease-out")}
-            fill='none'
-            height='21'
-            width='22'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='m2.414 1.586 18 18M1.586 19.586l18-18'
-              stroke={menuBgColor === "white" ? "black" : "white"}
-              strokeWidth='4'
-            />
-          </svg>
+          <Cross2Icon
+            className={clsx(
+              "size-6",
+              "transition-all",
+              menuBgColor === "black" ? "text-white" : "text-black",
+            )}
+          />
         </Button>
         <div
           className={clsx(
-            "flex flex-1 flex-col items-center justify-center gap-6 md:gap-4",
+            "flex flex-1 flex-col items-center justify-center gap-6 md:gap-3",
             "md:px-24 md:py-16",
           )}
         >
@@ -117,7 +112,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
               <Link
                 className={clsx(
                   "relative",
-                  "font-serif text-xl md:text-base",
+                  "font-abhaya text-2xl",
                   menuBgColor === "white" ? "text-secondary-foreground" : "text-primary-foreground",
                   "lg:[&:hover+svg]:translate-x-0 lg:[&:hover+svg]:opacity-100",
                 )}
@@ -127,14 +122,14 @@ export const BurgerMenu: FC<IProps> = (props) => {
               >
                 {link.display}
               </Link>
-              <RiArrowRightUpLine
+              <ArrowTopRightIcon
                 className={clsx(
                   "hidden lg:block",
-                  "absolute bottom-0 left-[calc(100%+10px)] top-0 m-auto",
+                  "size-6",
+                  "absolute bottom-0 left-[calc(100%+6px)] top-0 m-auto",
                   "-translate-x-1 opacity-0 transition-all",
                   menuBgColor === "white" ? "text-secondary-foreground" : "text-primary-foreground",
                 )}
-                size={20}
               />
             </div>
           ))}
