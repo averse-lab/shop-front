@@ -87,10 +87,12 @@
   "materials": {
     "title": "materials // stones",
     "title1": "[materials]",
-    "paragraph1": "At Averse, we work with two primary metals: gold and silver. While each material can stand alone in its brilliance, one of our signature strengths lies in the combination of these two precious elements, creating unique and striking contrasts in our designs.",
-    "paragraph2": "Our materials are ethically sourced through SAAMP, a renowned supplier known for its commitment to transparency and sustainability. SAAMP guarantees the traceability of the gold and silver we use, ensuring that every piece adheres to the highest ethical standards.",
+    "paragraph1": "At Averse, we work with two primary precious metals: gold and silver. While each material can stand on its own, one of our signatures lies in combining the two to create distinctive contrasts within our designs.",
+    "paragraph2": "Our gold and silver are ethically sourced and exclusively supplied and processed through French operators. We place particular importance on traceability, quality, and responsible sourcing throughout our production process.",
     "title2": "[stones]",
-    "paragraph3": "As for the stones, we incorporate five distinctive variants into our creations: black diamonds or black spinels, champagne diamonds, white diamonds, and rubies. Each stone is sourced from trusted French suppliers who provide us with ethical traceability, ensuring that the origin of every gemstone aligns with our values of responsibility and craftsmanship.",
+    "paragraph3": "Our creations feature a selection of gemstones including black diamonds, black spinels, champagne diamonds, white diamonds, and rubies.",
+		"paragraph4": "Depending on the project, request, and individual preferences, we work with both natural and laboratory-grown diamonds. This allows us to adapt each piece to different expectations and sensitivities while maintaining the same attention to quality, aesthetics, and craftsmanship.",
+		"paragraph5": "All stones are carefully selected through trusted professional suppliers.",
     "metadata": {
       "title": "Materials && Stones | Averse",
       "description": "Discover the materials and stones used in Averse jewelry.",

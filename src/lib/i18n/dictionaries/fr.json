@@ -103,10 +103,12 @@
   "materials": {
     "title": "matériaux // pierres",
     "title1": "[matériaux]",
-    "paragraph1": "Chez Averse, nous travaillons principalement avec deux métaux : l'or et l'argent. Bien que chaque matériau puisse briller par lui-même, l'une de nos forces réside dans la combinaison de ces deux éléments précieux, créant des contrastes uniques et saisissants dans nos créations.",
-    "paragraph2": "Nos matériaux sont sourcés de manière éthique par l'intermédiaire de SAAMP, un fournisseur renommé pour son engagement en faveur de la transparence et de la durabilité. SAAMP garantit la traçabilité de l'or et de l'argent que nous utilisons, assurant que chaque pièce respecte les normes éthiques les plus strictes.",
+    "paragraph1": "Chez Averse, nous travaillons avec deux métaux précieux principaux : l'or et l'argent. Bien que chaque matériau puisse se suffire à lui-même, l'une de nos signatures réside dans leur combinaison, afin de créer des contrastes distinctifs au sein de nos créations.",
+    "paragraph2": "Notre or et notre argent sont sourcés de manière éthique, et exclusivement fournis et transformés par des opérateurs français. Nous accordons une importance particulière à la traçabilité, à la qualité et à un approvisionnement responsable tout au long de notre processus de production.",
     "title2": "[pierres]",
-    "paragraph3": "Quant aux pierres, nous intégrons cinq variantes distinctes dans nos créations : diamants noirs ou spinelles noirs, diamants champagne, diamants blancs et rubis. Chaque pierre est sourcée auprès de fournisseurs français de confiance qui nous garantissent une traçabilité éthique, veillant à ce que l'origine de chaque gemme soit conforme à nos valeurs de responsabilité et d'artisanat.",
+    "paragraph3": "Nos créations présentent une sélection de pierres précieuses, notamment des diamants noirs, des spinelles noirs, des diamants champagne, des diamants blancs et des rubis.",
+    "paragraph4": "Selon le projet, la demande et les préférences de chacun, nous travaillons aussi bien avec des diamants naturels qu'avec des diamants de laboratoire. Cela nous permet d'adapter chaque pièce aux attentes et aux sensibilités de chacun, tout en conservant la même attention portée à la qualité, à l'esthétique et au savoir-faire.",
+    "paragraph5": "Toutes les pierres sont soigneusement sélectionnées auprès de fournisseurs professionnels de confiance.",
     "metadata": {
       "title": "Matériaux && Pierres | Averse",
       "description": "Découvrez les matériaux et pierres utilisés dans les bijoux Averse.",

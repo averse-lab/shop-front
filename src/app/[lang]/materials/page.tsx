@@ -91,6 +91,14 @@ const MaterialsPage: FC<IProps> = async (props) => {
           type: "paragraph",
           text: materials.paragraph3,
         },
+        {
+          type: "paragraph",
+          text: materials.paragraph4,
+        },
+        {
+          type: "paragraph",
+          text: materials.paragraph5,
+        },
       ]}
       title={materials.title}
       video={{
