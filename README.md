@@ -15,7 +15,7 @@ nvm install
 
 ## Yarn
 
-Yarn is the package manager of choice for this project. After ensuring you are using Node.js 18 _(lts/hydrogen)_,
+Yarn is the package manager of choice for this project. After ensuring you are using Node.js 24 _(lts/krypton)_,
 activate `corepack` to use Yarn by running:
 
 ```bash
