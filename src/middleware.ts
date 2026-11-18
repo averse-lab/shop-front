@@ -24,6 +24,8 @@ export async function middleware(request: NextRequest) {
   const nextReq = request.nextUrl;
   const pathname = nextReq.pathname;
   const origin = nextReq.origin;
+  // Redirects keep the query string: ad links carry their click ID and campaign tags in it.
+  const search = nextReq.search;
   const locale = getLocale(request);
 
   const isInMaintenanceMode = process.env.IS_IN_MAINTENANCE === "true";
@@ -50,14 +52,14 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathnameIsMissingLocale && !pathnameIsPublicPath) {
-    return NextResponse.redirect(new URL(`/${locale}`, origin));
+    return NextResponse.redirect(new URL(`/${locale}${search}`, origin));
   }
 
   const shopRegExp = new RegExp(`\/(fr|en)\/${PAGES.shop.url}$`, "g");
 
   if (pathname.match(shopRegExp)) {
     return NextResponse.redirect(
-      new URL(`/${locale}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}`, origin),
+      new URL(`/${locale}/${PAGES.shop.url}/${CATEGORIES.allProducts.url}${search}`, origin),
     );
   }
 }
