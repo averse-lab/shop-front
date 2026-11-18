@@ -11,6 +11,7 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import { FOOTER_NAV } from "./_internal/Footer.constants";
+import { CookieSettingsButton } from "./CookieSettingsButton/CookieSettingsButton";
 
 type IProps = {
   dictionary: Dictionary;
@@ -44,6 +45,7 @@ export const Footer: FC<IProps> = (props) => {
               {link.display}
             </Link>
           ))}
+          <CookieSettingsButton>{dictionary.cookieConsent.manage}</CookieSettingsButton>
         </nav>
         <Link
           aria-label={averseInstaAriaLabel}

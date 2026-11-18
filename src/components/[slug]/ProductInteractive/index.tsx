@@ -12,6 +12,7 @@ import { Dropdown } from "@components/Dropdown/Dropdown";
 import { Button } from "@components/ui/button";
 
 import { Dictionary, Locale } from "@lib/i18n/types";
+import { getPixelContentId, trackPixelEvent } from "@lib/meta-pixel";
 import { Product, ProductVariant } from "@lib/shopify/types";
 import { formatPrice } from "@lib/utils";
 
@@ -56,57 +57,53 @@ export const ProductInteractive: FC<IProps> = (props) => {
   };
 
   const addToCart = () => {
-    if (uniqueSize) {
-      startTransition(async () => {
-        const cart = await addItemAction(options[0].value);
+    const variant = uniqueSize
+      ? variants[0]
+      : selectedIndex !== undefined
+        ? variants[selectedIndex]
+        : undefined;
 
-        if (cart instanceof Error) {
-          setHasError(true);
-          return;
-        }
+    if (variant === undefined) {
+      // No size yet: send the user to the size selector instead of doing nothing.
+      const select = document.getElementById(VARIANT_SELECTOR_NAME) as HTMLSelectElement | null;
 
-        setHasError(false);
+      select?.focus();
+      try {
+        select?.showPicker();
+      } catch {
+        // showPicker is unsupported or blocked: focus alone is enough.
+      }
 
-        if (!setCartOpen || !setCart) {
-          return;
-        }
+      return;
+    }
 
-        setCartOpen(true);
-        setCart(cart);
-      });
-    } else {
-      if (selectedIndex === undefined) {
-        // No size yet: send the user to the size selector instead of doing nothing.
-        const select = document.getElementById(VARIANT_SELECTOR_NAME) as HTMLSelectElement | null;
+    startTransition(async () => {
+      const cart = await addItemAction(variant.id);
 
-        select?.focus();
-        try {
-          select?.showPicker();
-        } catch {
-          // showPicker is unsupported or blocked: focus alone is enough.
-        }
-
+      if (cart instanceof Error) {
+        setHasError(true);
         return;
       }
 
-      startTransition(async () => {
-        const cart = await addItemAction(options[selectedIndex].value);
+      setHasError(false);
 
-        if (cart instanceof Error) {
-          setHasError(true);
-          return;
-        }
+      const contentId = getPixelContentId(variant.id);
 
-        setHasError(false);
-
-        if (!setCartOpen || !setCart) {
-          return;
-        }
-
-        setCartOpen(true);
-        setCart(cart);
+      trackPixelEvent("AddToCart", {
+        content_ids: [contentId],
+        content_type: "product",
+        contents: [{ id: contentId, quantity: 1 }],
+        value: Number(variant.price.amount),
+        currency: variant.price.currencyCode,
       });
-    }
+
+      if (!setCartOpen || !setCart) {
+        return;
+      }
+
+      setCartOpen(true);
+      setCart(cart);
+    });
   };
 
   return (

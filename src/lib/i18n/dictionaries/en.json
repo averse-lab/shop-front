@@ -136,6 +136,14 @@
       "twitterDescription": "Discover the genesis of Averse, its universe and the inspirations of its creator Matthieu Braccini."
     }
   },
+  "cookieConsent": {
+    "title": "Cookies",
+    "message": "With your consent, we use cookies to measure the audience of our advertising campaigns on Meta (Facebook and Instagram).",
+    "privacyPolicy": "Privacy policy",
+    "accept": "Accept",
+    "refuse": "Refuse",
+    "manage": "Manage cookies"
+  },
   "footer": {
     "averseInstaAriaLabel": "See the Averse Paris Instagram account",
     "weAreStudio99AriaLabel": "See the 99Stud (website developers) Instagram account"

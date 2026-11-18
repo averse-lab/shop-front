@@ -135,6 +135,14 @@
       "twitterDescription": "Découvrez la génèse d'Averse, son univers et les inspirations de son créateur Matthieu Braccini"
     }
   },
+  "cookieConsent": {
+    "title": "Cookies",
+    "message": "Avec votre accord, nous utilisons des cookies pour mesurer l'audience de nos campagnes publicitaires sur Meta (Facebook et Instagram).",
+    "privacyPolicy": "Politique de confidentialité",
+    "accept": "Accepter",
+    "refuse": "Refuser",
+    "manage": "Gérer les cookies"
+  },
   "footer": {
     "averseInstaAriaLabel": "Voir le compte Instagram d'Averse Paris",
     "weAreStudio99AriaLabel": "Voir le compte Instagram du 99stud (developeurs du site)"

@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 
 import { ProductInteractive } from "@components/[slug]/ProductInteractive";
 import { ProductSlide } from "@components/[slug]/ProductSlide";
+import { ProductViewTracker } from "@components/[slug]/ProductViewTracker";
 import { HeaderContextInitializer } from "@components/HeaderContextInitializer";
 import { Slider } from "@components/Slider";
 import { VideoPlayer } from "@components/VideoPlayer";
@@ -124,6 +125,11 @@ const ProductPage: FC<IProps> = async (props) => {
         menuBgColor='black'
         menuBtnColor='white'
         menuBtnIcnColor='white'
+      />
+      <ProductViewTracker
+        price={product.priceRange.minVariantPrice}
+        productId={product.id}
+        title={product.title}
       />
       <div className={clsx("mt-[72px] lg:container md:mt-24 lg:mb-8", "flex flex-col lg:flex-row")}>
         <Slider

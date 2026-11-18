@@ -10,6 +10,7 @@ import { Button } from "@components/ui/button";
 
 import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
+import { getPixelContentId, trackPixelEvent } from "@lib/meta-pixel";
 import { formatPrice } from "@lib/utils";
 
 import { CartContext } from "@contexts/CartContext/CartContext";
@@ -60,6 +61,26 @@ export const Cart: FC<IProps> = (props) => {
   };
 
   const checkoutDisabled = cart === undefined || cart.totalQuantity === 0;
+
+  const trackCheckout = () => {
+    if (cart === undefined) {
+      return;
+    }
+
+    const contents = cart.lines.map((line) => ({
+      id: getPixelContentId(line.merchandise.id),
+      quantity: line.quantity,
+    }));
+
+    trackPixelEvent("InitiateCheckout", {
+      content_ids: contents.map((content) => content.id),
+      content_type: "product",
+      contents,
+      num_items: cart.totalQuantity,
+      value: Number(cart.cost.totalAmount.amount),
+      currency: cart.cost.totalAmount.currencyCode,
+    });
+  };
 
   useClickOutsideDetector(cartRef.current, closeCart, cartOpen);
   useBodyScrollLocker(cartOpen);
@@ -159,7 +180,9 @@ export const Cart: FC<IProps> = (props) => {
             )}
             disabled={checkoutDisabled}
           >
-            <Link href={cart?.checkoutUrl ?? ""}>{dictionary.cart.checkout}</Link>
+            <Link href={cart?.checkoutUrl ?? ""} onClick={trackCheckout}>
+              {dictionary.cart.checkout}
+            </Link>
           </Button>
         </div>
       </div>
