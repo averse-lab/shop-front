@@ -180,11 +180,16 @@ export type ShopifyProduct = {
   updatedAt: string;
 } & ShopifyProductCustomMetafields;
 
+/** `null` leaves the choice to the checkout, for a visitor who has not answered the banner. */
+type VisitorConsentVariable = {
+  visitorConsent: { analytics: boolean; marketing: boolean } | null;
+};
+
 export type ShopifyCartOperation = {
   data: {
     cart: ShopifyCart;
   };
-  variables: {
+  variables: VisitorConsentVariable & {
     cartId: string;
   };
 };
@@ -195,6 +200,7 @@ export type ShopifyCreateCartOperation = {
       cart: ShopifyCart;
     };
   };
+  variables: VisitorConsentVariable;
 };
 
 export type ShopifyAddToCartOperation = {
@@ -203,7 +209,7 @@ export type ShopifyAddToCartOperation = {
       cart: ShopifyCart;
     };
   };
-  variables: {
+  variables: VisitorConsentVariable & {
     cartId: string;
     lines: {
       merchandiseId: string;
@@ -218,7 +224,7 @@ export type ShopifyRemoveFromCartOperation = {
       cart: ShopifyCart;
     };
   };
-  variables: {
+  variables: VisitorConsentVariable & {
     cartId: string;
     lineIds: string[];
   };
@@ -230,7 +236,7 @@ export type ShopifyUpdateCartOperation = {
       cart: ShopifyCart;
     };
   };
-  variables: {
+  variables: VisitorConsentVariable & {
     cartId: string;
     lines: {
       id: string;

@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Backdrop } from "@components/Backdrop";
 import { Button } from "@components/ui/button";
 
-import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
+import { useBodyScrollLocker, useClickOutsideDetector, useConsent } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { getPixelContentId, trackPixelEvent } from "@lib/meta-pixel";
 import { formatPrice } from "@lib/utils";
@@ -34,15 +34,28 @@ export const Cart: FC<IProps> = (props) => {
   const { setCart, cart, cartOpen, setCartOpen } = use(CartContext);
   const cartRef = useRef<HTMLDivElement>(null);
 
+  const consent = useConsent();
+
+  // Fetched again whenever the cookie choice changes: the checkout URL carries that choice.
   useEffect(() => {
-    if (!setCart) {
+    if (!setCart || consent === undefined) {
       return;
     }
 
+    let outdated = false;
+
     (async () => {
-      setCart(await getCartAction());
+      const fetchedCart = await getCartAction();
+
+      if (!outdated) {
+        setCart(fetchedCart);
+      }
     })();
-  }, [setCart]);
+
+    return () => {
+      outdated = true;
+    };
+  }, [setCart, consent]);
 
   const openCart = () => {
     if (!setCartOpen) {
