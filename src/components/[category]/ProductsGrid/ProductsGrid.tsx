@@ -32,6 +32,7 @@ export const ProductsGrid: FC<IProps> = (props) => {
   const filters: Filter[] = Object.values(CATEGORIES).map<Filter>(({ url, i18nKey }) => ({
     url,
     display: dictionary.categories[i18nKey],
+    shortDisplay: i18nKey === "allProducts" ? dictionary.categories.allProductsShort : undefined,
   }));
 
   const selectedFilterIndex = filters.reduce((selectedFilterIndex, filter, idx) => {
@@ -88,7 +89,8 @@ export const ProductsGrid: FC<IProps> = (props) => {
               <div ref={ref}></div>
               <FilterSelector
                 className={clsx(
-                  "fixed bottom-2 left-2 right-2 z-10 m-auto lg:bottom-auto lg:left-0 lg:right-0 lg:top-[96px] lg:m-0 lg:w-screen",
+                  // Mobile: sticky inside the page so it rests above the footer instead of covering it.
+                  "sticky bottom-2 z-10 mx-2 mb-2 mt-2 lg:fixed lg:bottom-auto lg:left-0 lg:right-0 lg:top-[96px] lg:m-0 lg:w-screen",
                   "transition-all duration-200 ease-out lg:translate-y-0",
                 )}
                 filters={filters}

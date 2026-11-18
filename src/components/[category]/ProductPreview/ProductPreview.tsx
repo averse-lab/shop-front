@@ -105,10 +105,11 @@ export const ProductPreview: FC<IProps> = (props) => {
             width={500}
           />
         </div>
-        <div className='flex flex-row items-center justify-between gap-2'>
+        <div className='flex flex-col pb-3 md:flex-row md:items-center md:justify-between md:gap-2 md:pb-0'>
           <p
             className={clsx(
               s["product-preview__name"],
+              "min-w-0 max-w-full truncate",
               "text-base uppercase",
               light ? "text-white" : "text-black",
             )}
@@ -117,6 +118,7 @@ export const ProductPreview: FC<IProps> = (props) => {
           </p>
           <p
             className={clsx(
+              "shrink-0 whitespace-nowrap",
               "text-base font-light",
               light ? "text-neutral-400" : "text-neutral-600",
             )}

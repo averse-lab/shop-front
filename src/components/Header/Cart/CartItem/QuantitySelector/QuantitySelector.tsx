@@ -1,12 +1,13 @@
 "use client";
 
-import { FC, useTransition } from "react";
+import { FC, useState, useTransition } from "react";
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { clsx } from "clsx";
 
 import { Spinner } from "@components/icons/Spinner/Spinner";
 
+import { Dictionary } from "@lib/i18n/types";
 import { Cart } from "@lib/shopify/types";
 import { StateSetter } from "@lib/types";
 
@@ -17,78 +18,75 @@ type IProps = {
   lineId: string;
   variantId: string;
   setCart: StateSetter<Cart | undefined>;
+  dictionary: Dictionary;
 };
 
+const BTN_CLASSES = clsx(
+  "h-11 w-11 lg:h-7 lg:w-7",
+  "flex items-center justify-center",
+  "text-white disabled:opacity-50",
+  "[&>svg]:h-4 [&>svg]:w-4 [&>svg]:transition-all [&>svg]:duration-200 [&>svg]:ease-out",
+  "lg:hover:[&>svg]:scale-105 lg:hover:[&>svg]:stroke-[1.75]",
+);
+
 export const QuantitySelector: FC<IProps> = (props) => {
-  const { quantity, lineId, variantId, setCart } = props;
+  const { quantity, lineId, variantId, setCart, dictionary } = props;
+  const { decreaseQuantity, increaseQuantity, error: errorMessage } = dictionary.cart;
 
   const [isPending, startTransition] = useTransition();
+  const [hasError, setHasError] = useState(false);
 
-  const addQuantity = () => {
+  const changeQuantity = (newQuantity: number) => {
     startTransition(async () => {
-      const cart = await updateItemQuantity({
-        lineId,
-        variantId,
-        quantity: quantity + 1,
-      });
+      const cart =
+        newQuantity === 0
+          ? await removeItem(lineId)
+          : await updateItemQuantity({ lineId, variantId, quantity: newQuantity });
 
       if (cart instanceof Error) {
-        alert(cart);
+        setHasError(true);
         return;
       }
 
-      setCart(cart);
-    });
-  };
-
-  const removeQuantity = () => {
-    startTransition(async () => {
-      let cart: Cart | Error;
-
-      if (quantity === 1) {
-        cart = await removeItem(lineId);
-      } else {
-        cart = await updateItemQuantity({
-          lineId,
-          variantId,
-          quantity: quantity - 1,
-        });
-      }
-
-      if (cart instanceof Error) {
-        alert(cart);
-        return;
-      }
-
+      setHasError(false);
       setCart(cart);
     });
   };
 
   return (
-    <div
-      className={clsx("min-h-[30px] px-2 py-1", "flex items-center gap-3", "border border-white")}
-    >
-      <MinusIcon
-        className={clsx(
-          "h-4 w-4",
-          "cursor-pointer text-white transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
+    <div className={clsx("flex flex-col items-start gap-1")}>
+      <div className={clsx("flex items-center", "border border-white")}>
+        <button
+          aria-label={decreaseQuantity}
+          className={BTN_CLASSES}
+          disabled={isPending}
+          onClick={() => changeQuantity(quantity - 1)}
+          type='button'
+        >
+          <MinusIcon />
+        </button>
+        {isPending ? (
+          <Spinner className={clsx("h-4 w-4")} />
+        ) : (
+          <p className={clsx("text-center font-abhaya text-sm text-white", "min-w-[16px]")}>
+            {quantity}
+          </p>
         )}
-        onClick={removeQuantity}
-      />
-      {isPending ? (
-        <Spinner className={clsx("h-4 w-4")} />
-      ) : (
-        <p className={clsx("text-center font-serif text-sm text-white", "min-w-[16px]")}>
-          {quantity}
+        <button
+          aria-label={increaseQuantity}
+          className={BTN_CLASSES}
+          disabled={isPending}
+          onClick={() => changeQuantity(quantity + 1)}
+          type='button'
+        >
+          <PlusIcon />
+        </button>
+      </div>
+      {hasError ? (
+        <p className={clsx("font-abhaya text-sm text-white")} role='alert'>
+          {errorMessage}
         </p>
-      )}
-      <PlusIcon
-        className={clsx(
-          "h-4 w-4",
-          "cursor-pointer text-white transition-all duration-200 ease-out lg:hover:scale-105 lg:hover:stroke-[1.75]",
-        )}
-        onClick={addQuantity}
-      />
+      ) : null}
     </div>
   );
 };

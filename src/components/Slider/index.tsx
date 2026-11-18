@@ -77,6 +77,12 @@ export const Slider: FC<IProps> = (props) => {
           transform: `translateX(${(activeSlideIndex / slidesCount) * 100}vw)`,
         }}
       ></div>
+      <p
+        aria-hidden
+        className={clsx("lg:hidden", "px-6 pt-2", "text-right text-xs font-light text-neutral-600")}
+      >
+        {activeSlideIndex + 1} / {slidesCount}
+      </p>
     </div>
   );
 };

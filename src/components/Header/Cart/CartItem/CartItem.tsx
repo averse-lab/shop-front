@@ -8,6 +8,7 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { PAGES } from "@lib/routing/constants";
 import { Cart, CartItem as ShopifyCartItem } from "@lib/shopify/types";
 import { StateSetter } from "@lib/types";
+import { formatPrice } from "@lib/utils";
 
 import { QuantitySelector } from "./QuantitySelector/QuantitySelector";
 
@@ -51,7 +52,7 @@ export const CartItem: FC<IProps> = (props) => {
           </Link>
           <div className={clsx("flex items-center")}>
             {uniqueSize ? (
-              <p className={clsx("font-serif text-sm font-light uppercase text-white")}>
+              <p className={clsx("font-abhaya text-sm font-light uppercase text-white")}>
                 {dictionary.product.uniqueSize}
               </p>
             ) : (
@@ -64,10 +65,11 @@ export const CartItem: FC<IProps> = (props) => {
             )}
           </div>
           <p className={clsx("font-abhaya text-sm font-light uppercase text-white")}>
-            {cost.totalAmount.amount} {cost.totalAmount.currencyCode}
+            {formatPrice(cost.totalAmount.amount, cost.totalAmount.currencyCode)}
           </p>
         </div>
         <QuantitySelector
+          dictionary={dictionary}
           lineId={item.id}
           quantity={quantity}
           setCart={setCart}

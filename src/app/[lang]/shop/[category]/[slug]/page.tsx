@@ -105,19 +105,27 @@ const ProductPage: FC<IProps> = async (props) => {
 
   return (
     <div className='bg-white'>
+      {/* Mobile: solid black shop header (legible over any slide). Desktop: transparent. */}
       <HeaderContextInitializer
-        cartBtnColor='black'
+        cartBtnColor='white'
         cartBtnIcnColor='white'
-        desktopCartBtnIcnColor='black'
-        headerBgColor='transparent'
-        logoColor='black'
-        logoType='plain'
+        desktop={{
+          cartBtnColor: "black",
+          cartBtnIcnColor: "black",
+          headerBgColor: "transparent",
+          logoColor: "black",
+          logoType: "plain",
+          menuBtnIcnColor: "black",
+        }}
+        headerBgColor='black'
+        logoColor='white'
+        logoType='typographic'
         logoVisible
         menuBgColor='black'
         menuBtnColor='white'
-        menuBtnIcnColor='black'
+        menuBtnIcnColor='white'
       />
-      <div className={clsx("lg:container lg:mb-8 lg:mt-24", "flex flex-col lg:flex-row")}>
+      <div className={clsx("mt-[72px] lg:container md:mt-24 lg:mb-8", "flex flex-col lg:flex-row")}>
         <Slider
           className={clsx(
             "lg:basis-1/2",
@@ -154,6 +162,12 @@ const ProductPage: FC<IProps> = async (props) => {
           )}
         >
           <div className={clsx("w-full lg:w-[320px]")}>
+            <Link
+              className={clsx("lg:hidden", "mb-3 block", "font-abhaya text-sm")}
+              href={`/${lang}/${PAGES.shop.url}/${product.productType}`}
+            >
+              {dictionary.product.backToShop}
+            </Link>
             <h1 className={clsx("text-base uppercase", "mb-2")}>{product.title}</h1>
             <ProductInteractive
               dictionary={dictionary}

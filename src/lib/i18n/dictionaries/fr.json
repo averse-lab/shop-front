@@ -14,6 +14,7 @@
   },
   "categories": {
     "allProducts": "Tous les produits",
+    "allProductsShort": "Tout",
     "rings": "Bagues",
     "necklaces": "Colliers",
     "bracelets": "Bracelets"
@@ -56,6 +57,7 @@
     "origin": "Designé à Paris, fabriqué en France",
     "sizeGuide": "Guide des tailles",
     "addToCart": "Ajouter au panier",
+    "selectSize": "Choisir une taille",
     "addingToCart": "Ajout au panier",
     "madeToOrder": "Veuillez noter que tous les produits sont fabriqués sur commande.",
     "notInStock": "Veuillez vous référer aux conditions générales de vente pour les délais de production et de livraison",
@@ -71,7 +73,10 @@
     "shippingHint": "Calculée lors de la commande",
     "total": "Total",
     "checkout": "Payer",
-    "empty": "Votre panier est vide"
+    "empty": "Votre panier est vide",
+    "decreaseQuantity": "Diminuer la quantité",
+    "increaseQuantity": "Augmenter la quantité",
+    "error": "Une erreur est survenue. Veuillez réessayer."
   },
   "contact": {
     "title": "Contactez-nous",

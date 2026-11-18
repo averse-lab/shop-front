@@ -9,7 +9,7 @@ import Link from "next/link";
 import { Backdrop } from "@components/Backdrop";
 import { Button } from "@components/ui/button";
 
-import { useClickOutsideDetector } from "@lib/hooks";
+import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
@@ -40,6 +40,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
   };
 
   useClickOutsideDetector(menuRef.current, closeMenu, open);
+  useBodyScrollLocker(open);
 
   const contextInit = menuBgColor && menuBtnColor && menuBtnIcnColor;
 
@@ -47,6 +48,9 @@ export const BurgerMenu: FC<IProps> = (props) => {
     href: `/${lang}/${url}`,
     display: dictionary.pages[i18nKey],
   }));
+
+  const linkColor =
+    menuBgColor === "white" ? "text-secondary-foreground" : "text-primary-foreground";
 
   return (
     <>
@@ -104,10 +108,7 @@ export const BurgerMenu: FC<IProps> = (props) => {
           </svg>
         </Button>
         <div
-          className={clsx(
-            "flex flex-1 flex-col items-center justify-center gap-6 md:gap-4",
-            "md:px-24 md:py-16",
-          )}
+          className={clsx("flex flex-1 flex-col items-center justify-center", "md:px-24 md:py-16")}
         >
           {nav.map((link) => (
             <div
@@ -116,9 +117,9 @@ export const BurgerMenu: FC<IProps> = (props) => {
             >
               <Link
                 className={clsx(
-                  "relative",
-                  "font-serif text-xl md:text-base",
-                  menuBgColor === "white" ? "text-secondary-foreground" : "text-primary-foreground",
+                  "relative block py-3 md:py-2",
+                  "font-abhaya text-xl md:text-base",
+                  linkColor,
                   "lg:[&:hover+svg]:translate-x-0 lg:[&:hover+svg]:opacity-100",
                 )}
                 href={link.href}
