@@ -2,7 +2,12 @@ import "server-only";
 
 import { DocumentNode, print } from "graphql";
 
-import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from "./constants";
+import {
+  HIDDEN_PRODUCT_TAG,
+  LEGAL_CONTENT_REVALIDATE_IN_SECONDS,
+  SHOPIFY_GRAPHQL_API_ENDPOINT,
+  TAGS,
+} from "./constants";
 import {
   addToCartMutation,
   createCartMutation,
@@ -66,12 +71,15 @@ export async function shopifyFetch<T>({
   cache = "force-cache",
   headers,
   query,
+  revalidate,
   tags,
   variables,
 }: {
   cache?: RequestCache;
   headers?: HeadersInit;
   query: DocumentNode;
+  /** Cache lifetime in seconds. Replaces `cache`, since Next.js rejects the two together. */
+  revalidate?: number;
   tags?: string[];
   variables?: ExtractVariables<T>;
 }): Promise<{ status: number; body: T } | never> {
@@ -87,8 +95,11 @@ export async function shopifyFetch<T>({
         ...(query && { query: print(query) }),
         ...(variables && { variables }),
       }),
-      cache: process.env.NODE_ENV === "development" ? "no-cache" : cache,
-      ...(tags && { next: { tags } }),
+      ...(process.env.NODE_ENV === "development"
+        ? { cache: "no-cache" }
+        : revalidate !== undefined
+          ? { next: { revalidate, tags } }
+          : { cache, next: { tags } }),
     });
 
     const body = await result.json();
@@ -434,6 +445,7 @@ export async function getPage({
 }): Promise<Page> {
   const res = await shopifyFetch<ShopifyPageOperation>({
     query: getPageQuery,
+    revalidate: LEGAL_CONTENT_REVALIDATE_IN_SECONDS,
     variables: { handle, lang },
   });
 
@@ -508,6 +520,7 @@ export async function getProducts({
 export async function getPrivacyPolicy({ lang }: { lang: SupportedLanguageCode }): Promise<Policy> {
   const res = await shopifyFetch<ShopifyPolicyOperation<"privacyPolicy">>({
     query: getPolicyQuery("privacyPolicy"),
+    revalidate: LEGAL_CONTENT_REVALIDATE_IN_SECONDS,
     variables: {
       lang,
     },
@@ -523,6 +536,7 @@ export async function getTermsOfService({
 }): Promise<Policy> {
   const res = await shopifyFetch<ShopifyPolicyOperation<"termsOfService">>({
     query: getPolicyQuery("termsOfService"),
+    revalidate: LEGAL_CONTENT_REVALIDATE_IN_SECONDS,
     variables: {
       lang,
     },
