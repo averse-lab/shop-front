@@ -11,6 +11,7 @@ import { Dictionary, Locale } from "@lib/i18n/types";
 import { LinkDetail } from "@lib/routing/types";
 
 import { FOOTER_NAV } from "./_internal/Footer.constants";
+import { CookieSettingsButton } from "./CookieSettingsButton/CookieSettingsButton";
 
 type IProps = {
   dictionary: Dictionary;
@@ -66,6 +67,7 @@ export const Footer: FC<IProps> = (props) => {
             />
           </Link>
         </div>
+        <CookieSettingsButton>{dictionary.cookieConsent.manage}</CookieSettingsButton>
       </div>
     </footer>
   );

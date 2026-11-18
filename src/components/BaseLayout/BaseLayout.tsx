@@ -5,8 +5,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import clsx from "clsx";
 import Script from "next/script";
 
+import { CookieConsent } from "@components/CookieConsent/CookieConsent";
 import { Footer } from "@components/Footer/Footer";
 import { Header } from "@components/Header";
+import { MetaPixel } from "@components/MetaPixel/MetaPixel";
 
 import { AbhayaLibre, Inter } from "@lib/fonts";
 import { Dictionary, Locale } from "@lib/i18n/types";
@@ -54,6 +56,8 @@ export const BaseLayout: FC<IProps> = (props) => {
           <main className={clsx("flex grow flex-col", "bg-black")}>{children}</main>
           <Footer dictionary={dictionary} lang={lang} />
         </AppProvider>
+        <MetaPixel />
+        <CookieConsent dictionary={dictionary} lang={lang} />
       </body>
     </html>
   );
