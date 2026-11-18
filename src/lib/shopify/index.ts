@@ -1,6 +1,9 @@
 import "server-only";
 
 import { DocumentNode, print } from "graphql";
+import { cookies } from "next/headers";
+
+import { CONSENT_COOKIE_NAME } from "@lib/consent";
 
 import {
   HIDDEN_PRODUCT_TAG,
@@ -286,9 +289,26 @@ const reshapeProducts = (products: ShopifyProduct[]) => {
   return reshapedProducts;
 };
 
+/**
+ * The checkout runs on Shopify's domain, out of reach of our consent cookie: every cart
+ * operation passes the choice along so that the `checkoutUrl` it returns carries it.
+ */
+const getVisitorConsent = (): ShopifyCartOperation["variables"]["visitorConsent"] => {
+  const consent = cookies().get(CONSENT_COOKIE_NAME)?.value;
+
+  if (consent !== "granted" && consent !== "denied") {
+    return null;
+  }
+
+  const granted = consent === "granted";
+
+  return { analytics: granted, marketing: granted };
+};
+
 export async function createCart(): Promise<Cart> {
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
+    variables: { visitorConsent: getVisitorConsent() },
     cache: "no-store",
   });
 
@@ -304,6 +324,7 @@ export async function addToCart(
     variables: {
       cartId,
       lines,
+      visitorConsent: getVisitorConsent(),
     },
     cache: "no-store",
   });
@@ -317,6 +338,7 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
     variables: {
       cartId,
       lineIds,
+      visitorConsent: getVisitorConsent(),
     },
     cache: "no-store",
   });
@@ -333,6 +355,7 @@ export async function updateCart(
     variables: {
       cartId,
       lines,
+      visitorConsent: getVisitorConsent(),
     },
     cache: "no-store",
   });
@@ -343,7 +366,7 @@ export async function updateCart(
 export async function getCart(cartId: string): Promise<Cart | undefined> {
   const res = await shopifyFetch<ShopifyCartOperation>({
     query: getCartQuery,
-    variables: { cartId },
+    variables: { cartId, visitorConsent: getVisitorConsent() },
     cache: "no-store",
   });
 
