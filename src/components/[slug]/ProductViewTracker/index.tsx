@@ -2,7 +2,7 @@
 
 import { FC, useEffect } from "react";
 
-import { useConsent } from "@lib/consent";
+import { useConsent } from "@lib/hooks";
 import { getPixelContentId, trackPixelEvent } from "@lib/meta-pixel";
 import { Money } from "@lib/shopify/types";
 

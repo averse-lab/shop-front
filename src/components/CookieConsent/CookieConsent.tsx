@@ -7,7 +7,8 @@ import Link from "next/link";
 
 import { Button } from "@components/ui/button";
 
-import { setConsent, useConsent } from "@lib/consent";
+import { setConsent } from "@lib/consent";
+import { useConsent } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { META_PIXEL_ID } from "@lib/meta-pixel";
 import { PAGES } from "@lib/routing/constants";

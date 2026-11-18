@@ -12,6 +12,7 @@ import { MetaPixel } from "@components/MetaPixel/MetaPixel";
 
 import { AbhayaLibre, Inter } from "@lib/fonts";
 import { Dictionary, Locale } from "@lib/i18n/types";
+import { META_PIXEL_ID } from "@lib/meta-pixel";
 import { combineProviders } from "@lib/utils";
 
 import { CartContextProvider } from "@contexts/CartContext/CartContext";
@@ -42,7 +43,9 @@ export const BaseLayout: FC<IProps> = (props) => {
         className={clsx(
           AbhayaLibre.variable,
           Inter.variable,
-          "mb-[220px] lg:mb-[204px]",
+          // Matches the height of the fixed footer, which gains a link on mobile with the pixel.
+          META_PIXEL_ID ? "mb-[252px]" : "mb-[220px]",
+          "lg:mb-[204px]",
           "min-h-screen",
           "flex flex-col",
           "bg-black",

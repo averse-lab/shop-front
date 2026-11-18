@@ -4,7 +4,7 @@ import { FC, useEffect } from "react";
 
 import { usePathname } from "next/navigation";
 
-import { useConsent } from "@lib/consent";
+import { useConsent } from "@lib/hooks";
 import { revokePixelConsent, trackPixelEvent } from "@lib/meta-pixel";
 
 export const MetaPixel: FC = () => {

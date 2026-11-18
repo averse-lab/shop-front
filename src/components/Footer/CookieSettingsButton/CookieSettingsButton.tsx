@@ -15,7 +15,7 @@ export const CookieSettingsButton: FC<PropsWithChildren> = (props) => {
   }
 
   return (
-    <button onClick={() => setConsent(null)} type='button'>
+    <button className='text-left' onClick={() => setConsent(null)} type='button'>
       {children}
     </button>
   );

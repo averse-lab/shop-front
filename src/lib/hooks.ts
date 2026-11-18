@@ -1,6 +1,8 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useSyncExternalStore } from "react";
 
 import Lenis from "lenis";
+
+import { Consent, getConsent, subscribeToConsent } from "@lib/consent";
 
 export const useBodyScrollLocker = (locked: boolean) => {
   useEffect(() => {
@@ -56,3 +58,9 @@ export const useClickOutsideDetector = (
     return () => document.removeEventListener("click", handleDocumentClick);
   }, [isActive, onClickOutside, target]);
 };
+
+const getServerConsent = () => undefined;
+
+/** `undefined` while rendering on the server and hydrating, when the choice cannot be read. */
+export const useConsent = (): Consent | null | undefined =>
+  useSyncExternalStore(subscribeToConsent, getConsent, getServerConsent);

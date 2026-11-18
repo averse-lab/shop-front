@@ -1,5 +1,3 @@
-import { useSyncExternalStore } from "react";
-
 export type Consent = "granted" | "denied";
 
 const COOKIE_NAME = "cookieConsent";
@@ -23,16 +21,10 @@ export const setConsent = (consent: Consent | null) => {
   listeners.forEach((listener) => listener());
 };
 
-const subscribe = (listener: () => void) => {
+export const subscribeToConsent = (listener: () => void) => {
   listeners.add(listener);
 
   return () => {
     listeners.delete(listener);
   };
 };
-
-const getServerSnapshot = () => undefined;
-
-/** `undefined` while rendering on the server and hydrating, when the choice cannot be read. */
-export const useConsent = (): Consent | null | undefined =>
-  useSyncExternalStore(subscribe, getConsent, getServerSnapshot);

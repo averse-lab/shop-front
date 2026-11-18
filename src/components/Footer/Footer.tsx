@@ -45,6 +45,7 @@ export const Footer: FC<IProps> = (props) => {
               {link.display}
             </Link>
           ))}
+          <CookieSettingsButton>{dictionary.cookieConsent.manage}</CookieSettingsButton>
         </nav>
         <Link
           aria-label={averseInstaAriaLabel}
@@ -67,7 +68,6 @@ export const Footer: FC<IProps> = (props) => {
             />
           </Link>
         </div>
-        <CookieSettingsButton>{dictionary.cookieConsent.manage}</CookieSettingsButton>
       </div>
     </footer>
   );
