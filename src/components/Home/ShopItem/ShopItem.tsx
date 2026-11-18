@@ -20,7 +20,6 @@ export const ShopItem: FC<IProps> = (props) => {
           alt={title}
           className={clsx("object-cover object-center")}
           fill
-          quality={100}
           sizes='(min-width: 1024px) 370px, (min-width: 768px) 300px, 200px'
           src={imagePath}
         />

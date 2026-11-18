@@ -1,7 +1,8 @@
 import { FC } from "react";
 
 import clsx from "clsx";
-import Image from "next/image";
+
+import { ShopifyImage } from "@components/ShopifyImage/ShopifyImage";
 
 import { getPlaceholder } from "@lib/server-utils";
 
@@ -27,13 +28,12 @@ export const ProductSlide: FC<Props> = async (props) => {
         "aspect-square lg:border-b lg:border-border/20 lg:last:border-b-0",
       )}
     >
-      <Image
+      <ShopifyImage
         alt={imgAlt}
         blurDataURL={placeholder}
         className={clsx("h-full w-full object-cover object-center")}
         fill
         placeholder='blur'
-        quality={100}
         sizes='(min-width: 1024px) 50vw, 100vw'
         src={imgSrc}
       />

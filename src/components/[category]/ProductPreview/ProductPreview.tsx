@@ -1,9 +1,10 @@
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 
 import { clsx } from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { InView, IntersectionOptions } from "react-intersection-observer";
+
+import { ShopifyImage } from "@components/ShopifyImage/ShopifyImage";
 
 import { Locale } from "@lib/i18n/types";
 
@@ -95,11 +96,10 @@ export const ProductPreview: FC<IProps> = (props) => {
         ref={ref}
       >
         <div className={clsx("overflow-hidden")}>
-          <Image
+          <ShopifyImage
             alt={`photography of ${title}`}
             className={clsx(s["product-preview__image"], "object-cover object-center")}
             height={500}
-            quality={100}
             sizes='(min-width: 1024px) 25vw, 50vw'
             src={imageUrl}
             width={500}
