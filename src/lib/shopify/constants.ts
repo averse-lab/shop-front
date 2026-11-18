@@ -45,6 +45,9 @@ export const TAGS = {
   products: "products",
 };
 
+// Legal texts are edited in Shopify admin and no webhook announces their changes.
+export const LEGAL_CONTENT_REVALIDATE_IN_SECONDS = 60 * 60;
+
 export const HIDDEN_PRODUCT_TAG = "nextjs-frontend-hidden";
 export const DEFAULT_OPTION = "Default Title";
 export const SHOPIFY_GRAPHQL_API_ENDPOINT = "/api/2023-01/graphql.json";
