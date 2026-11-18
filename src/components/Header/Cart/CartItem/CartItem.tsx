@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { clsx } from "clsx";
-import Image from "next/image";
 import Link from "next/link";
+
+import { ShopifyImage } from "@components/ShopifyImage/ShopifyImage";
 
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { PAGES } from "@lib/routing/constants";
@@ -32,7 +33,7 @@ export const CartItem: FC<IProps> = (props) => {
         href={`/${lang}/${PAGES.shop.url}/${product.productType}/${product.handle}`}
         hrefLang={lang}
       >
-        <Image
+        <ShopifyImage
           alt={`${product.title} photography`}
           className={clsx("h-[120px] w-[120px]", "object-cover object-center")}
           height={120}
