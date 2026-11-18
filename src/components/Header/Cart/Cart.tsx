@@ -62,6 +62,7 @@ export const Cart: FC<IProps> = (props) => {
 
   const checkoutDisabled = cart === undefined || cart.totalQuantity === 0;
 
+  // Runs on pointer down as well as click so that opening the link in a new tab is covered.
   const addClickIdToCheckout = (event: MouseEvent<HTMLAnchorElement>) => {
     event.currentTarget.href = withPixelClickId(event.currentTarget.href);
   };
@@ -164,7 +165,11 @@ export const Cart: FC<IProps> = (props) => {
             )}
             disabled={checkoutDisabled}
           >
-            <Link href={cart?.checkoutUrl ?? ""} onClick={addClickIdToCheckout}>
+            <Link
+              href={cart?.checkoutUrl ?? ""}
+              onClick={addClickIdToCheckout}
+              onPointerDown={addClickIdToCheckout}
+            >
               {dictionary.cart.checkout}
             </Link>
           </Button>
