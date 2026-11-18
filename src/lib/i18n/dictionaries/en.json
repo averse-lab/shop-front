@@ -14,6 +14,7 @@
   },
   "categories": {
     "allProducts": "All Products",
+    "allProductsShort": "All",
     "rings": "Rings",
     "necklaces": "Necklaces",
     "bracelets": "Bracelets"
@@ -67,6 +68,7 @@
     "origin": "Designed in Paris, Made in France",
     "sizeGuide": "Size guide",
     "addToCart": "Add to cart",
+    "selectSize": "Select a size",
     "addingToCart": "Adding to cart",
     "madeToOrder": "Note that all products are made to order.",
     "notInStock": "Please refer to the general terms and conditions of sale for production and delivery time.",
@@ -82,7 +84,10 @@
     "shippingHint": "Calculated after checkout",
     "total": "Total",
     "checkout": "Checkout",
-    "empty": "Your cart is empty"
+    "empty": "Your cart is empty",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
+    "error": "Something went wrong. Please try again."
   },
   "materials": {
     "title": "materials // stones",

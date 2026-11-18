@@ -20,6 +20,8 @@ import { CartContext } from "@contexts/CartContext/CartContext";
 
 import { AvailabilityIndicator } from "./AvailabilityIndicator";
 
+const VARIANT_SELECTOR_NAME = "variant-selector";
+
 type IProps = {
   variants: ProductVariant[];
   minVariantPrice: Product["priceRange"]["minVariantPrice"];
@@ -33,6 +35,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
 
   const [selectedIndex, setSelectedIndex] = useState<number>();
   const [isPending, startTransition] = useTransition();
+  const [hasError, setHasError] = useState(false);
   const { setCart, setCartOpen } = use(CartContext) || {};
 
   const options = variants.map<DropdownOption>((variant) => ({
@@ -61,6 +64,16 @@ export const ProductInteractive: FC<IProps> = (props) => {
         : undefined;
 
     if (variant === undefined) {
+      // No size yet: send the user to the size selector instead of doing nothing.
+      const select = document.getElementById(VARIANT_SELECTOR_NAME) as HTMLSelectElement | null;
+
+      select?.focus();
+      try {
+        select?.showPicker();
+      } catch {
+        // showPicker is unsupported or blocked: focus alone is enough.
+      }
+
       return;
     }
 
@@ -68,9 +81,11 @@ export const ProductInteractive: FC<IProps> = (props) => {
       const cart = await addItemAction(variant.id);
 
       if (cart instanceof Error) {
-        alert(cart);
+        setHasError(true);
         return;
       }
+
+      setHasError(false);
 
       const contentId = getPixelContentId(variant.id);
 
@@ -105,7 +120,7 @@ export const ProductInteractive: FC<IProps> = (props) => {
         ) : (
           <Dropdown
             className={clsx("basis-1/2")}
-            name='variant-selector'
+            name={VARIANT_SELECTOR_NAME}
             onChange={updateSelectedIndex}
             options={options}
             placeholder={dictionary.product.size}
@@ -124,28 +139,29 @@ export const ProductInteractive: FC<IProps> = (props) => {
           </a>
         ) : null}
       </div>
-      <Button
-        className={clsx("w-full", "gap-2")}
-        disabled={!uniqueSize && selectedIndex === undefined}
-        onClick={addToCart}
-      >
+      <Button className={clsx("w-full", "gap-2")} onClick={addToCart}>
         {isPending ? (
           <>
             {dictionary.product.addingToCart}
             <RiLoader5Line className={clsx("animate-spin")} />
           </>
+        ) : !uniqueSize && selectedIndex === undefined ? (
+          dictionary.product.selectSize
         ) : (
           dictionary.product.addToCart
         )}
       </Button>
-      {selectedIndex !== undefined ? (
-        <AvailabilityIndicator
-          dictionary={dictionary}
-          // inStock={!variants[selectedIndex].currentlyNotInStock}
-          inStock={true}
-          shippingDelays={shippingDelays}
-        />
+      {hasError ? (
+        <p className={clsx("mt-3", "font-abhaya text-sm")} role='alert'>
+          {dictionary.cart.error}
+        </p>
       ) : null}
+      <AvailabilityIndicator
+        dictionary={dictionary}
+        // inStock={!variants[selectedIndex].currentlyNotInStock}
+        inStock={true}
+        shippingDelays={shippingDelays}
+      />
     </>
   );
 };

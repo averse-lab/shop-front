@@ -6,11 +6,10 @@ import { Consent, getConsent, subscribeToConsent } from "@lib/consent";
 
 export const useBodyScrollLocker = (locked: boolean) => {
   useEffect(() => {
-    if (locked) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    // Panels are only full-screen below `md`, so only lock scrolling there.
+    document.body.classList.toggle("max-md:overflow-hidden", locked);
+
+    return () => document.body.classList.remove("max-md:overflow-hidden");
   }, [locked]);
 };
 

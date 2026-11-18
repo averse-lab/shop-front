@@ -8,7 +8,7 @@ import {
   HeaderContextValue,
 } from "@contexts/HeaderContext/HeaderContext";
 
-type IProps = Pick<
+type HeaderSettings = Pick<
   HeaderContextValue,
   | "logoVisible"
   | "headerBgColor"
@@ -19,25 +19,15 @@ type IProps = Pick<
   | "cartBtnIcnColor"
   | "logoType"
   | "logoColor"
-> & {
-  desktopMenuBtnIcnColor?: HeaderContextValue["menuBtnIcnColor"];
-  desktopCartBtnIcnColor?: HeaderContextValue["cartBtnIcnColor"];
+>;
+
+type IProps = HeaderSettings & {
+  /** Overrides applied from the `lg` breakpoint up. */
+  desktop?: Partial<HeaderSettings>;
 };
 
 export const HeaderContextInitializer: FC<IProps> = (props) => {
-  const {
-    logoVisible,
-    headerBgColor,
-    menuBtnColor,
-    menuBtnIcnColor,
-    menuBgColor,
-    cartBtnColor,
-    cartBtnIcnColor,
-    desktopMenuBtnIcnColor,
-    desktopCartBtnIcnColor,
-    logoType,
-    logoColor,
-  } = props;
+  const { desktop, ...mobile } = props;
   const {
     setLogoVisible,
     setHeaderBgColor,
@@ -49,6 +39,9 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
     setLogoType,
     setLogoColor,
   } = use(HeaderContext);
+
+  // Primitive key so a new `desktop`/props object identity does not re-run the effect.
+  const settingsKey = JSON.stringify({ mobile, desktop });
 
   useEffect(() => {
     if (
@@ -65,37 +58,25 @@ export const HeaderContextInitializer: FC<IProps> = (props) => {
       return;
     }
 
-    setLogoVisible(logoVisible ?? HEADER_CONTEXT_INIT.logoVisible);
-    setHeaderBgColor(headerBgColor ?? HEADER_CONTEXT_INIT.headerBgColor);
-    setMenuBtnColor(menuBtnColor ?? HEADER_CONTEXT_INIT.menuBtnColor);
-    setCartBtnColor(cartBtnColor ?? HEADER_CONTEXT_INIT.cartBtnColor);
-    setMenuBgColor(menuBgColor ?? HEADER_CONTEXT_INIT.menuBgColor);
-    setLogoType(logoType ?? HEADER_CONTEXT_INIT.logoType);
-    setLogoColor(logoColor ?? HEADER_CONTEXT_INIT.logoColor);
+    const { mobile, desktop } = JSON.parse(settingsKey) as {
+      mobile: HeaderSettings;
+      desktop?: Partial<HeaderSettings>;
+    };
+    const settings: HeaderSettings = window.matchMedia("(min-width: 1024px)").matches
+      ? { ...mobile, ...desktop }
+      : mobile;
 
-    if (window.matchMedia("(min-width: 1024px)").matches) {
-      setMenuBtnIcnColor(
-        desktopMenuBtnIcnColor ?? menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor,
-      );
-      setCartBtnIcnColor(
-        desktopCartBtnIcnColor ?? cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor,
-      );
-    } else {
-      setMenuBtnIcnColor(menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor);
-      setCartBtnIcnColor(cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor);
-    }
+    setLogoVisible(settings.logoVisible ?? HEADER_CONTEXT_INIT.logoVisible);
+    setHeaderBgColor(settings.headerBgColor ?? HEADER_CONTEXT_INIT.headerBgColor);
+    setMenuBtnColor(settings.menuBtnColor ?? HEADER_CONTEXT_INIT.menuBtnColor);
+    setMenuBtnIcnColor(settings.menuBtnIcnColor ?? HEADER_CONTEXT_INIT.menuBtnIcnColor);
+    setMenuBgColor(settings.menuBgColor ?? HEADER_CONTEXT_INIT.menuBgColor);
+    setCartBtnColor(settings.cartBtnColor ?? HEADER_CONTEXT_INIT.cartBtnColor);
+    setCartBtnIcnColor(settings.cartBtnIcnColor ?? HEADER_CONTEXT_INIT.cartBtnIcnColor);
+    setLogoType(settings.logoType ?? HEADER_CONTEXT_INIT.logoType);
+    setLogoColor(settings.logoColor ?? HEADER_CONTEXT_INIT.logoColor);
   }, [
-    cartBtnColor,
-    cartBtnIcnColor,
-    desktopCartBtnIcnColor,
-    desktopMenuBtnIcnColor,
-    headerBgColor,
-    logoVisible,
-    menuBgColor,
-    menuBtnColor,
-    menuBtnIcnColor,
-    logoType,
-    logoColor,
+    settingsKey,
     setCartBtnColor,
     setCartBtnIcnColor,
     setHeaderBgColor,

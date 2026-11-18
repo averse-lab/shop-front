@@ -8,9 +8,10 @@ import Link from "next/link";
 import { Backdrop } from "@components/Backdrop";
 import { Button } from "@components/ui/button";
 
-import { useClickOutsideDetector } from "@lib/hooks";
+import { useBodyScrollLocker, useClickOutsideDetector } from "@lib/hooks";
 import { Dictionary, Locale } from "@lib/i18n/types";
 import { getPixelContentId, trackPixelEvent } from "@lib/meta-pixel";
+import { formatPrice } from "@lib/utils";
 
 import { CartContext } from "@contexts/CartContext/CartContext";
 
@@ -28,7 +29,7 @@ interface IProps {
 
 export const Cart: FC<IProps> = (props) => {
   const { dictionary, lang, className } = props;
-  const { openCartAriaLabel, closeBurgerMenuAriaLabel } = dictionary.header;
+  const { openCartAriaLabel, closeCartAriaLabel } = dictionary.header;
 
   const { setCart, cart, cartOpen, setCartOpen } = use(CartContext);
   const cartRef = useRef<HTMLDivElement>(null);
@@ -82,6 +83,7 @@ export const Cart: FC<IProps> = (props) => {
   };
 
   useClickOutsideDetector(cartRef.current, closeCart, cartOpen);
+  useBodyScrollLocker(cartOpen);
 
   return (
     <>
@@ -108,7 +110,7 @@ export const Cart: FC<IProps> = (props) => {
       >
         <div className={clsx("flex flex-1 flex-col gap-6", "overflow-hidden")}>
           <button
-            aria-label={closeBurgerMenuAriaLabel}
+            aria-label={closeCartAriaLabel}
             className={clsx(
               s["cart__close-btn"],
               "p-2 lg:p-1",
@@ -162,14 +164,20 @@ export const Cart: FC<IProps> = (props) => {
               />
               <SummaryItem
                 metric={dictionary.cart.total}
-                value={`${cart.cost.totalAmount.amount}${" "}${cart.cost.totalAmount.currencyCode}`}
+                value={formatPrice(
+                  cart.cost.totalAmount.amount,
+                  cart.cost.totalAmount.currencyCode,
+                )}
                 variant='total'
               />
             </div>
           ) : null}
           <Button
             asChild
-            className={clsx("w-full text-white after:border-white")}
+            className={clsx(
+              "w-full text-black hover:text-black",
+              "after:border-white after:bg-white hover:after:bg-white",
+            )}
             disabled={checkoutDisabled}
           >
             <Link href={cart?.checkoutUrl ?? ""} onClick={trackCheckout}>

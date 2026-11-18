@@ -25,12 +25,12 @@ export const FilterSelector: FC<IProps> = (props) => {
         s["filters-selector"],
         "overflow-x-auto",
         "max-w-full",
-        "px-6 py-2",
-        "justify-start gap-6 md:justify-center",
+        "px-4 py-2 md:px-6",
+        "justify-between gap-4 md:justify-center md:gap-6",
         "border border-b border-[#D8D8D8]",
       )}
     >
-      {filters.map(({ display, url }, idx) => (
+      {filters.map(({ display, shortDisplay, url }, idx) => (
         <Link
           className={clsx(
             "transition-all duration-200 ease-out",
@@ -43,7 +43,14 @@ export const FilterSelector: FC<IProps> = (props) => {
           hrefLang={lang}
           key={url}
         >
-          {display}
+          {shortDisplay ? (
+            <>
+              <span className='md:hidden'>{shortDisplay}</span>
+              <span className='hidden md:inline'>{display}</span>
+            </>
+          ) : (
+            display
+          )}
         </Link>
       ))}
     </div>

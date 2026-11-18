@@ -30,10 +30,11 @@ export const Dropdown: FC<IProps> = (props) => {
       <select
         className={clsx(
           s["dropdown__select"],
-          "px-1 py-2",
+          "h-11 px-1 py-2 lg:h-auto",
           "basis-full",
           "cursor-pointer appearance-none bg-transparent",
-          "font-abhaya text-sm",
+          // 16px below `lg`: iOS zooms the page when focusing a smaller form control.
+          "font-abhaya text-base lg:text-sm",
         )}
         id={name}
         onChange={handleChange}
